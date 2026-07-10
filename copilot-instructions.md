@@ -43,6 +43,7 @@ Skills are designed to work together:
 ```
 skyciv-api-v3   → Core auth + request envelope (prerequisite for all API skills)
 s3d-api         → Build and solve structural models
+s3d-apps        → Build custom client-side mini-apps embedded inside S3D itself
 cloudcad-api    → Generate CAD drawings from models
 renderer        → Visualise models in the browser
 load-gen-api    → Retrieve wind/snow/seismic loads by location
