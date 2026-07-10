@@ -1,0 +1,57 @@
+{
+  "column_length": 2000,
+  "angle_of_rotation": 180,
+  "support_b": "Fixed",
+  "spring_stiffness_bot": 5000,
+  "support_t": "Pinned",
+  "support_o": "-",
+  "spring_stiffness_top": 5000,
+  "L1": 7,
+  "d": 400,
+  "L2": 5,
+  "PL": [
+    {
+      "position": 250,
+      "magnitude": 2
+    }
+  ],
+  "M": [
+    {
+      "position": 750,
+      "magnitude": 3
+    }
+  ],
+  "DL": [
+    {
+      "start_position": 1000,
+      "start_magnitude": 5,
+      "end_position": 2000,
+      "end_magnitude": -2
+    }
+  ],
+  "E": 200000,
+  "I_y": "1.3e8",
+  "I_z": "1.3e8",
+  "shape": "isection",
+  "B": 200,
+  "H": 400,
+  "t_f": 20,
+  "t_w": 10,
+  "t": 10,
+  "diameter": 10,
+  "material": "steel",
+  "E_advanced": 200000,
+  "p": 7850,
+  "v": 0.3,
+  "advanced_mode": false,
+  "uid": "1007-column-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

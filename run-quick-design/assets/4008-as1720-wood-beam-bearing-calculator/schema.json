@@ -1,0 +1,369 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 1720.1:2010 Timber Bearing Check",
+  "description": "Check structural timber members for local bearing in accordance with AS 1720.1:2010.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Label for the timber member.",
+      "default": "Member 1"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type. Type of Timber Product.",
+      "enum": [
+        "sawn",
+        "glulam",
+        "lvl"
+      ],
+      "x-enumLabels": [
+        "Sawn Timber",
+        "Glulam",
+        "LVL"
+      ],
+      "default": "sawn"
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Timber Grade",
+      "enum": [
+        "A17",
+        "F4",
+        "F5",
+        "F7",
+        "F8",
+        "F11",
+        "F14",
+        "F17",
+        "F22",
+        "F27",
+        "F34",
+        "MGP10",
+        "MGP12",
+        "MGP15"
+      ],
+      "x-enumLabels": [
+        "A17",
+        "F4",
+        "F5",
+        "F7",
+        "F8",
+        "F11",
+        "F14",
+        "F17",
+        "F22",
+        "F27",
+        "F34",
+        "MGP10",
+        "MGP12",
+        "MGP15"
+      ],
+      "default": "A17"
+    },
+    "seasoned": {
+      "type": "string",
+      "description": "Treatment. Unseasoned timber has an average moisture content that exceeds 25%.",
+      "enum": [
+        "seasoned",
+        "unseasoned"
+      ],
+      "x-enumLabels": [
+        "Seasoned",
+        "Unseasoned"
+      ],
+      "default": "seasoned"
+    },
+    "hard_soft": {
+      "type": "string",
+      "description": "Species Type. Is the timber species a hardwood or softwood?",
+      "enum": [
+        "softwood",
+        "hardwood"
+      ],
+      "x-enumLabels": [
+        "Softwood",
+        "Hardwood"
+      ],
+      "default": "softwood"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Typical section sizes from manufactures taken from SkyCiv Section Library.If required size not available use 'custom' to input width and depth of section manually.",
+      "enum": [
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "custom"
+    },
+    "d": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Section Depth.",
+      "default": 70,
+      "minimum": 20,
+      "maximum": 1000
+    },
+    "b": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Section Width.",
+      "default": 35,
+      "minimum": 10,
+      "maximum": 1000
+    },
+    "bearing_check_type": {
+      "type": "string",
+      "description": "Bearing Check Type. Select the type of bearing check to perform.",
+      "enum": [
+        "perpendicular",
+        "end",
+        "angled"
+      ],
+      "x-enumLabels": [
+        "Perpendicular",
+        "End",
+        "Angled"
+      ],
+      "default": "perpendicular"
+    },
+    "bearing_type": {
+      "type": "string",
+      "description": "Bearing Face. Face of timber which is bearing against support.",
+      "enum": [
+        "edge",
+        "flat"
+      ],
+      "x-enumLabels": [
+        "Edge (b)",
+        "Flat (d)"
+      ],
+      "default": "edge"
+    },
+    "bearing_placement": {
+      "type": "string",
+      "description": "Bearing Placement. Placement of bearing block in relation to timber member.",
+      "enum": [
+        "below",
+        "above",
+        "left",
+        "right",
+        "below-right",
+        "below-left",
+        "above-right",
+        "above-left"
+      ],
+      "x-enumLabels": [
+        "Below",
+        "Above",
+        "Left",
+        "Right",
+        "Below - Right",
+        "Below - Left",
+        "Above - Right",
+        "Above - Left"
+      ],
+      "default": "below"
+    },
+    "strength_group": {
+      "type": "string",
+      "description": "Strength Group. Strength group as per Appendix H.",
+      "enum": [
+        "SD1",
+        "SD2",
+        "SD3",
+        "SD4",
+        "SD5",
+        "SD6",
+        "SD7",
+        "SD8",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "x-enumLabels": [
+        "SD1",
+        "SD2",
+        "SD3",
+        "SD4",
+        "SD5",
+        "SD6",
+        "SD7",
+        "SD8",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "default": "SD1"
+    },
+    "bearing_length": {
+      "type": "number",
+      "description": "Bearing Length. Symbol: l. Units: mm. Bearing Length.",
+      "default": 40,
+      "minimum": 5,
+      "maximum": 600
+    },
+    "bearing_position": {
+      "type": "string",
+      "description": "Bearing Position. Symbol: \\text{Bearing}. Bearing position in relation to end of timber member.",
+      "enum": [
+        "far",
+        "close"
+      ],
+      "x-enumLabels": [
+        "≥ 75 mm From End",
+        "< 75 mm From End"
+      ],
+      "default": "far"
+    },
+    "N": {
+      "type": "number",
+      "description": "N*. Symbol: N^*. Units: kN. Design bearing force",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "angle": {
+      "type": "number",
+      "description": "Angle. Symbol: θ. Units: °. Angle between load and grain (degrees).",
+      "default": 30,
+      "minimum": 1,
+      "maximum": 90
+    },
+    "duration": {
+      "type": "string",
+      "description": "Load Duration. Used to calculate k1 factor as per 2.4.1.1 AS 1720. For example, wind and Earthquake loads have a 5 second duration. Dead loads have a 50+ year duration.",
+      "enum": [
+        "seconds",
+        "minutes",
+        "hours",
+        "days",
+        "months",
+        "years"
+      ],
+      "x-enumLabels": [
+        "5 Seconds",
+        "5 Minutes",
+        "5 Hours",
+        "5 Days",
+        "5 Months",
+        "50+ Years"
+      ],
+      "default": "seconds"
+    },
+    "application": {
+      "type": "number",
+      "description": "Member Application. This dropdown relates to the determination of the capacity factor based on Table 2.1 of AS 1720.",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "x-enumLabels": [
+        "Secondary Member",
+        "Primary Member",
+        "Post Disaster Structure"
+      ],
+      "default": 1
+    },
+    "house": {
+      "type": "string",
+      "description": "Building Type. If the building is a house a less conservative reduction factor can be adopted where the member does not impact an area greater than 25 m2. See Table 2.1 AS 1720.",
+      "enum": [
+        "house",
+        "other"
+      ],
+      "x-enumLabels": [
+        "House",
+        "Not house"
+      ],
+      "default": "house"
+    },
+    "area": {
+      "type": "string",
+      "description": "Area of Failure Impact. If failure is likely to impact an area greater than 25 m2 select '≥ 25 m2'. See Table 2.1 AS 1720.",
+      "enum": [
+        "smaller",
+        "greater"
+      ],
+      "x-enumLabels": [
+        "< 25 m2",
+        "≥ 25 m2"
+      ],
+      "default": "smaller"
+    },
+    "EMC": {
+      "type": "number",
+      "description": "Moisture. Units: %. Equilibrium Moisture Content. Highest value of the annual average moisture content (%) that the timber will attain in service. For reference seasoned timber has a MC  25%.",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "k6": {
+      "type": "number",
+      "description": "k6. Symbol: k_6. Temperature factor that reduces the strength of seasoned timber at high temperature locations. ",
+      "enum": [
+        0.9,
+        1
+      ],
+      "x-enumLabels": [
+        "0.9",
+        "1.0"
+      ],
+      "default": 1
+    },
+    "uid": {
+      "type": "string",
+      "const": "4008-as1720-wood-beam-bearing-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "C": 3,
+  "m_f": 1,
+  "d": 0.5,
+  "t": 0.1242,
+  "Fu": 60000,
+  "Nc": 3000,
+  "uid": "6001-bolt-shear-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

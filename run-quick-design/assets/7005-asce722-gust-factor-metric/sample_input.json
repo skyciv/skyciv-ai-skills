@@ -1,0 +1,19 @@
+{
+  "exposure": "B",
+  "V": 49.1744,
+  "h": 9.144,
+  "B": 9.144,
+  "L": 9.144,
+  "n1": 1,
+  "beta": 0.05,
+  "uid": "7005-asce722-gust-factor-metric",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1993-1-1 Steel Member Design",
+  "description": "Design standard and custom steel members in accordance with EN 1993-1-1.",
+  "type": "object",
+  "properties": {
+    "annex": {
+      "type": "string",
+      "description": "National Annex. Symbol: Annex. National Annex applied to calculations.",
+      "enum": [
+        "None",
+        "BS A1: 2014"
+      ],
+      "x-enumLabels": [
+        "None",
+        "BS A1: 2014"
+      ],
+      "default": "None"
+    },
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "i_beam",
+        "t_section",
+        "channel",
+        "rectangular_tube",
+        "square_tube",
+        "circular_section"
+      ],
+      "x-enumLabels": [
+        "I-Section",
+        "T-Section",
+        "Channel",
+        "RHS",
+        "SHS",
+        "CHS"
+      ],
+      "default": "i_beam"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "Custom",
+        "254x102 UB 28"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "254x102 UB 28"
+      ],
+      "default": "Custom"
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit section yield strength. Grades are assumed to be EN 10025-2 for Hot-Rolled Sections EN 10210-1 for Hollow Sections.",
+      "enum": [
+        "S 235",
+        "S 275",
+        "S 355",
+        "S 460",
+        "S 235 H",
+        "S 275 H",
+        "S 355 H",
+        "S 420 H",
+        "S 460 H",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "S 235",
+        "S 275",
+        "S 355",
+        "S 460",
+        "S 235 H",
+        "S 275 H",
+        "S 355 H",
+        "S 420 H",
+        "S 460 H",
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "fabrication": {
+      "type": "string",
+      "description": "Fabrication. Symbol: Fabrication. Choose section fabrication method.",
+      "enum": [
+        "HR",
+        "W",
+        "CF",
+        "HF"
+      ],
+      "x-enumLabels": [
+        "Hot Rolled",
+        "Welded",
+        "Cold Formed",
+        "Hot Finished"
+      ],
+      "default": "HR"
+    },
+    "classification": {
+      "type": "string",
+      "description": "Classification. Symbol: Class. Section Classification is calculated based on applied loading by default. Use this input to manually assign a classification.",
+      "enum": [
+        "Auto",
+        1,
+        2,
+        3
+      ],
+      "x-enumLabels": [
+        "Auto",
+        1,
+        2,
+        3
+      ],
+      "default": "Auto"
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Total height (or diameter) of section.",
+      "default": 260.4,
+      "minimum": 10,
+      "maximum": 2000
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Total width of section.",
+      "default": 102.2,
+      "minimum": 10,
+      "maximum": 2000
+    },
+    "t_f_input": {
+      "type": "number",
+      "description": "tf. Symbol: t_f. Units: mm. Flange thickness, or top/btm wall thickness (RHS/SHS) or CHS thickness. ",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "t_w_input": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: mm. Web thickness, or side wall thickness (RHS/SHS).",
+      "default": 6.3,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "r_input": {
+      "type": "number",
+      "description": "r. Symbol: r. Units: mm. Fillet radius.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "F_y_flange_input": {
+      "type": "number",
+      "description": "fy.flange. Symbol: f_{y.f}. Units: MPa. Flange yield strength (open sections) or section yield strength (hollow sections).",
+      "default": 275,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_u_flange_input": {
+      "type": "number",
+      "description": "fu.flange. Symbol: f_{u.f}. Units: MPa. Flange tensile strength (open sections) or section tensile strength (hollow sections).",
+      "default": 410,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_y_web_input": {
+      "type": "number",
+      "description": "fy.web. Symbol: f_{y.w}. Units: MPa. Web yield strength.",
+      "default": 275,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_u_web_input": {
+      "type": "number",
+      "description": "fu.web. Symbol: f_{u.w}. Units: MPa. Web tensile strength.",
+      "default": 410,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "cm_method": {
+      "type": "string",
+      "description": "Cm Factors. Symbol: C<sub>m</sub> \\; Method. Select between conservative (Cm = 1.0) or user-defined equivalent uniform moment factors (Table B.2).",
+      "enum": [
+        "Conservative",
+        "User-Defined"
+      ],
+      "x-enumLabels": [
+        "Conservative",
+        "User-Defined"
+      ],
+      "default": "Conservative"
+    },
+    "c_mz": {
+      "type": "number",
+      "description": "Cmz. Symbol: C_{mz}. Equivalent uniform moment factor for buckling about the Z-axis.",
+      "default": 1,
+      "minimum": 0.01,
+      "maximum": 10
+    },
+    "c_my": {
+      "type": "number",
+      "description": "Cmy. Symbol: C_{my}. Equivalent uniform moment factor for buckling about the Y-axis.",
+      "default": 1,
+      "minimum": 0.01,
+      "maximum": 10
+    },
+    "c_mLT": {
+      "type": "number",
+      "description": "CmLT. Symbol: C_{mLT}. Equivalent uniform moment factor for lateral-torsional buckling.",
+      "default": 1,
+      "minimum": 0.01,
+      "maximum": 10
+    },
+    "restraint": {
+      "type": "string",
+      "description": "Torsional Restraint. Symbol: Restraint. Select whether segment is restrained against lateral-torsional and torsional-flexural bucking along its length.",
+      "enum": [
+        "U",
+        "C"
+      ],
+      "x-enumLabels": [
+        "Unrestrained",
+        "Continuous Restraint"
+      ],
+      "default": "U"
+    },
+    "L_z_flexure_input": {
+      "type": "number",
+      "description": "Lz.flexure. Symbol: L_{z.flexure}. Units: mm. Distance between intermediate or end flexural restraints in the minor axis (Z) direction. ",
+      "default": 2000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "C1_input": {
+      "type": "number",
+      "description": "C1. Symbol: C_{1}. Lateral-torsional buckling modification factor. Taking C1 = 1.0 is conservative. ",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 5
+    },
+    "L_z_comp_input": {
+      "type": "number",
+      "description": "Lz.comp. Symbol: L_{z.comp}. Units: mm. Distance between restraints against compression buckling about the Z-axis. ",
+      "default": 4000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "L_y_comp_input": {
+      "type": "number",
+      "description": "Ly.comp. Symbol: L_{y.comp}. Units: mm. Distance between restraints against compression buckling about the Y-axis. ",
+      "default": 5000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "ke_z_input": {
+      "type": "number",
+      "description": "ke.z. Symbol: k_{e.z}. Effective length factor for compression buckling about the Z-axis. BS 5950 suggested values displayed below. ",
+      "enum": [
+        0.7,
+        0.85,
+        1,
+        1.2,
+        2
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "1.0",
+        "1.2",
+        "2.0"
+      ],
+      "default": 1
+    },
+    "ke_y_input": {
+      "type": "number",
+      "description": "ke.y. Symbol: k_{e.y}. Effective length factor for compression buckling about the Y-axis. BS 5950 suggested values displayed below. ",
+      "enum": [
+        0.7,
+        0.85,
+        1,
+        1.2,
+        2
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "1.0",
+        "1.2",
+        "2.0"
+      ],
+      "default": 1
+    },
+    "M_fz_input": {
+      "type": "number",
+      "description": "Mz,Ed. Symbol: M_{z,Ed}. Units: kN*m. Major (Z) Axis Factored Moment. Positive value results in compression at top of section. ",
+      "default": 10,
+      "minimum": -20000,
+      "maximum": 20000
+    },
+    "M_fy_input": {
+      "type": "number",
+      "description": "My,Ed. Symbol: M_{y,Ed}. Units: kN*m. Minor (Y) Axis Factored Moment. Positive value results in compression at right of section. ",
+      "default": 5,
+      "minimum": -20000,
+      "maximum": 20000
+    },
+    "V_fy_input": {
+      "type": "number",
+      "description": "Vy,Ed. Symbol: V_{y,Ed}. Units: kN. Y-Direction Factored Shear Force. ",
+      "default": 20,
+      "minimum": -20000,
+      "maximum": 20000
+    },
+    "V_fz_input": {
+      "type": "number",
+      "description": "Vz,Ed. Symbol: V_{z,Ed}. Units: kN. Z-Direction Factored Shear Force. ",
+      "default": 10,
+      "minimum": -20000,
+      "maximum": 20000
+    },
+    "N_f_input": {
+      "type": "number",
+      "description": "NEd. Symbol: N_{Ed}. Units: kN. Factored Axial (X) Force. Positive value represents compression.",
+      "default": 20,
+      "minimum": -20000,
+      "maximum": 20000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2017-eu-i-beam-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

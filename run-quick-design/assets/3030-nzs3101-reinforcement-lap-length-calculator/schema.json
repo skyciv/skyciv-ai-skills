@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NZS 3101:2006 Reinforcement Lap Length",
+  "description": "Calculate reinforcement development and lap length as per NZS 3101:2006.",
+  "type": "object",
+  "properties": {
+    "bar_type": {
+      "type": "number",
+      "description": "Bar Type. Symbol: Type. Select reinforcement&bull; Deformed&bull; Plain",
+      "enum": [
+        1,
+        2
+      ],
+      "x-enumLabels": [
+        "Deformed",
+        "Plain"
+      ],
+      "default": 1
+    },
+    "bar_end": {
+      "type": "string",
+      "description": "Bar End. Symbol: End. Select bar end&bull; Straight&bull; 90° Hook&bull; Semi-Circular Hook",
+      "enum": [
+        "straight",
+        "90-hook",
+        "180-hook"
+      ],
+      "x-enumLabels": [
+        "Straight",
+        "90° Hook",
+        "Semi-Circular Hook"
+      ],
+      "default": "straight"
+    },
+    "bar_diameter": {
+      "type": "number",
+      "description": "Bar Diameter. Symbol: d_b. Units: mm. Reinforcement Bar Diameter.",
+      "enum": [
+        6,
+        10,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40
+      ],
+      "x-enumLabels": [
+        "6",
+        "10",
+        "12",
+        "16",
+        "20",
+        "24",
+        "28",
+        "32",
+        "36",
+        "40"
+      ],
+      "default": 12
+    },
+    "fc": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Concrete Strength.",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65"
+      ],
+      "default": 40
+    },
+    "fy": {
+      "type": "number",
+      "description": "fy. Symbol: f_y. Units: MPa. Yield Strength of Reinforcing Bar.",
+      "default": 500,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "top_bar_factor": {
+      "type": "number",
+      "description": "Concrete Below Bar. Symbol: α_a. Units: mm. Factor for top bar location per Clause 8.6.3.2:Concrete Below Bar ≤ 300 mm ⇒ αa = 1.0Concrete Below Bar > 300 mm ⇒ αa = 1.3",
+      "enum": [
+        1,
+        1.3
+      ],
+      "x-enumLabels": [
+        "≤ 300",
+        "> 300"
+      ],
+      "default": 1
+    },
+    "bundled_reinforcement": {
+      "type": "number",
+      "description": "Bundled Reinforcement. Symbol: Bundling. Factor for bundled bars per Clause 8.6.7:N/A ⇒ αbundle = 1.03-Bar Bundle ⇒ αbundle = 1.24-Bar Bundle ⇒ αbundle = 1.33",
+      "enum": [
+        1,
+        1.2,
+        1.33
+      ],
+      "x-enumLabels": [
+        "N/A",
+        "3-Bar Bundle",
+        "4-Bar Bundle"
+      ],
+      "default": 1
+    },
+    "uid": {
+      "type": "string",
+      "const": "3030-nzs3101-reinforcement-lap-length-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "bar_type",
+    "bar_end",
+    "bar_diameter",
+    "fc",
+    "fy",
+    "top_bar_factor",
+    "bundled_reinforcement"
+  ]
+}

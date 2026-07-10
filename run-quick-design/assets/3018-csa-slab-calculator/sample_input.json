@@ -1,0 +1,23 @@
+{
+  "standard": "CSA A23.4-14",
+  "cat_input": "Slab",
+  "h_input": 200,
+  "f_pc_input": 25,
+  "rebar_input": "15M",
+  "s_input": 300,
+  "f_y_input": 400,
+  "cover_input": 40,
+  "d_input": 152.5,
+  "m_f_input": 27.5,
+  "v_f_input": 65.3,
+  "uid": "3018-csa-slab-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

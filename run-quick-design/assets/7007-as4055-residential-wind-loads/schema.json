@@ -1,0 +1,254 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 4055:2021 Wind Loads for Housing",
+  "description": "Determine residential wind loading in accordance with AS 4055.",
+  "type": "object",
+  "properties": {
+    "diagram": {
+      "type": "string",
+      "description": "diagram"
+    },
+    "design_code": {
+      "type": "string",
+      "description": "Version. Symbol: Design\\;Code. Select version of design code to use for calculations.",
+      "enum": [
+        "2012",
+        "2021"
+      ],
+      "x-enumLabels": [
+        "AS 4055:2012",
+        "AS 4055:2021"
+      ],
+      "default": "2021"
+    },
+    "wind_region": {
+      "type": "string",
+      "description": "Wind Region. Symbol: Region. Refer to region map in AS4055 Figure 2.1",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "x-enumLabels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "default": "A"
+    },
+    "boundary_distance": {
+      "type": "number",
+      "description": "Boundary Distance. Symbol: Boundary\\;Dist. Units: km. In AS 4055:2021, for wind regions C and D, wind class is dependent on the distance from the coast or wind region boundary (Refer to AS 4055:2021 Table 2.2).",
+      "default": 0.1,
+      "minimum": 0.1,
+      "maximum": 50
+    },
+    "terrain_cat": {
+      "type": "string",
+      "description": "Terrain Category. Symbol: TC. Terrain Category to AS 4055 Cl 2.3  TC1: Very exposed open terrain eg. treeless areas, lakes  TC2: Open terrain e.g. farmland with isolated trees  TC2.5: Open terrain with well-scatted obstructions eg. areas with  TC3: Terrain with closely spaced obstructions eg. area with >10 houses per hectare.",
+      "enum": [
+        "TC1",
+        "TC2",
+        "TC2.5",
+        "TC3"
+      ],
+      "x-enumLabels": [
+        "TC1",
+        "TC2",
+        "TC2.5",
+        "TC3"
+      ],
+      "default": "TC1"
+    },
+    "shielding": {
+      "type": "string",
+      "description": "Shielding Class. Symbol: Shielding. Shielding class as per AS 4055 Cl 2.5  NS: Less than 2.5 houses per hectare  PS: At least 2.5 houses per hectare (Not valid for topographic class T4 & T5)  FS: At least 10 houses per hectare (Not valid for topographic class T3, T4 & T5).",
+      "enum": [
+        "NS",
+        "PS",
+        "FS"
+      ],
+      "x-enumLabels": [
+        "No Shielding",
+        "Partial Shielding",
+        "Full Shielding"
+      ],
+      "default": "NS"
+    },
+    "hill_type": {
+      "type": "string",
+      "description": "Hill Type. Symbol: Hill\\;Type. The type of hill structure is located on/near. Refer to AS 4055 Cl 2.4",
+      "enum": [
+        "hill",
+        "escarpment",
+        "flat"
+      ],
+      "x-enumLabels": [
+        "Hill or Ridge",
+        "Escarpment",
+        "Flat"
+      ],
+      "default": "hill"
+    },
+    "hill_height": {
+      "type": "number",
+      "description": "Hill Height. Symbol: Height. Units: m. Height of hill. ",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "hill_slope": {
+      "type": "number",
+      "description": "Hill Slope. Symbol: Gradient. Units: °. Maximum slope through the top half of the hill. ",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "hill_zone": {
+      "type": "string",
+      "description": "Hill Zone. Symbol: Hill\\;Zone. Specify the zone that structure is located on hill. ",
+      "enum": [
+        "Lower-Third Zone",
+        "Mid-Third Zone",
+        "Top-Third Zone",
+        "Over-Top Zone"
+      ],
+      "x-enumLabels": [
+        "Lower-Third",
+        "Middle-Third",
+        "Top-Third",
+        "Over-Top (Escarpment Only)"
+      ],
+      "default": "Lower-Third Zone"
+    },
+    "structure_type": {
+      "type": "string",
+      "description": "Structure Type. Symbol: Type. Component being loaded.  Note: Main structure is any member not directly supporting cladding.",
+      "enum": [
+        "structure",
+        "cladding"
+      ],
+      "x-enumLabels": [
+        "Main Structure",
+        "Cladding, Fasteners & Supporting Members"
+      ],
+      "default": "structure"
+    },
+    "roof_profile": {
+      "type": "string",
+      "description": "Roof Profile. Symbol: Profile. Profile of roof to be used for calculations.",
+      "enum": [
+        "hip",
+        "gable",
+        "skillion"
+      ],
+      "x-enumLabels": [
+        "Hip Roof",
+        "Gable",
+        "Skillion"
+      ],
+      "default": "hip"
+    },
+    "roof_type": {
+      "type": "string",
+      "description": "Roof Material. Symbol: Material. Material used on roof.",
+      "enum": [
+        "Tile",
+        "Sheet Metal"
+      ],
+      "x-enumLabels": [
+        "Tile",
+        "Sheet Metal"
+      ],
+      "default": "Tile"
+    },
+    "roof_slope": {
+      "type": "number",
+      "description": "Roof Slope (α). Symbol: Roof Slope (α). Units: °. Slope of the roof.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 35
+    },
+    "width": {
+      "type": "number",
+      "description": "Width (W). Symbol: Width (W). Units: m. Smallest plan dimension of structure (Max 16m).",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 16
+    },
+    "length": {
+      "type": "number",
+      "description": "Length (L). Symbol: Length (L). Units: m. Largest plan dimension of structure (Max 5x Width).",
+      "default": 10,
+      "minimum": 10,
+      "maximum": 50
+    },
+    "height": {
+      "type": "number",
+      "description": "Height (h). Symbol: Height (h). Units: m. Height of structure from average ground to highest point of roof (excluding chimneys)",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 8.5
+    },
+    "floors": {
+      "type": "string",
+      "description": "No. of Storeys. Symbol: Storeys. The number of storeys in the structure.",
+      "enum": [
+        "one",
+        "two"
+      ],
+      "x-enumLabels": [
+        "One",
+        "Two"
+      ],
+      "default": "one"
+    },
+    "uid": {
+      "type": "string",
+      "const": "7007-as4055-residential-wind-loads",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

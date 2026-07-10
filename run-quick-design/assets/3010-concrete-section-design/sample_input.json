@@ -1,0 +1,83 @@
+{
+  "shape": "rectangular",
+  "D": 16,
+  "W": 16,
+  "diameter": 16,
+  "cover": 2,
+  "pattern": "custom",
+  "n_bars_circle": 8,
+  "size_bars_circle": 8,
+  "angle": 0,
+  "n_bars_top": 4,
+  "size_bars_top": 8,
+  "n_bars_bottom": 4,
+  "size_bars_bottom": 8,
+  "n_bars_left": 2,
+  "size_bars_left": 8,
+  "n_bars_right": 2,
+  "size_bars_right": 8,
+  "top_rows": 1,
+  "top_row_spacing": 3,
+  "btm_rows": 1,
+  "btm_row_spacing": 3,
+  "reinforcement_table": [
+    {
+      "x": 0,
+      "y": 0,
+      "d": 1
+    }
+  ],
+  "advanced_reo_settings": false,
+  "spiral": "spiral",
+  "external_shear_reinforcement_size": 3,
+  "s": 6,
+  "n_shear_bars_horizontal": 0,
+  "size_shear_bars_horizontal": 3,
+  "n_shear_bars_vertical": 0,
+  "size_shear_bars_vertical": 3,
+  "advanced_shear_reo_settings": false,
+  "l_u": 80,
+  "k_y": 1,
+  "k_z": 1,
+  "f_c": 4000,
+  "f_y": 60000,
+  "M_z": 50,
+  "M_y": 50,
+  "V_z": 20,
+  "V_y": 20,
+  "P_u": 10,
+  "bending_about_z_additional": [
+    {
+      "M": 0,
+      "P": 0
+    }
+  ],
+  "bending_about_y_additional": [
+    {
+      "M": 0,
+      "P": 0
+    }
+  ],
+  "sway_nonsway": "sway",
+  "second_order": "second",
+  "bracing_sidesway": " ",
+  "transverse_loading": "no",
+  "M_1y": 10,
+  "M_1z": 10,
+  "P_sus": 2,
+  "check_cover": "no",
+  "construction_method": "Cast-In-Place",
+  "exposure": "Cast Against Ground",
+  "show_table": "no",
+  "report_detail": "short",
+  "uid": "3010-concrete-section-design",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

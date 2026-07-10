@@ -1,0 +1,33 @@
+{
+  "section": "48.3x2.3",
+  "d": 48.3,
+  "t_w": 3.2,
+  "grade": "C250",
+  "f_y": 250,
+  "f_u": 320,
+  "L": 1500,
+  "k_e": 1,
+  "M": 1,
+  "V": 1,
+  "F_t": 0,
+  "F_c": 1,
+  "c_t": "right",
+  "cc_b": 0,
+  "cc_s": 6.25,
+  "cc_t": 15,
+  "cc_c": 15,
+  "M_e": 0,
+  "V_e": 1,
+  "F_te": 1,
+  "F_ce": 1,
+  "uid": "2004-as1576-scaffolding-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

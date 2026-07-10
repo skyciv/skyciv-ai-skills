@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Solver Test",
+  "description": "Demo the S3D Solver",
+  "type": "object",
+  "properties": {
+    "image_reference": {
+      "type": "string",
+      "description": "image_reference"
+    },
+    "beam_length": {
+      "type": "number",
+      "description": "Length, L. Symbol: L. Units: m",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 40
+    },
+    "load": {
+      "type": "number",
+      "description": "End Point Load, P. Symbol: P. Units: kN",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 40
+    },
+    "self_weight": {
+      "type": "boolean",
+      "description": "Self Weight. Symbol: SW",
+      "default": false
+    },
+    "uid": {
+      "type": "string",
+      "const": "1001-solver",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

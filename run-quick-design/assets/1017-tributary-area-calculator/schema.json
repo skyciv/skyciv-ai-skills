@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tributary Area Load Distribution",
+  "description": "Calculates tributary loads and performs beam analysis.",
+  "type": "object",
+  "properties": {
+    "length": {
+      "type": "number",
+      "description": "Length. Symbol: l. Units: m. Length of section.",
+      "default": 5,
+      "minimum": 0.5,
+      "maximum": 2000
+    },
+    "width": {
+      "type": "number",
+      "description": "Width. Symbol: b. Units: m. Width of section.",
+      "default": 3,
+      "minimum": 0.5,
+      "maximum": 2000
+    },
+    "load_type": {
+      "type": "string",
+      "description": "Load Type. Symbol: Type. Select between one-way or two-way load distribution.",
+      "enum": [
+        "oneway",
+        "twoway"
+      ],
+      "x-enumLabels": [
+        "One-Way",
+        "Two-Way"
+      ],
+      "default": "twoway"
+    },
+    "total_load": {
+      "type": "number",
+      "description": "Pressure Magnitude. Symbol: q_t. Units: kPa. Magnitude of the area load (pressure).",
+      "default": 1.2,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "uid": {
+      "type": "string",
+      "const": "1017-tributary-area-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Reinforcement Lap Length",
+  "description": "Calculate reinforcement development and lap length as per AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "bar_diameter": {
+      "type": "number",
+      "description": "Bar Diameter. Symbol: d_b. Units: mm. Reinforcement bar diameter in mm.",
+      "enum": [
+        6,
+        10,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40
+      ],
+      "x-enumLabels": [
+        "6",
+        "10",
+        "12",
+        "16",
+        "20",
+        "24",
+        "28",
+        "32",
+        "36",
+        "40"
+      ],
+      "default": 12
+    },
+    "bar_end": {
+      "type": "string",
+      "description": "Bar End. Symbol: End. Select between a straight, cogged or hooked bar end.",
+      "enum": [
+        "straight",
+        "cog",
+        "hook"
+      ],
+      "x-enumLabels": [
+        "Straight",
+        "90° Cog",
+        "180° Hook"
+      ],
+      "default": "straight"
+    },
+    "concrete_grade": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Concrete strength in MPa (max 65MPa as per AS 3600 Clause 13.1.2.2.)",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65"
+      ],
+      "default": 40
+    },
+    "reinforcement_grade": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Yield Strength of Reinforcing Bar. Standard deformed reinforcement (D500N) = 500MPa.",
+      "default": 500,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "k1_coefficient": {
+      "type": "number",
+      "description": "Concrete Below Bar (Horizontal Bars). Symbol: k_1. Units: mm. Used to calculate k1 coefficient as per AS 3600 Clause 13.1.2.2. Beam/slab top reinforcement often falls into the >300 category.",
+      "enum": [
+        1,
+        1.3
+      ],
+      "x-enumLabels": [
+        "≤300",
+        ">300"
+      ],
+      "default": 1
+    },
+    "bundled_reinforcement": {
+      "type": "number",
+      "description": "Bundled Reinforcement. Symbol: Bundling. Lap length for bundled reinforcement is increased as per AS 3600 Clause 13.1.7 & 13.2.5.",
+      "enum": [
+        1,
+        1.2,
+        1.33
+      ],
+      "x-enumLabels": [
+        "N/A",
+        "3-Bar Bundle",
+        "4-Bar Bundle"
+      ],
+      "default": 1
+    },
+    "epoxy_coated_bar": {
+      "type": "boolean",
+      "description": "Epoxy Coated Bar. Symbol: Epoxy. Factor to increase Lsy.tb as per AS 3600 Clause 13.1.2.2.",
+      "default": false
+    },
+    "lightweight_concrete": {
+      "type": "boolean",
+      "description": "Lightweight Concrete. Symbol: Lightweight. Factor to increase Lsy.tb as per AS 3600 Clause 13.1.2.2.",
+      "default": false
+    },
+    "plain_bars": {
+      "type": "boolean",
+      "description": "Plain (Round) Reinforcement. Symbol: Round \\ Bar. Development length for plain (undeformed) bars is increased as per AS 3600 Clause 13.1.3 and 13.1.6.",
+      "default": false
+    },
+    "development_plots": {
+      "type": "boolean",
+      "description": "Development Plots. Select whether to plot change in stress development relative to lap / development length in report.",
+      "default": true
+    },
+    "uid": {
+      "type": "string",
+      "const": "3006-as3600-reinforcement-lap-length-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "bar_diameter",
+    "bar_end",
+    "concrete_grade",
+    "reinforcement_grade",
+    "k1_coefficient",
+    "bundled_reinforcement",
+    "epoxy_coated_bar",
+    "lightweight_concrete",
+    "plain_bars"
+  ]
+}

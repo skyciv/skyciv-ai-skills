@@ -1,0 +1,409 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 4100:2020 Steel Member Design",
+  "description": "Design standard and custom steel members in accordance with AS 4100.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "i_beam",
+        "t_section",
+        "channel",
+        "lbeam",
+        "rectangular_tube",
+        "square_tube",
+        "circular_section"
+      ],
+      "x-enumLabels": [
+        "I-Section",
+        "T-Section",
+        "PFC",
+        "Angle",
+        "RHS",
+        "SHS",
+        "CHS"
+      ],
+      "default": "i_beam"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit section yield strength.",
+      "enum": [
+        250,
+        300,
+        350,
+        400,
+        450,
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "250",
+        "300",
+        "350",
+        "400",
+        "450",
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Total height (or diameter) of section.",
+      "default": 202,
+      "minimum": 10,
+      "maximum": 2000
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Total width of section.",
+      "default": 133,
+      "minimum": 10,
+      "maximum": 2000
+    },
+    "t_f_input": {
+      "type": "number",
+      "description": "tf. Symbol: t_f. Units: mm. Flange thickness, or top/btm wall thickness (RHS/SHS) or CHS thickness. ",
+      "default": 7,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "t_w_input": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: mm. Web thickness, or side wall thickness (RHS/SHS).",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "r_input": {
+      "type": "number",
+      "description": "r. Symbol: r. Units: mm. Fillet radius.",
+      "default": 8.9,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "F_y_flange_input": {
+      "type": "number",
+      "description": "fy.flange. Symbol: f_{y.f}. Units: MPa. Flange yield strength (open sections) or section yield strength (hollow sections).",
+      "default": 345,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_u_flange_input": {
+      "type": "number",
+      "description": "fu.flange. Symbol: f_{u.f}. Units: MPa. Flange tensile strength (open sections) or section tensile strength (hollow sections).",
+      "default": 440,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_y_web_input": {
+      "type": "number",
+      "description": "fy.web. Symbol: f_{y.w}. Units: MPa. Web yield strength.",
+      "default": 320,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_u_web_input": {
+      "type": "number",
+      "description": "fu.web. Symbol: f_{u.w}. Units: MPa. Web tensile strength.",
+      "default": 440,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "restraint": {
+      "type": "string",
+      "description": "Restraint Arrangement. Symbol: Restraint. Select flexure restraints at ends of segment. Refer AS 4100 Clause 5.4 for further information.F = Fully RestrainedP = Partially Restrained L = Laterally RestrainedU = UnrestrainedSelect Continuous Lateral Restraint for members with full lateral restraint.",
+      "enum": [
+        "Continuous Lateral Restraint",
+        "FF",
+        "FP",
+        "FL",
+        "FU",
+        "PP",
+        "PL",
+        "PU",
+        "LL"
+      ],
+      "x-enumLabels": [
+        "Continuous Lateral Restraint",
+        "FF",
+        "FP",
+        "FL",
+        "FU",
+        "PP",
+        "PL",
+        "PU",
+        "LL"
+      ],
+      "default": "FF"
+    },
+    "end_restraint": {
+      "type": "string",
+      "description": "End Rotation Restraint. Symbol: End\\;Restraint. Select which ends are restrained against lateral rotation, used to calculate kr. Refer AS 4100 Table 5.6.3(C) for further information.",
+      "enum": [
+        "One",
+        "Both",
+        "None"
+      ],
+      "x-enumLabels": [
+        "One",
+        "Both",
+        "None"
+      ],
+      "default": "None"
+    },
+    "load_height": {
+      "type": "string",
+      "description": "Load Height. Symbol: Load\\;Height. Select applied load height, used to calculate kl. Refer AS 4100 Table 5.6.3(B) for further information.",
+      "enum": [
+        "Shear Centre",
+        "Top Flange"
+      ],
+      "x-enumLabels": [
+        "Shear Centre",
+        "Top Flange"
+      ],
+      "default": "Top Flange"
+    },
+    "load_position": {
+      "type": "string",
+      "description": "Load Position. Symbol: Load\\;Position. Longitudinal position of applied loading to segment, used to calculate kl. Refer AS 4100 Table 5.6.3(B) for further information.",
+      "enum": [
+        "Within Segment",
+        "Segment End"
+      ],
+      "x-enumLabels": [
+        "Within Segment",
+        "Segment End"
+      ],
+      "default": "Within Segment"
+    },
+    "L_z_flexure_input": {
+      "type": "number",
+      "description": "Lz.flexure. Symbol: L_{z.flexure}. Units: mm. Distance between intermediate or end flexural restraints in the minor axis (Z) direction. ",
+      "default": 2000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "alpha_m_method": {
+      "type": "string",
+      "description": "αm Method. Symbol: α_{m}\\;Method. Select the method for determining the moment modification factor, αm.User-Defined: Enter the value of αm directly.Auto: Automatically calculate αm based on the design bending moment distribution, as per AS 4100 Clause 5.6.1.1(a)(iii).",
+      "enum": [
+        "user_defined",
+        "auto"
+      ],
+      "x-enumLabels": [
+        "User-Defined",
+        "Auto"
+      ],
+      "default": "user_defined"
+    },
+    "alpha_m": {
+      "type": "number",
+      "description": "αm. Symbol: α_{m}. Moment modification factor, refer AS 4100 Clause 5.6.1.1.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 2.5
+    },
+    "M_2_input": {
+      "type": "number",
+      "description": "M*2. Symbol: M^*_{2}. Units: kN*m. Major (Z) Axis Factored Moment at quarter point of segment. Positive value results in compression at top of section.Note, loading axes should match the Applied Loading Axes input.",
+      "default": 20,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "M_3_input": {
+      "type": "number",
+      "description": "M*3. Symbol: M^*_{3}. Units: kN*m. Major (Z) Axis Factored Moment at quarter point of segment. Positive value results in compression at top of section.Note, loading axes should match the Applied Loading Axes input.",
+      "default": 20,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "M_4_input": {
+      "type": "number",
+      "description": "M*4. Symbol: M^*_{4}. Units: kN*m. Major (Z) Axis Factored Moment at quarter point of segment. Positive value results in compression at top of section.Note, loading axes should match the Applied Loading Axes input.",
+      "default": 20,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "L_z_comp_input": {
+      "type": "number",
+      "description": "Lz.comp. Symbol: L_{z.comp}. Units: mm. Distance between restraints against compression buckling about the Z-axis. ",
+      "default": 4000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "L_y_comp_input": {
+      "type": "number",
+      "description": "Ly.comp. Symbol: L_{y.comp}. Units: mm. Distance between restraints against compression buckling about the Y-axis. ",
+      "default": 5000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "ke_z_input": {
+      "type": "number",
+      "description": "ke.z. Symbol: k_{e.z}. Effective length factor for compression buckling about the Z-axis. Refer AS 4100 Figure 4.6.3.2. ",
+      "enum": [
+        0.7,
+        0.85,
+        1,
+        1.2,
+        2.2
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "1.0",
+        "1.2",
+        "2.2"
+      ],
+      "default": 1
+    },
+    "ke_y_input": {
+      "type": "number",
+      "description": "ke.y. Symbol: k_{e.y}. Effective length factor for compression buckling about the Y-axis. Refer AS 4100 Figure 4.6.3.2. ",
+      "enum": [
+        0.7,
+        0.85,
+        1,
+        1.2,
+        2.2
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "1.0",
+        "1.2",
+        "2.2"
+      ],
+      "default": 1
+    },
+    "kt_input": {
+      "type": "number",
+      "description": "kt. Symbol: k_{t}. Correction factor for distribution of tensile forces. Refer AS 4100 Table 7.3.2.",
+      "enum": [
+        0.75,
+        0.85,
+        0.9,
+        1
+      ],
+      "x-enumLabels": [
+        "0.75",
+        "0.85",
+        "0.9",
+        "1.0"
+      ],
+      "default": 0.85
+    },
+    "M_fz_input": {
+      "type": "number",
+      "description": "M*z. Symbol: M^*_{z}. Units: kN*m. Major (Z) Axis Factored Moment. Positive value results in compression at top of section. ",
+      "default": 20,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "M_fy_input": {
+      "type": "number",
+      "description": "M*y. Symbol: M^*_{y}. Units: kN*m. Minor (Y) Axis Factored Moment. Positive value results in compression at right of section. ",
+      "default": 5,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "V_fy_input": {
+      "type": "number",
+      "description": "V*y. Symbol: V^*_{y}. Units: kN. Major (Y) Axis Factored Shear. ",
+      "default": 50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "V_fz_input": {
+      "type": "number",
+      "description": "V*z. Symbol: V^*_{z}. Units: kN. Minor (Z) Axis Factored Shear. ",
+      "default": 100,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "N_f_input": {
+      "type": "number",
+      "description": "N*. Symbol: N^*. Units: kN. Factored Axial (X) Force. Positive value represents compression.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "load_axes": {
+      "type": "string",
+      "description": "Applied Loading Axes. Symbol: Load\\;Axes. Select which axis system design loads have been calculated for. Design loads in Geometric Axes will be rotated to Principal Axes for Capacity Checks. ",
+      "enum": [
+        "geometric_axes",
+        "principal_axes"
+      ],
+      "x-enumLabels": [
+        "Geometric Axes",
+        "Principal Axes"
+      ],
+      "default": "geometric_axes"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2015-as4100-i-beam-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

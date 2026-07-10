@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Basic ULS Flexure Check of Two Way Slabs as per ACI 318m & Coefficient Method",
+  "description": "Basic ULS Flexure Check of Two Way Slabs as per ACI 318m & Coefficient Method",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image. Diagram of Section"
+    },
+    "f_c": {
+      "type": "number",
+      "description": "Concrete Compressive Strength. Symbol: f'_c. Units: MPa",
+      "default": 21,
+      "minimum": 12.5,
+      "maximum": 100
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Yield Strength of Reinforcing. Symbol: f_y. Units: MPa",
+      "default": 275,
+      "minimum": 200,
+      "maximum": 1000
+    },
+    "l_a": {
+      "type": "number",
+      "description": "Length of Clear Span in Short Direction, l_a. Symbol: l_a. Units: mm",
+      "default": 2000,
+      "minimum": 500,
+      "maximum": 10000
+    },
+    "l_b": {
+      "type": "number",
+      "description": "Length of Clear Span in Long Direction, l_b. Symbol: l_b. Units: mm",
+      "default": 2500,
+      "minimum": 500,
+      "maximum": 10000
+    },
+    "h": {
+      "type": "number",
+      "description": "Slab Thickness, h. Symbol: h. Units: mm",
+      "default": 100,
+      "minimum": 90,
+      "maximum": 2000
+    },
+    "cc": {
+      "type": "number",
+      "description": "Concrete Cover, cc. Symbol: cc. Units: mm",
+      "default": 40,
+      "minimum": 20,
+      "maximum": 100
+    },
+    "db_a": {
+      "type": "number",
+      "description": "Short Direction Reinforcement diameter, db_a. Symbol: db_a. Short Direction Reinforcement diameter, db_a",
+      "enum": [
+        6,
+        8,
+        10,
+        12,
+        16,
+        20
+      ],
+      "x-enumLabels": [
+        "Ø6",
+        "Ø8",
+        "Ø10",
+        "Ø12",
+        "Ø16",
+        "Ø20"
+      ],
+      "default": 10
+    },
+    "db_b": {
+      "type": "number",
+      "description": "Long Direction Reinforcement diameter, db_b. Symbol: db_b. Long Direction Reinforcement diameter, db_b",
+      "enum": [
+        6,
+        8,
+        10,
+        12,
+        16
+      ],
+      "x-enumLabels": [
+        "Ø6",
+        "Ø8",
+        "Ø10",
+        "Ø12",
+        "Ø16"
+      ],
+      "default": 10
+    },
+    "spa_inc": {
+      "type": "number",
+      "description": "Spacing Increment, spa_inc. Symbol: spa_inc. Units: mm",
+      "default": 25,
+      "minimum": 5,
+      "maximum": 100
+    },
+    "U_D": {
+      "type": "number",
+      "description": "Area Load - DL, U_D. Symbol: U_D. Units: kPa",
+      "default": 1.2,
+      "minimum": 0.6,
+      "maximum": 50
+    },
+    "U_L": {
+      "type": "number",
+      "description": "Area Load - LL, U_L. Symbol: U_L. Units: kPa",
+      "default": 1.9,
+      "minimum": 0.25,
+      "maximum": 50
+    },
+    "Ø": {
+      "type": "number",
+      "description": "Reduction Factor, Ø. Symbol: Ø",
+      "default": 0.9,
+      "minimum": 0.05,
+      "maximum": 3
+    },
+    "uid": {
+      "type": "string",
+      "const": "9079-mpads-two-way-slab-uls-flexure",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

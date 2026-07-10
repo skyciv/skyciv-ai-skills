@@ -1,0 +1,28 @@
+{
+  "tp": 6,
+  "h": 30,
+  "d1": 50,
+  "dh": 19,
+  "dp": 14,
+  "Lp": 50,
+  "tw": 6,
+  "theta": 60,
+  "fy": 250,
+  "fu": 410,
+  "fyp": 600,
+  "fuw": "410",
+  "kt": 1,
+  "Lf": 1.5,
+  "M": 50,
+  "DAF": 1.5,
+  "uid": "2013-as4100-lifting-lug-capacity-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "gender": "Male",
+  "unit_system": "metric",
+  "height": 170,
+  "weight": 72,
+  "uid": "0002-bmi123_simple",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

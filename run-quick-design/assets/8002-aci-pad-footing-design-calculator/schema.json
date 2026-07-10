@@ -1,0 +1,547 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Spread Footing Design",
+  "description": "Design isolated spread footings in accordance with ACI 318-19",
+  "type": "object",
+  "properties": {
+    "footing_name": {
+      "type": "string",
+      "description": "Footing Name",
+      "default": "FOOTING 1"
+    },
+    "footing_material": {
+      "type": "string",
+      "description": "Material",
+      "enum": [
+        "rcfooting",
+        "massconcretefooting"
+      ],
+      "x-enumLabels": [
+        "Reinforced Concrete",
+        "Mass Concrete"
+      ],
+      "default": "rcfooting"
+    },
+    "footing_width": {
+      "type": "number",
+      "description": "Footing Width. Symbol: B. Units: ft",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 120
+    },
+    "footing_length": {
+      "type": "number",
+      "description": "Footing Length. Symbol: L. Units: ft",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 120
+    },
+    "footing_depth": {
+      "type": "number",
+      "description": "Foundation Base Depth. Symbol: Df. Units: ft. The depth of the footing base is the distance from the bottom of the footing to the ground level.",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "footing_height": {
+      "type": "number",
+      "description": "Base Height. Symbol: H. Units: in. The height of the footing base is the distance from the bottom of the footing to the top of the footing.",
+      "default": 16,
+      "minimum": 6,
+      "maximum": 80
+    },
+    "col_c1": {
+      "type": "number",
+      "description": "Column Length. Symbol: c_{1}. Units: in",
+      "default": 12,
+      "minimum": 4,
+      "maximum": 50
+    },
+    "col_c2": {
+      "type": "number",
+      "description": "Column Width. Symbol: c_{2}. Units: in",
+      "default": 12,
+      "minimum": 4,
+      "maximum": 50
+    },
+    "col_height": {
+      "type": "number",
+      "description": "Column Height. Symbol: col_{height}. Units: ft",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "col_x": {
+      "type": "number",
+      "description": "Column X Offset. Symbol: x_{offset}. Units: in",
+      "default": 0,
+      "minimum": -120,
+      "maximum": 120
+    },
+    "col_z": {
+      "type": "number",
+      "description": "Column Z Offset. Symbol: z_{Offset}. Units: in",
+      "default": 0,
+      "minimum": -120,
+      "maximum": 120
+    },
+    "punching_overhang_factor": {
+      "type": "number",
+      "description": "Punching Overhang Factor. Symbol: pof_{col}. Factor that determines the minimum distance to consider or not a punching side.",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 5
+    },
+    "loading_table": {
+      "type": "array",
+      "description": "Load Cases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Dead"
+          },
+          "case": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "DL",
+            "enum": [
+              "DL",
+              "LL",
+              "Lr",
+              "W/S"
+            ]
+          },
+          "N": {
+            "type": "number",
+            "description": "N (kip)",
+            "default": 90,
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "Mx": {
+            "type": "number",
+            "description": "Mx (kip-ft)",
+            "default": 0,
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "Mz": {
+            "type": "number",
+            "description": "Mz (kip-ft)",
+            "default": 0,
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "Vx": {
+            "type": "number",
+            "description": "Vx (kip)",
+            "default": 0,
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "Vz": {
+            "type": "number",
+            "description": "Vz (kip)",
+            "default": 0,
+            "minimum": -10000,
+            "maximum": 10000
+          }
+        }
+      }
+    },
+    "lc_table": {
+      "type": "array",
+      "description": "Load Combinations. Symbol: lc_{table}",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lcname": {
+            "type": "string",
+            "description": "LC Name "
+          },
+          "dlfactor": {
+            "type": "string",
+            "description": "DL Factor",
+            "default": 1,
+            "minimum": 0
+          },
+          "llfactor": {
+            "type": "string",
+            "description": "LL Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "lrfactor": {
+            "type": "string",
+            "description": "Lr Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "wsfactor": {
+            "type": "string",
+            "description": "W/S Load Factor",
+            "default": 0,
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "fc": {
+      "type": "number",
+      "description": "Concrete Compressive Strength. Symbol: f_{c}'. Units: ksi",
+      "default": 4,
+      "minimum": 2.5,
+      "maximum": 12
+    },
+    "unit_weight": {
+      "type": "number",
+      "description": "Concrete Unit Weight. Symbol: w_c. Units: lb/ft3",
+      "default": 150,
+      "minimum": 90,
+      "maximum": 200
+    },
+    "max_aggregate_size": {
+      "type": "number",
+      "description": "Max. Size of Aggregate. Symbol: d_{agg}. Units: in",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 4
+    },
+    "cover": {
+      "type": "number",
+      "description": "Reinforcement Clear Cover. Symbol: C_c. Units: in",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 8
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Reinforcement Yield Strength. Symbol: f_{y}. Units: ksi",
+      "default": 60,
+      "minimum": 40,
+      "maximum": 100
+    },
+    "reinforcement_type": {
+      "type": "string",
+      "description": "Reinforcement Type",
+      "enum": [
+        "normal",
+        "Epoxy"
+      ],
+      "x-enumLabels": [
+        "Normal",
+        "Epoxy-coated"
+      ],
+      "default": "normal"
+    },
+    "bar_size_x": {
+      "type": "string",
+      "description": "Footing Bar Size (X Direction). Symbol: d_{b,x}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "4"
+    },
+    "n_x": {
+      "type": "number",
+      "description": "Footing Bars in X Direction (nx). Symbol: n_{x}. Units: No.",
+      "default": 12,
+      "minimum": 2,
+      "maximum": 200
+    },
+    "x_bars_with_hooks": {
+      "type": "boolean",
+      "description": "X Bars with Hooks?",
+      "default": true
+    },
+    "bar_size_z": {
+      "type": "string",
+      "description": "Footing Bar Size (Z Direction). Symbol: d_{b,z}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "4"
+    },
+    "n_z": {
+      "type": "number",
+      "description": "Footing Bars in Z Direction (nz). Symbol: n_{z}. Units: No.",
+      "default": 12,
+      "minimum": 2,
+      "maximum": 200
+    },
+    "z_bars_with_hooks": {
+      "type": "boolean",
+      "description": "Z Bars with Hooks?",
+      "default": true
+    },
+    "col_bar_size": {
+      "type": "string",
+      "description": "Dowel Bar Size. Symbol: d_{b.col}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "4"
+    },
+    "col_nx_bar": {
+      "type": "number",
+      "description": "Dowel Bars in X Direction. Symbol: n_{x,col}. Units: No.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "col_nz_bar": {
+      "type": "number",
+      "description": "Dowel Bars in Z Direction. Symbol: n_{z,col}. Units: No.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "dowels_with_hooks": {
+      "type": "boolean",
+      "description": "Dowels with Hooks?",
+      "default": true
+    },
+    "q_a": {
+      "type": "number",
+      "description": "Allowable Bearing Capacity. Symbol: q_{a}. Units: ksf",
+      "default": 6,
+      "minimum": 0.5,
+      "maximum": 300
+    },
+    "phi_footing_soil": {
+      "type": "number",
+      "description": "Foundation-Soil Friction Angle. Symbol: φ. Units: °",
+      "default": 20,
+      "minimum": 5,
+      "maximum": 60
+    },
+    "min_overturning_SF": {
+      "type": "number",
+      "description": "Min. Overturning Safety Factor. Symbol: SF_{overturning}",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 4
+    },
+    "min_sliding_SF": {
+      "type": "number",
+      "description": "Min. Sliding Safety Factor. Symbol: SF_{sliding}",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 4
+    },
+    "consider_soil_above_foundation": {
+      "type": "boolean",
+      "description": "Consider Soil Above Foundation?",
+      "default": false
+    },
+    "consider_foundation_weight": {
+      "type": "boolean",
+      "description": "Consider Foundation Weight?",
+      "default": false
+    },
+    "soil_unit_weight": {
+      "type": "number",
+      "description": "Soil Unit Weight (ws). Symbol: w_s. Units: lb/ft3",
+      "default": 100,
+      "minimum": 50,
+      "maximum": 150
+    },
+    "elevation": {
+      "type": "string",
+      "description": "Elevation. Display X or Z elevation. Note elevation is perpendicular to the axis selected.",
+      "enum": [
+        "X",
+        "Z"
+      ],
+      "x-enumLabels": [
+        "X-X",
+        "Z-Z"
+      ],
+      "default": "X"
+    },
+    "footing_dims": {
+      "type": "string",
+      "description": "Dimensions. Show / hide footing dimensions on graphic diagram.",
+      "enum": [
+        true,
+        false
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": true
+    },
+    "show_loading": {
+      "type": "number",
+      "description": "Show Load. Show / hide wall loads on graphic diagram.",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "x-enumLabels": [
+        "Dead load",
+        "Live load",
+        "Roof load",
+        "Wind/seismic load",
+        "Hide"
+      ],
+      "default": 1
+    },
+    "show_reinforcement": {
+      "type": "string",
+      "description": "Reinforcement. Show / hide reinforcement on graphic diagram.",
+      "enum": [
+        true,
+        false
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": true
+    },
+    "show_ground_level": {
+      "type": "string",
+      "description": "Ground Level. Show / hide ground level on graphic diagram.",
+      "enum": [
+        true,
+        false
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": true
+    },
+    "uid": {
+      "type": "string",
+      "const": "8002-aci-pad-footing-design-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "footing_material",
+    "footing_width",
+    "footing_length",
+    "col_c1",
+    "col_c2",
+    "col_height",
+    "col_x",
+    "col_z",
+    "punching_overhang_factor",
+    "fc",
+    "unit_weight",
+    "max_aggregate_size",
+    "cover",
+    "f_y",
+    "reinforcement_type",
+    "bar_size_x",
+    "bar_size_z",
+    "col_bar_size",
+    "col_nx_bar",
+    "col_nz_bar",
+    "q_a",
+    "phi_footing_soil",
+    "min_overturning_SF",
+    "min_sliding_SF",
+    "soil_unit_weight"
+  ]
+}

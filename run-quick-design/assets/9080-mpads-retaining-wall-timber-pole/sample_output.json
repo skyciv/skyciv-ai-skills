@@ -1,0 +1,33 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "Design Summary": {
+        "label": "Design Summary",
+        "units": "heading"
+      },
+      "Utilization Ratio": {
+        "value": 0.85,
+        "info": "Ratio of demand to capacity — must be ≤ 1.0",
+        "units": "utility",
+        "label": "Utilization Ratio"
+      },
+      "Design Check": {
+        "value": "PASS",
+        "units": "custom_box",
+        "label": "Overall Design Check",
+        "color": "#21BA45"
+      },
+      "Example Dimension": {
+        "value": 250,
+        "info": "Example numeric result",
+        "units": "mm",
+        "label": "Example Dimension"
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

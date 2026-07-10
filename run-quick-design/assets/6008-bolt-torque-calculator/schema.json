@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bolt Torque Calculator",
+  "description": "Calculate the required torque needed to tighten a bolt.",
+  "type": "object",
+  "properties": {
+    "calculation_selection": {
+      "type": "string",
+      "description": "Calculate:",
+      "enum": [
+        "bolt_torque",
+        "clamp_force"
+      ],
+      "x-enumLabels": [
+        "Bolt Torque",
+        "Clamp Force"
+      ],
+      "default": "bolt_torque"
+    },
+    "rect_image": {
+      "type": "string",
+      "description": "rect_image. Bolt Torque Image "
+    },
+    "K": {
+      "type": "number",
+      "description": "K (Constant). Nut Factor Constant Dependant on the Bolt Size and Material",
+      "default": 0.2,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "d": {
+      "type": "number",
+      "description": "Bolt Diameter. Symbol: d. Units: mm. Diameter of Bolt",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "c_l": {
+      "type": "number",
+      "description": "Lubrication Factor. Symbol: c_{l}. Units: %. Lubrication Coefficient",
+      "default": 20,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "F": {
+      "type": "number",
+      "description": "Clamp Force. Symbol: F. Units: N. Axial Force Applied during Bolt Tightening",
+      "default": 4,
+      "minimum": 0.01,
+      "maximum": 10000000
+    },
+    "T": {
+      "type": "number",
+      "description": "Torque. Symbol: F. Units: N-m. Bolt Tightening Torque",
+      "default": 4,
+      "minimum": 0.01,
+      "maximum": 10000000
+    },
+    "uid": {
+      "type": "string",
+      "const": "6008-bolt-torque-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

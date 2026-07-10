@@ -1,0 +1,270 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Reinforcement Development & Lap Length",
+  "description": "Calculate reinforcement development and lap length as per ACI 318-19.",
+  "type": "object",
+  "properties": {
+    "f_c": {
+      "type": "number",
+      "description": "Specified Compressive Strength. Symbol: f'_c. Units: ksi",
+      "default": 3,
+      "minimum": 2,
+      "maximum": 12
+    },
+    "concrete_type": {
+      "type": "string",
+      "description": "Concrete Type. Symbol: C_{type}",
+      "enum": [
+        "normal",
+        "lightweight"
+      ],
+      "x-enumLabels": [
+        "Normal",
+        "Lightweight"
+      ],
+      "default": "normal"
+    },
+    "d_agg": {
+      "type": "number",
+      "description": "Maximum Aggregate Size. Symbol: d_{agg}. Units: in",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 3
+    },
+    "casting_height": {
+      "type": "number",
+      "description": "Casting Height. Symbol: h_c. Units: in. The vertical distance from the bottom of the concrete formwork to the position where the reinforcing bars are placed.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "cover": {
+      "type": "number",
+      "description": "Clear Cover. Symbol: c_c. Units: in. The distance between the outer surface of the concrete and the nearest surface of the reinforcing steel bars.",
+      "default": 3,
+      "minimum": 0.5,
+      "maximum": 6
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Specified Yield Strength. Symbol: f_{y}. Units: ksi",
+      "default": 60,
+      "minimum": 40,
+      "maximum": 100
+    },
+    "reinforcement_type": {
+      "type": "string",
+      "description": "Reinforcement Type. Symbol: R_{type}",
+      "enum": [
+        "normal",
+        "epoxy"
+      ],
+      "x-enumLabels": [
+        "Normal",
+        "Epoxy-coated"
+      ],
+      "default": "normal"
+    },
+    "main_bar_size": {
+      "type": "string",
+      "description": "Main Bar Size. Symbol: d_b",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "14",
+        "18"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10",
+        "#11",
+        "#14",
+        "#18"
+      ],
+      "default": "4"
+    },
+    "s": {
+      "type": "number",
+      "description": "Main Bar Spacing (center-to-center). Symbol: s. Units: in",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "transverse_reinf_effects": {
+      "type": "boolean",
+      "description": "Include Transverse Reinforcement Effects?",
+      "default": true
+    },
+    "transverse_bar_size": {
+      "type": "string",
+      "description": "Transverse Bar Size. Symbol: d_{b.t}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "3"
+    },
+    "n_legs": {
+      "type": "number",
+      "description": "Number Of Transverse Bars Legs. Symbol: legs. Number of legs withing the spacing s of the main reinforcement crossing the potential splitting plane. ",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "n": {
+      "type": "number",
+      "description": "Number of Bars along Splitting Plane. Symbol: n. Number of bars being developed across the plane of splitting.",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "n_h": {
+      "type": "number",
+      "description": "Number of Hooks. Symbol: n_h. Number of hooks being developed inside the confining reinforcement. ",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "s_t": {
+      "type": "number",
+      "description": "Closed Ties Bar Spacing (center-to-center). Symbol: s_{t}. Units: in. Used in the definition of the confinement reinforcement for the compression development length. ",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "n_t": {
+      "type": "number",
+      "description": "Number of Ties within the Confinement Zone. Symbol: n_t. Number of ties within the confinement zone. ",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "splice_t": {
+      "type": "string",
+      "description": "Splice Type. According to Table 25.5.2.1.",
+      "enum": [
+        "class_A",
+        "class_B"
+      ],
+      "x-enumLabels": [
+        "Class A",
+        "Class B"
+      ],
+      "default": "class_A"
+    },
+    "splice_s": {
+      "type": "number",
+      "description": "Splice Spacing. Symbol: splice_s. Units: in. The minimum distance between adjacent splices. ",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "reinf_factor": {
+      "type": "number",
+      "description": "Reinforcement Factor. Symbol: \\frac{A_{s,req}}{A_{s,prov}}. Ratio between the provided reinforcement area and the required one. See 25.4.10.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "special_moment_frame_flag": {
+      "type": "string",
+      "description": "Joint of Special Moment Frame. Symbol: SMF. Development length and splices for Special Moment Frame joints."
+    },
+    "set_ktr_equal_to_zero_flag": {
+      "type": "string",
+      "description": "Set Ktr Factor Equal to Zero?. Symbol: Ktr0. It is permitted to conservatively use Ktr = 0 when transverse reinforcement is present."
+    },
+    "uid": {
+      "type": "string",
+      "const": "3013-aci-reinforcement-dev-length-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "f_c",
+    "concrete_type",
+    "d_agg",
+    "casting_height",
+    "cover",
+    "f_y",
+    "reinforcement_type",
+    "main_bar_size",
+    "s",
+    "transverse_bar_size",
+    "n_legs",
+    "n",
+    "n_h",
+    "s_t",
+    "n_t",
+    "splice_s"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "b": 90,
+  "d": 45,
+  "Lb": 1000,
+  "fb": 14,
+  "k4": 1,
+  "spa": 900,
+  "Green": false,
+  "U_roofceil": 0.2,
+  "Us_wind": 0,
+  "Loaded_Length": 0,
+  "E": 5400,
+  "Span": 400,
+  "DefLimit_Brief": 5,
+  "U_wind": 0,
+  "uid": "9074-mpads-top-plate-supporting-roof-check",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

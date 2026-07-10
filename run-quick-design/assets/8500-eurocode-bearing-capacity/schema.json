@@ -1,0 +1,490 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1997-1:2004 Bearing Capacity",
+  "description": "Bearing Capacity Calculator as per EN 1997-1:2004.",
+  "type": "object",
+  "properties": {
+    "drawing_type": {
+      "type": "string",
+      "description": "Drawing. Symbol: Method. Drawing to display in center",
+      "enum": [
+        "section",
+        "plan"
+      ],
+      "x-enumLabels": [
+        "Section",
+        "Plan"
+      ],
+      "default": "section"
+    },
+    "method": {
+      "type": "string",
+      "description": "Method. Symbol: Method. Method for analysis.",
+      "enum": [
+        "terzaghi",
+        "meyerhof",
+        "hansen",
+        "vesic",
+        "eurocode"
+      ],
+      "x-enumLabels": [
+        "Terzaghi",
+        "Meyerhof",
+        "Hansen",
+        "Vesic",
+        "EC7 Annex D"
+      ],
+      "default": "terzaghi"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape. Shape of foundation.",
+      "enum": [
+        "rectangular",
+        "circular",
+        "strip"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular",
+        "Strip"
+      ],
+      "default": "rectangular"
+    },
+    "drainage": {
+      "type": "string",
+      "description": "Drainage. Symbol: Drainage. Drained assessment or undrained assessment.",
+      "enum": [
+        "drained",
+        "undrained"
+      ],
+      "x-enumLabels": [
+        "Drained",
+        "Undrained"
+      ],
+      "default": "drained"
+    },
+    "B": {
+      "type": "number",
+      "description": "B. Symbol: B. Units: m. Width of footing.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10000
+    },
+    "L": {
+      "type": "number",
+      "description": "L. Symbol: L. Units: m. Length of footing.",
+      "default": 2,
+      "minimum": 0.1,
+      "maximum": 10000
+    },
+    "D": {
+      "type": "number",
+      "description": "D. Symbol: D. Units: m. Depth to bottom of footing from soil surface.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "c": {
+      "type": "number",
+      "description": "c. Symbol: c. Units: kPa. Effective soil cohesion.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c_u": {
+      "type": "number",
+      "description": "cu. Symbol: c_u. Units: kPa. Undrained cohesion strength of soil.",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c_a": {
+      "type": "number",
+      "description": "ca. Symbol: c_a. Units: kPa. Adhesion between soil and base of foundation. Typically in range of 0.6 - 1.0 x soil cohesion.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "phi": {
+      "type": "number",
+      "description": "φ. Symbol: φ. Units: °. Effective internal friction angle.",
+      "default": 30,
+      "minimum": 1,
+      "maximum": 60
+    },
+    "gamma": {
+      "type": "number",
+      "description": "γ. Symbol: γ. Units: kN/m^3. Soil unit weight above water table.",
+      "default": 16,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "gamma_l": {
+      "type": "number",
+      "description": "γl. Symbol: γ_{l}. Units: kN/m^3. Saturated unit weight.",
+      "default": 17,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "D_w": {
+      "type": "number",
+      "description": "Dw. Symbol: D_{w}. Units: m. Depth to water table.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "q": {
+      "type": "number",
+      "description": "q. Symbol: q. Units: kPa. Permanent surcharge load at surface level adjacent to footing resisting bearing failure (note that variable is not available as an option since q is always favourable for bearing and a factor of 0 would be applied to such a load).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "loading_table": {
+      "type": "array",
+      "description": "Loading",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Dead"
+          },
+          "case": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "G",
+            "enum": [
+              "G",
+              "Q",
+              "ULS"
+            ]
+          },
+          "direction": {
+            "type": "string",
+            "description": "Direction",
+            "default": "Auto",
+            "enum": [
+              "Favourable",
+              "Unfavourable",
+              "Auto"
+            ]
+          },
+          "V": {
+            "type": "number",
+            "description": "V (kN)",
+            "default": 100,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "M_B": {
+            "type": "number",
+            "description": "MB (kNm)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "M_L": {
+            "type": "number",
+            "description": "ML (kNm)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "H_B": {
+            "type": "number",
+            "description": "HB (kN)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "H_L": {
+            "type": "number",
+            "description": "HL (kN)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          }
+        }
+      }
+    },
+    "beta": {
+      "type": "number",
+      "description": "β. Symbol: β. Units: °. Base on slope or adjacent to slope.",
+      "default": 0,
+      "minimum": -30,
+      "maximum": 30
+    },
+    "eta": {
+      "type": "number",
+      "description": "η. Symbol: η. Units: °. Tilted base angle.",
+      "default": 0,
+      "minimum": -30,
+      "maximum": 30
+    },
+    "annex": {
+      "type": "string",
+      "description": "National Annex. Symbol: NA",
+      "enum": [
+        "eurocode",
+        "british",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Eurocode",
+        "British",
+        "Custom"
+      ],
+      "default": "eurocode"
+    },
+    "design_approach": {
+      "type": "string",
+      "description": "Design Approach. Symbol: DA",
+      "enum": [
+        "DA1C1",
+        "DA1C2",
+        "DA2",
+        "DA3"
+      ],
+      "x-enumLabels": [
+        "DA1 - Combination 1",
+        "DA1 - Combination 2",
+        "DA2",
+        "DA3"
+      ],
+      "default": "DA1C1"
+    },
+    "permanent_load_unfavourable_factor": {
+      "type": "number",
+      "description": "γG;dst. Symbol: γ_{G;dst}. GEO Partial Factor for desestabilizing loads.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "permanent_load_favourable_factor": {
+      "type": "number",
+      "description": "γG;stb. Symbol: γ_{G;stb}. Partial Factor of Safety for permanent stabilizing loads.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "permanent_load_unfavourable_factor_EQU": {
+      "type": "number",
+      "description": "γG;dst. Symbol: γ_{G;dst}. EQU Partial Factor for desestabilizing loads.",
+      "default": 1.1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "permanent_load_favourable_factor_EQU": {
+      "type": "number",
+      "description": "γG;stb. Symbol: γ_{G;stb}. EQU Partial Factor for permanent stabilizing loads.",
+      "default": 0.9,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "variable_load_unfavourable_factor": {
+      "type": "number",
+      "description": "γQ;dst. Symbol: γ_{Q;dst}. GEO Partial Factor for variable unfavourable loads.",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 3
+    },
+    "variable_load_favourable_factor": {
+      "type": "number",
+      "description": "γQ;stb. Symbol: γ_{Q;stb}. GEO Partial Factor for variable favourable loads.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 3
+    },
+    "variable_load_unfavourable_factor_EQU": {
+      "type": "number",
+      "description": "γQ;dst. Symbol: γ_{Q;dst}. EQU Partial Factor for variable unfavourable loads.",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 3
+    },
+    "variable_load_favourable_factor_EQU": {
+      "type": "number",
+      "description": "γQ;stb. Symbol: γ_{Q;stb}. EQU Partial Factor for variable favourable loads.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 3
+    },
+    "phi_factor": {
+      "type": "number",
+      "description": "γφ. Symbol: γ_{φ}. Partial Factor of Safety for soil effective friction angle (aka shearing resistance).",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "c_factor": {
+      "type": "number",
+      "description": "γc. Symbol: γ_{c}. Partial Factor of Safety for cohesion Resistance.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "c_u_factor": {
+      "type": "number",
+      "description": "γcu. Symbol: γ_{cu}. Partial Factor of Safety for soil undrained shear strength.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_factor": {
+      "type": "number",
+      "description": "γγ. Symbol: γ_{γ}. Partial Factor of Safety for soil unit weight.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "bearing_factor": {
+      "type": "number",
+      "description": "γRv. Symbol: γ_{Rv}. Partial Factor of Safety for Bearing Resistance.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "sliding_factor": {
+      "type": "number",
+      "description": "γRh. Symbol: γ_{Rh}. Partial Factor of Safety for Sliding Resistance.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "sensitivity": {
+      "type": "string",
+      "description": "Parameter. Choose a variable to run a sensitivity analysis on if required. This will graph how variations in the chosen variable effect the bearing capacity.",
+      "enum": [
+        "none",
+        "B",
+        "L",
+        "D",
+        "c",
+        "c_u",
+        "phi",
+        "gamma"
+      ],
+      "x-enumLabels": [
+        "None",
+        "B",
+        "L",
+        "D",
+        "c",
+        "cu",
+        "φ",
+        "γ"
+      ],
+      "default": "none"
+    },
+    "sensitivity_min": {
+      "type": "number",
+      "description": "Min. Symbol: min. Minimum value for sensitivity analysis.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "sensitivity_max": {
+      "type": "number",
+      "description": "Max. Symbol: max. Maximum value for sensitivity analysis.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "steps": {
+      "type": "number",
+      "description": "Data Points. Number of data points for sensitivity analysis.",
+      "default": 8,
+      "minimum": 2,
+      "maximum": 20
+    },
+    "alpha_1": {
+      "type": "number",
+      "description": "α1. Symbol: α_1. Exponent for Hansen inclination factor (iq).",
+      "default": 5,
+      "minimum": 2,
+      "maximum": 5
+    },
+    "alpha_2": {
+      "type": "number",
+      "description": "α2. Symbol: α_2. Exponent for Hansen inclination factor (iγ).",
+      "default": 5,
+      "minimum": 2,
+      "maximum": 5
+    },
+    "friction_ratio": {
+      "type": "number",
+      "description": "δ / φ. Symbol: δ / φ. Ratio between external friction angle (δ) and internal friction angle (φ).",
+      "default": 0.667,
+      "minimum": 0.5,
+      "maximum": 1
+    },
+    "passive_resistance": {
+      "type": "number",
+      "description": "Passive Sliding Resistance. Symbol: H_p. Units: kN. Passive resistance to consider in sliding assessment.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "show_net_bearing": {
+      "type": "string",
+      "description": "Show qu,net. Whether to show the net bearing pressure as defined in DAS 'factor of safety' section.",
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": "yes"
+    },
+    "uid": {
+      "type": "string",
+      "const": "8500-eurocode-bearing-capacity",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

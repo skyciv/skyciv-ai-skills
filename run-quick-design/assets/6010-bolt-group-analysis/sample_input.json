@@ -1,0 +1,44 @@
+{
+  "shape": "rect",
+  "diameter": 200,
+  "angle": 0,
+  "circular_bolts": 5,
+  "x_s": 100,
+  "y_s": 100,
+  "x_bolts": 2,
+  "y_bolts": 3,
+  "bolts_table": [
+    {
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "bolt_size": 4,
+  "grade": 8.8,
+  "f_uf": 400,
+  "shear_plane": "thread",
+  "prying": 1.1,
+  "lap_length": 0,
+  "analysis": "elastic",
+  "f_up": 300,
+  "t_p": 10,
+  "a_e": 50,
+  "cut": "sheared",
+  "Fx": 1,
+  "Fy": 0,
+  "Fz": 0,
+  "Mx": 1,
+  "My": 0,
+  "Mz": 0.7,
+  "graph_on": "hide",
+  "uid": "6010-bolt-group-analysis",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

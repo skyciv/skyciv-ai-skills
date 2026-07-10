@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sheet Metal K-Factor Calculator",
+  "description": "Calculate the K-factor for sheet metal bending.",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image"
+    },
+    "Material_Thickness": {
+      "type": "number",
+      "description": "Material Thickness (T). Symbol: T. Units: mm. Thickness of the sheet metal.",
+      "default": 10,
+      "minimum": 0
+    },
+    "Inner_Radius": {
+      "type": "number",
+      "description": "Inner Radius (Rᵢ). Symbol: R_i. Units: mm. Inner radius of the sheet metal bend.",
+      "default": 5,
+      "minimum": 0
+    },
+    "Bend_Angle": {
+      "type": "number",
+      "description": "Bend Angle (θ). Symbol: θ. Units: °. The angle of bending of the sheet metal.",
+      "default": 90,
+      "minimum": 0,
+      "maximum": 360
+    },
+    "Bend_Allowance": {
+      "type": "number",
+      "description": "Bend Allowance (BA). Symbol: B_A. Units: mm. The bend allowance. This is the total length of the flat piece of metal that will be deformed or stretched during the bending process.",
+      "default": 14,
+      "minimum": 0
+    },
+    "uid": {
+      "type": "string",
+      "const": "2701-sheet-metal-k-factor-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

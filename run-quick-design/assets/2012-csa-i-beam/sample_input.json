@@ -1,0 +1,28 @@
+{
+  "standard": "CSA S16-14",
+  "section_input": "Custom",
+  "b_input": 150,
+  "d_input": 300,
+  "t_f_input": 15,
+  "t_w_input": 10,
+  "F_y_input": 345,
+  "KL_z_input": 5000,
+  "KL_y_input": 2000,
+  "KL_t_input": 2000,
+  "KL_b_input": 2000,
+  "M_fz_input": 30,
+  "M_fy_input": 0,
+  "V_fy_input": 50,
+  "V_fz_input": 100,
+  "P_f_input": 0,
+  "uid": "2012-csa-i-beam",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

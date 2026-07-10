@@ -1,0 +1,26 @@
+{
+  "b": 45,
+  "d": 90,
+  "Lb": 1200,
+  "fb": 14,
+  "fc": 18,
+  "k4": 1,
+  "spa": 400,
+  "Green": false,
+  "Us_brief": 1.2,
+  "Ps_brief": 5,
+  "E": 9130,
+  "Span": 2400,
+  "DefLimit_Brief": 180,
+  "u_brief": 0.76,
+  "uid": "9073-mpads-timber-wall-stud-check",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

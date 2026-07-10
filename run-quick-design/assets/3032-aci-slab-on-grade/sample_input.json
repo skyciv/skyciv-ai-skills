@@ -1,0 +1,32 @@
+{
+  "t": 12,
+  "fc": 3000,
+  "wc": 150,
+  "fy": 60000,
+  "k": 100,
+  "consider_Ioannides_equation": false,
+  "P": 12500,
+  "Ac": 400,
+  "FS": 2,
+  "db": 6,
+  "s": 12,
+  "z": 0.25,
+  "L": 20,
+  "DT": 50,
+  "Iw": 15,
+  "po": 0.15,
+  "SFAC": "NS",
+  "FF": 1.5,
+  "kc": 1500000,
+  "Eb": 29000000,
+  "current_unit_system": "",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "3032-aci-slab-on-grade"
+}

@@ -1,0 +1,188 @@
+{
+  "footing_name": "F1",
+  "footing_width": 2000,
+  "footing_length": 2000,
+  "footing_depth": 1000,
+  "footing_height": 500,
+  "col_material": "concrete",
+  "col_shape": "rectangular",
+  "col_width": 300,
+  "col_length": 800,
+  "col_height": 600,
+  "col_x": 0,
+  "col_z": 0,
+  "punching_overhang_factor": 1,
+  "loading_table": [
+    {
+      "name": "Dead",
+      "case": "G",
+      "N": 1203.46,
+      "Mx": 0,
+      "Mz": 0,
+      "Vx": 0,
+      "Vz": 0
+    },
+    {
+      "name": "Live",
+      "case": "Q",
+      "N": 200,
+      "Mx": 0,
+      "Mz": 0,
+      "Vx": 0,
+      "Vz": 0
+    }
+  ],
+  "lc_table": [
+    {
+      "lcname": "S1",
+      "type": "SLS",
+      "g_factor": "1.0",
+      "g_factor_stb": "1.0",
+      "q_factor": "0.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "S2",
+      "type": "SLS",
+      "g_factor": "1.0",
+      "g_factor_stb": "1.0",
+      "q_factor": "1.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U1",
+      "type": "ULS",
+      "g_factor": "0.9",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U2",
+      "type": "ULS",
+      "g_factor": "0.9",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.0",
+      "w_factor": "1.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U3",
+      "type": "ULS",
+      "g_factor": "1.35",
+      "g_factor_stb": "1.35",
+      "q_factor": "0.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U4",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "1.2",
+      "q_factor": "1.5",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U5",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "1.2",
+      "q_factor": "0.4",
+      "w_factor": "1.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U6",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "1.2",
+      "q_factor": "0.4",
+      "w_factor": "0.0",
+      "s_factor": "1.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U7",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "1.2",
+      "q_factor": "0.4",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "1.0"
+    }
+  ],
+  "concrete_strength": "32",
+  "unit_weight": 24,
+  "max_aggregate_size": 20,
+  "concrete_fabrication": "in_situ",
+  "concrete_type": "reinforced",
+  "steel_strength": 500,
+  "ductility_class": "N",
+  "epoxy_coated": false,
+  "top_cover": 30,
+  "btm_cover": 50,
+  "top_reinforcement": false,
+  "btm_reinforcement_table": [
+    {
+      "btm_x_no": 8,
+      "btm_x_cogs": "true",
+      "btm_x_size": "16",
+      "btm_z_no": 10,
+      "btm_z_cogs": "true",
+      "btm_z_size": "16",
+      "side_no": 0,
+      "side_size": "12"
+    }
+  ],
+  "col_reinforcement_table": [
+    {
+      "size": "12",
+      "x_no": 2,
+      "z_no": 2,
+      "cogs": "true"
+    }
+  ],
+  "bearing_design_method": "elastic",
+  "q_a": 400,
+  "consider_soil_above_foundation": false,
+  "phi_g": 0.5,
+  "cohesion": 5,
+  "friction_angle": 30,
+  "soil_unit_weight": 18,
+  "shear_calc_method": "simplified",
+  "shear_force_application_point": "bottom",
+  "report_detail": true,
+  "graphics_table": [
+    {
+      "elevation": "X",
+      "footing_dims": "true",
+      "show_reinforcement": "true",
+      "show_levels": "true",
+      "show_loading": "true",
+      "display_load_case": "G"
+    }
+  ],
+  "current_unit_system": "",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "8000-as3600-pad-footing-design"
+}

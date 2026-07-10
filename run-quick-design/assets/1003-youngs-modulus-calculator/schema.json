@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Young's Modulus Calculator",
+  "description": "Calculate Young's Modulus based on stress and strain data.",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Mode:",
+      "enum": [
+        "Stress/Strain",
+        "Stress-Strain Curve"
+      ],
+      "x-enumLabels": [
+        "Stress/Strain",
+        "Stress-Strain Curve"
+      ],
+      "default": "Stress/Strain"
+    },
+    "F": {
+      "type": "number",
+      "description": "Force. Units: kN. Force producing the stretching or compression.",
+      "default": 12,
+      "minimum": 0
+    },
+    "A": {
+      "type": "number",
+      "description": "Area. Units: m^2. Area on which the force is being applied.",
+      "default": 12,
+      "minimum": 0
+    },
+    "L_i": {
+      "type": "number",
+      "description": "Initial Length. Units: m. Initial length of the material which the force is applied to.",
+      "default": 1,
+      "minimum": 0
+    },
+    "L_f": {
+      "type": "number",
+      "description": "Final Length. Units: m. Final length of the material which the force is applied to.",
+      "default": 1.5,
+      "minimum": 0
+    },
+    "table": {
+      "type": "array",
+      "description": "Stress-Strain Coordinates",
+      "items": {
+        "type": "object",
+        "properties": {
+          "strain": {
+            "type": "number",
+            "description": "Strain",
+            "default": "",
+            "minimum": 0
+          },
+          "stress": {
+            "type": "number",
+            "description": "Stress (MPa)",
+            "default": "",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "const": "1003-youngs-modulus-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

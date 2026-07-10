@@ -1,0 +1,172 @@
+# Run Quick Design Calculator
+
+## Overview
+
+Run any calculator from the SkyCiv Quick Design library via a single REST endpoint.
+The library covers 154 calculators across structural, foundation, steel, concrete, timber, aluminium, connection, and load categories.
+
+- **API endpoint:** `POST https://qd.skyciv.com/run`
+- **Auth:** Requires a SkyCiv API token — get yours at https://platform.skyciv.com/api
+- **[Full calculator catalogue](./assets/catalogue.md)**
+
+---
+
+## How to call
+
+```js
+const axios = require('axios');
+
+axios.post('https://qd.skyciv.com/run', {
+    payload: JSON.stringify({
+        uid: "8004-as3600-strip-footing-design", // calculator UID from the catalogue
+        auth: "you@example.com",                  // authenticated email address
+        key: "YOUR_API_TOKEN",                    // from https://platform.skyciv.com/api
+        pdf_report: true,                         // set false to skip PDF generation
+        input: {
+            // Input object matching the calculator's schema.json
+            // See sample_input.json for a ready-to-use example
+        }
+    })
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+
+### Request payload fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `uid` | string | yes | Calculator unique identifier (see [catalogue](./assets/catalogue.md)) |
+| `auth` | string | yes | Authenticated user email address |
+| `key` | string | yes | API token from https://platform.skyciv.com/api |
+| `pdf_report` | boolean | no | Generate a PDF report (default: `false`) |
+| `input` | object | yes | Input parameters — see each calculator's `schema.json` |
+
+---
+
+## Response format
+
+```json
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF link, valid for 1 hour)",
+    "results": {
+      "Utilization Ratio": {
+        "value": 0.85,
+        "info": "Ratio of demand to capacity",
+        "units": "utility",
+        "label": "Utilization Ratio"
+      },
+      "Design Check": {
+        "value": "PASS",
+        "units": "custom_box",
+        "label": "Design Check",
+        "color": "#21BA45"
+      },
+      "Footing Width": {
+        "value": 1200,
+        "info": "Calculated footing width",
+        "units": "mm",
+        "label": "Footing Width"
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}
+```
+
+### Status codes
+
+| `status` | Meaning |
+|-----------|---------|
+| `0` | Success |
+| `1` | Error — check `msg` and `log` for details |
+
+### Result `units` field meanings
+
+| `units` value | Meaning |
+|----------------|---------|
+| `"heading"` | Section heading — no `value` field |
+| `"utility"` | Utilization ratio — pass if `value ≤ 1.0` |
+| `"utility_boolean"` | Boolean pass/fail — `0` = pass, `1` = fail |
+| `"custom_box"` | Pass/fail text — `value` is `"PASS"` or `"FAIL"` |
+| any other string | Physical unit (e.g. `"mm"`, `"kN"`, `"MPa"`, `"kPa"`) |
+
+---
+
+## Per-calculator assets
+
+Each calculator folder under `assets/<uid>/` contains:
+
+| File | Description |
+|------|-------------|
+| `schema.json` | JSON Schema for the `input` object |
+| `sample_input.json` | Ready-to-use example input |
+| `sample_output.json` | Example API response |
+
+Browse the [full catalogue](./assets/catalogue.md) to find the right calculator.
+
+---
+
+## Regenerating this skill
+
+```bash
+node skills/compile.js            # all calculators
+node skills/compile.js --public   # public calculators only
+```
+
+# How to Batch Call a single calculator
+
+If you need to run a single calculator multiple times with different inputs, you can use the `runBatch` endpoint.
+
+This is more efficient than calling the `run` endpoint multiple times, and should be used if you need to optimise a run. For example, if you are trying to find the optimal depth, you can batchRun the same calculator with different depths, and find the optimal depth that way:
+
+```js
+
+//BATCH RUN
+let how_many_to_test = 50;
+let input_batch = [
+    {
+        // Input object matching the calculator's schema.json
+        // See sample_input.json for a ready-to-use example
+    },
+    {
+        // Input object matching the calculator's schema.json
+        // See sample_input.json for a ready-to-use example
+    },
+]
+
+fetch('https://qd.skyciv.com/runBatch', {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        payload: JSON.stringify({
+            uid: "2015-as4100-i-beam-capacity-calculator",
+            auth: "sam@skyciv.com",
+            key: "sZFl0x6w7iq53bub7sFzhpZuDVMiPJEyVNNaXN6Kb5DfuJl5RIuUTnzK6HwKx4k6",
+            input_arr: input_batch,
+            pdf_report: true,
+        })
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+});
+
+```
+
+The result object will come back as an array of results, with the same order as the input batch. So if you send in 50 inputs, you will get back an array of 50 results, which you can then iterate through to find the optimal depth.
+
+# How to open a file you've just created
+
+You can also allow the user to open the file by appending the parameters after the URL. For example:
+
+https://platform.skyciv.com/quick-design?uid=3027-au-concrete-column&member_label=C1&shape=rectangular&D=400&W=300&cover=30&size_bars=20&n_bars_z=4&n_bars_y=4&reinforcement_class_long=N&size_shear_bars=8&n_shear_bars_y=2&n_shear_bars_z=2&s=150&reinforcement_class_shear=N&L=3000&k_y=1&k_z=1&f_c=40&f_y=500&V_y=100&V_z=50&N=1350&G=500&Q=500&second_order=first&braced_or_unbraced=ZY&M_z_top=100&M_z_bot=50&M_y_top=50&M_y_bot=-50&member_label=C1&shape=rectangular&D=401&W=301&cover=30&size_bars=20&n_bars_z=4&n_bars_y=4&reinforcement_class_long=N&size_shear_bars=8&n_shear_bars_y=2&n_shear_bars_z=2&s=150&reinforcement_class_shear=N&L=3000&k_y=1&k_z=1&f_c=40&f_y=500&V_y=100&V_z=50&N=1350&G=500&Q=500&second_order=first&braced_or_unbraced=ZY&M_z_top=100&M_z_bot=50&M_y_top=50&M_y_bot=-50
+
+So it would be helpful if you provide these links after you run the calculation, so the user can open these designs up.

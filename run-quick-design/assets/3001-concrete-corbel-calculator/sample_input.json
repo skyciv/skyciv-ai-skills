@@ -1,0 +1,23 @@
+{
+  "concrete": "Normal Weight",
+  "fc": 34.41,
+  "fy": 413.66,
+  "av": 139.7,
+  "h": 406.4,
+  "d": 381,
+  "h2": 190.5,
+  "bw": 304.8,
+  "Nb": 7,
+  "Vu": 450,
+  "Nuc": 1e-7,
+  "uid": "3001-concrete-corbel-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

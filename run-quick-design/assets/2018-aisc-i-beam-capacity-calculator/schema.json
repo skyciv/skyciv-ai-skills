@@ -1,0 +1,312 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-22 Steel Member Design",
+  "description": "Design standard and custom steel members in accordance with AISC 360-22.",
+  "type": "object",
+  "properties": {
+    "design_method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method. Choose between Load and Resistance Factor Design (LFRD) and Allowable Strength Design (ASD).",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "LRFD"
+    },
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "i_beam",
+        "t_section",
+        "channel",
+        "lbeam",
+        "rectangular_tube",
+        "square_tube",
+        "circular_section"
+      ],
+      "x-enumLabels": [
+        "I-Section",
+        "T-Section",
+        "Channel",
+        "Angle",
+        "Rectangular HSS",
+        "Square HSS",
+        "Round HSS"
+      ],
+      "default": "i_beam"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit section yield and tensile strength.",
+      "enum": [
+        "36",
+        "42",
+        "50",
+        "55",
+        "60",
+        "65",
+        "70",
+        "A",
+        "B",
+        "C",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Gr. 36",
+        "Gr. 42",
+        "Gr. 50",
+        "Gr. 55",
+        "Gr. 60",
+        "Gr. 65",
+        "Gr. 70",
+        "Gr. A",
+        "Gr. B",
+        "Gr. C",
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: in. Total height (or diameter) of section.",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: in. Total width of section.",
+      "default": 3.25,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "t_f_input": {
+      "type": "number",
+      "description": "tf. Symbol: t_f. Units: in. Flange thickness, or top/btm wall thickness (RHS/SHS) or CHS thickness.",
+      "default": 0.18,
+      "minimum": 0.01,
+      "maximum": 6
+    },
+    "t_w_input": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: in. Web thickness, or side wall thickness (RHS/SHS).",
+      "default": 0.149,
+      "minimum": 0.01,
+      "maximum": 6
+    },
+    "r_input": {
+      "type": "number",
+      "description": "r. Symbol: r. Units: in. Fillet radius.",
+      "default": 0.32,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: ksi. Section yield strength.",
+      "default": 36,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Fu. Symbol: F_{u}. Units: ksi. Section tensile strength.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "restraint": {
+      "type": "string",
+      "description": "Torsional Restraint. Symbol: Restraint. Select segment torsional restraint condition. Selecting Continuous Restraint will skip lateral-torsional and flexural-torsional buckling checks.",
+      "enum": [
+        "C",
+        "U"
+      ],
+      "x-enumLabels": [
+        "Continuous Restraint",
+        "Unrestrained"
+      ],
+      "default": "U"
+    },
+    "L_z_flexure_input": {
+      "type": "number",
+      "description": "Lb. Symbol: L_{b}. Units: ft. Unbraced length between compression flange restraint or twist restraints. ",
+      "default": 6,
+      "minimum": 0.1,
+      "maximum": 3000
+    },
+    "Cb_input": {
+      "type": "number",
+      "description": "Cb. Symbol: C_{b}. Lateral-torsional buckling modification factor.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 5
+    },
+    "L_z_comp_input": {
+      "type": "number",
+      "description": "Lz. Symbol: L_{z}. Units: ft. Unbraced length for flexural buckling about the principal Z-axis. ",
+      "default": 4,
+      "minimum": 0.1,
+      "maximum": 3000
+    },
+    "L_y_comp_input": {
+      "type": "number",
+      "description": "Ly. Symbol: L_{y}. Units: ft. Unbraced length for flexural buckling about the principal Y-axis. ",
+      "default": 5,
+      "minimum": 0.1,
+      "maximum": 3000
+    },
+    "ke_z_input": {
+      "type": "number",
+      "description": "Kz. Symbol: K_{z}. Effective length factor for flexural buckling about the principal Z-axis. ",
+      "enum": [
+        0.65,
+        0.8,
+        1,
+        1.2,
+        2.1
+      ],
+      "x-enumLabels": [
+        "0.65",
+        "0.8",
+        "1.0",
+        "1.2",
+        "2.1"
+      ],
+      "default": 1
+    },
+    "ke_y_input": {
+      "type": "number",
+      "description": "Ky. Symbol: K_{y}. Effective length factor for flexural buckling about the principal Y-axis. ",
+      "enum": [
+        0.65,
+        0.8,
+        1,
+        1.2,
+        2.1
+      ],
+      "x-enumLabels": [
+        "0.65",
+        "0.8",
+        "1.0",
+        "1.2",
+        "2.1"
+      ],
+      "default": 1
+    },
+    "M_fz_input": {
+      "type": "number",
+      "description": "Mrz. Symbol: M_{rz}. Units: kip-ft. Required flexural strength for bending about the major (Z) axis. Positive value results in compression at top of section. ",
+      "default": 15,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "M_fy_input": {
+      "type": "number",
+      "description": "Mry. Symbol: M_{ry}. Units: kip-ft. Required flexural strength for bending about the minor (Y) Axis. Positive value results in compression at right of section. ",
+      "default": 5,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "V_fy_input": {
+      "type": "number",
+      "description": "Vry. Symbol: V_{ry}. Units: kip. Required shear strength in major (Y) axis direction. ",
+      "default": 10,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "V_fz_input": {
+      "type": "number",
+      "description": "Vrz. Symbol: V_{rz}. Units: kip. Required shear strength in minor (Z) axis direction. ",
+      "default": 5,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "N_f_input": {
+      "type": "number",
+      "description": "Pr. Symbol: P_{r}. Units: kip. Required axial strength. Positive value represents compression.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "load_axes": {
+      "type": "string",
+      "description": "Applied Loading Axes. Symbol: Load\\;Axes. Select which axis system design loads are applied. Loads will be converted between principal or geometric axis directions where required.",
+      "enum": [
+        "geometric_axes",
+        "principal_axes"
+      ],
+      "x-enumLabels": [
+        "Geometric Axes",
+        "Principal Axes"
+      ],
+      "default": "geometric_axes"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2018-aisc-i-beam-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

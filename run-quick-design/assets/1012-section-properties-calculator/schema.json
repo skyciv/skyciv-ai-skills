@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Section Properties",
+  "description": "Calculate section properties for various shapes.",
+  "type": "object",
+  "properties": {
+    "region": {
+      "type": "string",
+      "description": "Region. Symbol: Region. Determines which design code is adopted.",
+      "enum": [
+        "AS",
+        "EN",
+        "US",
+        "CA"
+      ],
+      "x-enumLabels": [
+        "AS 4100",
+        "EN 1993-1-1",
+        "AISC 360",
+        "CSA S16"
+      ],
+      "default": "AS"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select from library to edit Section Dimensions.",
+      "enum": [
+        "i_beam",
+        "t_section",
+        "channel",
+        "angle",
+        "rectangular_tube",
+        "circular_section",
+        "hat_section",
+        "rectangle",
+        "circle"
+      ],
+      "x-enumLabels": [
+        "I-Shape",
+        "T-Shape",
+        "Channel",
+        "Angle",
+        "Hollow Rectangular",
+        "Hollow Circular",
+        "Hat Section",
+        "Solid Rectangle",
+        "Solid Circle"
+      ],
+      "default": "i_beam"
+    },
+    "properties": {
+      "type": "string",
+      "description": "Properties. Symbol: Properties. Select Advanced to display all section properties.",
+      "enum": [
+        "Standard",
+        "Advanced"
+      ],
+      "x-enumLabels": [
+        "Standard",
+        "Advanced"
+      ],
+      "default": "Standard"
+    },
+    "width": {
+      "type": "number",
+      "description": "Width. Symbol: b. Units: mm",
+      "default": 150,
+      "minimum": 1,
+      "maximum": 1600
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter. Symbol: b. Units: mm",
+      "default": 150,
+      "minimum": 1,
+      "maximum": 1600
+    },
+    "width_tf": {
+      "type": "number",
+      "description": "b1. Symbol: b_{tf}. Units: mm. Section Top Flange Width",
+      "default": 150,
+      "minimum": 1,
+      "maximum": 1600
+    },
+    "width_bf": {
+      "type": "number",
+      "description": "b2. Symbol: b_{bf}. Units: mm. Section Bottom Flange Width",
+      "default": 150,
+      "minimum": 1,
+      "maximum": 1600
+    },
+    "height": {
+      "type": "number",
+      "description": "Height. Symbol: d. Units: mm",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 1600
+    },
+    "thickness_f": {
+      "type": "number",
+      "description": "Flange Thickness. Symbol: t_f. Units: mm",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "thickness_w": {
+      "type": "number",
+      "description": "Web Thickness. Symbol: t_w. Units: mm",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "thickness": {
+      "type": "number",
+      "description": "Thickness. Symbol: t. Units: mm",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "uid": {
+      "type": "string",
+      "const": "1012-section-properties-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1992-1-1:2004 Concrete Durability Calculator",
+  "description": "Calculator of the concrete nominal cover and minimum concrete class.",
+  "type": "object",
+  "properties": {
+    "workingLife": {
+      "type": "string",
+      "description": "Design Working Life. Symbol: WL",
+      "enum": [
+        "50",
+        "100"
+      ],
+      "x-enumLabels": [
+        "50 years",
+        "100 years"
+      ],
+      "default": "50"
+    },
+    "corrossion_environment": {
+      "type": "string",
+      "description": "Primary Environmental Exposure Class for Durability. Symbol: Exposure1. Environmental exposure classes in accordance with EN 206-1.  ",
+      "enum": [
+        "X0",
+        "XC1",
+        "XC2",
+        "XC3",
+        "XC4",
+        "XD1",
+        "XD2",
+        "XD3",
+        "XS1",
+        "XS2",
+        "XS3"
+      ],
+      "x-enumLabels": [
+        "X0",
+        "XC1",
+        "XC2",
+        "XC3",
+        "XC4",
+        "XD1",
+        "XD2",
+        "XD3",
+        "XS1",
+        "XS2",
+        "XS3"
+      ],
+      "default": "X0"
+    },
+    "attack_environment": {
+      "type": "string",
+      "description": "Secondary Environmental Exposure Class for Attack. Symbol: Exposure2. Environmental exposure classes for chemical/physical attack in accordance with EN 206-1. ",
+      "enum": [
+        "X0",
+        "XF1",
+        "XF2",
+        "XF3",
+        "XF4",
+        "XA1",
+        "XA2",
+        "XA3"
+      ],
+      "x-enumLabels": [
+        "X0",
+        "XF1",
+        "XF2",
+        "XF3",
+        "XF4",
+        "XA1",
+        "XA2",
+        "XA3"
+      ],
+      "default": "X0"
+    },
+    "slabGeometry": {
+      "type": "boolean",
+      "description": "Reinforcement Position Independent of Geometry?. Symbol: SG. Enable when the position of the reinforcement is not affected by the construction process (i.e. a slab geometry)",
+      "default": false
+    },
+    "unevenSurface": {
+      "type": "boolean",
+      "description": "Uneven Surface?. Symbol: US",
+      "default": false
+    },
+    "annex": {
+      "type": "string",
+      "description": "National Annex. Symbol: NA. Select custom to define specific nationally determined parameters.",
+      "enum": [
+        "eurocode",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Eurocode Default",
+        "Custom"
+      ],
+      "default": "eurocode"
+    },
+    "delta_c_dev": {
+      "type": "number",
+      "description": "Δcdev. Symbol: Δc_{dev}. Units: mm. Deviation allowance for nominal cover.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "delta_c_dur_gamma": {
+      "type": "number",
+      "description": "Δcdur,γ. Symbol: Δc_{dur,γ}. Units: mm. Reduction due to additive safety element.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "delta_c_dur_st": {
+      "type": "number",
+      "description": "Δcdur,st. Symbol: Δc_{dur,st}. Units: mm. Reduction of minimum cover for use of stainless steel.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "delta_c_dur_add": {
+      "type": "number",
+      "description": "Δcdur,add. Symbol: Δc_{dur,add}. Units: mm. Reduction of minimum cover for use of additional protection.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "concrete_strength_class": {
+      "type": "string",
+      "description": "Concrete Strength Class. Symbol: Class. Select the concrete strength class for the footing.",
+      "enum": [
+        "12",
+        "16",
+        "20",
+        "25",
+        "30",
+        "35",
+        "40",
+        "45",
+        "50",
+        "55",
+        "60",
+        "70",
+        "80",
+        "90"
+      ],
+      "x-enumLabels": [
+        "C12/15",
+        "C16/20",
+        "C20/25",
+        "C25/30",
+        "C30/37",
+        "C35/45",
+        "C40/50",
+        "C45/55",
+        "C50/60",
+        "C55/67",
+        "C60/75",
+        "C70/85",
+        "C80/95",
+        "C90/105"
+      ],
+      "default": "25"
+    },
+    "concrteteProtection": {
+      "type": "boolean",
+      "description": "Concrete Protection?. Symbol: CP. Enable when protective coatings or any other environment protection measure is used.",
+      "default": false
+    },
+    "specialQuality": {
+      "type": "boolean",
+      "description": "Special Quality Control?. Symbol: SQC. Enable when special quality control is used for concrete production.",
+      "default": false
+    },
+    "largeAggregate": {
+      "type": "boolean",
+      "description": "Maximum Aggregate Size is Greater 32mm?. Symbol: LA. Enable when the aggregate is greater than 32mm.",
+      "default": false
+    },
+    "reinforcement_type": {
+      "type": "string",
+      "description": "Reinforcement Type. Symbol: R_{type}",
+      "enum": [
+        "bar",
+        "tendon",
+        "strand",
+        "wire"
+      ],
+      "x-enumLabels": [
+        "Bar",
+        "Postensioned Tendon",
+        "Pretensioned Strand",
+        "Pretensioned Wire"
+      ],
+      "default": "bar"
+    },
+    "reinforcement_material": {
+      "type": "string",
+      "description": "Reinforcement Material. Symbol: R_{material}",
+      "enum": [
+        "normal",
+        "stainless"
+      ],
+      "x-enumLabels": [
+        "Normal",
+        "Stainless Steel"
+      ],
+      "default": "normal"
+    },
+    "max_reinforcement_diameter": {
+      "type": "number",
+      "description": "Maximum Diameter of Reinforcement. Symbol: φ_{max}. Units: mm. Enter the equivalent diameter for bundle bars or the duct diameter for prestressing tendons.",
+      "default": 20,
+      "minimum": 4,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "3026-eurocode-concrete-durability-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "workingLife",
+    "corrossion_environment",
+    "attack_environment",
+    "concrete_strength_class",
+    "reinforcement_type",
+    "reinforcement_material",
+    "max_reinforcement_diameter"
+  ]
+}

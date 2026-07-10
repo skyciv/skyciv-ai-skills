@@ -1,0 +1,49 @@
+{
+  "standard": "NBCC-2015",
+  "province": "Ontario",
+  "alb_loc": "Athabasca",
+  "bc_loc": "100 Mile House",
+  "man_loc": "Beausejour",
+  "nb_loc": "Alma",
+  "nf_loc": "Argentia",
+  "ns_loc": "Amherst",
+  "ont_loc": "Ailsa Craig",
+  "pei_loc": "Charlottetown",
+  "qc_loc": "Acton-Vale",
+  "sas_loc": "Assiniboia",
+  "nwt_loc": "Aklavik",
+  "nun_loc": "Alert",
+  "yuk_loc": "Aishihik",
+  "x_top": 10,
+  "x_bot": 30,
+  "y_top": 5,
+  "y_bot": 20,
+  "slope_top": 4,
+  "slope_bot": 4,
+  "h_p_top": 0,
+  "h_p_bot": 0,
+  "surface_top": "non-slip",
+  "surface_bot": "non-slip",
+  "h": 2.4,
+  "Δ_x": 0,
+  "a": 1,
+  "sliding_bool": "True",
+  "y_sli": 0,
+  "x_s": 0,
+  "pt_table": [
+    {
+      "ptID": "",
+      "ptDist": 0
+    }
+  ],
+  "uid": "7010-nbcc-snow-multi-level-roofs",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

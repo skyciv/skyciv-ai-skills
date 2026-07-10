@@ -1,0 +1,22 @@
+{
+  "bar_diameter": 12,
+  "bar_end": "straight",
+  "concrete_grade": 40,
+  "reinforcement_grade": 500,
+  "k1_coefficient": 1,
+  "bundled_reinforcement": 1,
+  "epoxy_coated_bar": false,
+  "lightweight_concrete": false,
+  "plain_bars": false,
+  "development_plots": true,
+  "uid": "3006-as3600-reinforcement-lap-length-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

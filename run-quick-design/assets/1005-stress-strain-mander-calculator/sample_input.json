@@ -1,0 +1,24 @@
+{
+  "B": 200,
+  "D": 400,
+  "C": 25,
+  "ϵ_co": 0.002,
+  "w": 75,
+  "s": 150,
+  "n": 4,
+  "Db": 12,
+  "Ds": 10,
+  "fco": 25,
+  "fyh": 345,
+  "fy": 345,
+  "uid": "1005-stress-strain-mander-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Column Buckling Load",
+  "description": "Calculate the critical buckling load for a column in compression.",
+  "type": "object",
+  "properties": {
+    "support_conditions": {
+      "type": "string",
+      "description": "Support Conditions. Symbol: Supports. Select the support conditions of the column (top support - bottom support).",
+      "enum": [
+        "Fixed - Fixed",
+        "Fixed - Pinned",
+        "Fixed - Roller",
+        "Fixed - Free",
+        "Pinned - Pinned",
+        "Pinned - Roller"
+      ],
+      "x-enumLabels": [
+        "Fixed-Fixed",
+        "Fixed-Pinned",
+        "Fixed-Roller",
+        "Fixed-Free",
+        "Pinned-Pinned",
+        "Pinned-Roller"
+      ],
+      "default": "Fixed - Fixed"
+    },
+    "L": {
+      "type": "number",
+      "description": "Column Length (L). Symbol: L. Units: m. The length of the column.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 1000
+    },
+    "A": {
+      "type": "number",
+      "description": "Cross Section Area (A). Symbol: A. Units: mm^2",
+      "default": 4000,
+      "minimum": 1,
+      "maximum": 10000000
+    },
+    "I": {
+      "type": "number",
+      "description": "Second Moment of Area (I). Symbol: I. Units: mm^4",
+      "default": 200000,
+      "minimum": 1,
+      "maximum": 1000000000
+    },
+    "E": {
+      "type": "number",
+      "description": "Young's Modulus (E). Symbol: E. Units: MPa",
+      "default": 200000,
+      "minimum": 1,
+      "maximum": 100000000
+    },
+    "sigma_y": {
+      "type": "number",
+      "description": "Yield Strength (&sigma;y). Symbol: &sigma;_y. Units: MPa",
+      "default": 260,
+      "minimum": 1,
+      "maximum": 10000000
+    },
+    "uid": {
+      "type": "string",
+      "const": "1002-column-buckling-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "L",
+    "A",
+    "I",
+    "E",
+    "sigma_y"
+  ]
+}

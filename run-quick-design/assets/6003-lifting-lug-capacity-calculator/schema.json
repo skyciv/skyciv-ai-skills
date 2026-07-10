@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Lifting Lug Design",
+  "description": "Design steel lifting lugs in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "w": {
+      "type": "number",
+      "description": "Width of Plate (w). Symbol: w. Units: mm. Dimension perpendicular to load. Cannot be less than four times the hole dimater.",
+      "default": 200,
+      "minimum": 80,
+      "maximum": 10000
+    },
+    "dp": {
+      "type": "number",
+      "description": "Depth of Plate (dp). Symbol: d_{p}. Units: mm. Dimension perpendicular to load. Cannot be less than four times the hole dimater.",
+      "default": 150,
+      "minimum": 80,
+      "maximum": 10000
+    },
+    "d": {
+      "type": "number",
+      "description": "Hole Diameter (d). Symbol: d. Units: mm",
+      "default": 25,
+      "minimum": 16,
+      "maximum": 10000
+    },
+    "dpin": {
+      "type": "number",
+      "description": "Pin Diameter (dpin). Symbol: d_{pin}. Units: mm",
+      "default": 20,
+      "minimum": 12,
+      "maximum": 10000
+    },
+    "t_p": {
+      "type": "number",
+      "description": "Plate Thickness (tp). Symbol: t_{p}. Units: mm",
+      "default": 20,
+      "minimum": 6,
+      "maximum": 1000
+    },
+    "a_p": {
+      "type": "number",
+      "description": "Horizontal Distance (ap). Symbol: a_{p}. Units: mm. Horizontal distance from edge to center of hole. Cannot be less than twice the hole diameter and greater then half the width.",
+      "default": 75,
+      "minimum": 50,
+      "maximum": 100
+    },
+    "w_s": {
+      "type": "number",
+      "description": "Weld Size (ws). Symbol: w_{s}. Units: mm. Cannot be greater than plate thickness.",
+      "default": 6,
+      "minimum": 5,
+      "maximum": 20
+    },
+    "y_1": {
+      "type": "number",
+      "description": "Distance of Hole Center from Top (y1). Symbol: y_{1}. Units: mm. Distance of Hole Center from Top (i.e. from welded edge). Cannot be less than twice the hole dimater.",
+      "default": 100,
+      "minimum": 40,
+      "maximum": 10000
+    },
+    "theta": {
+      "type": "number",
+      "description": "In Plane(ϴ). Symbol: ϴ. Units: °. Maximum angle of load (in plane).",
+      "default": 30,
+      "minimum": 1,
+      "maximum": 89
+    },
+    "alpha": {
+      "type": "number",
+      "description": "Out-of-plane (α). Symbol: α. Units: °. Maximum angle of load (out-of-plane) made with vertical.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 89
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Yield Strength of Steel Plate. Symbol: F_{y}. Units: MPa",
+      "default": 250,
+      "minimum": 0.1,
+      "maximum": 10000
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Ultimate Strength of Steel Plate. Symbol: F_{u}. Units: MPa",
+      "default": 360,
+      "minimum": 0.1,
+      "maximum": 10000
+    },
+    "Fexx": {
+      "type": "number",
+      "description": "Filler Metal Classification Strength (Fexx). Symbol: F_{exx}. Units: MPa",
+      "default": 480,
+      "minimum": 0.1,
+      "maximum": 10000
+    },
+    "P": {
+      "type": "number",
+      "description": "Factored Load (P). Symbol: P. Units: kN",
+      "default": 75,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "6003-lifting-lug-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "w",
+    "dp",
+    "d",
+    "dpin",
+    "t_p",
+    "a_p",
+    "f_y",
+    "f_u"
+  ]
+}

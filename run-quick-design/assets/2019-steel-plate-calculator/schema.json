@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1993-1-1 Steel Plate Design",
+  "description": "Design plates for a moment and shear applied in it's minor axis.",
+  "type": "object",
+  "properties": {
+    "b": {
+      "type": "number",
+      "description": "Width (b). Symbol: b. Units: mm. Plate width should be the greater of the cross section dimensions.",
+      "default": 300,
+      "minimum": 50,
+      "maximum": 10000
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Symbol: t. Units: mm. Plate thickness should be the lesser of the cross section dimensions.",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 80
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit section yield strength. Grades are assumed to be EN 10025-2 for Hot-Rolled Sections.",
+      "enum": [
+        "S 235",
+        "S 275",
+        "S 355",
+        "S 460",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "S 235",
+        "S 275",
+        "S 355",
+        "S 460",
+        "Custom"
+      ],
+      "default": "S 275"
+    },
+    "custom_yield_strength": {
+      "type": "number",
+      "description": "Custom Yield Strength (fy). Symbol: f_y. Units: N/mm^2. Define custom yield strength of steel plate.",
+      "default": 275,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "section_partial_factor": {
+      "type": "number",
+      "description": "Section partial factor (γM0). Symbol: γ_{M0}. Resistance of cross-sections partial factor (6.6.1(1)).",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 2
+    },
+    "M": {
+      "type": "number",
+      "description": "Design Moment (MEd). Symbol: M. Units: kNm. Bending moment acting about the plate's z-axis.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "V": {
+      "type": "number",
+      "description": "Design Shear (VEd). Symbol: V. Units: kN. Shear force acting in plate's y-axis.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "analysis_type": {
+      "type": "string",
+      "description": "Analysis Type. Symbol: Analysis. Select whether you want to use the plastic or elastic properties of the plate to determine the design moment capacity of the section. Plastic recommended for this calculation. Shear capacity calculated plastically.",
+      "enum": [
+        "p",
+        "e"
+      ],
+      "x-enumLabels": [
+        "Plastic",
+        "Elastic"
+      ],
+      "default": "p"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2019-steel-plate-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Column Fire Resistance Design",
+  "description": "Calculate the FRP of a reinforced concrete column with AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "section_shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape. Select a rectangular or circular column.",
+      "enum": [
+        "Rectangular",
+        "Circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "Rectangular"
+    },
+    "B": {
+      "type": "number",
+      "description": "Width (B). Symbol: B. Units: mm. Rectangular column section width.",
+      "default": 900,
+      "minimum": 150,
+      "maximum": 10000
+    },
+    "H": {
+      "type": "number",
+      "description": "Height (H). Symbol: H. Units: mm. Rectangular column section height.",
+      "default": 350,
+      "minimum": 150,
+      "maximum": 900
+    },
+    "D": {
+      "type": "number",
+      "description": "Diameter. Symbol: D. Units: mm. Circular column section diameter.",
+      "default": 600,
+      "minimum": 200,
+      "maximum": 3000
+    },
+    "Lu": {
+      "type": "number",
+      "description": "Lu. Symbol: L_u. Units: mm. Unrestrained column length.",
+      "default": 2700,
+      "minimum": 50,
+      "maximum": 20000
+    },
+    "Braced": {
+      "type": "number",
+      "description": "Braced. Confirm whether column is braced or sway. Note, AS3600 : 2018 only contains guidance for fire resistance of braced columns. Refer Clause 5.6.2 for further information.",
+      "enum": [
+        0,
+        1
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": 0
+    },
+    "k_z": {
+      "type": "number",
+      "description": "kz. Symbol: k_z. Effective length factor for bending about Z-axis as determined from AS 3600 Clause 10.5.3. ",
+      "enum": [
+        0.7,
+        0.85,
+        1
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "1.0"
+      ],
+      "default": 0.7
+    },
+    "k_y": {
+      "type": "number",
+      "description": "ky. Symbol: k_y. Effective length factor for bending about Y-axis as determined from AS 3600 Clause 10.5.3. ",
+      "enum": [
+        0.7,
+        0.85,
+        1
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "1.0"
+      ],
+      "default": 0.7
+    },
+    "cover": {
+      "type": "number",
+      "description": "Cover. Symbol: Cover. Units: mm. Concrete cover measured to outside of transverse (shear) reinforcement.",
+      "default": 40,
+      "minimum": 15,
+      "maximum": 100
+    },
+    "N_bl_rect": {
+      "type": "number",
+      "description": "No. Bars. Symbol: N_{bl}. Number of longitudinal bars.",
+      "default": 8,
+      "minimum": 4,
+      "maximum": 100
+    },
+    "N_bl_circ": {
+      "type": "number",
+      "description": "No. Bars. Symbol: N_{bl}. Number of longitudinal bars.",
+      "default": 8,
+      "minimum": 4,
+      "maximum": 100
+    },
+    "no_side_rows": {
+      "type": "number",
+      "description": "No. Side Rows. Symbol: No. Side Rows. Number of rows of longitudinal side face reinforcement.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "d_b_l": {
+      "type": "number",
+      "description": "Longitudinal Bar Diameter. Symbol: d_{b.l}. Units: mm. Longitudinal reinforcement bar diameter in mm.",
+      "enum": [
+        10,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40
+      ],
+      "x-enumLabels": [
+        "10",
+        "12",
+        "16",
+        "20",
+        "24",
+        "28",
+        "32",
+        "36",
+        "40"
+      ],
+      "default": 20
+    },
+    "d_b_t": {
+      "type": "number",
+      "description": "Transverse Bar Diameter. Symbol: d_{b.t}. Units: mm. Transverse (shear) reinforcement bar diameter in mm.",
+      "enum": [
+        6,
+        8,
+        10,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40
+      ],
+      "x-enumLabels": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "16",
+        "20",
+        "24",
+        "28",
+        "32",
+        "36",
+        "40"
+      ],
+      "default": 10
+    },
+    "even_reo_distribution": {
+      "type": "number",
+      "description": "Even Reinforcement Distribution. Symbol: Distribution. Confirm whether reinforcement is distributed evenly along all faces of the column. Refer Clause 5.6.3(c) & 5.6.4(e) for further information.",
+      "enum": [
+        0,
+        1
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": 0
+    },
+    "FRP": {
+      "type": "number",
+      "description": "FRP. Symbol: FRP. Units: min. Required Fire Resistance Period (FRP) in minutes.",
+      "enum": [
+        30,
+        60,
+        90,
+        120,
+        180,
+        240
+      ],
+      "x-enumLabels": [
+        "30",
+        "60",
+        "90",
+        "120",
+        "180",
+        "240"
+      ],
+      "default": 30
+    },
+    "no_sides_exposed": {
+      "type": "number",
+      "description": "Sides Exposed to Fire. Symbol: Exposure. Number of column/wall sides exposed to fire. For a circular column, select more than one side.",
+      "enum": [
+        1,
+        2
+      ],
+      "x-enumLabels": [
+        "1",
+        ">1"
+      ],
+      "default": 1
+    },
+    "f_c": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Concrete characteristic strength in MPa.",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65,
+        80,
+        100
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100"
+      ],
+      "default": 40
+    },
+    "f_sy": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Yield strength of reinforcing steel in MPa.",
+      "default": 500,
+      "minimum": 100,
+      "maximum": 550
+    },
+    "Nf": {
+      "type": "number",
+      "description": "N*f. Symbol: N*_f. Units: kN. Design axial force in the fire load case.",
+      "default": 500,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Mfz": {
+      "type": "number",
+      "description": "M*f.z. Symbol: M*_{f.z}. Units: kNm. Design bending moment about the Z-axis in the fire load case.",
+      "default": 25,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Mfy": {
+      "type": "number",
+      "description": "M*f.y. Symbol: M*_{f.y}. Units: kNm. Design bending moment about the Y-axis in the fire load case.",
+      "default": 25,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "mufi": {
+      "type": "number",
+      "description": "μfi. Symbol: μ_{fi}. Ratio of design axial load in the fire situation (N*f) to ultimate strength in compression (ΦNu, i.e. linear projection of M*f and N*f on interaction diagram). If your value is between two options, pick the higher value.",
+      "enum": [
+        0.2,
+        0.5,
+        0.7
+      ],
+      "x-enumLabels": [
+        "0.2",
+        "0.5",
+        "0.7"
+      ],
+      "default": 0.2
+    },
+    "uid": {
+      "type": "string",
+      "const": "3007-as3600-column-fire-resistance-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "section_shape",
+    "B",
+    "H",
+    "D",
+    "Lu",
+    "Braced",
+    "k_z",
+    "k_y",
+    "cover",
+    "N_bl_rect",
+    "N_bl_circ",
+    "d_b_l",
+    "d_b_t",
+    "even_reo_distribution",
+    "FRP",
+    "no_sides_exposed",
+    "f_c",
+    "f_sy",
+    "Nf",
+    "Mfz",
+    "Mfy",
+    "mufi"
+  ]
+}

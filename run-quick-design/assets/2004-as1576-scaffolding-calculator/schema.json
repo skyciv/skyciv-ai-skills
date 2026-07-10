@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS/NZS 1576:2019 Scaffold Member Design",
+  "description": "Design scaffolding members as per AS/NZS 1576.1:2019 & AS/NZS 1576.2:2016.",
+  "type": "object",
+  "properties": {
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section",
+      "enum": [
+        "48.3x2.3",
+        "48.3x2.9",
+        "48.3x3.2",
+        "48.3x4.0",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "48.3x2.3 C350",
+        "48.3x2.9 C350",
+        "48.3x3.2 C250",
+        "48.3x4.0 C250",
+        "Custom"
+      ],
+      "default": "48.3x2.3"
+    },
+    "d": {
+      "type": "number",
+      "description": "do. Units: mm. Outer Diameter for CHS.",
+      "default": 48.3,
+      "minimum": 20,
+      "maximum": 1000
+    },
+    "t_w": {
+      "type": "number",
+      "description": "t. Symbol: t. Units: mm. Wall Thickness of CHS.",
+      "default": 3.2,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. CHS Grade. See AS 4100 Table 2.1.",
+      "enum": [
+        "C250",
+        "C350",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "C250",
+        "C350",
+        "Custom"
+      ],
+      "default": "C250"
+    },
+    "f_y": {
+      "type": "number",
+      "description": "fy. Symbol: f_{y}. Units: MPa. Yield Strength of Member (fy). See AS 4100 Table 2.1.",
+      "default": 250,
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "f_u": {
+      "type": "number",
+      "description": "fu. Symbol: f_{u}. Units: MPa. Ultimate Strength of Member (fu). See AS 4100 Table 2.1.",
+      "default": 320,
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "L": {
+      "type": "number",
+      "description": "L. Units: mm. Member Span.",
+      "default": 1500,
+      "minimum": 100,
+      "maximum": 1000000
+    },
+    "k_e": {
+      "type": "number",
+      "description": "ke. Symbol: k_{e}. Effective Length Factor for Buckling in Compression. For triangulated structure should not be less than 1 (AS 4100 4.6.3.5). Refer AS 4100 Figure 4.6.3.2 for ke. ",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "M": {
+      "type": "number",
+      "description": "M*. Symbol: M^*. Units: kN-m. Design Bending Force in Member.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "V": {
+      "type": "number",
+      "description": "V*. Symbol: V^*. Units: kN. Design Shear Force in Member.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "F_t": {
+      "type": "number",
+      "description": "F*t. Symbol: F^*_{t}. Units: kN. Design Tension Force in Member.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "F_c": {
+      "type": "number",
+      "description": "F*c. Symbol: F^*_{c}. Units: kN. Design Compression Force in Member.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "coupler_div": {
+      "type": "string",
+      "description": "coupler_div. Figure of Scaffolding Coupler."
+    },
+    "c_t": {
+      "type": "string",
+      "description": "Coupler Type. Symbol: Coupler. Type of coupler at connection end. Strength based on AS 1576.2 requirements with a factor of safety of 2 considered for the working load limit (WLL) for all connections. If custom is selected then manufacturer WLLs can be specified. Select none to skip coupler checks.",
+      "enum": [
+        "right",
+        "swivel",
+        "putlog",
+        "endInternal",
+        "endExternal",
+        "parallel",
+        "base",
+        "custom",
+        "none"
+      ],
+      "x-enumLabels": [
+        "Right-Angle Coupler",
+        "Swivel Coupler",
+        "Putlog Coupler",
+        "Expanding Joint Pin",
+        "External Sleeve Coupler",
+        "Parallel Coupler",
+        "Adjustable Base",
+        "Custom",
+        "None"
+      ],
+      "default": "right"
+    },
+    "cc_b": {
+      "type": "number",
+      "description": "Bending Capacity. Symbol: C_{cb}. Units: kN-m. Bending Capacity as a Working Load Limit (See AS 1576.2 or manufacturer specs).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cc_s": {
+      "type": "number",
+      "description": "Shear Capacity. Symbol: C_{cs}. Units: kN. Shear Capacity as a Working Load Limit (See AS 1576.2 or manufacturer specs).",
+      "default": 6.25,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cc_t": {
+      "type": "number",
+      "description": "Tension Resistance. Symbol: C_{ct}. Units: kN. Tension/Slip Capacity as a Working Load Limit (See AS 1576.2 or manufacturer specs).",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cc_c": {
+      "type": "number",
+      "description": "Compression Resistance. Symbol: C_{cc}. Units: kN. Compression/Slip Capacity as a Working Load Limit (See AS 1576.2 or manufacturer specs).",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "M_e": {
+      "type": "number",
+      "description": "Me. Symbol: M_{e}. Units: kN-m. Max Working Bending Force in Coupler at Member End.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "V_e": {
+      "type": "number",
+      "description": "Ve. Symbol: V_{e}. Units: kN. Max Working Shear Force in Coupler at Member End.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "F_te": {
+      "type": "number",
+      "description": "Fte. Symbol: F_{te}. Units: kN. Max Working Tension Force in Coupler at Member End.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "F_ce": {
+      "type": "number",
+      "description": "Fce. Symbol: F_{ce}. Units: kN. Max Working Compression Force in Coupler at Member End.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2004-as1576-scaffolding-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

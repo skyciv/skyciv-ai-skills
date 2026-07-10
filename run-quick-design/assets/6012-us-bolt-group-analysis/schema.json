@@ -1,0 +1,586 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Bolt Group Capacity",
+  "description": "Design bolt groups in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Bolt Pattern. Symbol: \\text{Pattern}. Bolt Pattern Shape.",
+      "enum": [
+        "rect",
+        "circ",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular",
+        "Custom"
+      ],
+      "default": "rect"
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter. Symbol: \\text{Diameter}. Units: in. The diameter of the bolt pattern.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 300
+    },
+    "angle": {
+      "type": "number",
+      "description": "Rotation. Symbol: \\text{Angle}. Units: °. Angle to rotate the bolt pattern by. 0 degrees is defined to have a bolt at the top of the center of the circle.",
+      "default": 0,
+      "minimum": -180,
+      "maximum": 180
+    },
+    "circular_bolts": {
+      "type": "number",
+      "description": "No. Bolts. Symbol: n. The number of bolts in the circular pattern.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 30
+    },
+    "s_c": {
+      "type": "number",
+      "description": "sc. Symbol: s_c. Units: in. Spacing of bolt columns (spacing in X).",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 12
+    },
+    "s_r": {
+      "type": "number",
+      "description": "sr. Symbol: s_r. Units: in. Spacing of bolt rows (spacing in Y).",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 12
+    },
+    "x_bolts": {
+      "type": "number",
+      "description": "No. Bolt Columns. Symbol: n_c. The number of bolt columns (in X direction).",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "y_bolts": {
+      "type": "number",
+      "description": "No. Bolt Rows. Symbol: n_r. The number of bolt rows (in Y direction).",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "bolts_table": {
+      "type": "array",
+      "description": "Bolt Coordinates. Coordinates of all bolts to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "x",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          },
+          "y": {
+            "type": "number",
+            "description": "y",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          }
+        }
+      }
+    },
+    "L_eh": {
+      "type": "number",
+      "description": "Edge Distance (X). Symbol: L_{eh}. Units: in. Minimum spacing between centre of bolts and plate edge in X direction.",
+      "default": 2,
+      "minimum": 0.5,
+      "maximum": 50
+    },
+    "L_ev": {
+      "type": "number",
+      "description": "Edge Distance (Y). Symbol: L_{ev}. Units: in. Minimum spacing between centre of bolts and plate edge in Y direction.",
+      "default": 2,
+      "minimum": 0.5,
+      "maximum": 50
+    },
+    "plate_width": {
+      "type": "number",
+      "description": "Plate Width (W). Symbol: W. Units: in. Total Width of the plate (length in X).",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "plate_height": {
+      "type": "number",
+      "description": "Plate Height (H). Symbol: H. Units: in. Total Height of the plate (length in Y).",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "t": {
+      "type": "number",
+      "description": "Plate Thickness (t). Symbol: t. Units: in. Thickness of smallest steel plate in the connection.",
+      "default": 1,
+      "minimum": 0.125,
+      "maximum": 12
+    },
+    "bolt_size": {
+      "type": "number",
+      "description": "Bolt Size. Symbol: \\text{Size}",
+      "enum": [
+        0.25,
+        0.3125,
+        0.375,
+        0.4375,
+        0.5,
+        0.625,
+        0.75,
+        0.875,
+        1,
+        1.125,
+        1.25,
+        1.375,
+        1.5,
+        1.75,
+        2
+      ],
+      "x-enumLabels": [
+        "1/4\"",
+        "5/16\"",
+        "3/8\"",
+        "7/16\"",
+        "1/2\"",
+        "5/8\"",
+        "3/4\"",
+        "7/8\"",
+        "1\"",
+        "1-1/8\"",
+        "1-1/4\"",
+        "1-3/8\"",
+        "1-1/2\"",
+        "1-3/4\"",
+        "2\""
+      ],
+      "default": 0.25
+    },
+    "grade": {
+      "type": "string",
+      "description": "Bolt Grade. Symbol: \\text{Grade}. Bolt Grade is related to the ultimate tensile strength (fu) of the bolt (see Table J3.2)",
+      "enum": [
+        "A307",
+        "A325",
+        "A490",
+        "F3043",
+        "A",
+        "B",
+        "C",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "A307",
+        "A325",
+        "A490",
+        "F3043",
+        "Group A",
+        "Group B",
+        "Group C",
+        "Custom"
+      ],
+      "default": "A307"
+    },
+    "f_ub": {
+      "type": "number",
+      "description": "fub. Symbol: f_{ub}. Units: ksi. Ultimate tensile strength of bolt. Related to grade of bolt (see Table J3.2 and commentary).",
+      "default": 30,
+      "minimum": 30,
+      "maximum": 250
+    },
+    "shear_plane": {
+      "type": "string",
+      "description": "Shear Plane. Symbol: \\text{Shear Plane}. Specify if the plane in which the bolts are sheared passes through the shank or the threaded portion of the bolt. The threaded portion has a smaller cross-sectional area and may be selected for a conservative design (reflected in Fnv value).",
+      "enum": [
+        "thread",
+        "shaft"
+      ],
+      "x-enumLabels": [
+        "Thread (N)",
+        "Shaft (X)"
+      ],
+      "default": "thread"
+    },
+    "bolt_type": {
+      "type": "string",
+      "description": "Bolt Type. Symbol: \\text{Bolt Type}. Slip-Critical or bearing type bolt. Slip-Critical option only availbe for bolt sizes and grades with a pretension specified in Table J3.1.",
+      "enum": [
+        "bearing",
+        "slip"
+      ],
+      "x-enumLabels": [
+        "Bearing",
+        "Slip-Critical"
+      ],
+      "default": "bearing"
+    },
+    "faying_surface": {
+      "type": "string",
+      "description": "Faying surface. Symbol: \\text{Faying}. Class used for slip-critical bolt calculations (See Section J3.8).",
+      "enum": [
+        "A",
+        "B"
+      ],
+      "x-enumLabels": [
+        "Class A",
+        "Class B"
+      ],
+      "default": "A"
+    },
+    "n_s": {
+      "type": "number",
+      "description": "No. Slip Planes. Symbol: \\text{Slip Planes}. Number of slip planes required for connection slip (Cl J3.8).",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 5
+    },
+    "n_fillers": {
+      "type": "number",
+      "description": "No. Fillers. Symbol: \\text{Fillers}. Number of Fillers between connected parts (See Fig C-J3.3).",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 5
+    },
+    "plate_grade": {
+      "type": "string",
+      "description": "Plate Grade. Symbol: \\text{Plate Grade}. Plate Grade is related to the plate yield and tensile stress (see AISC steel construction manual Table 2-5).",
+      "enum": [
+        "A36",
+        "A529-(G.50)",
+        "A529-(G.55)",
+        "A572-(G.42)",
+        "A572-(G.50)",
+        "A572-(G.55)",
+        "A572-(G.60)",
+        "A572-(G.65)",
+        "A709-(G.36)",
+        "A709-(G.50)",
+        "A1043-(G.36)",
+        "A1043-(G.50)",
+        "A1066-(G.50)",
+        "A1066-(G.60)",
+        "A1066-(G.65)",
+        "A1066-(G.70)",
+        "A1066-(G.80)",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "A36",
+        "A529-(G.50)",
+        "A529-(G.55)",
+        "A572-(G.42)",
+        "A572-(G.50)",
+        "A572-(G.55)",
+        "A572-(G.60)",
+        "A572-(G.65)",
+        "A709-(G.36)",
+        "A709-(G.50)",
+        "A1043-(G.36)",
+        "A1043-(G.50)",
+        "A1066-(G.50)",
+        "A1066-(G.60)",
+        "A1066-(G.65)",
+        "A1066-(G.70)",
+        "A1066-(G.80)",
+        "Custom"
+      ],
+      "default": "A36"
+    },
+    "f_y": {
+      "type": "number",
+      "description": "fy. Symbol: f_{y}. Units: ksi. Yield strength of the steel plate (see AISC steel construction manual Table 2-5).",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "f_u": {
+      "type": "number",
+      "description": "fu. Symbol: f_{u}. Units: ksi. Ultimate tensile strength of the steel plate (see AISC steel construction manual Table 2-5).",
+      "default": 65,
+      "minimum": 10,
+      "maximum": 200
+    },
+    "grip_length": {
+      "type": "number",
+      "description": "Grip Length. Symbol: \\text{Grip}. Units: in. Grip Length required for A307 bolts to meet the requirements of Table J3.2.",
+      "default": 2,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "treatment": {
+      "type": "string",
+      "description": "Treatment. Symbol: \\text{Treatment}. Details about steel treatment for corrosion protection required for max bolt spacing requirements.",
+      "enum": [
+        "painted",
+        "unpainted"
+      ],
+      "x-enumLabels": [
+        "Painted",
+        "Unpainted"
+      ],
+      "default": "painted"
+    },
+    "exposure": {
+      "type": "string",
+      "description": "Corrosion. Symbol: \\text{Corrosion}. Details about steel exposure to corrosion required for max bolt spacing requirements.",
+      "enum": [
+        "exposed",
+        "not exposed"
+      ],
+      "x-enumLabels": [
+        "Exposed",
+        "Not Exposed"
+      ],
+      "default": "exposed"
+    },
+    "hole": {
+      "type": "string",
+      "description": "Hole Type. Symbol: \\text{Hole}. Bolt Hole Type. Slotted holes only available for rectangular bolt pattern.",
+      "enum": [
+        "normal",
+        "oversized",
+        "short-slotted-h",
+        "short-slotted-v",
+        "long-slotted-h",
+        "long-slotted-v"
+      ],
+      "x-enumLabels": [
+        "Standard",
+        "Oversized",
+        "Short-Slotted (H)",
+        "Short-Slotted (V)",
+        "Long-Slotted (H)",
+        "Long-Slotted (V)"
+      ],
+      "default": "normal"
+    },
+    "clearance": {
+      "type": "number",
+      "description": "Nominal Hole Clearance. Symbol: clearance. Units: in. Nominal hole clearance for bolts (see Table J3.4).",
+      "default": 0.0625,
+      "minimum": 0.0625,
+      "maximum": 1
+    },
+    "d_h": {
+      "type": "number",
+      "description": "Hole Size (dh). Symbol: d_h. Units: in. Size of hole.",
+      "default": 20,
+      "minimum": 0.2,
+      "maximum": 100
+    },
+    "d_l": {
+      "type": "number",
+      "description": "Slot Length. Symbol: L. Units: in. Length of slotted hole.",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "hole_deformation": {
+      "type": "string",
+      "description": "Hole Deformation. Symbol: \\text{Deformation}. Bolt hole deformation consideration for determining bearing and tearout resistance (section J3.10 AISC 360-16).",
+      "enum": [
+        "considered",
+        "ignored"
+      ],
+      "x-enumLabels": [
+        "Design Consideration",
+        "Not Design Consideration"
+      ],
+      "default": "considered"
+    },
+    "design_method": {
+      "type": "string",
+      "description": "Design Method. Symbol: \\text{Method}",
+      "enum": [
+        "asd",
+        "lrfd"
+      ],
+      "x-enumLabels": [
+        "ASD",
+        "LRFD"
+      ],
+      "default": "asd"
+    },
+    "analysis": {
+      "type": "string",
+      "description": "Analysis Method. Symbol: \\text{Analysis}. Analysis method for calculating tensile/compressive forces on bolts resulting from out-of-plane moments.",
+      "enum": [
+        "elastic",
+        "plastic"
+      ],
+      "x-enumLabels": [
+        "Elastic",
+        "Plastic"
+      ],
+      "default": "elastic"
+    },
+    "end_loading": {
+      "type": "string",
+      "description": "Connection Type. Symbol: \\text{Connection}. Connection type for shear strength reduction consideration (see table J3.2). ",
+      "enum": [
+        "non-end",
+        "end"
+      ],
+      "x-enumLabels": [
+        "Non-End Loaded",
+        "End Loaded"
+      ],
+      "default": "non-end"
+    },
+    "plate_connection_type": {
+      "type": "string",
+      "description": "Plate Connection Type. Symbol: \\text{Connection}. Number of plates that are connected to the plate being considered in design. Used for assessing block shear requirements. ",
+      "enum": [
+        "one",
+        "two"
+      ],
+      "x-enumLabels": [
+        "One Support Plate",
+        "Two Support Plates"
+      ],
+      "default": "one"
+    },
+    "prying_method": {
+      "type": "string",
+      "description": "Prying Analysis. Symbol: \\text{Prying}. Method for calculating the impact of prying on tensile loads. Must be supplied as simplified factor for circular and custom bolting arrangements.",
+      "enum": [
+        "vertical",
+        "horizontal",
+        "parameter"
+      ],
+      "x-enumLabels": [
+        "Vertical Stub",
+        "Horizontal Stub",
+        "Simplified Parameter"
+      ],
+      "default": "vertical"
+    },
+    "prying_factor": {
+      "type": "number",
+      "description": "Prying Factor (p). Symbol: p. Factor to account for prying effect by increasing tensile loads. A value of 1.1 may be suitable for rigid plates and a value of 1.2 to 1.4 may be suitable for flexible plates.",
+      "default": 1.1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "stub_thickness": {
+      "type": "number",
+      "description": "Stub Thickness. Symbol: t_{stub}. Units: in. Thickness of stub in inches considered for prying action calculation.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "load_image": {
+      "type": "string",
+      "description": "load_image"
+    },
+    "Fx": {
+      "type": "number",
+      "description": "Fx. Symbol: F_x. Units: kip. Applied design action along X-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Fy. Symbol: F_y. Units: kip. Applied design action along Y-axis. Negative value reverses the load direction.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Fz": {
+      "type": "number",
+      "description": "Fz. Symbol: F_z. Units: kip. Applied design action along Z-axis. A positive value is considered to apply tension to the bolts. A negative value is considered to apply compression.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Mx. Symbol: M_x. Units: kip-ft. Design moment about X-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "My": {
+      "type": "number",
+      "description": "My. Symbol: M_y. Units: kip-ft. Design moment about Y-axis. Negative value reverses the load direction.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M_z. Units: kip-ft. Design moment about Z-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -2500,
+      "maximum": 2500
+    },
+    "graph_on": {
+      "type": "string",
+      "description": "Show Stress Graphs. Toggle on/off to show stress graphs in reporting. Disabling stress graphs will result in quicker solve times.",
+      "enum": [
+        "show",
+        "hide"
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": "hide"
+    },
+    "uid": {
+      "type": "string",
+      "const": "6012-us-bolt-group-analysis",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

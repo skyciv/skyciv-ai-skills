@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-22 Steel Plate Design",
+  "description": "Design plates for a moment and shear applied in it's minor axis.",
+  "type": "object",
+  "properties": {
+    "design_method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method. Choose between Load and Resistance Factor Design (LRFD) and Allowable Strength Design (ASD).",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "LRFD"
+    },
+    "b": {
+      "type": "number",
+      "description": "Width (b). Symbol: b. Units: in. Plate width should be the greater of the cross section dimensions.",
+      "default": 12,
+      "minimum": 2,
+      "maximum": 400
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Symbol: t. Units: in. Plate thickness should be the lesser of the cross section dimensions.",
+      "default": 0.5,
+      "minimum": 0.1,
+      "maximum": 3
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit section yield strength. Grades follow AISC 360-22 for Plates (Table A3.1).",
+      "enum": [
+        "ASTM A36",
+        "ASTM A572 Grade 50",
+        "ASTM A572 Grade 65",
+        "ASTM A588",
+        "ASTM A709 Grade 50",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "ASTM A36",
+        "ASTM A572 Grade 50",
+        "ASTM A572 Grade 65",
+        "ASTM A588",
+        "ASTM A709 Grade 50",
+        "Custom"
+      ],
+      "default": "ASTM A572 Grade 50"
+    },
+    "yield_strength": {
+      "type": "number",
+      "description": "Yield Strength (fy). Symbol: f_y. Units: ksi. Select Custom to edit section yield strength.",
+      "default": 40,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "M": {
+      "type": "number",
+      "description": "Design Moment (Mr). Symbol: M. Units: kip-ft. Bending moment acting about the plate's z-axis.",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "V": {
+      "type": "number",
+      "description": "Design Shear (Vr). Symbol: V. Units: kip. Shear force acting in plate's y-axis.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "analysis_type": {
+      "type": "string",
+      "description": "Analysis Type. Symbol: Analysis. Select whether you want to use the plastic or elastic properties of the plate to determine the design moment capacity of the section. Plastic recommended for this calculation. Shear capacity calculated plastically.",
+      "enum": [
+        "p",
+        "e"
+      ],
+      "x-enumLabels": [
+        "Plastic",
+        "Elastic"
+      ],
+      "default": "p"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2024-aisc-steel-plate",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

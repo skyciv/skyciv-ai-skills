@@ -1,0 +1,423 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1993-1-8:2005 Weld Group Capacity",
+  "description": "Design weld groups in accordance with EN 1993-1-8:2005.",
+  "type": "object",
+  "properties": {
+    "weld_geometry_image": {
+      "type": "string",
+      "description": "weld_geometry_image"
+    },
+    "s": {
+      "type": "number",
+      "description": "s. Symbol: s. Units: mm. Leg length of weld  (a × √2)",
+      "default": 6,
+      "minimum": 4,
+      "maximum": 150
+    },
+    "a": {
+      "type": "number",
+      "description": "a. Symbol: a. Units: mm. Throat thickness of weld",
+      "default": 3,
+      "minimum": 3,
+      "maximum": 100
+    },
+    "t_m1": {
+      "type": "number",
+      "description": "tm1. Symbol: t_{m1}. Units: mm. Thickness of Member 1.",
+      "default": 10,
+      "minimum": 2,
+      "maximum": 80
+    },
+    "t_m2": {
+      "type": "number",
+      "description": "tm2. Symbol: t_{m2}. Units: mm. Thickness of Member 2.",
+      "default": 3.8,
+      "minimum": 2,
+      "maximum": 80
+    },
+    "grade_standard": {
+      "type": "string",
+      "description": "Steel Grade Standard. Symbol: \\text{Standard}. Standard for the steel grade.",
+      "enum": [
+        "10025",
+        "10210",
+        "10219"
+      ],
+      "x-enumLabels": [
+        "EN 10025",
+        "EN 10210",
+        "EN 10219"
+      ],
+      "default": "10025"
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Symbol: \\text{Grade}. Grade of weakest steel member.",
+      "enum": [
+        "S 235",
+        "S 235 W",
+        "S 275",
+        "S 275 N/NL",
+        "S 275 M/ML",
+        "S 355",
+        "S 355 N/NL",
+        "S 355 M/ML",
+        "S 355 W",
+        "S 420 N/NL",
+        "S 420 M/ML",
+        "S 460 N/NL",
+        "S 460 M/ML",
+        "S 460 Q/QL/QLI",
+        "S 235 H",
+        "S 275 H",
+        "S 275 NH/NLH",
+        "S 355 H",
+        "S 355 NH/NLH",
+        "S 460 NH/NLH",
+        "S 275 MH/MLH",
+        "S 355 MH/MLH",
+        "S 420 NH/NLH",
+        "S 460 MH/MLH"
+      ],
+      "x-enumLabels": [
+        "S 235",
+        "S 235 W",
+        "S 275",
+        "S 275 N/NL",
+        "S 275 M/ML",
+        "S 355",
+        "S 355 N/NL",
+        "S 355 M/ML",
+        "S 355 W",
+        "S 420 N/NL",
+        "S 420 M/ML",
+        "S 460 N/NL",
+        "S 460 M/ML",
+        "S 460 Q/QL/QLI",
+        "S 235 H",
+        "S 275 H",
+        "S 275 NH/NLH",
+        "S 355 H",
+        "S 355 NH/NLH",
+        "S 460 NH/NLH",
+        "S 275 MH/MLH",
+        "S 355 MH/MLH",
+        "S 420 NH/NLH",
+        "S 460 MH/MLH"
+      ],
+      "default": "S 235"
+    },
+    "f_u": {
+      "type": "number",
+      "description": "fu. Symbol: f_{u}. Units: MPa. Nominal tensile strength of weaker part joined. EN 1993-1-1:2005 Table 3.1.",
+      "default": 410,
+      "minimum": 4,
+      "maximum": 1000
+    },
+    "database": {
+      "type": "string",
+      "description": "Database. Symbol: Database. Select database library.",
+      "enum": [
+        "en",
+        "sg",
+        "uk"
+      ],
+      "x-enumLabels": [
+        "Europe",
+        "Singapore",
+        "United Kingdom"
+      ],
+      "default": "en"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape. Select shape of section to be imported to weld geometry. Sections will be automatically updated after shape dropdown is selected.",
+      "enum": [
+        "ipe-beams",
+        "ipn-beams",
+        "hd-columns",
+        "hehl-beams",
+        "hp-piles",
+        "equal-angles",
+        "unequal-angles",
+        "rhs",
+        "shs",
+        "upnu-channels",
+        "uap-channels",
+        "upe-channels"
+      ],
+      "x-enumLabels": [
+        "IPE Beams",
+        "IPN Beams",
+        "Wide Flange HD Columns",
+        "Wide Flange HE HL Beams",
+        "Wide Flange HP Piles",
+        "Equal Angles",
+        "Unequal Angles",
+        "RHS",
+        "SHS",
+        "Standard UPN U Channels",
+        "Parallel Flange UAP Channels",
+        "Parallel Flange UPE Channels"
+      ],
+      "default": "ipe-beams"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select section to be added to the weld geometry. You must click 'Add Section' in order to add the section to the geometry.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "sides": {
+      "type": "number",
+      "description": "Sides",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "x-enumLabels": [
+        "Both Sides",
+        "Outer Side Only",
+        "Inner Side Only"
+      ],
+      "default": 2
+    },
+    "x_offset": {
+      "type": "number",
+      "description": "X. Units: mm. The X offset.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "y_offset": {
+      "type": "number",
+      "description": "Y. Units: mm. The Y offset.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "rotate": {
+      "type": "number",
+      "description": "Section Rotation (↷). Rotation for section to import. Rotation is clockwise ↷.",
+      "enum": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "x-enumLabels": [
+        "0",
+        "90",
+        "180",
+        "270"
+      ],
+      "default": 0
+    },
+    "add_section_button": {
+      "type": "string",
+      "description": "Apply Welds"
+    },
+    "remove_welds_button": {
+      "type": "string",
+      "description": "Remove Welds"
+    },
+    "horizontal_welds": {
+      "type": "array",
+      "description": "Horizontal Welds. Coordinates of all horizontal line welds in the weld group to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x1": {
+            "type": "number",
+            "description": "x1",
+            "default": 10,
+            "minimum": -1000
+          },
+          "x2": {
+            "type": "number",
+            "description": "x2",
+            "default": 50,
+            "minimum": -1000
+          },
+          "y": {
+            "type": "number",
+            "description": "y",
+            "default": 10,
+            "minimum": -1000
+          }
+        }
+      }
+    },
+    "vertical_welds": {
+      "type": "array",
+      "description": "Vertical Welds. Coordinates of all vertical line welds in the weld group to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "x",
+            "default": 10,
+            "minimum": -1000
+          },
+          "y1": {
+            "type": "number",
+            "description": "y1",
+            "default": 10,
+            "minimum": -1000
+          },
+          "y2": {
+            "type": "number",
+            "description": "y2",
+            "default": 50,
+            "minimum": -1000
+          }
+        }
+      }
+    },
+    "load_image": {
+      "type": "string",
+      "description": "load_image"
+    },
+    "Fx": {
+      "type": "number",
+      "description": "Fx,Ed. Symbol: F_{x,Ed}. Units: kN. Applied Design Action Along x-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Fy,Ed. Symbol: F_{y,Ed}. Units: kN. Applied Design Action Along y-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Fz": {
+      "type": "number",
+      "description": "Fz,Ed. Symbol: F_{z,Ed}. Units: kN. Applied Design Action Along z-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Mx,Ed. Symbol: M_{x,Ed}. Units: kN-m. Design Moment About x-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "My": {
+      "type": "number",
+      "description": "My,Ed. Symbol: M_{y,Ed}. Units: kN-m. Design Moment About y-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz,Ed. Symbol: M_{z,Ed}. Units: kN-m. Design Moment About z-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "design_method": {
+      "type": "string",
+      "description": "Design Method. Symbol: \\text{Design Method}. Design method for calculation is either Simplified Method (section 4.5.3.3) or Directional Method (section 4.5.3.2).",
+      "enum": [
+        "simplified",
+        "directional"
+      ],
+      "x-enumLabels": [
+        "Simplified",
+        "Directional"
+      ],
+      "default": "simplified"
+    },
+    "gamma_m2": {
+      "type": "number",
+      "description": "Partial Safety Factor (γM2). Symbol: γ_{M2}. Partial Safety Factor. Typically 1.25 but may be different for different National Annex.",
+      "default": 1.25,
+      "minimum": 1.1,
+      "maximum": 1.5
+    },
+    "weld_type": {
+      "type": "string",
+      "description": "Weld Type. Symbol: \\text{Weld Type}. Weld type, primarily used in determining long joint reduction as per Section 4.11.",
+      "enum": [
+        "fillet",
+        "lap"
+      ],
+      "x-enumLabels": [
+        "Fillet Weld",
+        "Lap Joint"
+      ],
+      "default": "fillet"
+    },
+    "graph_on": {
+      "type": "string",
+      "description": "Show Stress Graphs. Toggle on/off to show stress graphs in reporting. Disabling stress graphs will result in quicker solve times.",
+      "enum": [
+        "show",
+        "hide"
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": "hide"
+    },
+    "uid": {
+      "type": "string",
+      "const": "6013-eurocode-weld-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

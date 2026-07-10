@@ -1,0 +1,374 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISI S100-16 Cold-Formed Steel Member Design",
+  "description": "Design cold-formed steel members in accordance with AISI S100-16.",
+  "type": "object",
+  "properties": {
+    "design_method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method. Select between Allowable Strength Design (ASD), Load and Resistance Factor Design (LFRD) and Limit States Design (LSD).",
+      "enum": [
+        "ASD",
+        "LRFD",
+        "LSD"
+      ],
+      "x-enumLabels": [
+        "ASD",
+        "LRFD",
+        "LSD"
+      ],
+      "default": "LRFD"
+    },
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Manufacturer. Symbol: Manufacturer. Select available manufacturers.",
+      "enum": [
+        "AISI",
+        "Cold Formed Steel (CEMCO)",
+        "Cold Formed Steel (ClarkDietrich)",
+        "Cold Formed Steel (MarinoWARE)",
+        "Cold Formed Steel (Purlin Mill)",
+        "Cold Formed Steel (SSMA)",
+        "Cold Formed Steel (SUPREME)"
+      ],
+      "x-enumLabels": [
+        "AISI",
+        "CEMCO",
+        "ClarkDietrich",
+        "MarinoWARE",
+        "Purlin Mill",
+        "SSMA",
+        "SUPREME"
+      ],
+      "default": "AISI"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape. Select available shapes.",
+      "enum": [
+        "I_1",
+        "I_2",
+        "I_3",
+        "I_4",
+        "I_5",
+        "I_8",
+        "track_t",
+        "u-channel_u",
+        "track_sft",
+        "cr_channel",
+        "stud",
+        "track",
+        "u-channel",
+        "cee",
+        "non_standard_cee",
+        "non_standard_zee",
+        "zee"
+      ],
+      "x-enumLabels": [
+        "C-Sections W Lips (I-1)",
+        "C-Sections W Lips (I-2)",
+        "C-Sections WO Lips (I-3)",
+        "Z-Sections W Lips (I-4)",
+        "Z-Sections WO Lips (I-5)",
+        "Hat Sections (I-8)",
+        "Track (T)",
+        "U-Channel (U)",
+        "Track (SFT)",
+        "CR Channel",
+        "Stud",
+        "Track",
+        "U-Channel",
+        "Cees",
+        "Non-Standard Cees",
+        "Non-Standard Zees",
+        "Zees"
+      ],
+      "default": "I_1"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select from library to edit Section Dimensions.",
+      "enum": [
+        "4CS2.5x059"
+      ],
+      "x-enumLabels": [
+        "4CS2.5x059"
+      ],
+      "default": "4CS2.5x059"
+    },
+    "d_input": {
+      "type": "number",
+      "description": "D. Symbol: D. Units: in. Total height of section.",
+      "default": 4,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "b_input": {
+      "type": "number",
+      "description": "B. Symbol: B. Units: in. Total width of section.",
+      "default": 2.5,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "b2_input": {
+      "type": "number",
+      "description": "b2. Symbol: b_2. Units: in. Bottom width of section.",
+      "default": 96,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "r_input": {
+      "type": "number",
+      "description": "R. Symbol: R. Units: in. Fillet radius.",
+      "default": 2.5,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "t_input": {
+      "type": "number",
+      "description": "t. Symbol: t. Units: in. Thickness of section.",
+      "default": 0.059,
+      "minimum": 0.01,
+      "maximum": 6
+    },
+    "tl_input": {
+      "type": "number",
+      "description": "d. Symbol: t_l. Units: in. Width of lip.",
+      "default": 0.773,
+      "minimum": 0.01,
+      "maximum": 6
+    },
+    "hat_angle": {
+      "type": "number",
+      "description": "hat angle. Symbol: hat_angle. Hat Angle.",
+      "default": 0,
+      "minimum": -90,
+      "maximum": 90
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit Material Properties.",
+      "enum": [
+        "Custom",
+        "Gr. 33",
+        "Gr. 37",
+        "Gr. 40",
+        "Gr. 50",
+        "Gr. 55",
+        "Gr. 60",
+        "Gr. 70",
+        "Gr. 80"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "Gr. 33",
+        "Gr. 37",
+        "Gr. 40",
+        "Gr. 50",
+        "Gr. 55",
+        "Gr. 60",
+        "Gr. 70",
+        "Gr. 80"
+      ],
+      "default": "Gr. 33"
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: ksi. Section Yield Strength.",
+      "default": 42.1,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Fu. Symbol: F_{u}. Units: ksi. Section Tensile Strength.",
+      "default": 72.5,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "global_buckling": {
+      "type": "string",
+      "description": "Global Buckling. Flexural Torsional Buckling checks will be skipped when set to Fully Braced.  (i.e. Mne = My & Pne = Py)",
+      "enum": [
+        "unbraced",
+        "fully_braced"
+      ],
+      "x-enumLabels": [
+        "Unbraced",
+        "Fully Braced"
+      ],
+      "default": "unbraced"
+    },
+    "L_t": {
+      "type": "number",
+      "description": "LT. Symbol: L_T. Units: ft. Unbraced length for twisting about the X-axis.",
+      "default": 4,
+      "minimum": 0.1,
+      "maximum": 3000
+    },
+    "L_z": {
+      "type": "number",
+      "description": "Lz. Symbol: L_z. Units: ft. Unbraced length for flexural buckling about the Z-axis. ",
+      "default": 6,
+      "minimum": 0.1,
+      "maximum": 3000
+    },
+    "L_y": {
+      "type": "number",
+      "description": "Ly. Symbol: L_y. Units: ft. Unbraced length for flexural buckling about the Y-axis. ",
+      "default": 2,
+      "minimum": 0.1,
+      "maximum": 3000
+    },
+    "kt_input": {
+      "type": "number",
+      "description": "Kt. Symbol: K_{t}. Effective length factor for twisting.",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 2
+    },
+    "kz_input": {
+      "type": "number",
+      "description": "Kz. Symbol: K_{z}. Effective length factor for flexural buckling about the Z-axis. ",
+      "enum": [
+        0.65,
+        0.8,
+        1,
+        1.2,
+        2.1
+      ],
+      "x-enumLabels": [
+        "0.65",
+        "0.8",
+        "1.0",
+        "1.2",
+        "2.1"
+      ],
+      "default": 1
+    },
+    "ky_input": {
+      "type": "number",
+      "description": "Ky. Symbol: K_{y}. Effective length factor for flexural buckling about the Y-axis. ",
+      "enum": [
+        0.65,
+        0.8,
+        1,
+        1.2,
+        2.1
+      ],
+      "x-enumLabels": [
+        "0.65",
+        "0.8",
+        "1.0",
+        "1.2",
+        "2.1"
+      ],
+      "default": 1
+    },
+    "cb_input": {
+      "type": "number",
+      "description": "Cb. Symbol: C_{b}. Moment gradient factor.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 5
+    },
+    "M_rz_input": {
+      "type": "number",
+      "description": "Mrz. Symbol: M_{rz}. Units: kip-ft. Required flexural strength for bending about the major (Z) axis. Positive value results in compression at top of section. ",
+      "default": 1,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "M_ry_input": {
+      "type": "number",
+      "description": "Mry. Symbol: M_{ry}. Units: kip-ft. Required flexural strength for bending about the minor (Y) Axis. Positive value results in compression at right of section. ",
+      "default": 0.2,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "V_ry_input": {
+      "type": "number",
+      "description": "Vry. Symbol: V_{ry}. Units: kip. Required shear strength in major (Y) axis direction. ",
+      "default": 2.5,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "V_rz_input": {
+      "type": "number",
+      "description": "Vrz. Symbol: V_{rz}. Units: kip. Required shear strength in minor (Z) axis direction. ",
+      "default": 3.25,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "P_r_input": {
+      "type": "number",
+      "description": "Pr. Symbol: P_{r}. Units: kip. Required axial strength. Positive value represents compression. ",
+      "default": 1.75,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "load_axes": {
+      "type": "string",
+      "description": "Load Axes. Select which axis system design loads are applied. Loads applied in Geometric Axes will be rotated to Principal Axes for Capacity Checks.",
+      "enum": [
+        "geometric_axes",
+        "principal_axes"
+      ],
+      "x-enumLabels": [
+        "Geometric Axes",
+        "Principal Axes"
+      ],
+      "default": "geometric_axes"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2305-aisi-cfs-design-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

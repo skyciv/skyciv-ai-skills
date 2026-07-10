@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Roof Pitch Calculator",
+  "description": "Calculate the pitch of a roof.",
+  "type": "object",
+  "properties": {
+    "R": {
+      "type": "number",
+      "description": "Roof Rise. Units: ft. Difference between bottom and top of the roof",
+      "default": 6
+    },
+    "L": {
+      "type": "number",
+      "description": "Run Length. Units: ft. Distance between wall of the building and the roof ridge",
+      "default": 12
+    },
+    "uid": {
+      "type": "string",
+      "const": "5003-roof-pitch-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

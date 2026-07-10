@@ -1,0 +1,48 @@
+{
+  "design_method": "bh",
+  "number_soil_layers": "single",
+  "material_type": "cohesive",
+  "calculation_type": "util",
+  "L": 2,
+  "D": 1,
+  "head_fixity": "free",
+  "strength": "infinite",
+  "M_yield": 100,
+  "gamma": 16,
+  "phi": 30,
+  "c": 0,
+  "c_u": 1,
+  "soil_table": [
+    {
+      "name": "Sand (L)",
+      "depth": 1,
+      "gamma": 16,
+      "phi": 30,
+      "c": 0
+    }
+  ],
+  "H": 1,
+  "e": 0,
+  "M": 0,
+  "method": "global",
+  "phi_g": 0.6,
+  "FOS": 2,
+  "gamma_factor": 0.8,
+  "phi_factor": 0.8,
+  "c_factor": 0.8,
+  "c_u_factor": 0.8,
+  "show_formula": "yes",
+  "show_failure": "yes",
+  "show_dimensions": "yes",
+  "show_text": "yes",
+  "uid": "1020-pile-lateral-analysis",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

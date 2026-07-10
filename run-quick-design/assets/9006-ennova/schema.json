@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Presiones de viento sobre cubierta plana",
+  "description": "Calculates the pressure on each zone of a flat roof in Spain",
+  "type": "object",
+  "properties": {
+    "x_coords": {
+      "type": "string",
+      "description": "X coords. List of X coordinates",
+      "default": "0,10,10,0"
+    },
+    "y_coords": {
+      "type": "string",
+      "description": "Y coords. List of Y coordinates",
+      "default": "0,0,10,10"
+    },
+    "building_height": {
+      "type": "number",
+      "description": "Altura. Symbol: h_{B}. Units: m. Altura del edificio",
+      "default": 10,
+      "minimum": 3,
+      "maximum": 400
+    },
+    "parapet_height": {
+      "type": "number",
+      "description": "Altura peto. Symbol: h_{p}. Units: m. Altura del peto",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "wind_zone": {
+      "type": "string",
+      "description": "Zona. Symbol: \\rm{Zona}. Zona de viento",
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ],
+      "x-enumLabels": [
+        "A",
+        "B",
+        "C"
+      ],
+      "default": "A"
+    },
+    "terrain_category": {
+      "type": "string",
+      "description": "Categoría. Symbol: \\rm{Cat.}. Categoría del terreno",
+      "enum": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V"
+      ],
+      "x-enumLabels": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V"
+      ],
+      "default": "I"
+    },
+    "alpha": {
+      "type": "number",
+      "description": "Inclinación. Symbol: \\alpha. Units: &deg;. Inclinación del soporte del módulo fotovoltaico respecto a la horizontal",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 45
+    },
+    "plate_length": {
+      "type": "number",
+      "description": "Longitud Módulo Fotovoltaico. Symbol: L_p. Units: m. Longitud real del módulo fotovoltaico (en la dirección del soporte)",
+      "default": 1.13,
+      "minimum": 0,
+      "maximum": 20
+    },
+    "plate_width": {
+      "type": "number",
+      "description": "Ancho Módulo Fotovoltaico. Symbol: W_p. Units: m. Ancho del módulo fotovoltaico",
+      "default": 2.28,
+      "minimum": 0,
+      "maximum": 20
+    },
+    "wind_factor_overturning": {
+      "type": "number",
+      "description": "Viento a vuelco. Symbol: \\rm{FS_{vuelco}}. Factor para mayorar la carga de viento actuante para vuelco",
+      "default": 1.1,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "wind_factor_sliding": {
+      "type": "number",
+      "description": "Viento a desliz.. Symbol: \\rm{FS_{desliz.}}. Factor para mayorar la carga de viento actuante para deslizamiento",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "stabilizing_factor": {
+      "type": "number",
+      "description": "Cargas estabilizadoras. Symbol: \\rm{FS_{estab.}}. Factor para afectar las cargas gravitacionales que estabilizan el sistema",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "friction_factor": {
+      "type": "number",
+      "description": "Fricción. Symbol: \\mu_s. Coeficiente de fricción entre la cubierta y el soporte",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "ballast_weight": {
+      "type": "number",
+      "description": "PLt. Symbol: \\rm{P_{Lt}}. Units: kg. Peso del lastre",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "plate_weight": {
+      "type": "number",
+      "description": "PTp. Symbol: \\rm{P_{p}}. Units: kg. Peso del módulo fotovoltaico",
+      "default": 27.4,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "block_weight": {
+      "type": "number",
+      "description": "PTb. Symbol: \\rm{P_{b}}. Units: kg. Peso del soporte",
+      "default": 166,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "9006-ennova",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

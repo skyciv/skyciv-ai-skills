@@ -1,0 +1,131 @@
+{
+  "footing_name": "F1",
+  "footing_material": "rcfooting",
+  "footing_width": 12,
+  "footing_length": 12,
+  "footing_depth": 3,
+  "footing_height": 36,
+  "col_c1": 24,
+  "col_c2": 24,
+  "col_height": 4,
+  "col_x": 0,
+  "col_z": 0,
+  "punching_overhang_factor": 1,
+  "loading_table": [
+    {
+      "name": "Dead",
+      "case": "DL",
+      "N": 538.6,
+      "Mx": 0,
+      "Mz": 0,
+      "Vx": 0,
+      "Vz": 0
+    },
+    {
+      "name": "Dead",
+      "case": "LL",
+      "N": 194,
+      "Mx": 0,
+      "Mz": 0,
+      "Vx": 0,
+      "Vz": 0
+    },
+    {
+      "name": "Dead",
+      "case": "W/S",
+      "N": 18,
+      "Mx": 0,
+      "Mz": 0,
+      "Vx": 0,
+      "Vz": 0
+    }
+  ],
+  "lc_table": [
+    {
+      "lcname": "S1",
+      "dlfactor": "1.0",
+      "llfactor": "0.0",
+      "lrfactor": "0.0",
+      "wsfactor": "0.0"
+    },
+    {
+      "lcname": "S2",
+      "dlfactor": "1",
+      "llfactor": "1",
+      "lrfactor": "0",
+      "wsfactor": "0.0"
+    },
+    {
+      "lcname": "S3",
+      "dlfactor": "1",
+      "llfactor": "1",
+      "lrfactor": "0",
+      "wsfactor": "1"
+    },
+    {
+      "lcname": "U1",
+      "dlfactor": "1.4",
+      "llfactor": "0",
+      "lrfactor": "0",
+      "wsfactor": "0"
+    },
+    {
+      "lcname": "U2",
+      "dlfactor": "1.2",
+      "llfactor": "1.6",
+      "lrfactor": "0",
+      "wsfactor": "0"
+    },
+    {
+      "lcname": "U3",
+      "dlfactor": "1.2",
+      "llfactor": "1",
+      "lrfactor": "0",
+      "wsfactor": "1"
+    },
+    {
+      "lcname": "U4",
+      "dlfactor": "0.9",
+      "llfactor": "0",
+      "lrfactor": "0",
+      "wsfactor": "1"
+    }
+  ],
+  "fc": 4,
+  "unit_weight": 150,
+  "max_aggregate_size": 1,
+  "cover": 3,
+  "f_y": 60,
+  "reinforcement_type": "normal",
+  "bar_size_x": "8",
+  "n_x": 13,
+  "x_bars_with_hooks": false,
+  "bar_size_z": "8",
+  "n_z": 13,
+  "z_bars_with_hooks": false,
+  "col_bar_size": "6",
+  "col_nx_bar": 3,
+  "col_nz_bar": 3,
+  "dowels_with_hooks": true,
+  "q_a": 6,
+  "phi_footing_soil": 20,
+  "min_overturning_SF": 1.5,
+  "min_sliding_SF": 1.5,
+  "consider_soil_above_foundation": false,
+  "consider_foundation_weight": false,
+  "elevation": "X",
+  "footing_dims": true,
+  "show_loading": "1",
+  "show_reinforcement": true,
+  "show_ground_level": true,
+  "current_unit_system": "imperial",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "8002-aci-pad-footing-design-calculator"
+}

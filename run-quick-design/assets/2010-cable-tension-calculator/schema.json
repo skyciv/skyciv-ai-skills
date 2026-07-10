@@ -1,0 +1,231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cable Tension Analysis",
+  "description": "Calculates the tension in cables for structural engineering purposes.",
+  "type": "object",
+  "properties": {
+    "system_type": {
+      "type": "string",
+      "description": "Cable System. Symbol: System. Select the type of cable system based on its orientation and function in the structure.",
+      "enum": [
+        "2-cable",
+        "horizontal-cable",
+        "1-cable-pulling",
+        "1-cable"
+      ],
+      "x-enumLabels": [
+        "Diagonal Cables",
+        "Horizontal Cables",
+        "Pulling Cable",
+        "Vertical Cable"
+      ],
+      "default": "2-cable"
+    },
+    "L": {
+      "type": "number",
+      "description": "Cable Length. Units: m. Length of the cable.",
+      "default": 1,
+      "minimum": 0.01,
+      "maximum": 10000
+    },
+    "L_1": {
+      "type": "number",
+      "description": "Cable Length. Units: m. Length of Cable 1.",
+      "default": 1.5,
+      "minimum": 0.01,
+      "maximum": 10000
+    },
+    "L_2": {
+      "type": "number",
+      "description": "Cable 2 Length. Units: m. Length of Cable 2.",
+      "default": 3,
+      "minimum": 0.01,
+      "maximum": 10000
+    },
+    "L_total": {
+      "type": "number",
+      "description": "Total Length. Symbol: L_{total}. Units: m. Total length of the cable.",
+      "default": 12,
+      "minimum": 0.01,
+      "maximum": 20000
+    },
+    "angle_1": {
+      "type": "number",
+      "description": "Cable 1 Angle. Symbol: θ_1. Units: °. Angle of Cable 1 with reference to horizontal surface.",
+      "default": 45,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "angle_2": {
+      "type": "number",
+      "description": "Cable 2 Angle. Symbol: θ_2. Units: °. Angle of Cable 2 with reference to horizontal surface.",
+      "default": 73,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "area_or_diameter": {
+      "type": "string",
+      "description": "Size. Select whether to define the cable size using its diameter or cross-sectional area."
+    },
+    "D": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Diameter of the cable.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 200
+    },
+    "A": {
+      "type": "number",
+      "description": "A. Units: mm^2. Area of the cable.",
+      "default": 80,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "Iy": {
+      "type": "number",
+      "description": "Iy. Units: mm^4. Moment of Inertia (Y).",
+      "default": 32,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "Iz": {
+      "type": "number",
+      "description": "Iz. Units: mm^4. Moment of Inertia (Z).",
+      "default": 32,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "J": {
+      "type": "number",
+      "description": "J. Units: mm^4. Torsion Constant.",
+      "default": 60,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "E": {
+      "type": "number",
+      "description": "E. Units: MPa. Elastic Modulus.",
+      "default": 170000,
+      "minimum": 1,
+      "maximum": 100000000
+    },
+    "W": {
+      "type": "number",
+      "description": "w. Symbol: w. Units: kN/m. Cable Unit Weight.",
+      "default": 0.1,
+      "minimum": 0.01,
+      "maximum": 500
+    },
+    "density": {
+      "type": "number",
+      "description": "ρ. Symbol: ρ. Units: kg/m^3. Density.",
+      "default": 7850,
+      "minimum": 500,
+      "maximum": 50000
+    },
+    "poissons_ratio": {
+      "type": "number",
+      "description": "ν. Symbol: ν. Poisson's Ratio.",
+      "default": 0.27,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "enable_fy": {
+      "type": "boolean",
+      "description": "Check Yield Strength. Check Yield Strength to calculate the utility ratio of the stress in the cable.",
+      "default": false
+    },
+    "Fy": {
+      "type": "number",
+      "description": "fy. Symbol: F_y. Units: MPa. Yield Strength.",
+      "default": 500,
+      "minimum": 50,
+      "maximum": 100000
+    },
+    "P": {
+      "type": "number",
+      "description": "P. Units: kg. Applied Factored Load.",
+      "default": 500,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "L_pos": {
+      "type": "number",
+      "description": "Load Position. Symbol: P_{pos}. Units: m. Position of the applied factored load measured from the left.",
+      "default": 5,
+      "minimum": 0.01,
+      "maximum": 10000
+    },
+    "coef_friction": {
+      "type": "number",
+      "description": "μ. Symbol: μ. Materials in ContactCoefficient of Friction (μ)Concrete on Concrete0.6 to 0.85Steel on Steel (Dry)0.5 to 0.8Glass on Glass0.4 to 0.6Rubber on Road (Dry)0.6 to 0.8Steel on Dirt0.5 to 0.7Steel Ball Bearings on Steel0.001 to 0.005",
+      "default": 0.6,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "enable_thermal": {
+      "type": "boolean",
+      "description": "Check Thermal Effects. Check Change in Temperature and Coefficient of Thermal Expansionto calculate cable thermal load elongation.",
+      "default": false
+    },
+    "T_change": {
+      "type": "number",
+      "description": "ΔT. Symbol: ΔT. Units: °C. Change in Temperature.",
+      "default": 20,
+      "minimum": -200,
+      "maximum": 2000
+    },
+    "coef_thermal_expansion": {
+      "type": "number",
+      "description": "α. Symbol: α. Units: mm/mm°C. Coefficient of Thermal Expansion.",
+      "default": "11.7e-6",
+      "minimum": 0,
+      "maximum": 0.001
+    },
+    "uid": {
+      "type": "string",
+      "const": "2010-cable-tension-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

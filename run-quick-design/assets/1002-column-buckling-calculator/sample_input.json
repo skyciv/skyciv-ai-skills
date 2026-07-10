@@ -1,0 +1,18 @@
+{
+  "support_conditions": "Fixed - Fixed",
+  "L": 1,
+  "A": 4000,
+  "I": 200000,
+  "E": 200000,
+  "sigma_y": 260,
+  "uid": "1002-column-buckling-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

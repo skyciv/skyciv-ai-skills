@@ -1,0 +1,19 @@
+{
+  "bar_type": 1,
+  "bar_end": "straight",
+  "bar_diameter": 12,
+  "fc": 40,
+  "fy": 500,
+  "top_bar_factor": 1,
+  "bundled_reinforcement": 1,
+  "uid": "3030-nzs3101-reinforcement-lap-length-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

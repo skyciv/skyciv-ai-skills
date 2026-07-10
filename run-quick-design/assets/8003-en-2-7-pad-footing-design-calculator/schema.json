@@ -1,0 +1,826 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1992-1-1 & EN 1997-1 Pad Footing Design",
+  "description": "Design isolated pad footings in accordance with EN 1992-1-1 & EN 1997-1.",
+  "type": "object",
+  "properties": {
+    "footing_name": {
+      "type": "string",
+      "description": "Footing Name",
+      "default": "FOOTING 1"
+    },
+    "footing_width": {
+      "type": "number",
+      "description": "Footing Width. Symbol: B. Units: m",
+      "default": 1.2,
+      "minimum": 0.6,
+      "maximum": 36
+    },
+    "footing_length": {
+      "type": "number",
+      "description": "Footing Length. Symbol: L. Units: m",
+      "default": 1.2,
+      "minimum": 0.6,
+      "maximum": 36
+    },
+    "footing_depth": {
+      "type": "number",
+      "description": "Depth. Symbol: Df. Units: m. The depth of the footing base.",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "footing_height": {
+      "type": "number",
+      "description": "Height. Symbol: H. Units: mm. The height of the footing base.",
+      "default": 400,
+      "minimum": 150,
+      "maximum": 2000
+    },
+    "col_c1": {
+      "type": "number",
+      "description": "Column Length. Symbol: c_{1}. Units: mm",
+      "default": 300,
+      "minimum": 100,
+      "maximum": 1250
+    },
+    "col_c2": {
+      "type": "number",
+      "description": "Column Width. Symbol: c_{2}. Units: mm",
+      "default": 300,
+      "minimum": 100,
+      "maximum": 1250
+    },
+    "col_height": {
+      "type": "number",
+      "description": "Column Height. Symbol: l_{c}. Units: m",
+      "default": 1.2,
+      "minimum": 0,
+      "maximum": 15
+    },
+    "col_x": {
+      "type": "number",
+      "description": "Column X Offset. Symbol: x_{offset}. Units: mm",
+      "default": 0,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "col_z": {
+      "type": "number",
+      "description": "Column Z Offset. Symbol: z_{offset}. Units: mm",
+      "default": 0,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "q": {
+      "type": "number",
+      "description": "q. Symbol: q. Units: kPa. Permanent surcharge load at surface level adjacent to footing for calculating the soil bearing strength (favourable load).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "loading_table": {
+      "type": "array",
+      "description": "Loads",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Dead"
+          },
+          "case": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "G",
+            "enum": [
+              "G",
+              "Q"
+            ]
+          },
+          "direction": {
+            "type": "string",
+            "description": "Direction",
+            "default": "vertical",
+            "enum": [
+              "vertical ",
+              "lateral"
+            ]
+          },
+          "psi_0": {
+            "type": "number",
+            "description": "ψo",
+            "default": 0.5,
+            "minimum": 0,
+            "maximum": 1
+          },
+          "P": {
+            "type": "number",
+            "description": "P (kN)",
+            "default": 400,
+            "minimum": 0,
+            "maximum": 40000
+          },
+          "Mx": {
+            "type": "number",
+            "description": "Mx (kN-m)",
+            "default": 0,
+            "minimum": -13000,
+            "maximum": 13000
+          },
+          "Mz": {
+            "type": "number",
+            "description": "Mz (kN-m)",
+            "default": 0,
+            "minimum": -13000,
+            "maximum": 13000
+          },
+          "Hx": {
+            "type": "number",
+            "description": "Hx (kN)",
+            "default": 0,
+            "minimum": -40000,
+            "maximum": 40000
+          },
+          "Hz": {
+            "type": "number",
+            "description": "Hz (kN)",
+            "default": 0,
+            "minimum": -40000,
+            "maximum": 40000
+          }
+        }
+      }
+    },
+    "annex": {
+      "type": "string",
+      "description": "National Annex",
+      "enum": [
+        "eurocode",
+        "british",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Eurocode Default",
+        "UK Annex",
+        "Custom"
+      ],
+      "default": "eurocode"
+    },
+    "design_approach": {
+      "type": "string",
+      "description": "Design Approach",
+      "enum": [
+        "DA1_C1",
+        "DA1_C2",
+        "DA2",
+        "DA3"
+      ],
+      "x-enumLabels": [
+        "DA1-Combination 1",
+        "DA1-Combination 2",
+        "DA2",
+        "DA3"
+      ],
+      "default": "DA1_C1"
+    },
+    "gamma_Gu": {
+      "type": "number",
+      "description": "γGsup. Symbol: γ_{Gsup}. Unfavourable permanent action factor.",
+      "default": 1.35,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gamma_Gf": {
+      "type": "number",
+      "description": "γGinf. Symbol: γ_{Ginf}. Favourable permanent action factor.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gamma_Gu_EQU": {
+      "type": "number",
+      "description": "γGsup,EQU. Symbol: γ_{Gsup,EQU}. Unfavourable permanent action factor.",
+      "default": 1.1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gamma_Gf_EQU": {
+      "type": "number",
+      "description": "γGinf,EQU. Symbol: γ_{Ginf,EQU}. Favourable permanent action factor.",
+      "default": 0.9,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gamma_Qu": {
+      "type": "number",
+      "description": "γQsup. Symbol: γ_{Qsup}. Unfavourable variable action factor.",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gamma_Qf": {
+      "type": "number",
+      "description": "γQinf. Symbol: γ_{Qinf}. Favourable variable action factor.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gamma_phi": {
+      "type": "number",
+      "description": "γφ. Symbol: γ_{φ}. Partial Factor of Safety for soil effective friction angle (aka shearing resistance).",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_c": {
+      "type": "number",
+      "description": "γc. Symbol: γ_{c}. Partial Factor of Safety for cohesion Resistance.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_c_u": {
+      "type": "number",
+      "description": "γcu. Symbol: γ_{cu}. Partial Factor of Safety for soil undrained shear strength.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_gamma": {
+      "type": "number",
+      "description": "γγ. Symbol: γ_{γ}. Partial Factor of Safety for unit weight.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_bearing": {
+      "type": "number",
+      "description": "γRv. Symbol: γ_{Rv}. Partial Factor of Safety for Bearing Resistance.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_sliding": {
+      "type": "number",
+      "description": "γRh. Symbol: γ_{Rh}. Partial Factor of Safety for Sliding Resistance.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_stability": {
+      "type": "number",
+      "description": "γRo. Symbol: γ_{Ro}. Partial Factor of Safety for Sliding Overall Stability.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_conc": {
+      "type": "number",
+      "description": "γconc. Symbol: γ_{conc}. Partial Factor of Safety for Concrete.",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "gamma_s": {
+      "type": "number",
+      "description": "γs. Symbol: γ_{s}. Partial Factor of Safety for Steel.",
+      "default": 1.15,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "alpha_cc": {
+      "type": "number",
+      "description": "αcc. Symbol: α_{cc}. Long term effects on compression strength factor 3.1.6(1).",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "alpha_ct": {
+      "type": "number",
+      "description": "αct. Symbol: α_{ct}. Long term effects on tensile strength factor 3.1.6(2).",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "c_Rdc": {
+      "type": "number",
+      "description": "CRd,c. Symbol: C_{Rd,c}. Parameter for the calculation of concrete shear resistance 6.2.2(1).",
+      "default": 0.12,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "xu_d_lim": {
+      "type": "number",
+      "description": "xu_d. Symbol: xu_d. Limit Ratio of the neutral axis depth to the effective depth considering a distribution ratio = 1  5.5(4).",
+      "default": 0.45,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "v_min": {
+      "type": "number",
+      "description": "vmin. Symbol: v_{min}. Units: MPa. Minimum shear stress capacity of concrete 6.2.2(1).",
+      "default": 0.378,
+      "minimum": 0.2,
+      "maximum": 1
+    },
+    "k1_spacing": {
+      "type": "number",
+      "description": "k1. Symbol: k_1. Minimum spacing factor.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "k2_spacing": {
+      "type": "number",
+      "description": "k2. Symbol: k_2. .",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "concrete_strength_class": {
+      "type": "string",
+      "description": "Concrete Class. Concrete strength class.",
+      "enum": [
+        "12",
+        "16",
+        "20",
+        "25",
+        "30",
+        "35",
+        "40",
+        "45",
+        "50",
+        "55",
+        "60",
+        "70",
+        "80",
+        "90"
+      ],
+      "x-enumLabels": [
+        "C12/15",
+        "C16/20",
+        "C20/25",
+        "C25/30",
+        "C30/37",
+        "C35/45",
+        "C40/50",
+        "C45/55",
+        "C50/60",
+        "C55/67",
+        "C60/75",
+        "C70/85",
+        "C80/95",
+        "C90/105"
+      ],
+      "default": "25"
+    },
+    "unit_weight": {
+      "type": "number",
+      "description": "Concrete Unit Weight. Symbol: γ_{concrete}. Units: kN/m3",
+      "default": 25,
+      "minimum": 21.5,
+      "maximum": 26
+    },
+    "max_aggregate_size": {
+      "type": "number",
+      "description": "Max. Size of Aggregate. Symbol: d_g. Units: mm",
+      "default": 15,
+      "minimum": 5,
+      "maximum": 50
+    },
+    "concrete_type": {
+      "type": "string",
+      "description": "Type. Concrete fabrication type.",
+      "enum": [
+        "in_situ",
+        "prefabricated"
+      ],
+      "x-enumLabels": [
+        "In situ",
+        "Prefabricated"
+      ],
+      "default": "in_situ"
+    },
+    "cast": {
+      "type": "string",
+      "description": "Cast. Type of cast",
+      "enum": [
+        "directly",
+        "prepared"
+      ],
+      "x-enumLabels": [
+        "Directly against soil",
+        "Against prepared ground"
+      ],
+      "default": "directly"
+    },
+    "cover": {
+      "type": "number",
+      "description": "cnom. Symbol: c_{nom}. Units: mm. Nominal reinforcement cover based on durability requirements. See 4.4.1.3(4)",
+      "default": 50,
+      "minimum": 30,
+      "maximum": 300
+    },
+    "f_yk": {
+      "type": "number",
+      "description": "fyk. Symbol: f_{yk}. Units: MPa. Characteristic Reinforcement Yield Strength.",
+      "default": 500,
+      "minimum": 250,
+      "maximum": 750
+    },
+    "bar_size_x": {
+      "type": "string",
+      "description": "db,x. Symbol: d_{b,x}. Footing Bar Size (X Direction).",
+      "enum": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "20",
+        "22",
+        "25",
+        "28",
+        "32"
+      ],
+      "x-enumLabels": [
+        "H6",
+        "H8",
+        "H10",
+        "H12",
+        "H14",
+        "H16",
+        "H18",
+        "H20",
+        "H22",
+        "H25",
+        "H28",
+        "H32"
+      ],
+      "default": "8"
+    },
+    "n_x": {
+      "type": "number",
+      "description": "nx. Symbol: n_{x}. Units: No.. Number of bars in the X direction of the footing.",
+      "default": 15,
+      "minimum": 2,
+      "maximum": 200
+    },
+    "x_bars_with_hooks": {
+      "type": "boolean",
+      "description": "X Bars with standard hooks or bends?",
+      "default": true
+    },
+    "bar_size_z": {
+      "type": "string",
+      "description": "db,z. Symbol: d_{b,z}. Footing Bar Size (Z Direction).",
+      "enum": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "20",
+        "22",
+        "25",
+        "28",
+        "32"
+      ],
+      "x-enumLabels": [
+        "H6",
+        "H8",
+        "H10",
+        "H12",
+        "H14",
+        "H16",
+        "H18",
+        "H20",
+        "H22",
+        "H25",
+        "H28",
+        "H32"
+      ],
+      "default": "8"
+    },
+    "n_z": {
+      "type": "number",
+      "description": "nz. Symbol: n_{z}. Units: No.. Number of bars in the Z direction of the footing.",
+      "default": 15,
+      "minimum": 2,
+      "maximum": 200
+    },
+    "z_bars_with_hooks": {
+      "type": "boolean",
+      "description": "Z Bars with standard hooks or bends?",
+      "default": true
+    },
+    "col_cover": {
+      "type": "number",
+      "description": "ccnom. Symbol: cc_{nom}. Units: mm. Column nominal reinforcement cover.",
+      "default": 30,
+      "minimum": 25,
+      "maximum": 300
+    },
+    "col_bar_size": {
+      "type": "string",
+      "description": "dbcol,z. Symbol: d_{b.col}. Dowel Bar Size.",
+      "enum": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "20",
+        "22",
+        "25",
+        "28",
+        "32"
+      ],
+      "x-enumLabels": [
+        "H6",
+        "H8",
+        "H10",
+        "H12",
+        "H14",
+        "H16",
+        "H18",
+        "H20",
+        "H22",
+        "H25",
+        "H28",
+        "H32"
+      ],
+      "default": "8"
+    },
+    "col_nx_bar": {
+      "type": "number",
+      "description": "nx,col. Symbol: n_{x,col}. Units: No.. Dowel Bars in X Direction.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "col_nz_bar": {
+      "type": "number",
+      "description": "nz,col. Symbol: n_{z,col}. Units: No.. Dowel Bars in Z Direction.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "dowels_with_hooks": {
+      "type": "boolean",
+      "description": "Dowels with Hooks?",
+      "default": true
+    },
+    "bearing_design_method": {
+      "type": "string",
+      "description": "Method. Method for design.",
+      "enum": [
+        "prescriptive",
+        "direct"
+      ],
+      "x-enumLabels": [
+        "Prescriptive",
+        "Direct"
+      ],
+      "default": "direct"
+    },
+    "q_kmax": {
+      "type": "number",
+      "description": "qkmax. Symbol: q_{kmax}. Units: kPa. Allowable Bearing Capacity ",
+      "default": 150,
+      "minimum": 25,
+      "maximum": 1000
+    },
+    "consider_soil_above_foundation": {
+      "type": "boolean",
+      "description": "Consider Soil Above Foundation?",
+      "default": false
+    },
+    "drainage": {
+      "type": "string",
+      "description": "Drainage. Symbol: Drainage. Type of analysis related to soil behaviour.",
+      "enum": [
+        "drained",
+        "undrained"
+      ],
+      "x-enumLabels": [
+        "Drained",
+        "Undrained"
+      ],
+      "default": "drained"
+    },
+    "c": {
+      "type": "number",
+      "description": "c'. Symbol: c'. Units: kPa. Effective soil cohesion.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "water_air_interface": {
+      "type": "boolean",
+      "description": "Water or air in the foundation-soil interface?",
+      "default": false
+    },
+    "c_u": {
+      "type": "number",
+      "description": "cu. Symbol: c_u. Units: kPa. Undrained cohesion strength of soil.",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "phi": {
+      "type": "number",
+      "description": "φ'. Symbol: φ'. Units: °. Effective Stress Peak Friction Angle. Used in bearing capacity calculations.",
+      "default": 30,
+      "minimum": 1,
+      "maximum": 60
+    },
+    "phi_cv": {
+      "type": "number",
+      "description": "φcv'. Symbol: φ_{cv}'. Units: °. Critical State Friction Angle. Used in sliding calculations.",
+      "default": 30,
+      "minimum": 1,
+      "maximum": 60
+    },
+    "soil_unit_weight": {
+      "type": "number",
+      "description": "γs. Symbol: γs. Units: kN/m3. Soil unit weight.",
+      "default": 16,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "sat_unit_weight": {
+      "type": "number",
+      "description": "γs1. Symbol: γs1. Units: kN/m3. Saturated unit weight.",
+      "default": 17,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "D_w": {
+      "type": "number",
+      "description": "Dw. Symbol: D_{w}. Units: m. Depth to water table.",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "report_detail": {
+      "type": "string",
+      "description": "Report Detail. Level of detail in the report. Short: only final results. Detailed: including intermediate calculations",
+      "enum": [
+        false,
+        true
+      ],
+      "x-enumLabels": [
+        "Short",
+        "Detailed"
+      ],
+      "default": false
+    },
+    "consider_fprEN_for_punching_beta_factor": {
+      "type": "boolean",
+      "description": "Use refined beta factor calculation?. Use more refined beta factor calculation after Vollum et al. FprEN 1992-1-1:2023?",
+      "default": false
+    },
+    "graphics_table": {
+      "type": "array",
+      "description": "Options",
+      "items": {
+        "type": "object",
+        "properties": {
+          "elevation": {
+            "type": "string",
+            "description": "Elevation",
+            "default": "X",
+            "enum": [
+              "X",
+              "Z"
+            ]
+          },
+          "footing_dims": {
+            "type": "string",
+            "description": "Footing Dimensions",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_reinforcement": {
+            "type": "string",
+            "description": "Footing Reinforcement",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_levels": {
+            "type": "string",
+            "description": "Levels",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_loading": {
+            "type": "string",
+            "description": "Column Loading",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "display_load_case": {
+            "type": "string",
+            "description": "Display Load Case",
+            "enum": [
+              "G",
+              "Q"
+            ]
+          }
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "const": "8003-en-2-7-pad-footing-design-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "footing_width",
+    "footing_length",
+    "col_c1",
+    "col_c2",
+    "col_height",
+    "col_x",
+    "col_z",
+    "annex",
+    "design_approach",
+    "concrete_strength_class",
+    "unit_weight",
+    "max_aggregate_size",
+    "concrete_type",
+    "cast",
+    "cover",
+    "f_yk",
+    "bar_size_x",
+    "bar_size_z",
+    "col_cover",
+    "col_bar_size",
+    "col_nx_bar",
+    "col_nz_bar",
+    "bearing_design_method",
+    "q_kmax"
+  ]
+}

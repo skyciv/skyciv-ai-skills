@@ -1,0 +1,268 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1993-1-3 Purlin Capacity Design",
+  "description": "Design steel purlins in accordance with EN 1993-1-3:2006.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Shape",
+      "enum": [
+        "C-Purlins",
+        "Z-Purlins"
+      ],
+      "x-enumLabels": [
+        "C-Purlins",
+        "Z-Purlins"
+      ],
+      "default": "C-Purlins"
+    },
+    "sectionName": {
+      "type": "string",
+      "description": "Section Name",
+      "default": "C10015"
+    },
+    "areaCustom": {
+      "type": "number",
+      "description": "Area (A). Units: mm2. Area of purlin section.",
+      "default": 443,
+      "minimum": 1,
+      "maximum": 100000000
+    },
+    "moixCustom": {
+      "type": "number",
+      "description": "Ix. Units: mm4. Moment of inertia about major axis.",
+      "default": 1610000,
+      "minimum": 1,
+      "maximum": 100000000000
+    },
+    "moiyCustom": {
+      "type": "number",
+      "description": "Iy. Units: mm4. Moment of inertia about minor axis.",
+      "default": 237000,
+      "minimum": 1,
+      "maximum": 100000000000
+    },
+    "zxCustom": {
+      "type": "number",
+      "description": "Zx. Units: mm3. Elastic section modulus about major axis.",
+      "default": 24500,
+      "minimum": 1,
+      "maximum": 1000000000
+    },
+    "zyCustom": {
+      "type": "number",
+      "description": "Zy. Units: mm3. Elastic section Mmodulus about minor axis.",
+      "default": 5290,
+      "minimum": 1,
+      "maximum": 1000000000
+    },
+    "d": {
+      "type": "number",
+      "description": "Depth (d). Units: mm. Depth of the section.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "b": {
+      "type": "number",
+      "description": "Flange (b). Units: mm. Width of the section.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "l": {
+      "type": "number",
+      "description": "Lips (l). Units: mm. Length of the lip.",
+      "default": 13.5,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Units: mm. Thickness of the section.",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "custom": {
+      "type": "boolean",
+      "description": "Custom Properties. Symbol: Custom_{box}. Toggle to input custom section properties.",
+      "default": false
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Yield Strength (fyb). Units: MPa. Yield strength of steel.",
+      "default": 250,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "E": {
+      "type": "number",
+      "description": "Modulus of Elasticity (E). Units: MPa. Modulus of elasticity of steel.",
+      "default": 200000,
+      "minimum": 1,
+      "maximum": 10000000
+    },
+    "W": {
+      "type": "number",
+      "description": "Density (W). Units: kg/m^3. Mass density of steel.",
+      "default": 7850,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "deflection": {
+      "type": "number",
+      "description": "Allowable Deflection (L/n). Note: n = Deflection Limit.",
+      "default": 360,
+      "minimum": 100,
+      "maximum": 600
+    },
+    "roof_image": {
+      "type": "string",
+      "description": "roof_image"
+    },
+    "L": {
+      "type": "number",
+      "description": "Bay Length (L). Units: m. Distance between supports.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "s": {
+      "type": "number",
+      "description": "Spacing (s). Units: m. Center-to-center spacing of purlins.",
+      "default": 0.75,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "a": {
+      "type": "number",
+      "description": "Roof Slope (θ). Roof slope in degrees.",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "x": {
+      "type": "string",
+      "description": "Sag Rod Location (x). Anti-sag ties.",
+      "enum": [
+        "thirdpoint",
+        "midpoint"
+      ],
+      "x-enumLabels": [
+        "Third points",
+        "Midpoint"
+      ],
+      "default": "midpoint"
+    },
+    "G": {
+      "type": "number",
+      "description": "Dead Load (G). Units: kPa. Area load.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Ql": {
+      "type": "number",
+      "description": "Live Load (Ql). Units: kPa. Area load.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Qwi": {
+      "type": "number",
+      "description": "Inward Wind Load (Qw+). Symbol: Qw_{+}. Units: kPa. Area load.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Qwo": {
+      "type": "number",
+      "description": "Outward Wind Load (Qw-). Symbol: Qw_{-}. Units: kPa. Area load (negative value represents suction).",
+      "default": -3,
+      "minimum": -10000,
+      "maximum": 0
+    },
+    "Qs": {
+      "type": "number",
+      "description": "Snow Load (Qs). Units: kPa. Area load.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "γ_Gj": {
+      "type": "number",
+      "description": "Partial factor for Permanent Action (γGj). Symbol: γ_{Gj}. EN 1990 Table A1.2(A) (Partial factor for Permanent Action Value - EQU).",
+      "default": 0.9,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Ψ_0": {
+      "type": "number",
+      "description": "Factor for Combination Value (Ψ0). EN 1990 Table A1.1 (Factor for Combination Value).",
+      "default": 0.7,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Ψ_1": {
+      "type": "number",
+      "description": "Factor for Frequent Value (Ψ1). EN 1990 Table A1.1 (Factor for Frequent Value).",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Ψ_2": {
+      "type": "number",
+      "description": "Factor for Quasi-Permanent Value (Ψ2). EN 1990 Table A1.1 (Factor for Quasi-Permanent Value).",
+      "default": 0.3,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "2303-purlins-calculator-en",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

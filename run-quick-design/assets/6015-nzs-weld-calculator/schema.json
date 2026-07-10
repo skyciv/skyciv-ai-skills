@@ -1,0 +1,334 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NZS 3404:1997 Weld Group Capacity",
+  "description": "Design weld groups in accordance with NZS 3404:1997.",
+  "type": "object",
+  "properties": {
+    "weld_geometry_image": {
+      "type": "string",
+      "description": "weld_geometry_image"
+    },
+    "t_w": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: mm. Leg length of weld. Note preferred sizes of fillet weld less than 15 mm are 3, 4, 5, 6, 8, 10 and 12 mm.",
+      "default": 6,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "t_t": {
+      "type": "number",
+      "description": "tt. Symbol: t_t. Units: mm. Throat thickness of weld (tw / √2)",
+      "default": 6,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "t_m1": {
+      "type": "number",
+      "description": "tm1. Symbol: t_{m1}. Units: mm. Thickness of Member 1.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "t_m2": {
+      "type": "number",
+      "description": "tm2. Symbol: t_{m2}. Units: mm. Thickness of Member 2.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "f_uw": {
+      "type": "number",
+      "description": "fuw. Symbol: f_{uw}. Units: MPa. Nominal tensile strength of weld metal (NZS 3404:1997 table 9.7.3.10(1)).",
+      "enum": [
+        430,
+        490,
+        550,
+        620,
+        690,
+        760,
+        830,
+        410,
+        480
+      ],
+      "x-enumLabels": [
+        430,
+        490,
+        550,
+        620,
+        690,
+        760,
+        830,
+        410,
+        480
+      ],
+      "default": 430
+    },
+    "category": {
+      "type": "string",
+      "description": "Weld Category. Symbol: \\text{Weld Category}. General Purpose (GP) welds have less stringent requirements and are conservative for design since they have a lower capacity factor (0.6). Structural Purpose (SP) welds are however still more common for structural applications and have a higher reduction factor (typically 0.8).",
+      "enum": [
+        "GP",
+        "SP"
+      ],
+      "x-enumLabels": [
+        "GP",
+        "SP"
+      ],
+      "default": "GP"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape. Select shape of section to be imported to weld geometry. Sections will be automatically updated after shape dropdown is selected.",
+      "enum": [
+        "ub",
+        "uc",
+        "wb",
+        "wc",
+        "ub_t",
+        "uc_t",
+        "pfc",
+        "ea",
+        "ua",
+        "rhs",
+        "shs"
+      ],
+      "x-enumLabels": [
+        "Universal Beam",
+        "Universal Column",
+        "Welded Beam",
+        "Welded Column",
+        "UB T",
+        "UC T",
+        "PFC",
+        "Equal Angle",
+        "Unequal Angle",
+        "RHS",
+        "SHS"
+      ],
+      "default": "ub"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select section to be added to the weld geometry. You must click 'Add Section' in order to add the section to the geometry.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "sides": {
+      "type": "number",
+      "description": "Sides",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "x-enumLabels": [
+        "Both Sides",
+        "Outer Side Only",
+        "Inner Side Only"
+      ],
+      "default": 1
+    },
+    "x_offset": {
+      "type": "number",
+      "description": "X. Units: mm. The X offset.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "y_offset": {
+      "type": "number",
+      "description": "Y. Units: mm. The Y offset.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "rotate": {
+      "type": "number",
+      "description": "Section Rotation (↷). Rotation for section to import. Rotation is clockwise ↷.",
+      "enum": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "x-enumLabels": [
+        "0",
+        "90",
+        "180",
+        "270"
+      ],
+      "default": 0
+    },
+    "add_section_button": {
+      "type": "string",
+      "description": "Apply Welds"
+    },
+    "remove_welds_button": {
+      "type": "string",
+      "description": "Remove Welds"
+    },
+    "horizontal_welds": {
+      "type": "array",
+      "description": "Horizontal Welds. Coordinates of all horizontal line welds in the weld group to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x1": {
+            "type": "number",
+            "description": "x1",
+            "default": 10,
+            "minimum": -1000
+          },
+          "x2": {
+            "type": "number",
+            "description": "x2",
+            "default": 50,
+            "minimum": -1000
+          },
+          "y": {
+            "type": "number",
+            "description": "y",
+            "default": 10,
+            "minimum": -1000
+          }
+        }
+      }
+    },
+    "vertical_welds": {
+      "type": "array",
+      "description": "Vertical Welds. Coordinates of all vertical line welds in the weld group to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "x",
+            "default": 10,
+            "minimum": -1000
+          },
+          "y1": {
+            "type": "number",
+            "description": "y1",
+            "default": 10,
+            "minimum": -1000
+          },
+          "y2": {
+            "type": "number",
+            "description": "y2",
+            "default": 50,
+            "minimum": -1000
+          }
+        }
+      }
+    },
+    "load_image": {
+      "type": "string",
+      "description": "load_image"
+    },
+    "Fx": {
+      "type": "number",
+      "description": "Fx. Symbol: F_x. Units: kN. Applied Design Action Along x-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Fy. Symbol: F_y. Units: kN. Applied Design Action Along y-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Fz": {
+      "type": "number",
+      "description": "Fz. Symbol: F_z. Units: kN. Applied Design Action Along z-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Mx. Symbol: M_x. Units: kN-m. Design Moment About x-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "My": {
+      "type": "number",
+      "description": "My. Symbol: M_y. Units: kN-m. Design Moment About y-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M_z. Units: kN-m. Design Moment About z-axis.",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "graph_on": {
+      "type": "string",
+      "description": "Show Stress Graphs. Toggle on/off to show stress graphs in reporting. Disabling stress graphs will result in quicker solve times.",
+      "enum": [
+        "show",
+        "hide"
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": "hide"
+    },
+    "uid": {
+      "type": "string",
+      "const": "6015-nzs-weld-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

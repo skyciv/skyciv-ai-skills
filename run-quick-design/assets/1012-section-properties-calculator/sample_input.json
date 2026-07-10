@@ -1,0 +1,23 @@
+{
+  "region": "AS",
+  "section": "i_beam",
+  "properties": "Standard",
+  "width": 150,
+  "diameter": 150,
+  "width_tf": 150,
+  "width_bf": 150,
+  "height": 300,
+  "thickness_f": 10,
+  "thickness_w": 10,
+  "thickness": 10,
+  "uid": "1012-section-properties-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

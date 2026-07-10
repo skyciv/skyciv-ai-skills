@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 4100:2020 Lifting Lug Design",
+  "description": "Design steel lifting lugs in accordance with AS 4100:2020.",
+  "type": "object",
+  "properties": {
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: Section. Section object imported from S3D model."
+    },
+    "tp": {
+      "type": "number",
+      "description": "Lug Thickness (tp). Symbol: t_{p}. Units: mm",
+      "default": 6,
+      "minimum": 0.1,
+      "maximum": 150
+    },
+    "h": {
+      "type": "number",
+      "description": "Distance to hole center (h). Symbol: h. Units: mm. Distance between base of lug plate to center of hole.",
+      "default": 30,
+      "minimum": 24,
+      "maximum": 750
+    },
+    "d1": {
+      "type": "number",
+      "description": "OD of Contact Area (d1). Symbol: d_{1}. Units: mm. Outside diameter of contact area.",
+      "default": 50,
+      "minimum": 48,
+      "maximum": 2250
+    },
+    "dh": {
+      "type": "number",
+      "description": "Hole Diameter (dh). Symbol: d_{h}. Units: mm",
+      "default": 19,
+      "minimum": 12,
+      "maximum": 500
+    },
+    "dp": {
+      "type": "number",
+      "description": "Pin Diameter (dp). Symbol: d_{p}. Units: mm. Diameter of pin placed in the lug hole.",
+      "default": 14,
+      "minimum": 4,
+      "maximum": 77
+    },
+    "Lp": {
+      "type": "number",
+      "description": "Pin Length (Lp). Symbol: L_{p}. Units: mm. Length of pin placed in the lug hole.",
+      "default": 50,
+      "minimum": 25.1,
+      "maximum": 1000
+    },
+    "tw": {
+      "type": "number",
+      "description": "Weld Size (tw). Symbol: t_{w}. Units: mm. Equal leg fillet weld considered in design.",
+      "default": 6,
+      "minimum": 4,
+      "maximum": 6
+    },
+    "theta": {
+      "type": "number",
+      "description": "Lifting Angle (ϴ). Symbol: ϴ. Units: °. Lifting angle with horizontal.",
+      "default": 60,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "fy": {
+      "type": "number",
+      "description": "Yield Stress - Lug Plate (fy). Symbol: f_{y}. Units: MPa",
+      "default": 250,
+      "minimum": 100,
+      "maximum": 600
+    },
+    "fu": {
+      "type": "number",
+      "description": "Tensile Stress - Lug Plate (fu). Symbol: f_{u}. Units: MPa",
+      "default": 410,
+      "minimum": 250,
+      "maximum": 600
+    },
+    "fyp": {
+      "type": "number",
+      "description": "Yield Stress - Pin (fyp). Symbol: f_{yp}. Units: MPa",
+      "default": 600,
+      "minimum": 250,
+      "maximum": 900
+    },
+    "fuw": {
+      "type": "string",
+      "description": "Weld Ultimate Stress (Fuw). Symbol: f_{uw}. Units: MPa. As per AS4100 Table 9.7.3.10 (1).",
+      "enum": [
+        "410",
+        "430",
+        "490",
+        "550",
+        "620",
+        "690",
+        "760",
+        "830"
+      ],
+      "x-enumLabels": [
+        "410",
+        "430",
+        "490",
+        "550",
+        "620",
+        "690",
+        "760",
+        "830"
+      ],
+      "default": "410"
+    },
+    "kt": {
+      "type": "number",
+      "description": "Correction factor (kt). Symbol: k_{t}. As per AS4100 Table 7.3.2.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "Lf": {
+      "type": "number",
+      "description": "Ultimate Load Factor (Lf). Symbol: L_{f}",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 2
+    },
+    "M": {
+      "type": "number",
+      "description": "Static Lifting Mass (M). Units: kg",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "DAF": {
+      "type": "number",
+      "description": "Dynamic Amplification Factor (DAF). Symbol: DAF. As per AS1418 or project design basis.",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "uid": {
+      "type": "string",
+      "const": "2013-as4100-lifting-lug-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

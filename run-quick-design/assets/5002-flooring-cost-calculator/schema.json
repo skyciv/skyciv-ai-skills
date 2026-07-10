@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Flooring Cost Calculator",
+  "description": "Calculates the cost of flooring.",
+  "type": "object",
+  "properties": {
+    "L": {
+      "type": "number",
+      "description": "Length. Units: ft. Length of the Room",
+      "default": 11
+    },
+    "W": {
+      "type": "number",
+      "description": "Width. Units: ft. Width of the Room",
+      "default": 12
+    },
+    "C": {
+      "type": "number",
+      "description": "Material Cost. Symbol: C. Units: $/ft^2. Material Cost per ft^2",
+      "default": 5
+    },
+    "w_f": {
+      "type": "number",
+      "description": "Waste Percentage. Symbol: w_f. Units: %. Amount of Material Wasted",
+      "default": 10
+    },
+    "uid": {
+      "type": "string",
+      "const": "5002-flooring-cost-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

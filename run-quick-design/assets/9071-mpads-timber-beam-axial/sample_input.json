@@ -1,0 +1,21 @@
+{
+  "b": 45,
+  "d": 90,
+  "Lb": 1000,
+  "fc": 18,
+  "E": 5400,
+  "Green": false,
+  "Ps_brief": 0,
+  "Ps_medium": 0,
+  "Ps_perm": 0,
+  "uid": "9071-mpads-timber-beam-axial",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

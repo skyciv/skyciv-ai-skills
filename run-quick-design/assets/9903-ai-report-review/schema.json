@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Report Review",
+  "description": "Use Chat GPT to review your HTML report",
+  "type": "object",
+  "properties": {
+    "report_html": {
+      "type": "string",
+      "description": "HTML String. Symbol: HTML_{report}. Add a string of your HTML report to be reviewed",
+      "default": ""
+    },
+    "check_grammar": {
+      "type": "boolean",
+      "description": "Check Grammar",
+      "default": true
+    },
+    "check_values": {
+      "type": "boolean",
+      "description": "Check Values",
+      "default": true
+    },
+    "uid": {
+      "type": "string",
+      "const": "9903-ai-report-review",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "report_html"
+  ]
+}

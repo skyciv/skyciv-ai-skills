@@ -1,0 +1,36 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "stress1": {
+        "label": "Allowable Flexural Stress",
+        "value": 0.675,
+        "units": "utility"
+      },
+      "stress2": {
+        "label": "Allowable Bearing Stress",
+        "value": 0.015,
+        "units": "utility"
+      },
+      "stress3": {
+        "label": "\tAllowable Punching Shear Stress",
+        "value": 0.061,
+        "units": "utility"
+      },
+      "stress4": {
+        "label": "Allowable Dowel Bearing Stress",
+        "value": 1.286,
+        "units": "utility"
+      },
+      "stress5": {
+        "label": "Minimum Slab Thickness",
+        "value": 0.771,
+        "units": "utility"
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

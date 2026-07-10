@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hookes Law Calculator",
+  "description": "Calculates the force in spring.",
+  "type": "object",
+  "properties": {
+    "rect_image": {
+      "type": "string",
+      "description": "rect_image. Hooke's Law Illustration"
+    },
+    "x": {
+      "type": "number",
+      "description": "Spring Displacement (Δx). Units: m",
+      "default": 2
+    },
+    "k": {
+      "type": "number",
+      "description": "Spring Force Constant. Units: N/m",
+      "default": 6
+    },
+    "uid": {
+      "type": "string",
+      "const": "5004-hookes-law-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "2D Stiffness Method Analysis",
+  "description": "Calculate the stiffness matrix and force vector for 2D elements.",
+  "type": "object",
+  "properties": {
+    "young_modulus": {
+      "type": "number",
+      "description": "Young Modulus. Symbol: E. Units: MPa. Material Young Modulus",
+      "default": 200000,
+      "minimum": 1
+    },
+    "section_type": {
+      "type": "string",
+      "description": "Section Type. Symbol: \\rm{Section}. Type of the section",
+      "enum": [
+        "rectangular",
+        "i-shape",
+        "circular",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "I-Shape",
+        "Circular",
+        "Custom"
+      ],
+      "default": "rectangular"
+    },
+    "section_area": {
+      "type": "number",
+      "description": "Section Area. Symbol: A. Units: mm2. Area of the element's cross section",
+      "default": 350000,
+      "minimum": 1
+    },
+    "section_inertia": {
+      "type": "number",
+      "description": "Section Inertia. Symbol: I. Units: mm4. Moment of Inertia of the element's cross section",
+      "default": 9000000000,
+      "minimum": 1
+    },
+    "section_base": {
+      "type": "number",
+      "description": "Base. Symbol: b. Units: mm. Base (width) of the rectangular section",
+      "default": 500,
+      "minimum": 1
+    },
+    "section_height": {
+      "type": "number",
+      "description": "Height. Symbol: h. Units: mm. Height of the rectangular section",
+      "default": 700,
+      "minimum": 1
+    },
+    "section_BFt": {
+      "type": "number",
+      "description": "tf, btm. Symbol: t_{flange,\\;bottom}. Units: mm. Bottom flange thickness",
+      "default": 5,
+      "minimum": 1
+    },
+    "section_BFw": {
+      "type": "number",
+      "description": "wf, btm. Symbol: w_{flange,\\;bottom}. Units: mm. Bottom flange width",
+      "default": 100,
+      "minimum": 1
+    },
+    "section_TFt": {
+      "type": "number",
+      "description": "tf, top. Symbol: t_{flange,\\;top}. Units: mm. Top flange thickness",
+      "default": 5,
+      "minimum": 1
+    },
+    "section_TFw": {
+      "type": "number",
+      "description": "wf, top. Symbol: w_{flange,\\;top}. Units: mm. Top flange width",
+      "default": 100,
+      "minimum": 1
+    },
+    "section_Wt": {
+      "type": "number",
+      "description": "tweb. Symbol: t_{web}. Units: mm. Web thickness",
+      "default": 5,
+      "minimum": 1
+    },
+    "section_h": {
+      "type": "number",
+      "description": "Height. Symbol: h. Units: mm. Profile height",
+      "default": 100,
+      "minimum": 1
+    },
+    "section_diam": {
+      "type": "number",
+      "description": "Diameter. Symbol: ⌀. Units: mm. Section diameter",
+      "default": 100,
+      "minimum": 1
+    },
+    "member_length": {
+      "type": "number",
+      "description": "Length. Symbol: L. Units: m. Member Length",
+      "default": 5,
+      "minimum": 0.01
+    },
+    "member_rotation": {
+      "type": "number",
+      "description": "Inclination. Symbol: \\alpha. Units: &deg;. Member Inclination counter-clockwise wrt to the horizon",
+      "default": "0",
+      "minimum": 0
+    },
+    "element_type": {
+      "type": "string",
+      "description": "Element type. Symbol: \\rm{Element}",
+      "enum": [
+        "frame",
+        "truss"
+      ],
+      "x-enumLabels": [
+        "Frame",
+        "Truss"
+      ],
+      "default": "frame"
+    },
+    "point_load_values": {
+      "type": "string",
+      "description": "Point load values. Symbol: P. Units: N. Comma separated vertical load values",
+      "default": "-10,-10,-10"
+    },
+    "point_load_locations": {
+      "type": "string",
+      "description": "Point load locations. Symbol: L. Units: %. Comma separated vertical load relative locations",
+      "default": "0,50,100"
+    },
+    "support_A": {
+      "type": "string",
+      "description": "Support A. Symbol: \\rm{Support A}",
+      "enum": [
+        "pin",
+        "roller",
+        "fixed",
+        "free"
+      ],
+      "x-enumLabels": [
+        "Pin",
+        "Roller",
+        "Fixed",
+        "Free"
+      ],
+      "default": "pin"
+    },
+    "support_B": {
+      "type": "string",
+      "description": "Support B. Symbol: \\rm{Support B}",
+      "enum": [
+        "pin",
+        "roller",
+        "fixed",
+        "free"
+      ],
+      "x-enumLabels": [
+        "Pin",
+        "Roller",
+        "Fixed",
+        "Free"
+      ],
+      "default": "pin"
+    },
+    "is_show_svg": {
+      "type": "boolean",
+      "description": "Show section drawing",
+      "default": true
+    },
+    "is_show_symbolic": {
+      "type": "boolean",
+      "description": "Show symbolic matrices",
+      "default": true
+    },
+    "is_show_factor_calculation": {
+      "type": "boolean",
+      "description": "Show factors calculation",
+      "default": true
+    },
+    "is_show_local_matrix": {
+      "type": "boolean",
+      "description": "Show local matrix",
+      "default": true
+    },
+    "is_calculate_global": {
+      "type": "boolean",
+      "description": "Calculate global matrix",
+      "default": true
+    },
+    "uid": {
+      "type": "string",
+      "const": "1006-stiffness-method-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

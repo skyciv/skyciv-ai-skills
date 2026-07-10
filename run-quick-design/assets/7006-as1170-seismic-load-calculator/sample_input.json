@@ -1,0 +1,29 @@
+{
+  "Z": 0.6,
+  "design_working_life": "25_years",
+  "importance_level": "1",
+  "site_subsoil_class": "Ee",
+  "h": 30,
+  "period_calculation_method": "approximate",
+  "T1": 0.4,
+  "mu": 1,
+  "Sp": 1,
+  "structure_system": "mrf-steel",
+  "seismic_weights": [
+    {
+      "level": "Top",
+      "elevation": 10,
+      "weight": 1000
+    }
+  ],
+  "uid": "7006-as1170-seismic-load-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

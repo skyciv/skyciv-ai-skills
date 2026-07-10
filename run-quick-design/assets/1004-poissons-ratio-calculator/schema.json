@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Poisson's Ratio Calculator",
+  "description": "Calculate Poisson's Ratio based on strain or stiffness.",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Mode:. Which method to use to find Poisson's Ratio.",
+      "enum": [
+        "Transverse Strain & Axial Strain",
+        "Young's Modulus & Shear Modulus"
+      ],
+      "x-enumLabels": [
+        "Transverse Strain & Axial Strain",
+        "Young's Modulus & Shear Modulus"
+      ],
+      "default": "Transverse Strain & Axial Strain"
+    },
+    "ϵ_t": {
+      "type": "number",
+      "description": "Transverse Strain (ϵₜ). Change in material dimensions perpendicular to force.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "ϵ_a": {
+      "type": "number",
+      "description": "Axial Strain (ϵₐ). Change in material length along direction of force.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "E": {
+      "type": "number",
+      "description": "Young's Modulus (E). Units: MPa. Elasticity of material.",
+      "default": 9000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "G": {
+      "type": "number",
+      "description": "Shear Modulus (G). Units: MPa. Rigidity of material.",
+      "default": 3000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "uid": {
+      "type": "string",
+      "const": "1004-poissons-ratio-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

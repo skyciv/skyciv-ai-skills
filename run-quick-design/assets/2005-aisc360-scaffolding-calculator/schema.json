@@ -1,0 +1,259 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Scaffold Member Design",
+  "description": "Design scaffolding members as per AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section",
+      "enum": [
+        "1.660x0.140",
+        "1.900x0.120",
+        "1.900x0.145",
+        "1.900x0.188",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "HSS 1.660x0.140",
+        "HSS 1.900x0.120",
+        "HSS 1.900x0.145",
+        "HSS 1.900x0.188",
+        "Custom"
+      ],
+      "default": "1.660x0.140"
+    },
+    "d": {
+      "type": "number",
+      "description": "Outside Diameter (D). Units: in",
+      "default": 1.9,
+      "minimum": 0.2,
+      "maximum": 20
+    },
+    "t_w": {
+      "type": "number",
+      "description": "Wall Thickness (tw). Symbol: t_{w}. Units: in",
+      "default": 0.145,
+      "minimum": 0.01,
+      "maximum": 10
+    },
+    "t": {
+      "type": "number",
+      "description": "Design Wall Thickness (t). Symbol: t. Units: in",
+      "default": 0.135,
+      "minimum": 0.005,
+      "maximum": 10
+    },
+    "L": {
+      "type": "number",
+      "description": "Span (L). Symbol: L. Units: ft",
+      "default": 6,
+      "minimum": 0.2,
+      "maximum": 500
+    },
+    "K_y": {
+      "type": "number",
+      "description": "Effective Length Factor (Ky). Symbol: K_{y}. Effective Length Factor for Flexural Buckling about Y-axis",
+      "default": 1,
+      "minimum": 0.2,
+      "maximum": 5
+    },
+    "K_z": {
+      "type": "number",
+      "description": "Effective Length Factor (Kz). Symbol: K_{z}. Effective Length Factor for Flexural Buckling about Z-axis",
+      "default": 1,
+      "minimum": 0.2,
+      "maximum": 5
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade",
+      "enum": [
+        "ASTM A53/A53M - B",
+        "ASTM A500/A500M - B",
+        "ASTM A500/A500M - C",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "ASTM A53/A53M - B",
+        "ASTM A500/A500M - B",
+        "ASTM A500/A500M - C",
+        "Custom"
+      ],
+      "default": "custom"
+    },
+    "F_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: ksi. Specified minimum yield stress (TABLE C-A3.1).",
+      "default": 42,
+      "minimum": 10,
+      "maximum": 500
+    },
+    "F_u": {
+      "type": "number",
+      "description": "Fu. Symbol: F_{u}. Units: ksi. Specified minimum tensile strength (TABLE C-A3.1).",
+      "default": 58,
+      "minimum": 10,
+      "maximum": 500
+    },
+    "E": {
+      "type": "number",
+      "description": "E. Symbol: E. Units: ksi. Modulus of Elasticity (Table B4.1).",
+      "default": 29000,
+      "minimum": 20000,
+      "maximum": 40000
+    },
+    "coupler_div": {
+      "type": "string",
+      "description": "coupler_div. Figure of Scaffolding Coupler."
+    },
+    "c_t": {
+      "type": "string",
+      "description": "Type Of Coupler",
+      "enum": [
+        "RA",
+        "SF",
+        "SW",
+        "PA",
+        "none"
+      ],
+      "x-enumLabels": [
+        "Right Angle Coupler",
+        "Friction Type Sleeve Coupler",
+        "Swivel Coupler",
+        "Parallel Coupler",
+        "None"
+      ],
+      "default": "RA"
+    },
+    "cc_b": {
+      "type": "number",
+      "description": "Bending Capacity. Symbol: C_{cb}. Units: kip-ft",
+      "default": 0.2,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cc_s": {
+      "type": "number",
+      "description": "Shear Capacity. Symbol: C_{cs}. Units: kip. Also referred to as Pull-Apart Capacity.",
+      "default": 6,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cc_a": {
+      "type": "number",
+      "description": "Slip Resistance. Symbol: C_{ca}. Units: kip",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cc_t": {
+      "type": "number",
+      "description": "Torsion Capacity. Symbol: C_{ct}. Units: kip-ft",
+      "default": 0.1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "M": {
+      "type": "number",
+      "description": "Bending (M). Symbol: M. Units: kip-ft. Max Bending Force in Member.",
+      "default": 2,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "V": {
+      "type": "number",
+      "description": "Shear (V). Symbol: V. Units: kip. Max Shear Force in Member.",
+      "default": 6,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "N_t": {
+      "type": "number",
+      "description": "Tension (Nt). Symbol: N_{t}. Units: kip. Max Tension Force in Member.",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "N_c": {
+      "type": "number",
+      "description": "Compression (Nc). Symbol: N_{c}. Units: kip. Max Compression Force in Member.",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "T": {
+      "type": "number",
+      "description": "Torsion (T). Symbol: T. Units: kip-ft. Torsional Moment in Member.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "M_e": {
+      "type": "number",
+      "description": "Bending (Me). Symbol: M_{e}. Units: kip-ft. Max Bending Force in Coupler at Member End.",
+      "default": 1,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "V_e": {
+      "type": "number",
+      "description": "Shear (Ve). Symbol: V_{e}. Units: kip. Max Shear Force in Coupler at Member End.",
+      "default": 1,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "N_e": {
+      "type": "number",
+      "description": "Slip (Ne). Symbol: N_{e}. Units: kip. Max Slip Force in Coupler at Member End.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2005-aisc360-scaffolding-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

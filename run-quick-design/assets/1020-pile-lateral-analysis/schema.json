@@ -1,0 +1,356 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lateral Pile Stability",
+  "description": "Assess embedment and strength requirements for the lateral stability of piles.",
+  "type": "object",
+  "properties": {
+    "design_method": {
+      "type": "string",
+      "description": "Design Method. Method of analysis for performing design calculations.",
+      "enum": [
+        "bh",
+        "broms_simple"
+      ],
+      "x-enumLabels": [
+        "Brinch Hansen",
+        "Broms"
+      ],
+      "default": "bh"
+    },
+    "number_soil_layers": {
+      "type": "string",
+      "description": "Soil Layers. Number of soil layers to be used in analysis.",
+      "enum": [
+        "single",
+        "multi"
+      ],
+      "x-enumLabels": [
+        "Single-Layer",
+        "Multi-Layer"
+      ],
+      "default": "single"
+    },
+    "material_type": {
+      "type": "string",
+      "description": "Soil Type. Cohesive or granular material to be used for broms assessment.",
+      "enum": [
+        "cohesive",
+        "granular"
+      ],
+      "x-enumLabels": [
+        "Cohesive",
+        "Granular"
+      ],
+      "default": "cohesive"
+    },
+    "calculation_type": {
+      "type": "string",
+      "description": "Calculate For. Calculation objective.",
+      "enum": [
+        "util",
+        "L",
+        "H_e",
+        "H_m"
+      ],
+      "x-enumLabels": [
+        "Utilisation",
+        "Minimum Length",
+        "Maximum H Force (Fixed e)",
+        "Maximum H Force (Fixed M)"
+      ],
+      "default": "util"
+    },
+    "L": {
+      "type": "number",
+      "description": "L. Symbol: L. Units: m. Length of Pile.",
+      "default": 2,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "D": {
+      "type": "number",
+      "description": "D. Symbol: D. Units: m. Diameter of pile.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "head_fixity": {
+      "type": "string",
+      "description": "Head Fixity. Restraint condition at the interface between the pole and the soil.",
+      "enum": [
+        "free",
+        "fixed"
+      ],
+      "x-enumLabels": [
+        "Free",
+        "Fixed"
+      ],
+      "default": "free"
+    },
+    "strength": {
+      "type": "string",
+      "description": "Strength. Model the column as having infinite strength or consider potential yielding of the pile and creation of plastic hinges.",
+      "enum": [
+        "infinite",
+        "finite"
+      ],
+      "x-enumLabels": [
+        "Infinite",
+        "Finite"
+      ],
+      "default": "infinite"
+    },
+    "M_yield": {
+      "type": "number",
+      "description": "Myield. Symbol: M_{yield}. Units: kN-m. Yield moment of pile.",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "gamma": {
+      "type": "number",
+      "description": "γ. Symbol: γ. Units: kN/m3. Soil unit weight above water table.",
+      "default": 16,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "phi": {
+      "type": "number",
+      "description": "φ. Symbol: φ. Units: °. Effective internal friction angle.",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 60
+    },
+    "c": {
+      "type": "number",
+      "description": "c. Symbol: c. Units: kPa. Effective soil cohesion.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c_u": {
+      "type": "number",
+      "description": "cu. Symbol: c_u. Units: kPa. Effective soil cohesion.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "soil_table": {
+      "type": "array",
+      "description": "Soil Data",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Sand (L)"
+          },
+          "depth": {
+            "type": "number",
+            "description": "Dbot (m)",
+            "default": 1,
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "gamma": {
+            "type": "number",
+            "description": "γ (kN/m3)",
+            "default": 16,
+            "minimum": 0,
+            "maximum": 40
+          },
+          "phi": {
+            "type": "number",
+            "description": "φ",
+            "default": 30,
+            "minimum": 0,
+            "maximum": 50
+          },
+          "c": {
+            "type": "number",
+            "description": "c (kPa)",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 10000
+          }
+        }
+      }
+    },
+    "H": {
+      "type": "number",
+      "description": "H. Symbol: H. Units: kN. Horizontal load at top of pile.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "e": {
+      "type": "number",
+      "description": "e. Symbol: e. Units: m. Horizontal force eccentricity.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M": {
+      "type": "number",
+      "description": "M. Symbol: M. Units: kN-m. Moment at top of pile.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "method": {
+      "type": "string",
+      "description": "Reduction Method",
+      "enum": [
+        "global",
+        "FOS",
+        "individual"
+      ],
+      "x-enumLabels": [
+        "Reduction Factor",
+        "Safety Factor",
+        "Individual Factors"
+      ],
+      "default": "global"
+    },
+    "phi_g": {
+      "type": "number",
+      "description": "φg. Symbol: φ_g. Reduction Factor multiplied to the lateral soil resistance.",
+      "default": 0.6,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "FOS": {
+      "type": "number",
+      "description": "FOS. Symbol: FOS. Factor of Safety used to reduce the lateral soil resistance.",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "gamma_factor": {
+      "type": "number",
+      "description": "φγ. Symbol: φ_{γ}. Factor of Safety for soil unit weight.",
+      "default": 0.8,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "phi_factor": {
+      "type": "number",
+      "description": "φφ. Symbol: φ_{φ}. Factor of Safety for soil effective friction angle (aka shearing resistance).",
+      "default": 0.8,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "c_factor": {
+      "type": "number",
+      "description": "φc. Symbol: φ_{c}. Factor of Safety for cohesion Resistance.",
+      "default": 0.8,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "c_u_factor": {
+      "type": "number",
+      "description": "φcu. Symbol: φ_{cu}. Factor of Safety for undrained cohesion Resistance.",
+      "default": 0.8,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "show_formula": {
+      "type": "string",
+      "description": "Show Formulas",
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": "yes"
+    },
+    "show_failure": {
+      "type": "string",
+      "description": "Show Failure. Show a drawing of the failure mode in the report for each failure mode considered.",
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": "yes"
+    },
+    "show_dimensions": {
+      "type": "string",
+      "description": "Show Dimensions",
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": "yes"
+    },
+    "show_text": {
+      "type": "string",
+      "description": "Show Text",
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": "yes"
+    },
+    "uid": {
+      "type": "string",
+      "const": "1020-pile-lateral-analysis",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

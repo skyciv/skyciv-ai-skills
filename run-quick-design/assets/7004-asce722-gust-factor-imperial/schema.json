@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ASCE 7-22 Gust-effect Factor Calculator (Imperial)",
+  "description": "Calculate gust-effect factors in accordance with ASCE 7-16(Imperial).",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image. Structure"
+    },
+    "exposure": {
+      "type": "string",
+      "description": "Exposure Category. B. Urban and suburban areas, wooded areas or other terrain with numerous closely spaced obstructions having the size of single-family dwellings or larger. C. Open terrain with scattered obstructions having heights generally less than 30 feet. This category includes flat open country, and grasslands. D. Flat, unobstructed areas and water surfaces. This category includes smooth mud flats, salt flats and unbroken ice.",
+      "enum": [
+        "B",
+        "C",
+        "D"
+      ],
+      "x-enumLabels": [
+        "Exposure B",
+        "Exposure C",
+        "Exposure D"
+      ],
+      "default": "B"
+    },
+    "V": {
+      "type": "number",
+      "description": "Basic Wind Speed. Units: mi/h. See Figures 26.5-1 to 26.5-2 of ASCE 7-16.",
+      "default": 110
+    },
+    "h": {
+      "type": "number",
+      "description": "Mean roof height of the building, h. Units: ft. Mean roof height of the building",
+      "default": 30
+    },
+    "B": {
+      "type": "number",
+      "description": "Structure Width, B. Units: ft. Horizontal dimension of building  measured normal to the wind direction",
+      "default": 30
+    },
+    "L": {
+      "type": "number",
+      "description": "Structure Length, L. Units: ft. Horizontal dimension of building  measured parallel to the wind direction",
+      "default": 30
+    },
+    "n1": {
+      "type": "number",
+      "description": "Natural Frequency. Units: Hz. Natural frequency of the structure",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "beta": {
+      "type": "number",
+      "description": "Damping Ratio, β. Critical Damping Ratio of the structure",
+      "default": 0.05,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "uid": {
+      "type": "string",
+      "const": "7004-asce722-gust-factor-imperial",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

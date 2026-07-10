@@ -1,0 +1,18 @@
+{
+  "calculation_selection": "bolt_torque",
+  "K": 0.2,
+  "d": 20,
+  "c_l": 20,
+  "F": 4,
+  "T": 4,
+  "uid": "6008-bolt-torque-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

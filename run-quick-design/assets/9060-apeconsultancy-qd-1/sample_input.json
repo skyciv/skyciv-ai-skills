@@ -1,0 +1,29 @@
+{
+  "column_distance": 4.5,
+  "story_height": 3.2,
+  "beam_depth": 400,
+  "column_width": 500,
+  "brace_type": "diagonal",
+  "part_one_length": 175,
+  "part_two_length": 335,
+  "core_end_width": 200,
+  "rib_width": 144,
+  "rib_thickness": 12,
+  "core_plate_width": 130,
+  "core_plate_thickness": 12,
+  "splice_plate_length": 325,
+  "max_plastic_length": 4980,
+  "max_brace_length": 6000,
+  "axial_capacity": 500,
+  "modulus_of_elasticity": 200,
+  "uid": "9060-apeconsultancy-qd-1",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

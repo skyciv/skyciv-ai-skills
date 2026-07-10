@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AWC 2021 Floor Joist Span Calculator",
+  "description": "Calculate max joist span based on American Wood Council design values.",
+  "type": "object",
+  "properties": {
+    "wood": {
+      "type": "string",
+      "description": "Wood. Symbol: Wood. Selection of wood for joist.",
+      "enum": [
+        "ALASKA CEDAR",
+        "ALASKA HEMLOCK",
+        "ALASKA SPRUCE",
+        "ALASKA YELLOW CEDAR",
+        "ASPEN",
+        "BALDCYPRESS",
+        "BEECH-BIRCH-HICKORY",
+        "COAST SIKTRA SPRUCE",
+        "COTTONWOOD",
+        "DOUGLAS FIR-LARCH",
+        "DOUGLAS FIR-LARCH (NORTH)",
+        "DOUGLAS FIR-SOUTH",
+        "EASTERN HEMLOCK-BALSAM FIR",
+        "EASTERN HEMLOCK-TAMARACK",
+        "EASTERN SOFTWOODS",
+        "EASTERN WHITE PINE",
+        "HEM-FIR",
+        "HEM-FIR (NORTH)",
+        "MIXED MAPLE",
+        "MIXED OAK",
+        "MIXED SOUTHERN PINE",
+        "NORTHERN RED OAK",
+        "NORTHERN SPECIES",
+        "NORTHERN WHITE CEDAR",
+        "NORWAY SPRUCE (NORTH)",
+        "RED MAPLE",
+        "RED OAK",
+        "REDWOOD",
+        "SOUTHERN PINE",
+        "SPRUCE-PINE-FIR",
+        "SPRUCE-PINE-FIR (SOUTH)",
+        "WESTERN CEDARS",
+        "WESTERN WOODS",
+        "WHITE OAK",
+        "YELLOW CEDAR",
+        "YELLOW POPLAR"
+      ],
+      "x-enumLabels": [
+        "ALASKA CEDAR",
+        "ALASKA HEMLOCK",
+        "ALASKA SPRUCE",
+        "ALASKA YELLOW CEDAR",
+        "ASPEN",
+        "BALDCYPRESS",
+        "BEECH-BIRCH-HICKORY",
+        "COAST SIKTRA SPRUCE",
+        "COTTONWOOD",
+        "DOUGLAS FIR-LARCH",
+        "DOUGLAS FIR-LARCH (NORTH)",
+        "DOUGLAS FIR-SOUTH",
+        "EASTERN HEMLOCK-BALSAM FIR",
+        "EASTERN HEMLOCK-TAMARACK",
+        "EASTERN SOFTWOODS",
+        "EASTERN WHITE PINE",
+        "HEM-FIR",
+        "HEM-FIR (NORTH)",
+        "MIXED MAPLE",
+        "MIXED OAK",
+        "MIXED SOUTHERN PINE",
+        "NORTHERN RED OAK",
+        "NORTHERN SPECIES",
+        "NORTHERN WHITE CEDAR",
+        "NORWAY SPRUCE (NORTH)",
+        "RED MAPLE",
+        "RED OAK",
+        "REDWOOD",
+        "SOUTHERN PINE",
+        "SPRUCE-PINE-FIR",
+        "SPRUCE-PINE-FIR (SOUTH)",
+        "WESTERN CEDARS",
+        "WESTERN WOODS",
+        "WHITE OAK",
+        "YELLOW CEDAR",
+        "YELLOW POPLAR"
+      ],
+      "default": "ALASKA CEDAR"
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Selection of wood grade for joist.",
+      "enum": [
+        "Select Structural",
+        "No. 1",
+        "No. 2",
+        "No. 3",
+        "Stud",
+        "Construction",
+        "Standard",
+        "Utility"
+      ],
+      "x-enumLabels": [
+        "Select Structural",
+        "No. 1",
+        "No. 2",
+        "No. 3",
+        "Stud",
+        "Construction",
+        "Standard",
+        "Utility"
+      ],
+      "default": "Select Structural"
+    },
+    "e": {
+      "type": "number",
+      "description": "Modulus of Elasticity (E). Symbol: E. Units: psi. Set a custom modulus of elasticity for the joist material.",
+      "default": 1400000,
+      "minimum": 100000,
+      "maximum": 10000000
+    },
+    "j_size": {
+      "type": "string",
+      "description": "Joist Size. Symbol: j_{s}. Size of the joist.",
+      "enum": [
+        "2×4",
+        "2×6",
+        "2×8",
+        "2×10",
+        "2×12",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "2\" × 4\"",
+        "2\" × 6\"",
+        "2\" × 8\"",
+        "2\" × 10\"",
+        "2\" × 12\"",
+        "Custom"
+      ],
+      "default": "2×4"
+    },
+    "t": {
+      "type": "number",
+      "description": "Joist Thickness. Units: in. Thickness of joist (auto calculated except for custom joists).",
+      "default": 1.5,
+      "minimum": 0.1,
+      "maximum": 1000000
+    },
+    "h": {
+      "type": "number",
+      "description": "Joist Height. Units: in. Height of joist (auto calculated except for custom joists).",
+      "default": 3.5,
+      "minimum": 0.1,
+      "maximum": 1000000
+    },
+    "s_c": {
+      "type": "number",
+      "description": "On-Center Spacing. Symbol: s_{c}. Units: in. Adjacent joist center-to-center spacing.",
+      "default": 16,
+      "minimum": 0.1,
+      "maximum": 4800
+    },
+    "delta": {
+      "type": "string",
+      "description": "Deflection Limit. Symbol: \\delta",
+      "enum": [
+        "130",
+        "180",
+        "200",
+        "240",
+        "250",
+        "360",
+        "360",
+        "480",
+        "600",
+        "720"
+      ],
+      "x-enumLabels": [
+        "L/120",
+        "L/180",
+        "L/200",
+        "L/240",
+        "L/250",
+        "L/300",
+        "L/360",
+        "L/480",
+        "L/600",
+        "L/720"
+      ],
+      "default": "240"
+    },
+    "P": {
+      "type": "number",
+      "description": "Load per Unit Area. Symbol: P. Units: psi. Load per unit area applied to the floor supported by the joists.",
+      "default": 2.5,
+      "minimum": 0.1,
+      "maximum": 1000000
+    },
+    "uid": {
+      "type": "string",
+      "const": "5001-flooring-joist-span-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

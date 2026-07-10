@@ -1,0 +1,28 @@
+{
+  "x_coords": "0,10,10,0",
+  "y_coords": "0,0,10,10",
+  "building_height": 10,
+  "parapet_height": 1,
+  "wind_zone": "A",
+  "terrain_category": "I",
+  "alpha": 20,
+  "plate_length": 1.13,
+  "plate_width": 2.28,
+  "wind_factor_overturning": 1.1,
+  "wind_factor_sliding": 1.5,
+  "stabilizing_factor": 1,
+  "friction_factor": 1,
+  "ballast_weight": 20,
+  "plate_weight": 27.4,
+  "block_weight": 166,
+  "uid": "9006-ennova",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

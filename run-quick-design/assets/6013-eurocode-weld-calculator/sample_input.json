@@ -1,0 +1,80 @@
+{
+  "s": 6,
+  "a": 3,
+  "t_m1": 10,
+  "t_m2": 3.8,
+  "grade_standard": "10025",
+  "grade": "S 235",
+  "f_u": 410,
+  "database": "en",
+  "shape": "ipe-beams",
+  "section": "Custom",
+  "sides": 2,
+  "x_offset": 0,
+  "y_offset": 0,
+  "rotate": 0,
+  "horizontal_welds": [
+    [
+      0,
+      46,
+      0
+    ],
+    [
+      0,
+      46,
+      80
+    ],
+    [
+      0,
+      21.1,
+      5.2
+    ],
+    [
+      24.9,
+      46,
+      5.2
+    ],
+    [
+      0,
+      21.1,
+      74.8
+    ],
+    [
+      24.9,
+      46,
+      74.8
+    ]
+  ],
+  "vertical_welds": [
+    [
+      21.1,
+      5.2,
+      74.8
+    ],
+    [
+      24.9,
+      5.2,
+      74.8
+    ]
+  ],
+  "Fx": 0,
+  "Fy": 0,
+  "Fz": 0,
+  "Mx": 0,
+  "My": 0,
+  "Mz": 0,
+  "design_method": "simplified",
+  "gamma_m2": 1.25,
+  "weld_type": "fillet",
+  "graph_on": "hide",
+  "uid": "6013-eurocode-weld-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

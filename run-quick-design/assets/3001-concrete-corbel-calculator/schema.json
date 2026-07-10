@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Concrete Corbel Design",
+  "description": "Design of reinforced concrete corbels in accordance with ACI 318-19.",
+  "type": "object",
+  "properties": {
+    "concrete": {
+      "type": "string",
+      "description": "Concrete Type",
+      "enum": [
+        "Normal Weight",
+        "Light Weight"
+      ],
+      "x-enumLabels": [
+        "Normal Weight",
+        "Light Weight"
+      ],
+      "default": "Normal Weight"
+    },
+    "fc": {
+      "type": "number",
+      "description": "Concrete Compression Strength (f'c). Units: MPa",
+      "default": 34.41,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "fy": {
+      "type": "number",
+      "description": "Steel Yield Strength (fy). Units: MPa",
+      "default": 413.66,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "av": {
+      "type": "number",
+      "description": "av. Units: mm. Distance from Column or Wall to the Application Point of Vertical Force.",
+      "default": 139.7,
+      "minimum": 1,
+      "maximum": 50000
+    },
+    "h": {
+      "type": "number",
+      "description": "Corbel Height (h). Units: mm",
+      "default": 406.4,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "d": {
+      "type": "number",
+      "description": "Effective Height of Corbel (d). Units: mm. Effective Height of the Corbel (to the Center of Flexural Reinforcement).",
+      "default": 381,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "h2": {
+      "type": "number",
+      "description": "h2. Units: mm. Height of Corbel in the Edge of the Corbel.",
+      "default": 190.5,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "bw": {
+      "type": "number",
+      "description": "Corbel Width (bw). Units: mm",
+      "default": 304.8,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "Nb": {
+      "type": "number",
+      "description": "Reinforcement Bars (Nb)",
+      "default": 7,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "Vu": {
+      "type": "number",
+      "description": "Vertical Design Load (Vu). Units: kN",
+      "default": 450,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Nuc": {
+      "type": "number",
+      "description": "Horizontal Design Load (Nuc). Units: kN",
+      "default": 1e-7,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "uid": {
+      "type": "string",
+      "const": "3001-concrete-corbel-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

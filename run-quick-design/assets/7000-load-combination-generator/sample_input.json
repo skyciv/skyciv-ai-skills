@@ -1,0 +1,27 @@
+{
+  "region_input": "united-states",
+  "standard_input": "Please Select",
+  "criteria_input": "All",
+  "combination_naming_input": "ID",
+  "load_case_table": [
+    {
+      "col1": "D",
+      "col2": 1,
+      "col3": "simultaneous",
+      "col4": 1,
+      "col5": 0.5,
+      "col6": "auto"
+    }
+  ],
+  "remove_unnecessary": true,
+  "uid": "7000-load-combination-generator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

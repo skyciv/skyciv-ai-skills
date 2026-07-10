@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Concrete Shear Wall Design",
+  "description": "Design reinforced concrete walls in accordance with AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "Lw": {
+      "type": "number",
+      "description": "Length. Symbol: L_w. Units: mm",
+      "default": 5000,
+      "minimum": 250,
+      "maximum": 25000
+    },
+    "Tw": {
+      "type": "number",
+      "description": "Thickness. Symbol: T_w. Units: mm",
+      "default": 200,
+      "minimum": 50,
+      "maximum": 2000
+    },
+    "Hw": {
+      "type": "number",
+      "description": "Height. Symbol: H_w. Units: mm",
+      "default": 3200,
+      "minimum": 100,
+      "maximum": 10000
+    },
+    "Support": {
+      "type": "string",
+      "description": "Support Arrangement. Symbol: -",
+      "enum": [
+        "Two Sides",
+        "Three Sides",
+        "Four Sides"
+      ],
+      "x-enumLabels": [
+        "Two Sides",
+        "Three Sides",
+        "Four Sides"
+      ],
+      "default": "Three Sides"
+    },
+    "Rotation": {
+      "type": "string",
+      "description": "Rotation Restraint. Symbol: -",
+      "enum": [
+        "None",
+        "One",
+        "Both"
+      ],
+      "x-enumLabels": [
+        "None",
+        "One Side",
+        "Both Sides"
+      ],
+      "default": "None"
+    },
+    "fc": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Concrete Strength",
+      "default": 32,
+      "minimum": 1,
+      "maximum": 120
+    },
+    "fsy": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Steel Yield Strength",
+      "default": 500,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "db_long": {
+      "type": "number",
+      "description": "Longitudinal Bar Size. Symbol: -. Units: mm",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "db_long_space": {
+      "type": "number",
+      "description": "Longitudinal Bar Spacing. Symbol: -. Units: mm",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "db_long_layers": {
+      "type": "number",
+      "description": "Longitudinal Bar Layers. Symbol: -",
+      "enum": [
+        1,
+        2
+      ],
+      "x-enumLabels": [
+        "Central",
+        "Both Faces"
+      ],
+      "default": 2
+    },
+    "db_trans": {
+      "type": "number",
+      "description": "Transverse Bar Size. Symbol: -. Units: mm",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 120
+    },
+    "db_trans_space": {
+      "type": "number",
+      "description": "Transverse Bar Spacing. Symbol: -. Units: mm",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "db_trans_layers": {
+      "type": "number",
+      "description": "Transverse Bar Layers. Symbol: -",
+      "enum": [
+        1,
+        2
+      ],
+      "x-enumLabels": [
+        "One",
+        "Two"
+      ],
+      "default": 2
+    },
+    "exposure_class": {
+      "type": "string",
+      "description": "Exposure Classification. Symbol: -",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ],
+      "x-enumLabels": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ],
+      "default": "A1"
+    },
+    "crack_control": {
+      "type": "string",
+      "description": "Crack Control. Symbol: -",
+      "enum": [
+        "Minor",
+        "Moderate",
+        "Strong"
+      ],
+      "x-enumLabels": [
+        "Minor",
+        "Moderate",
+        "Strong"
+      ],
+      "default": "Minor"
+    },
+    "M_u": {
+      "type": "number",
+      "description": "M*. Symbol: M*. Units: kN-m. Design Moment",
+      "default": 200
+    },
+    "N_u": {
+      "type": "number",
+      "description": "N*. Symbol: N*. Units: kN. Design Axial Force (-ve for compression)",
+      "default": -1000
+    },
+    "eccentricity": {
+      "type": "number",
+      "description": "Load Eccentricity. Symbol: e. Units: mm. Axial load eccentricity. Minimum of 0.05Tw used for calculation",
+      "default": 0,
+      "minimum": 0
+    },
+    "V_u": {
+      "type": "number",
+      "description": "V*. Symbol: V*. Units: kN. Design Shear Force",
+      "default": 1800
+    },
+    "uid": {
+      "type": "string",
+      "const": "3005-as3600-concrete-wall-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

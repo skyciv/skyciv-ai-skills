@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timber beam check for axial as per NZS 3603",
+  "description": "Timber beam check for axial as pe NZS 3603",
+  "type": "object",
+  "properties": {
+    "b": {
+      "type": "number",
+      "description": "Beam Width (b). Symbol: b. Units: mm",
+      "default": 45,
+      "minimum": 35,
+      "maximum": 400
+    },
+    "d": {
+      "type": "number",
+      "description": "Beam Depth (d). Symbol: d. Units: mm",
+      "default": 90,
+      "minimum": 35,
+      "maximum": 1000
+    },
+    "Lb": {
+      "type": "number",
+      "description": "Unbraced Length (Lb). Symbol: Lb. Units: mm",
+      "default": 1000,
+      "minimum": 300,
+      "maximum": 10000
+    },
+    "Lb message": {
+      "type": "string",
+      "description": "Distance between restraints of portion with compression"
+    },
+    "fc": {
+      "type": "number",
+      "description": "Compession Capacity. Symbol: fc. Units: MPa",
+      "default": 18,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "E": {
+      "type": "number",
+      "description": "Mod. of Elasticity. Symbol: E. Units: MPa",
+      "default": 5400,
+      "minimum": 100,
+      "maximum": 20000
+    },
+    "Green": {
+      "type": "boolean",
+      "description": "Green?",
+      "default": false
+    },
+    "Ps_brief": {
+      "type": "number",
+      "description": "P*_brief. Symbol: Ps_b. Units: kN",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Ps_medium": {
+      "type": "number",
+      "description": "P*_medium. Symbol: Ps_m. Units: kN",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Ps_perm": {
+      "type": "number",
+      "description": "P*_perm. Symbol: Ps_p. Units: kN",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "9071-mpads-timber-beam-axial",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

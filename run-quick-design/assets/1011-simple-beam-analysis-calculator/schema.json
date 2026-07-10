@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Simply Supported Beam Analysis",
+  "description": "Analyse simply supported beams for distributed and point loading.",
+  "type": "object",
+  "properties": {
+    "L": {
+      "type": "number",
+      "description": "Beam Span, L. Symbol: L. Units: mm. Length of your Beam",
+      "default": 1200,
+      "minimum": 10
+    },
+    "support_a": {
+      "type": "string",
+      "description": "Support at A. Symbol: S_{A}. Support type at end A",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "Cantilever"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "Cantilever"
+      ],
+      "default": "Pinned"
+    },
+    "support_b": {
+      "type": "string",
+      "description": "Support at B. Symbol: S_{B}. Support type at end B",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "Cantilever"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "Cantilever"
+      ],
+      "default": "Roller"
+    },
+    "DL_mag": {
+      "type": "number",
+      "description": "Distributed Load Magnitude. Symbol: D_{L}. Units: kN/m. The uniform distributed load magnitude on your beam",
+      "default": 1.25,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "PL_mag": {
+      "type": "number",
+      "description": "Point Load Magnitude. Symbol: D_{L}. Units: kN. Magnitude of the point load",
+      "default": 2,
+      "minimum": 0
+    },
+    "PL_dist": {
+      "type": "number",
+      "description": "Point Load Distance, d. Symbol: PL_{d}. Units: mm. Distance of point load from the start of the member",
+      "default": 250,
+      "minimum": 0
+    },
+    "calculate_deflection": {
+      "type": "boolean",
+      "description": "Calculate Deflection. Symbol: D_{y}",
+      "default": false
+    },
+    "E": {
+      "type": "number",
+      "description": "Young's Modulus (E). Symbol: E. Units: MPa. Young's Modulus of your material",
+      "default": 200000,
+      "minimum": 0
+    },
+    "I_z": {
+      "type": "number",
+      "description": "Moment of Inertia about Z. Symbol: I_z. Units: mm^4. Moment of Inertia about Z Axis",
+      "default": "2.2e8",
+      "minimum": 0
+    },
+    "uid": {
+      "type": "string",
+      "const": "1011-simple-beam-analysis-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

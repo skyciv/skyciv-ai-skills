@@ -1,0 +1,295 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ADM 2020 Aluminum Member Design",
+  "description": "Design aluminum members in accordance with ADM 2020.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: S3D\\;Section\\;ID. Section object imported from S3D model."
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "hollow_rectangular",
+        "hollow_circular",
+        "i_section",
+        "c_section"
+      ],
+      "x-enumLabels": [
+        "Hollow Rectangle",
+        "Hollow Circular",
+        "I-Section",
+        "C-Section"
+      ],
+      "default": "hollow_rectangular"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "custom",
+        "RT 1-3/4x1-1/2x1/8"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "RT 1-3/4x1-1/2x1/8"
+      ],
+      "default": "custom"
+    },
+    "welded": {
+      "type": "string",
+      "description": "Welded. Symbol: Welded. Select welded or not welded.",
+      "enum": [
+        "Not Welded",
+        "Welded"
+      ],
+      "x-enumLabels": [
+        "Not Welded",
+        "Welded"
+      ],
+      "default": "Welded"
+    },
+    "alloy": {
+      "type": "number",
+      "description": "Alloy. Symbol: Alloy",
+      "enum": [
+        1060
+      ],
+      "x-enumLabels": [
+        "1060"
+      ],
+      "default": 1060
+    },
+    "temper": {
+      "type": "string",
+      "description": "Temper. Symbol: Temper",
+      "enum": [
+        "H12"
+      ],
+      "x-enumLabels": [
+        "H12"
+      ],
+      "default": "H12"
+    },
+    "product": {
+      "type": "string",
+      "description": "Product. Symbol: Product",
+      "enum": [
+        "B209, sheet & plate"
+      ],
+      "x-enumLabels": [
+        "B209, sheet & plate"
+      ],
+      "default": "B209, sheet & plate"
+    },
+    "s3d_alloy": {
+      "type": "string",
+      "description": "(S3D Loaded) Alloy. Symbol: Alloy"
+    },
+    "s3d_temper": {
+      "type": "string",
+      "description": "(S3D Loaded) Temper. Symbol: Temper"
+    },
+    "s3d_product": {
+      "type": "string",
+      "description": "(S3D Loaded) Product. Symbol: Product"
+    },
+    "B": {
+      "type": "number",
+      "description": "Width (B). Units: in. The width of the section.",
+      "default": 8,
+      "minimum": 0.001,
+      "maximum": 800
+    },
+    "D": {
+      "type": "number",
+      "description": "Depth (D). Units: in. The depth of the section.",
+      "default": 12,
+      "minimum": 0.001,
+      "maximum": 400
+    },
+    "t_f": {
+      "type": "number",
+      "description": "Thickness tf. Units: in. Flange thickness, top/btm wall thickness (Rectangular Hollow Sections).",
+      "default": 0.35,
+      "minimum": 0.001,
+      "maximum": 20
+    },
+    "t_w": {
+      "type": "number",
+      "description": "Thickness tw. Units: in. Web thickness, or side wall thickness (Rectangular Hollow Sections) or Hollow Circular Section thickness.",
+      "default": 0.35,
+      "minimum": 0.001,
+      "maximum": 20
+    },
+    "an_factor": {
+      "type": "number",
+      "description": "Net Area Factor. Symbol: Net&nbspArea&nbspFactor. Units: %. Reduction factor for the net area of the section (including holes). 100% means the net area is equal to the section's gross area.",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "Lb": {
+      "type": "number",
+      "description": "Lb. Units: in. Length between bending restraints. ",
+      "default": 48,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "Lz": {
+      "type": "number",
+      "description": "Lz.comp. Units: in. Distance between restraints against compression buckling about the Z-axis. ",
+      "default": 48,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "Ly": {
+      "type": "number",
+      "description": "Ly.comp. Units: in. The span of the member, as unbraced length in the Y (minor) direction.",
+      "default": 48,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "kz": {
+      "type": "number",
+      "description": "kz. Distance between restraints against compression buckling about the Y-axis. ",
+      "default": 1,
+      "minimum": 0.7,
+      "maximum": 5
+    },
+    "ky": {
+      "type": "number",
+      "description": "ky. Effective length coefficient for buckling about the minor Y axis.",
+      "default": 1,
+      "minimum": 0.7,
+      "maximum": 5
+    },
+    "cb_factor": {
+      "type": "number",
+      "description": "Moment Gradient Factor (Cb). Symbol: Cb. User defined Cb factor, to be calculated to ADM 2020 Cl F.4.1.1",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method. ASD - Allowable Stress Design LRFD - Load Resistance Factor Design",
+      "enum": [
+        "ASD",
+        "LRFD"
+      ],
+      "x-enumLabels": [
+        "ASD",
+        "LRFD"
+      ],
+      "default": "ASD"
+    },
+    "Mrz": {
+      "type": "number",
+      "description": "Major Bending (Md.z). Symbol: Mdz. Units: kip-ft. Design moment about major Z-axis. Positive value results in compression at top of section.  ",
+      "default": 2.5,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "Mry": {
+      "type": "number",
+      "description": "Minor Bending (Md.y). Symbol: Mdy. Units: kip-ft. Design moment about minor Y-axis. Positive value results in compression at the right of the section. ",
+      "default": 0.5,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "Vry": {
+      "type": "number",
+      "description": "Major Shear (Vd.y). Symbol: Vdy. Units: kip. Design shear along major Y-axis. ",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Vrz": {
+      "type": "number",
+      "description": "Minor Shear (Vd.z). Symbol: Vdz. Units: kip. Design shear along minor Z-axis. ",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Prc": {
+      "type": "number",
+      "description": "Axial Compression (Pd.c). Symbol: Pdc. Units: kip. Design axial compression.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 810
+    },
+    "Prt": {
+      "type": "number",
+      "description": "Axial Tension (Pd.t). Symbol: Pdt. Units: kip. Design axial tension.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "flexure_setting": {
+      "type": "string",
+      "description": "Bending. Symbol: Flexure&nbspMethod. Select method to use for calculation of local buckling in bending.Limiting Element - capacity is based on the lowest capacity across each individual element in the sectionWeighted Average Method - capacity is based on the weighted average capacity of each individual element across the entire section",
+      "enum": [
+        "limiting_element",
+        "weighted_average"
+      ],
+      "x-enumLabels": [
+        "Limiting Element",
+        "Weighted Average"
+      ],
+      "default": "weighted_average"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2605-us-aluminium-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "method": "ASD",
+  "Ht": "Double Helix",
+  "Spd": "10-3/4-dia-48-double helix",
+  "L_embd": 50,
+  "L_cant": 1,
+  "H1": 20,
+  "H3": 40,
+  "t": 0.375,
+  "fy": 50,
+  "soil_properties": [
+    {
+      "layer_no": 1,
+      "layer_thick": 50,
+      "St": "Cohesive",
+      "phi": "0",
+      "gamma": 1.12,
+      "Cu": 2.088,
+      "alpha": 0,
+      "Ks": 0,
+      "Fqd": 0,
+      "Fqs": 0
+    }
+  ],
+  "Fx": 9,
+  "Vy": 6,
+  "Vz": 7,
+  "My": 5,
+  "Mz": 10,
+  "Mx": 289,
+  "Pt": 10,
+  "Qa": 18,
+  "Pp": 0.25,
+  "uid": "2008-aisc-screw-pile-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

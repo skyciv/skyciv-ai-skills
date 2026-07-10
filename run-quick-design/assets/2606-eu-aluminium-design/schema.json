@@ -1,0 +1,344 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BS EN 1999-1-1:2023 Aluminium Member Design",
+  "description": "Design aluminium members in accordance with BS EN 1999-1-1:2023.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: Section. Section object imported from S3D model."
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "hollow rectangular",
+        "hollow circular",
+        "i_section",
+        "c_section"
+      ],
+      "x-enumLabels": [
+        "Hollow Rectangular",
+        "Hollow Circular",
+        "I Section",
+        "C Section"
+      ],
+      "default": "hollow rectangular"
+    },
+    "b": {
+      "type": "number",
+      "description": "Width (b). Units: mm. The width of the section.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 800
+    },
+    "d": {
+      "type": "number",
+      "description": "Depth (d). Units: mm. The depth of the section for custom shapes, this is used as an override for the leg height.",
+      "default": 200,
+      "minimum": 1,
+      "maximum": 400
+    },
+    "t1": {
+      "type": "number",
+      "description": "Flanges Thickness (t1). Symbol: t_{1}. Units: mm. Thickness of the flanges for custom Shapes.",
+      "default": 4,
+      "minimum": 0.5,
+      "maximum": 20
+    },
+    "t2": {
+      "type": "number",
+      "description": "Webs Thickness (t2). Symbol: t_{2}. Units: mm. Thickness of the web.",
+      "default": 3,
+      "minimum": 0.5,
+      "maximum": 20
+    },
+    "Ly": {
+      "type": "number",
+      "description": "Span (Ly). Symbol: L_{y}. Units: m. The span of the member, as unbraced length about the Y (minor) direction.",
+      "default": 2,
+      "minimum": 0.1,
+      "maximum": 20000
+    },
+    "Lz": {
+      "type": "number",
+      "description": "Span (Lz). Symbol: L_{z}. Units: m. The span of the member, as unbraced length about the Z (major) direction.",
+      "default": 2,
+      "minimum": 0.1,
+      "maximum": 20000
+    },
+    "welded": {
+      "type": "string",
+      "description": "Welded. Symbol: Welded",
+      "enum": [
+        "No"
+      ],
+      "x-enumLabels": [
+        "Not Welded"
+      ],
+      "default": "No"
+    },
+    "alloy": {
+      "type": "string",
+      "description": "Alloy. Symbol: Alloy"
+    },
+    "design_class": {
+      "type": "string",
+      "description": "Design Class. Symbol: Class. Material Buckling Class.",
+      "enum": [
+        "Class A",
+        "Class B",
+        "Class C"
+      ],
+      "x-enumLabels": [
+        "Class A",
+        "Class B",
+        "Class C"
+      ],
+      "default": "Class C"
+    },
+    "temper": {
+      "type": "string",
+      "description": "Temper. Symbol: Temper"
+    },
+    "product": {
+      "type": "string",
+      "description": "Product. Symbol: Product. Specification/Product.",
+      "enum": [
+        "EP",
+        "ET",
+        "ER/B",
+        "DT",
+        "EP/O",
+        "EP/H",
+        "EP (A1)"
+      ],
+      "x-enumLabels": [
+        "EP",
+        "ET",
+        "ER/B",
+        "DT",
+        "EP/O",
+        "EP/H",
+        "EP (A1)"
+      ],
+      "default": "EP"
+    },
+    "end_post_rigidity": {
+      "type": "string",
+      "description": "Rigid end-post. Symbol: Rigid end-post. According to BS EN 1999-1-1:2023 Figure 8.30.",
+      "enum": [
+        "No_end_post",
+        "Non_rigid_end_post",
+        "Rigid_end_post"
+      ],
+      "x-enumLabels": [
+        "No end-post",
+        "Non rigid end-post",
+        "Rigid end-post"
+      ],
+      "default": "No_end_post"
+    },
+    "stiff_bearing": {
+      "type": "string",
+      "description": "Stiff bearing type. Symbol: Stiff bearing type. According to BS EN 1999-1-1:2023 Figure 8.33.",
+      "enum": [
+        "Type (c)"
+      ],
+      "x-enumLabels": [
+        "Type (c)"
+      ],
+      "default": "Type (c)"
+    },
+    "khw": {
+      "type": "number",
+      "description": "Reduction coefficient due to holes in the web (khw). Symbol: k_{hw}. Reduction coefficient due to holes in the web.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "khf": {
+      "type": "number",
+      "description": "Reduction coefficient due to holes in the flanges (khf). Symbol: k_{hf}. Reduction coefficient due to holes in the flanges.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Ss": {
+      "type": "number",
+      "description": "Length of stiff bearing (Ss). Symbol: s_{s}. Units: mm. Length of stiff bearing Figure 8.33.",
+      "default": 50,
+      "minimum": -0.01,
+      "maximum": 20000
+    },
+    "a_st": {
+      "type": "number",
+      "description": "Distance between web stiffeners (ast). Symbol: a_{st}. Units: mm. Distance between web stiffeners Figure 8.33.",
+      "default": 2000,
+      "minimum": 0.1,
+      "maximum": 20000
+    },
+    "a_w": {
+      "type": "number",
+      "description": "Weld size of web to flange (aw). Symbol: a_{st}. Units: mm. Weld size of web to flange",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "c": {
+      "type": "number",
+      "description": "Distance from the applied force to the edge of the element (c). Symbol: a_{st}. Units: mm. distance from the edge Figure 8.33.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 20000
+    },
+    "F_Ed": {
+      "type": "number",
+      "description": "Transversal force. Symbol: F_{Ed}. Units: kN. Magnitude of the force applied Figure 8.33.",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Major Bending (Mz). Symbol: M_{z}. Units: kN-m. Moment about Z (major) direction.",
+      "default": 7.5,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "My": {
+      "type": "number",
+      "description": "Minor Bending (My). Symbol: M_{y}. Units: kN-m. Moment about Y (minor) direction.",
+      "default": 2.5,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Torsional moment (Mx). Symbol: M_{x}. Units: kN-m. Moment in Torsion.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Vy": {
+      "type": "number",
+      "description": "Minor Shear (Vy). Symbol: V_{y}. Units: kN. Shear in Y (minor) direction.",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "Major Shear (Vz). Symbol: V_{z}. Units: kN. Shear in Z (major) direction.",
+      "default": 3.5,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Nc": {
+      "type": "number",
+      "description": "Axial Compression (Nc). Symbol: N_{c}. Units: kN. Axial compression.",
+      "default": 12,
+      "minimum": -1000,
+      "maximum": 810
+    },
+    "Nt": {
+      "type": "number",
+      "description": "Axial Tension (Nt). Symbol: N_{t}. Units: kN. Axial tension.",
+      "default": 22,
+      "minimum": -1000,
+      "maximum": 500000
+    },
+    "gamma_M1": {
+      "type": "number",
+      "description": "Safety - Cross Section (γ1). Symbol: γ_{m1}. Partial factor of safety-cross section.",
+      "default": 1.1,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "gamma_M2": {
+      "type": "number",
+      "description": "Safety - Member Instability (γ2). Symbol: γ_{m2}. Partial factor of safety-member instability.",
+      "default": 1.25,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "k": {
+      "type": "number",
+      "description": "Effect of Holes (k). Factor to consider the effect of holes in case of tension/compression.",
+      "default": 0.9,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "Kz": {
+      "type": "number",
+      "description": "Effective Length Parameter (kz). Symbol: k_{z}. Effective length parameter in Z (major) direction.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "Ky": {
+      "type": "number",
+      "description": "Effective Length Parameter (ky). Symbol: k_{y}. Effective length parameter in Y (minor) direction.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "Kt": {
+      "type": "number",
+      "description": "Effective Length Parameter (kT). Symbol: k_{z}. Effective length parameter for torsion.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "uid": {
+      "type": "string",
+      "const": "2606-eu-aluminium-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

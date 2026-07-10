@@ -1,0 +1,19 @@
+{
+  "b": 300,
+  "t": 12,
+  "steel_grade": "400",
+  "yield_strength": 275,
+  "M": 2,
+  "V": 50,
+  "analysis_type": "p",
+  "uid": "2023-au-steel-plate",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

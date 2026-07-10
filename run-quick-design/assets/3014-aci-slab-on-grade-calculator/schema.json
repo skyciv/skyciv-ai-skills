@@ -1,0 +1,346 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 360 R-06 Slab on Grade Design",
+  "description": "Design a slab on grade in accordance with ACI 360 R-06.",
+  "type": "object",
+  "properties": {
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: Section. Section object imported from S3D model."
+    },
+    "L": {
+      "type": "number",
+      "description": "Slab Length (L). Units: ft",
+      "default": 152,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "B": {
+      "type": "number",
+      "description": "Slab Width (B). Units: ft",
+      "default": 122,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "t": {
+      "type": "number",
+      "description": "Slab Thickness (t). Units: in",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "nl": {
+      "type": "number",
+      "description": "No. of Beam Along L (nl). Symbol: n_{l}",
+      "default": 7,
+      "minimum": 2,
+      "maximum": 400
+    },
+    "nb": {
+      "type": "number",
+      "description": "No. of Beam Along B (nb). Symbol: n_{n}",
+      "default": 6,
+      "minimum": 2,
+      "maximum": 400
+    },
+    "h": {
+      "type": "number",
+      "description": "Beam Depth (h). Units: in",
+      "default": 24,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "b": {
+      "type": "number",
+      "description": "Beam Width (b). Units: in",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "image_expansive": {
+      "type": "string",
+      "description": "image_expansive"
+    },
+    "image_compressible": {
+      "type": "string",
+      "description": "image_compressible"
+    },
+    "St": {
+      "type": "string",
+      "description": "Soil Type (St). Symbol: S_{t}",
+      "enum": [
+        "Expansive",
+        "Compressible"
+      ],
+      "x-enumLabels": [
+        "Expansive",
+        "Compressible"
+      ],
+      "default": "Expansive"
+    },
+    "q_allow": {
+      "type": "number",
+      "description": "Allowable Bearing Pressure (qallow). Symbol: q_{allow}. Units: psf",
+      "default": 2200,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "delta": {
+      "type": "number",
+      "description": "Expected Settlement (δ). Symbol: δ. Units: in",
+      "default": 0.75,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "e_mcenter": {
+      "type": "number",
+      "description": "Center Moisture (emcenter). Symbol: e_{mcenter}. Units: ft. Edge moisture variation distance for center lift.",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "e_medge": {
+      "type": "number",
+      "description": "Edge Moisture (emedge). Symbol: e_{medge}. Units: ft. Edge moisture variation distance for edge lift.",
+      "default": 4.5,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "y_mcenter": {
+      "type": "number",
+      "description": "Differential Center Movement (ymcenter). Symbol: y_{mcenter}. Units: in. Differential soil movement for center lift.",
+      "default": 2.68,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "y_medge": {
+      "type": "number",
+      "description": "Differential Edge Movement (ymedge). Symbol: y_{medge}. Units: in. Differential soil movement for edge lift.",
+      "default": 0.3,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "C_deltaL": {
+      "type": "number",
+      "description": " CΔL. Symbol: C_{ΔL}. Allowable differential deflection ratio in L direction.",
+      "default": 1920,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "C_deltaB": {
+      "type": "number",
+      "description": "CΔB. Symbol: C_{ΔB}. Allowable differential deflection ratio in B direction.",
+      "default": 1920,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "C_deltaLc": {
+      "type": "number",
+      "description": "CΔLc. Symbol: C_{ΔLc}. Allowable differential deflection ratio for center lift in L direction.",
+      "default": 360,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "C_deltaBc": {
+      "type": "number",
+      "description": "CΔBc. Symbol: C_{ΔBc}. Allowable differential deflection ratio for center lift in B direction.",
+      "default": 360,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "C_deltaLe": {
+      "type": "number",
+      "description": "CΔLe. Symbol: C_{ΔLe}. Allowable differential deflection ratio for edge lift in L direction.",
+      "default": 720,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "C_deltaBe": {
+      "type": "number",
+      "description": "CΔBe. Symbol: C_{ΔBe}. Allowable differential deflection ratio for edge in B direction.",
+      "default": 720,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "fc": {
+      "type": "string",
+      "description": "Compressive Strength of Concrete (fc). Symbol: f_{c}. Units: ksi",
+      "enum": [
+        "2.5",
+        "3",
+        "4",
+        "5"
+      ],
+      "x-enumLabels": [
+        "2.5",
+        "3",
+        "4",
+        "5"
+      ],
+      "default": "2.5"
+    },
+    "fs": {
+      "type": "number",
+      "description": "Yield Stress of Reinforcement (fs). Symbol: f_{s}. Units: ksi",
+      "default": 60,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "Es": {
+      "type": "number",
+      "description": "Modulus of Elasticity of Soil (Es). Symbol: E_{s}. Units: ksi",
+      "default": 1000,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "Sbr": {
+      "type": "number",
+      "description": "Bar Diameter (Sbr). Symbol: S_{br}. Bar diameter of stiffening beam.",
+      "enum": [
+        0.25,
+        0.375,
+        0.5,
+        0.625,
+        0.75,
+        0.875,
+        1,
+        1.125,
+        1.25,
+        1.75,
+        2.25
+      ],
+      "x-enumLabels": [
+        "#2",
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10",
+        "#14",
+        "#18"
+      ],
+      "default": 0.25
+    },
+    "n_bar": {
+      "type": "number",
+      "description": "Number of Bars (nbar). Symbol: n_{bar}. Number of bars of stiffening beam.",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "dbs": {
+      "type": "number",
+      "description": "Bar Diameter of Slab (dbs). Symbol: d_{bs}",
+      "enum": [
+        0.25,
+        0.375,
+        0.5,
+        0.625,
+        0.75,
+        0.875,
+        1,
+        1.125,
+        1.25,
+        1.75,
+        2.25
+      ],
+      "x-enumLabels": [
+        "#2",
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10",
+        "#14",
+        "#18"
+      ],
+      "default": 0.25
+    },
+    "Sr": {
+      "type": "number",
+      "description": "Rebar Spacing of Slab (Sr). Symbol: S_{r}. Units: in",
+      "default": 8,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "P": {
+      "type": "number",
+      "description": "Perimeter Loading (P). Units: lb/ft. Perimeter load expected on slab on the periphery.",
+      "default": 270,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "Pb": {
+      "type": "number",
+      "description": "Max Bearing Loading (Pb). Symbol: P_{b}. Units: lb/ft",
+      "default": 270,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "DL": {
+      "type": "number",
+      "description": "Superimposed Dead Load (DL). Symbol: DL. Units: psf. Superimposed dead load expected on slab.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "LL": {
+      "type": "number",
+      "description": "Live Load (LL). Symbol: LL. Units: psf. Live load expected on slab.",
+      "default": 125,
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "uid": {
+      "type": "string",
+      "const": "3014-aci-slab-on-grade-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

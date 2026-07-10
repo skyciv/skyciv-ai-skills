@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 1170.4 Seismic Loading Calculator",
+  "description": "Calculate seismic loading in accordance with AS 1170.4.",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image. Structure"
+    },
+    "Z": {
+      "type": "number",
+      "description": "Hazard Design Factor (Z). Based on Section 3.2 of AS 1170.4",
+      "default": 0.6
+    },
+    "design_working_life": {
+      "type": "string",
+      "description": "Design Working Life. Symbol:  . Based on Section 3.3 of AS 1170.4",
+      "enum": [
+        "25_years",
+        "50_years",
+        "100_years"
+      ],
+      "x-enumLabels": [
+        "25 years",
+        "50 years",
+        "100 years"
+      ],
+      "default": "25_years"
+    },
+    "importance_level": {
+      "type": "string",
+      "description": "Importance Level. Symbol:  . Based on Section 3.3 of AS 1170.4",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "x-enumLabels": [
+        "Level 1",
+        "Level 2",
+        "Level 3",
+        "Level 4",
+        "Level 5"
+      ],
+      "default": "1"
+    },
+    "site_subsoil_class": {
+      "type": "string",
+      "description": "Site Subsoil Class. Symbol:  . Based on Section 4.1 of AS 1170.4",
+      "enum": [
+        "Ae",
+        "Be",
+        "Ce",
+        "De",
+        "Ee"
+      ],
+      "x-enumLabels": [
+        "Class Ae - Strong rock",
+        "Class Be - Rock",
+        "Class Ce - Shallow soil",
+        "Class De - Deep or soft soil",
+        "Class Ee - Very soft soil"
+      ],
+      "default": "Ee"
+    },
+    "h": {
+      "type": "number",
+      "description": "Mean Roof Height of the Building (h). Symbol: h. Units: m",
+      "default": 30,
+      "minimum": 1
+    },
+    "period_calculation_method": {
+      "type": "string",
+      "description": "Method to Calculate (T1). Symbol:  ",
+      "enum": [
+        "approximate",
+        "detailed"
+      ],
+      "x-enumLabels": [
+        "Approximate value using Eq. 6.2(7)",
+        "User-defined value from rigorous analysis"
+      ],
+      "default": "approximate"
+    },
+    "T1": {
+      "type": "number",
+      "description": "Largest Translational Period of the Structure. Symbol: T_{1}. Units: s. Largest Translational Period of the structure for the direction being considered",
+      "default": 0.4,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "mu": {
+      "type": "number",
+      "description": "Structural Ductility Factor (μ). Symbol: \\mu. Structural Ductility Factor of the structure for the direction being considered",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 4
+    },
+    "Sp": {
+      "type": "number",
+      "description": "Structural Performance Factor (Sp). Symbol: S_{p}. Structural Performance Factor of the structure for the direction being considered",
+      "default": 1,
+      "minimum": 0.67,
+      "maximum": 1
+    },
+    "structure_system": {
+      "type": "string",
+      "description": "Structure System. Symbol:  . Based on Section 6.2.3 of AS 1170.4",
+      "enum": [
+        "mrf-steel",
+        "mrf-concrete",
+        "eccentric-braced-steel",
+        "all-other"
+      ],
+      "x-enumLabels": [
+        "Moment Resisting Steel Frames",
+        "Moment Resisting Concrete Frames",
+        "Eccentrically-Braced Steel Frames",
+        "All other structures"
+      ],
+      "default": "mrf-steel"
+    },
+    "seismic_weights": {
+      "type": "array",
+      "description": "Floor Weights",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "description": "Level",
+            "default": "Top",
+            "minimum": 0
+          },
+          "elevation": {
+            "type": "number",
+            "description": "Elevation, m",
+            "default": 10,
+            "minimum": 0
+          },
+          "weight": {
+            "type": "number",
+            "description": "Weight, kN",
+            "default": 1000,
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "const": "7006-as1170-seismic-load-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

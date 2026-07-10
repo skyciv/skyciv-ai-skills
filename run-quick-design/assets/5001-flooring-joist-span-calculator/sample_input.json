@@ -1,0 +1,21 @@
+{
+  "wood": "ALASKA CEDAR",
+  "grade": "Select Structural",
+  "e": 1400000,
+  "j_size": "2×4",
+  "t": 1.5,
+  "h": 3.5,
+  "s_c": 16,
+  "delta": "240",
+  "P": 2.5,
+  "uid": "5001-flooring-joist-span-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

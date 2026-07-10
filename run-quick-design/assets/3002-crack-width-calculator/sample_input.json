@@ -1,0 +1,24 @@
+{
+  "wc_max": 0.2,
+  "e_s": 200,
+  "m_r": 14.3,
+  "M": 2.65,
+  "T": 86.4,
+  "W": 1000,
+  "D": 300,
+  "c_c": 50,
+  "d_t": 16,
+  "s_t": 150,
+  "d_c": 16,
+  "s_c": 150,
+  "uid": "3002-crack-width-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "arrangement": "Point Load",
+  "shape": "Rectangular",
+  "L": "800",
+  "W": "400",
+  "D": "400",
+  "M_v": "10",
+  "M_vx": "10",
+  "M_vy": "10",
+  "V": "100",
+  "D_s": "220",
+  "c": "40",
+  "d_b": "16",
+  "σ_c": "0.5",
+  "f_c": "32",
+  "uid": "3011-punching-shear-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

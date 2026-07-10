@@ -1,0 +1,326 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSA S16-24 Steel Member Design",
+  "description": "Design standard and custom steel members in accordance with CSA S16-24.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "report_mode": {
+      "type": "string",
+      "description": "Report Style. Symbol: Type. Choose between detailed and concise reporting styles.",
+      "enum": [
+        "table",
+        "detailed"
+      ],
+      "x-enumLabels": [
+        "Concise",
+        "Detailed"
+      ],
+      "default": "table"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "i_beam",
+        "t_section",
+        "channel",
+        "lbeam",
+        "rectangular_tube",
+        "square_tube",
+        "circular_section"
+      ],
+      "x-enumLabels": [
+        "I-Section",
+        "T-Section",
+        "Channel",
+        "Angle",
+        "Rectangular HSS",
+        "Square HSS",
+        "Round HSS"
+      ],
+      "default": "i_beam"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit section yield strength.",
+      "enum": [
+        "CSA G40.21 260W",
+        "CSA G40.21 300W",
+        "CSA G40.21 350W",
+        "CSA G40.21 400W",
+        "ASTM A36",
+        "ASTM A992",
+        "ASTM A572 42",
+        "ASTM A572 50",
+        "ASTM A572 55",
+        "ASTM A572 60",
+        "ASTM A572 65",
+        "CSA G40.21 300W (HSS)",
+        "ASTM A1085 G50",
+        "ASTM A500C G46",
+        "ASTM A500C G50",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "CSA G40.21 260W",
+        "CSA G40.21 300W",
+        "CSA G40.21 350W",
+        "CSA G40.21 400W",
+        "ASTM A36",
+        "ASTM A992",
+        "ASTM A572 42",
+        "ASTM A572 50",
+        "ASTM A572 55",
+        "ASTM A572 60",
+        "ASTM A572 65",
+        "CSA G40.21 300W",
+        "ASTM A1085 G50",
+        "ASTM A500C G46",
+        "ASTM A500C G50",
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Total height (or diameter) of section.",
+      "default": 120,
+      "minimum": 1,
+      "maximum": 2500
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Total width of section.",
+      "default": 90,
+      "minimum": 1,
+      "maximum": 2500
+    },
+    "t_f_input": {
+      "type": "number",
+      "description": "tf. Symbol: t_f. Units: mm. Flange thickness, or top/btm wall thickness (RHS/SHS) or CHS thickness.",
+      "default": 15,
+      "minimum": 0.01,
+      "maximum": 150
+    },
+    "t_w_input": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: mm. Web thickness, or side wall thickness (RHS/SHS).",
+      "default": 15,
+      "minimum": 0.01,
+      "maximum": 150
+    },
+    "r_input": {
+      "type": "number",
+      "description": "r. Symbol: r. Units: mm. Fillet radius.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: MPa. Section yield strength.",
+      "default": 350,
+      "minimum": 10,
+      "maximum": 800
+    },
+    "frame_type": {
+      "type": "number",
+      "description": "Frame Type. Symbol: Frame Type. Specify whether the member is part of a braced or unbraced frame. Refer Clause 13.8.1 for further context.",
+      "enum": [
+        1,
+        0
+      ],
+      "x-enumLabels": [
+        "Braced",
+        "Unbraced"
+      ],
+      "default": 1
+    },
+    "laterally_supported": {
+      "type": "number",
+      "description": "Flange Lateral Support. Symbol: Lateral Support. Specify whether the member's compression flange is laterally supported or unsupported. If supported is selected, lateral torsional buckling checks will be skipped.",
+      "enum": [
+        1,
+        0
+      ],
+      "x-enumLabels": [
+        "Supported",
+        "Unsupported"
+      ],
+      "default": 0
+    },
+    "w2z": {
+      "type": "number",
+      "description": "ω2. Symbol: \\omega_{2}. Moment distribution coefficient for bending about z-z axis",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 2.5
+    },
+    "w1y": {
+      "type": "number",
+      "description": "ω1,y. Symbol: \\omega_{1,y}. Load distribution factor according to 13.8.6",
+      "default": 1,
+      "minimum": 0.4,
+      "maximum": 1
+    },
+    "w1z": {
+      "type": "number",
+      "description": "ω1,z. Symbol: \\omega_{1,z}. Load distribution factor according to 13.8.6",
+      "default": 1,
+      "minimum": 0.4,
+      "maximum": 1
+    },
+    "Kz": {
+      "type": "number",
+      "description": "Kz. Symbol: K_z. Effective Length Factor for critical elastic moment in the major axis",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2.5
+    },
+    "Lz": {
+      "type": "number",
+      "description": "Lz. Symbol: L_z. Units: mm. Unbraced length for the critical elastic moment in the major axis",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Ky": {
+      "type": "number",
+      "description": "Ky. Symbol: K_y. Effective Length Factor for critical elastic moment in the minor axis",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2.5
+    },
+    "Ly": {
+      "type": "number",
+      "description": "Ly. Symbol: L_y. Units: mm. Unbraced length for the critical elastic moment in the minor axis",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Kt": {
+      "type": "number",
+      "description": "Kt. Symbol: K_t. Effective Length Factor for Torsional Buckling",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2.5
+    },
+    "Lt": {
+      "type": "number",
+      "description": "Lt. Symbol: L_t. Units: mm. Unbraced length for Torsional Buckling",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Kf": {
+      "type": "number",
+      "description": "Kf. Symbol: K_f. Effective Length Factor for Flexural Buckling",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2.5
+    },
+    "Lf": {
+      "type": "number",
+      "description": "Lf. Symbol: L_f. Units: mm. Unbraced length for Flexural Buckling",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M_{z}. Units: kN-m. Required flexural strength for bending about the major (Z) axis. Positive value results in compression at top of section. ",
+      "default": 15,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "My": {
+      "type": "number",
+      "description": "My. Symbol: M_{y}. Units: kN-m. Required flexural strength for bending about the minor (Y) Axis. Positive value results in compression at right of section. ",
+      "default": 5,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "Vy": {
+      "type": "number",
+      "description": "Vy. Symbol: V_{y}. Units: kN. Required shear strength in major (Y) axis direction. ",
+      "default": 10,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "Vz. Symbol: V_{z}. Units: kN. Required shear strength in minor (Z) axis direction. ",
+      "default": 5,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "N": {
+      "type": "number",
+      "description": "N. Symbol: P. Units: kN. Required axial strength. Positive value represents compression.",
+      "default": 5,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2022-csa-steel-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

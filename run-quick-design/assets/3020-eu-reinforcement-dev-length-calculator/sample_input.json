@@ -1,0 +1,27 @@
+{
+  "sub_type": "Lap Length",
+  "bond_type": "Good Bond",
+  "element_type": "Beam",
+  "fck": 25,
+  "Cd": 35,
+  "alpha_ct": 1,
+  "anchorage_type": "Straight",
+  "rho_1": 50,
+  "db": 6,
+  "fyk": 500,
+  "transverse_bars": "Links or U bars",
+  "n_t": 2,
+  "dia_tran_bar": 6,
+  "p": 0,
+  "r": 1,
+  "uid": "3020-eu-reinforcement-dev-length-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

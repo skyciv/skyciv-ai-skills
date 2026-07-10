@@ -1,0 +1,26 @@
+{
+  "w": 200,
+  "dp": 150,
+  "d": 25,
+  "dpin": 20,
+  "t_p": 20,
+  "a_p": 75,
+  "w_s": 6,
+  "y_1": 100,
+  "theta": 30,
+  "alpha": 10,
+  "f_y": 250,
+  "f_u": 360,
+  "Fexx": 480,
+  "P": 75,
+  "uid": "6003-lifting-lug-capacity-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

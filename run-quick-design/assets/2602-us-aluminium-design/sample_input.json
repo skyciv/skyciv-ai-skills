@@ -1,0 +1,32 @@
+{
+  "member_label": "Member 1",
+  "shape": "hollow rectangular",
+  "section": "custom",
+  "alloy": "6005",
+  "temper": "T5",
+  "welded": "Yes",
+  "product": "B209, sheet & plate",
+  "b": 8,
+  "d": 12,
+  "t1": 0.35,
+  "t2": 0.35,
+  "Ly": 48,
+  "Lz": 48,
+  "method": "ASD",
+  "Mz": 2.58,
+  "My": 0.5,
+  "Vy": 5,
+  "Vz": 5,
+  "Nc": 1,
+  "Nt": 0,
+  "uid": "2602-us-aluminium-design",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

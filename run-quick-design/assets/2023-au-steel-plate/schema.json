@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 4100:2020 Steel Plate Design",
+  "description": "Design plates for a moment and shear applied in it's minor axis.",
+  "type": "object",
+  "properties": {
+    "b": {
+      "type": "number",
+      "description": "Width (b). Symbol: b. Units: mm. Plate width should be the greater of the cross section dimensions.",
+      "default": 300,
+      "minimum": 50,
+      "maximum": 10000
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Symbol: t. Units: mm. Plate thickness should be the lesser of the cross section dimensions.",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 150
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Grades in accordance with AS/NZS 3678 (Table 2.1).Select Custom to edit section yield strength.",
+      "enum": [
+        "450",
+        "400",
+        "350",
+        "300",
+        "250",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "450",
+        "400",
+        "350",
+        "300",
+        "250",
+        "Custom"
+      ],
+      "default": "400"
+    },
+    "yield_strength": {
+      "type": "number",
+      "description": "Yield Strength (fy). Symbol: f_y. Units: MPa. Select Custom to edit section yield strength.",
+      "default": 275,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "M": {
+      "type": "number",
+      "description": "Design Moment (M*). Symbol: M. Units: kNm. Bending moment acting about the plate's z-axis.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "V": {
+      "type": "number",
+      "description": "Design Shear (V*). Symbol: V. Units: kN. Shear force acting in plate's y-axis.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "analysis_type": {
+      "type": "string",
+      "description": "Analysis Type. Symbol: Analysis. Select whether you want to use the plastic or elastic properties of the plate to determine the design moment capacity of the section.Note, this input does not affect calculation of shear capacity.",
+      "enum": [
+        "p",
+        "e"
+      ],
+      "x-enumLabels": [
+        "Plastic",
+        "Elastic"
+      ],
+      "default": "p"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2023-au-steel-plate",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

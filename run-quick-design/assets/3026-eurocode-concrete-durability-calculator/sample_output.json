@@ -1,0 +1,27 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "c_nom": {
+        "value": "30",
+        "label": "Nominal cover",
+        "units": "mm"
+      },
+      "class_min": {
+        "value": "C12/15",
+        "label": "Minimum class for the environment",
+        "units": ""
+      },
+      "Minimum concrete strength": {
+        "label": "Minimum concrete strength check",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

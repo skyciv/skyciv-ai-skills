@@ -1,0 +1,21 @@
+{
+  "L": 1200,
+  "support_a": "Pinned",
+  "support_b": "Roller",
+  "DL_mag": 1.25,
+  "PL_mag": 2,
+  "PL_dist": 250,
+  "calculate_deflection": false,
+  "E": 200000,
+  "I_z": "2.2e8",
+  "uid": "1011-simple-beam-analysis-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

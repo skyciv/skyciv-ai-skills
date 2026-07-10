@@ -1,0 +1,800 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Pad Footing Design",
+  "description": "Design of isolated pad footings in accordance with AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "footing_name": {
+      "type": "string",
+      "description": "Name. Symbol: Name",
+      "default": "F1"
+    },
+    "footing_width": {
+      "type": "number",
+      "description": "Footing Width. Symbol: W. Units: mm. Total width of footing.",
+      "default": 1200,
+      "minimum": 400,
+      "maximum": 10000
+    },
+    "footing_length": {
+      "type": "number",
+      "description": "Footing Length. Symbol: L. Units: mm. Total length of footing.",
+      "default": 1500,
+      "minimum": 300,
+      "maximum": 10000
+    },
+    "footing_depth": {
+      "type": "number",
+      "description": "Footing Depth. Symbol: D. Units: mm. Depth of footing base.",
+      "default": 1500,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "footing_height": {
+      "type": "number",
+      "description": "Footing Height. Symbol: H. Units: mm. The height of the footing base.",
+      "default": 500,
+      "minimum": 200,
+      "maximum": 2000
+    },
+    "col_material": {
+      "type": "string",
+      "description": "Column Material. Symbol: Material. Select between concrete and steel column.",
+      "enum": [
+        "concrete",
+        "steel",
+        "masonry"
+      ],
+      "x-enumLabels": [
+        "Concrete",
+        "Steel",
+        "Masonry"
+      ],
+      "default": "concrete"
+    },
+    "col_shape": {
+      "type": "string",
+      "description": "Column Shape. Symbol: shape. Select between rectangular and circular column.",
+      "enum": [
+        "rectangular",
+        "circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "rectangular"
+    },
+    "col_diameter": {
+      "type": "number",
+      "description": "Column Diameter. Symbol: Dia_{col}. Units: mm. Diameter of circular column.",
+      "default": 250,
+      "minimum": 50,
+      "maximum": 30000
+    },
+    "col_width": {
+      "type": "number",
+      "description": "Column Width. Symbol: W_{col}. Units: mm. Total width of column.",
+      "default": 250,
+      "minimum": 50,
+      "maximum": 1250
+    },
+    "col_length": {
+      "type": "number",
+      "description": "Column Length. Symbol: L_{col}. Units: mm. Total length of column.",
+      "default": 250,
+      "minimum": 50,
+      "maximum": 1250
+    },
+    "base_plate_width": {
+      "type": "number",
+      "description": "Base Plate Width. Symbol: W_{bp}. Units: mm. Total width of base plate.",
+      "default": 400,
+      "minimum": 50,
+      "maximum": 1250
+    },
+    "base_plate_length": {
+      "type": "number",
+      "description": "Base Plate Length. Symbol: L_{bp}. Units: mm. Total length of base plate.",
+      "default": 400,
+      "minimum": 50,
+      "maximum": 1250
+    },
+    "col_height": {
+      "type": "number",
+      "description": "Column Height. Symbol: H_{col}. Units: mm",
+      "default": 1200,
+      "minimum": 0,
+      "maximum": 15000
+    },
+    "col_x": {
+      "type": "number",
+      "description": "Column X Offset. Symbol: x_{offset}. Units: mm",
+      "default": 0,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "col_z": {
+      "type": "number",
+      "description": "Column Z Offset. Symbol: z_{offset}. Units: mm",
+      "default": 0,
+      "minimum": -3000,
+      "maximum": 3000
+    },
+    "punching_overhang_factor": {
+      "type": "number",
+      "description": "Punching Overhang Factor. Symbol: pof_{col}. Factor that determines the minimum distance to consider or not a punching side. Further information is provided in the Documentation.",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 5
+    },
+    "loading_table": {
+      "type": "array",
+      "description": "Loading",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Dead"
+          },
+          "case": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "G",
+            "enum": [
+              "G",
+              "Q",
+              "W",
+              "S",
+              "E"
+            ]
+          },
+          "N": {
+            "type": "number",
+            "description": "N (kN)",
+            "default": 800,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "Mx": {
+            "type": "number",
+            "description": "Mx (kNm)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "Mz": {
+            "type": "number",
+            "description": "Mz (kNm)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "Vx": {
+            "type": "number",
+            "description": "Vx (kN)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "Vz": {
+            "type": "number",
+            "description": "Vz (kN)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          }
+        }
+      }
+    },
+    "lc_table": {
+      "type": "array",
+      "description": "Load Combinations. Symbol: lc_{table}",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lcname": {
+            "type": "string",
+            "description": "LC Name "
+          },
+          "type": {
+            "type": "string",
+            "description": "Type",
+            "default": "ULS",
+            "enum": [
+              "ULS",
+              "SLS"
+            ]
+          },
+          "g_factor": {
+            "type": "string",
+            "description": "G Factor",
+            "default": 1,
+            "minimum": 0
+          },
+          "g_factor_stb": {
+            "type": "string",
+            "description": "G Factor (Stability)",
+            "default": 0.9,
+            "minimum": 0
+          },
+          "q_factor": {
+            "type": "string",
+            "description": "Q Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "w_factor": {
+            "type": "string",
+            "description": "W Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "s_factor": {
+            "type": "string",
+            "description": "S Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "e_factor": {
+            "type": "string",
+            "description": "E Factor",
+            "default": 0,
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "concrete_strength": {
+      "type": "number",
+      "description": "Concrete Strength. Symbol: f'_c. Units: MPa. Concrete characteristic strength in MPa.",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65,
+        80,
+        100
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100"
+      ],
+      "default": 32
+    },
+    "unit_weight": {
+      "type": "number",
+      "description": "Concrete Density. Symbol: ρ. Units: kN/m3",
+      "default": 24,
+      "minimum": 14,
+      "maximum": 30
+    },
+    "max_aggregate_size": {
+      "type": "number",
+      "description": "Max. Size of Aggregate. Symbol: d_g. Units: mm",
+      "default": 20,
+      "minimum": 5,
+      "maximum": 50
+    },
+    "concrete_fabrication": {
+      "type": "string",
+      "description": "Fabrication. Concrete fabrication type.",
+      "enum": [
+        "in_situ",
+        "prefabricated"
+      ],
+      "x-enumLabels": [
+        "In situ",
+        "Prefabricated"
+      ],
+      "default": "in_situ"
+    },
+    "concrete_type": {
+      "type": "string",
+      "description": "Concrete Type. Select between reinforced and unreinforced concrete.",
+      "enum": [
+        "reinforced",
+        "unreinforced"
+      ],
+      "x-enumLabels": [
+        "Reinforced",
+        "Unreinforced"
+      ],
+      "default": "reinforced"
+    },
+    "steel_strength": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Yield strength of reinforcing steel in MPa.",
+      "default": 500,
+      "minimum": 200,
+      "maximum": 700
+    },
+    "ductility_class": {
+      "type": "string",
+      "description": "Ductility Class. Symbol: Class. Ductility class of the reinforcement.",
+      "enum": [
+        "L",
+        "N"
+      ],
+      "x-enumLabels": [
+        "Low (L)",
+        "Normal (N)"
+      ],
+      "default": "N"
+    },
+    "epoxy_coated": {
+      "type": "boolean",
+      "description": "Epoxy Coated Bar. Corrosion resistant reinforcement option.",
+      "default": false
+    },
+    "top_cover": {
+      "type": "number",
+      "description": "ctop. Symbol: c_{top}. Units: mm. Concrete cover measured to outside of top slab reinforcement.",
+      "default": 30,
+      "minimum": 15,
+      "maximum": 100
+    },
+    "btm_cover": {
+      "type": "number",
+      "description": "cbot. Symbol: c_{bot}. Units: mm. Concrete cover measured to outside of bottom slab/beam reinforcement. Note, this value is also used for cover to side reinforcement.",
+      "default": 50,
+      "minimum": 20,
+      "maximum": 100
+    },
+    "top_reinforcement": {
+      "type": "string",
+      "description": "Reinforcement. Symbol: Reinforcement. Specify if footing has both top and btm reinforcement.",
+      "enum": [
+        false,
+        true
+      ],
+      "x-enumLabels": [
+        "Btm Only",
+        "Top & Btm"
+      ],
+      "default": true
+    },
+    "btm_reinforcement_table": {
+      "type": "array",
+      "description": "Btm & Side Reinforcement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "btm_x_no": {
+            "type": "string",
+            "description": "X No.",
+            "default": 8,
+            "minimum": 2,
+            "maximum": 200
+          },
+          "btm_x_cogs": {
+            "type": "string",
+            "description": "Cogged Ends",
+            "default": true
+          },
+          "btm_x_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "btm_z_no": {
+            "type": "string",
+            "description": "Z No.",
+            "default": 10,
+            "minimum": 2,
+            "maximum": 200
+          },
+          "btm_z_cogs": {
+            "type": "string",
+            "description": "Cogged Ends",
+            "default": true
+          },
+          "btm_z_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "side_no": {
+            "type": "string",
+            "description": "Side No",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 20
+          },
+          "side_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          }
+        }
+      }
+    },
+    "top_reinforcement_table": {
+      "type": "array",
+      "description": "Top Reinforcement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "top_x_no": {
+            "type": "string",
+            "description": "X No.",
+            "default": 6,
+            "minimum": 2,
+            "maximum": 200
+          },
+          "top_x_cogs": {
+            "type": "string",
+            "description": "X with COGs",
+            "default": true
+          },
+          "top_x_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "top_z_no": {
+            "type": "string",
+            "description": "Z No.",
+            "default": 6,
+            "minimum": 2,
+            "maximum": 200
+          },
+          "top_z_cogs": {
+            "type": "string",
+            "description": "Z with COGs",
+            "default": true
+          },
+          "top_z_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          }
+        }
+      }
+    },
+    "col_reinforcement_table": {
+      "type": "array",
+      "description": "Column Reinforcement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "x_no": {
+            "type": "string",
+            "description": "X No.",
+            "default": 2,
+            "minimum": 2,
+            "maximum": 50
+          },
+          "z_no": {
+            "type": "string",
+            "description": "Z No.",
+            "default": 2,
+            "minimum": 2,
+            "maximum": 50
+          },
+          "cogs": {
+            "type": "string",
+            "description": "With COGS",
+            "default": true
+          }
+        }
+      }
+    },
+    "bearing_design_method": {
+      "type": "string",
+      "description": "Bearing Capacity Analysis. Method for bearing capacity analysis.",
+      "enum": [
+        "elastic",
+        "plastic"
+      ],
+      "x-enumLabels": [
+        "Elastic in SLS",
+        "Plastic at ULS"
+      ],
+      "default": "elastic"
+    },
+    "q_a": {
+      "type": "number",
+      "description": "Bearing Capacity (qa). Symbol: q_{a}. Units: kPa. Soil allowable bearing capacity. ",
+      "default": 500,
+      "minimum": 25,
+      "maximum": 5000
+    },
+    "q_u": {
+      "type": "number",
+      "description": "Bearing Capacity (qu). Symbol: q_{u}. Units: kPa. Soil ultimate bearing capacity.",
+      "default": 800,
+      "minimum": 25,
+      "maximum": 10000
+    },
+    "consider_soil_above_foundation": {
+      "type": "boolean",
+      "description": "Consider soil above foundation?. Use this option with care for extreme cases like footings with uplift forces.",
+      "default": false
+    },
+    "phi_g": {
+      "type": "number",
+      "description": "Reduction Factor (ϕg). Symbol: ϕ_g. Geotechnical strength reduction factor. ",
+      "default": 0.5,
+      "minimum": 0.3,
+      "maximum": 1
+    },
+    "cohesion": {
+      "type": "number",
+      "description": "Soil Characteristic Cohesion (c). Symbol: c. Units: kPa. Soil cohesion (adhesion) resistance. ",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 200
+    },
+    "friction_angle": {
+      "type": "number",
+      "description": "Soil Characteristic Friction Angle (ϕf). Symbol: ϕ_{f}. Units: °. Characteristic soil internal friction angle. ",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 60
+    },
+    "soil_unit_weight": {
+      "type": "number",
+      "description": "γs. Symbol: γs. Units: kN/m3. Soil unit weight.",
+      "default": 16,
+      "minimum": 10,
+      "maximum": 30
+    },
+    "shear_calc_method": {
+      "type": "string",
+      "description": "Shear Calculation Method. Shear calculation method to be used. Further information is provided in the Documentation.",
+      "enum": [
+        "simplified",
+        "general"
+      ],
+      "x-enumLabels": [
+        "Simplified",
+        "General"
+      ],
+      "default": "simplified"
+    },
+    "shear_force_application_point": {
+      "type": "string",
+      "description": "Shear Force Application Point. Point of application of the horizontal component of the applied forces.",
+      "enum": [
+        "bottom",
+        "top"
+      ],
+      "x-enumLabels": [
+        "Pedestal Bottom",
+        "Pedestal Top"
+      ],
+      "default": "bottom"
+    },
+    "report_detail": {
+      "type": "string",
+      "description": "Report Detail. Level of detail in the report. Short: only final results. Detailed: including intermediate calculations.",
+      "enum": [
+        false,
+        true
+      ],
+      "x-enumLabels": [
+        "Short",
+        "Detailed"
+      ],
+      "default": false
+    },
+    "graphics_table": {
+      "type": "array",
+      "description": "Graphics",
+      "items": {
+        "type": "object",
+        "properties": {
+          "elevation": {
+            "type": "string",
+            "description": "Elevation",
+            "default": "X",
+            "enum": [
+              "X",
+              "Z"
+            ]
+          },
+          "footing_dims": {
+            "type": "string",
+            "description": "Footing Dimensions",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_reinforcement": {
+            "type": "string",
+            "description": "Footing Reinforcement",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_levels": {
+            "type": "string",
+            "description": "Levels",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_loading": {
+            "type": "string",
+            "description": "Column Loading",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "display_load_case": {
+            "type": "string",
+            "description": "Display Load Case",
+            "default": "G",
+            "enum": [
+              "G",
+              "Q",
+              "W",
+              "S",
+              "E"
+            ]
+          }
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "const": "8000-as3600-pad-footing-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "footing_width",
+    "footing_length",
+    "col_material",
+    "col_shape",
+    "col_diameter",
+    "col_width",
+    "col_length",
+    "base_plate_width",
+    "base_plate_length",
+    "col_height",
+    "col_x",
+    "col_z",
+    "punching_overhang_factor",
+    "concrete_strength",
+    "unit_weight",
+    "max_aggregate_size",
+    "concrete_fabrication",
+    "concrete_type",
+    "steel_strength",
+    "ductility_class",
+    "top_cover",
+    "btm_cover",
+    "top_reinforcement",
+    "bearing_design_method",
+    "q_a",
+    "q_u",
+    "phi_g",
+    "cohesion",
+    "friction_angle"
+  ]
+}

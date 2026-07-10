@@ -1,0 +1,186 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "ACICompliance": {
+        "value": 0,
+        "label": "ACI 318-19 Compliance",
+        "units": "utility_boolean"
+      },
+      "Stability": {
+        "label": "Stability Checks",
+        "units": "heading"
+      },
+      "Eccentricity": {
+        "label": "Eccentricity Ratio",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "SoilBear": {
+        "label": "Soil Bearing Capacity",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "Overturning": {
+        "label": "Overturning",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "Sliding": {
+        "label": "Sliding",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "Strength": {
+        "label": "Strength Utilization",
+        "units": "heading"
+      },
+      "ShearX": {
+        "label": "Shear (X)",
+        "value": 0.83,
+        "units": "utility"
+      },
+      "ShearZ": {
+        "label": "Shear (Z)",
+        "value": 0.88,
+        "units": "utility"
+      },
+      "Punching": {
+        "label": "Punching Shear",
+        "value": 0.6,
+        "units": "utility"
+      },
+      "X-axis Reinforcement": {
+        "label": "Reinforcement Area (X)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "X-axis Min Reinforcement": {
+        "label": "Minimum Reinforcement Area (X)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "X-axis Max Reinforcement": {
+        "label": "Maximum Reinforcement Area (X)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "Bending X-axis": {
+        "label": "Bending Capacity (X)",
+        "value": 0.6825454267324486,
+        "units": "utility"
+      },
+      "Z-axis Reinforcement": {
+        "label": "Reinforcement Area (Z)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "Z-axis Min Reinforcement": {
+        "label": "Minimum Reinforcement Area (Z)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "Z-axis Max Reinforcement": {
+        "label": "Maximum Reinforcement Area (Z)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "Bending Z-axis": {
+        "label": "Bending Capacity (Z)",
+        "value": 0.7046526076677739,
+        "units": "utility"
+      },
+      "Bearing": {
+        "label": "Bearing Capacity",
+        "value": 0.37691679235796877,
+        "units": "utility"
+      },
+      "Detailing": {
+        "label": "Detailing",
+        "units": "heading"
+      },
+      "Reinforcement (X)": {
+        "label": "Reinforcement (X)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Reinforcement (Z)": {
+        "label": "Reinforcement (Z)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Dowels Reinforcement": {
+        "label": "Dowels Reinforcement",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "X-axis Bars Spacing": {
+        "label": "Bar Spacing (X)",
+        "units": "custom_box",
+        "value": "FAIL",
+        "color": "#DB2828",
+        "paid_only": true
+      },
+      "Z-axis Bars Spacing": {
+        "label": "Bar Spacing (Z)",
+        "units": "custom_box",
+        "value": "FAIL",
+        "color": "#DB2828",
+        "paid_only": true
+      },
+      "X-axis Dev Length": {
+        "label": "Development Length (X)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Z-axis Dev Length": {
+        "label": "Development Length (Z)",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Min Height": {
+        "label": "Footing Height Check",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

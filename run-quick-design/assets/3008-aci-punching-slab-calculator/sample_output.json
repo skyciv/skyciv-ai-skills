@@ -1,0 +1,21 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "ACI318Compliance": {
+        "label": "ACI 318 Compliance",
+        "value": 1,
+        "units": "utility_boolean"
+      },
+      "Punching Shear at Perimeter Near Column Face": {
+        "label": "Punching Shear at Perimeter Near Column Face",
+        "value": 0.78,
+        "units": "utility"
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

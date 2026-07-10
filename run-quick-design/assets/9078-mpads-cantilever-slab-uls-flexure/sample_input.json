@@ -1,0 +1,23 @@
+{
+  "f_c": 21,
+  "f_y": 275,
+  "L": 1500,
+  "h": 100,
+  "cc": 40,
+  "db_1": 12,
+  "db_2": 12,
+  "spa_inc": 25,
+  "U_D": 0.6,
+  "U_L": 1.9,
+  "Ø": 0.9,
+  "uid": "9078-mpads-cantilever-slab-uls-flexure",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

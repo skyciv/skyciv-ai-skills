@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Italfaber - Steel Handbook",
+  "description": "Steel Handbook Calculations",
+  "type": "object",
+  "properties": {
+    "rect_image": {
+      "type": "string",
+      "description": "rect_image. Image showing Load on the Profile"
+    },
+    "L": {
+      "type": "number",
+      "description": "Lunghezza. Units: m. Lunghezza",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Q_t": {
+      "type": "number",
+      "description": "Carico totale. Units: kg. Carico totale applicato",
+      "default": 3000,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "flim": {
+      "type": "number",
+      "description": "Limite di flessione. Symbol: f_{lim}. Limite di flessione consentito",
+      "default": 200,
+      "minimum": 0
+    },
+    "S": {
+      "type": "string",
+      "description": "Tipo di Acciaio. Units: MPa. Tipo di Acciaio",
+      "enum": [
+        "235",
+        "275",
+        "355"
+      ],
+      "x-enumLabels": [
+        "235",
+        "275",
+        "355"
+      ],
+      "default": "355"
+    },
+    "gamma_m": {
+      "type": "string",
+      "description": "γm. Fattore di sicurezza sui materiali",
+      "enum": [
+        "1",
+        "1.05",
+        "1.15",
+        "1.5"
+      ],
+      "x-enumLabels": [
+        "1",
+        "1.05",
+        "1.15",
+        "1.5"
+      ],
+      "default": "1.15"
+    },
+    "gamma_g": {
+      "type": "string",
+      "description": "γg. Fattore di sicurezza sui carichi permanenti",
+      "enum": [
+        "1",
+        "1.3",
+        "1.35",
+        "1.4"
+      ],
+      "x-enumLabels": [
+        "1",
+        "1.3",
+        "1.35",
+        "1.4"
+      ],
+      "default": "1"
+    },
+    "gamma_q": {
+      "type": "string",
+      "description": "γq. Fattore di sicurezza sui carichi accidnetali",
+      "enum": [
+        "1.4",
+        "1.45",
+        "1.5",
+        "1.6"
+      ],
+      "x-enumLabels": [
+        "1.4",
+        "1.45",
+        "1.5",
+        "1.6"
+      ],
+      "default": "1.4"
+    },
+    "E": {
+      "type": "number",
+      "description": "Modulo di elasticità. Symbol: E. Units: kg/cm2. Modulo di elasticità",
+      "default": 2100000,
+      "minimum": 0
+    },
+    "rect_images": {
+      "type": "string",
+      "description": "rect_images"
+    },
+    "F": {
+      "type": "string",
+      "description": "Famiglia. Famiglia",
+      "enum": [
+        "LQ",
+        "PO",
+        "PV",
+        "LT",
+        "IPN",
+        "IPE",
+        "HE",
+        "Q",
+        "RV",
+        "RO",
+        "UPN",
+        "L",
+        "LO",
+        "LV"
+      ],
+      "x-enumLabels": [
+        "Laminati Quadri",
+        "Piatti orizzontali",
+        "Piatti verticali",
+        "Laminati tondi",
+        "IPN",
+        "IPE",
+        "HE",
+        "Q",
+        "R verticale",
+        "R orizzontale",
+        "UPN",
+        "L",
+        "L orizzontali",
+        "L veritcali"
+      ],
+      "default": "LQ"
+    },
+    "uid": {
+      "type": "string",
+      "const": "9005-italfaber-steel-profile-load-verification",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

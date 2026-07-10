@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1992-1-2 Fire Resistance Design",
+  "description": "Design reinforced concrete sections for fire action as per EN 1993-1-2.",
+  "type": "object",
+  "properties": {
+    "rect_image": {
+      "type": "string",
+      "description": "rect_image. Image"
+    },
+    "round_image": {
+      "type": "string",
+      "description": "round_image. Image"
+    },
+    "R": {
+      "type": "string",
+      "description": "Fire Duration. Required fire resistance time",
+      "enum": [
+        "R30",
+        "R60",
+        "R90",
+        "R120",
+        "R240"
+      ],
+      "x-enumLabels": [
+        "R30",
+        "R60",
+        "R90",
+        "R120",
+        "R240"
+      ],
+      "default": "R60"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Section Shape. Section shape",
+      "enum": [
+        "Rectangular",
+        "Circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "Rectangular"
+    },
+    "H": {
+      "type": "number",
+      "description": "Height. Units: mm. Height of the section",
+      "default": 500,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "B": {
+      "type": "number",
+      "description": "Width. Units: mm. Width of the section",
+      "default": 400,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "D": {
+      "type": "number",
+      "description": "Diameter. Units: mm. Height of the section",
+      "default": 400,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Cb1": {
+      "type": "number",
+      "description": "Cover Cb. Units: mm. Concrete cover",
+      "default": 35,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "num_x": {
+      "type": "number",
+      "description": "Num. of Rebar along X. Rebar quantity between corners along X axis",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "num_y": {
+      "type": "number",
+      "description": "Num. of Rebar along Y. Rebar quantity between corners along Y axis",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "d_c": {
+      "type": "number",
+      "description": "Rebar d at Corners. Units: mm. Corner Rebar diameter",
+      "default": 16,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "d_s": {
+      "type": "number",
+      "description": "Rebar d along Sides. Units: mm. Rebar diameter between corners along sides",
+      "default": 16,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Cb2": {
+      "type": "number",
+      "description": "Cover Cb. Units: mm. Concrete cover",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "num": {
+      "type": "number",
+      "description": "Num. of Rebar. Rebar Quantity",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "d": {
+      "type": "number",
+      "description": "Rebar d. Units: mm. Rebar Diameter",
+      "default": 16,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "fc": {
+      "type": "number",
+      "description": "Concrete Strength. Units: MPa. Concrete compressive strength",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "fs": {
+      "type": "number",
+      "description": "Rebar Yielding. Units: MPa. Reber yielding",
+      "default": 500,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "N": {
+      "type": "number",
+      "description": "Axial N. Units: kN. Axial Force (sign + makes compression)",
+      "default": 600,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Bending MX. Units: kN-m. Bending about X axis (sign + makes top section fiber compressed)",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "My": {
+      "type": "number",
+      "description": "Bending MY. Units: kN-m. Bending about Y axis (sign + makes right section fiber compressed)",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "3004-fire-resistance-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

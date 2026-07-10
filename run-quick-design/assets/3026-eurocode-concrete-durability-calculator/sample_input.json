@@ -1,0 +1,25 @@
+{
+  "workingLife": "50",
+  "corrossion_environment": "X0",
+  "attack_environment": "X0",
+  "slabGeometry": false,
+  "unevenSurface": false,
+  "concrete_strength_class": "25",
+  "concrteteProtection": false,
+  "specialQuality": false,
+  "largeAggregate": false,
+  "reinforcement_type": "bar",
+  "reinforcement_material": "normal",
+  "max_reinforcement_diameter": 20,
+  "annex": "eurocode",
+  "current_unit_system": "",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "3026-eurocode-concrete-durability-calculator"
+}

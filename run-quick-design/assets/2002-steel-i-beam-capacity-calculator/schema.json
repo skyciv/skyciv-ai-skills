@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Steel I-Beam Design",
+  "description": "Design steel i-beams in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "DM": {
+      "type": "string",
+      "description": "Design Method",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "LRFD"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions or select a shape from our library.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "d": {
+      "type": "number",
+      "description": "Depth (D). Units: in. Total section depth.",
+      "default": 10.1,
+      "minimum": 1,
+      "maximum": 200
+    },
+    "bt": {
+      "type": "number",
+      "description": "Width (Bt). Units: in. Total section width.",
+      "default": 8.02,
+      "minimum": 1,
+      "maximum": 200
+    },
+    "tt": {
+      "type": "number",
+      "description": "Flange Thickness (tt). Units: in. Flange thickness for the section.",
+      "default": 0.62,
+      "minimum": 0.05,
+      "maximum": 10
+    },
+    "tw": {
+      "type": "number",
+      "description": "Web Thickness (tw). Units: in. Web thickness for the section.",
+      "default": 0.35,
+      "minimum": 0.05,
+      "maximum": 10
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Yield Stress (Fy). Symbol: F_{y}. Units: ksi. Steel yield stress.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "Fu": {
+      "type": "number",
+      "description": "Ultimate Stress (Fu). Symbol: F_{u}. Units: ksi. Steel ultimate stress.",
+      "default": 65,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "lz": {
+      "type": "number",
+      "description": "Span (Lz). Units: ft. Strong geometric axis unbraced length.",
+      "default": 30,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "ly": {
+      "type": "number",
+      "description": "Span (Ly). Units: ft. Weak geometric axis unbraced length.",
+      "default": 15,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "kz": {
+      "type": "number",
+      "description": "Effective Length Factor (kz). Strong geometric axis effective length factor.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "ky": {
+      "type": "number",
+      "description": "Effective Length Factor (ky). Weak geometric axis effective length factor.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "lb": {
+      "type": "number",
+      "description": "Unbraced Lateral Length (Lb). Units: ft. Unsupported length for lateral buckling.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "lt": {
+      "type": "number",
+      "description": "Unbraced Torsional Length (Lt). Symbol: L_t. Units: ft. Unsupported length for torsional buckling.",
+      "default": 30,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "Cb": {
+      "type": "number",
+      "description": "Torsional Buckling Factor (Cb). Lateral torsional buckling modification factor for non-uniform moment diagrams.",
+      "default": 1.14,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "Puc": {
+      "type": "number",
+      "description": "Axial Compression (Puc). Units: kip. Axial Compression.",
+      "default": 120,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Put": {
+      "type": "number",
+      "description": "Axial Tension (Put). Units: kip. Axial Tension.",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Vuz": {
+      "type": "number",
+      "description": "Shear (Vuz). Units: kip. Shear force about minor axis. ",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Vuy": {
+      "type": "number",
+      "description": "Shear (Vuy). Units: kip. Shear force about major axis. ",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Muz": {
+      "type": "number",
+      "description": "Major Bending Moment (Muz). Units: kip-ft. Moment about major axis. ",
+      "default": 70,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "Muy": {
+      "type": "number",
+      "description": "Minor Bending Moment (Muy). Units: kip-ft. Moment about minor axis. ",
+      "default": 70,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2002-steel-i-beam-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

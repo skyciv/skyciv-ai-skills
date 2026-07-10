@@ -1,0 +1,520 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Strip Footing Design",
+  "description": "Design reinforced concrete strip footings in accordance with ACI 318-19.",
+  "type": "object",
+  "properties": {
+    "footing_name": {
+      "type": "string",
+      "description": "Footing Designation. Symbol: Name",
+      "default": "SF1"
+    },
+    "footing_width": {
+      "type": "number",
+      "description": "Width. Symbol: B. Units: ft",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 300
+    },
+    "footing_depth": {
+      "type": "number",
+      "description": "Foundation Base Depth. Symbol: Df. Units: ft",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "footing_height": {
+      "type": "number",
+      "description": "Base Height. Symbol: H. Units: in",
+      "default": 16,
+      "minimum": 6,
+      "maximum": 80
+    },
+    "footing_material": {
+      "type": "string",
+      "description": "Material. Symbol: Mat_{footing}",
+      "enum": [
+        "rcfooting",
+        "massconcretefooting"
+      ],
+      "x-enumLabels": [
+        "Reinforced Concrete",
+        "Mass Concrete"
+      ],
+      "default": "rcfooting"
+    },
+    "f_c": {
+      "type": "number",
+      "description": "Specified Compressive Strength. Symbol: f'_c. Units: ksi",
+      "default": 3,
+      "minimum": 2.5,
+      "maximum": 12
+    },
+    "unit_weight": {
+      "type": "number",
+      "description": "Unit Weight. Symbol: w_c. Units: lb/ft3",
+      "default": 150,
+      "minimum": 90,
+      "maximum": 200
+    },
+    "max_aggregate_size": {
+      "type": "number",
+      "description": "Max. Size Of Aggregate. Symbol: d_{agg}. Units: in",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 4
+    },
+    "cover": {
+      "type": "number",
+      "description": "Clear Cover. Symbol: C_c. Units: in",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 6
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Specified Yield Strength. Symbol: f_{y}. Units: ksi",
+      "default": 60,
+      "minimum": 40,
+      "maximum": 100
+    },
+    "reinforcement_type": {
+      "type": "string",
+      "description": "Type. Symbol: Type",
+      "enum": [
+        "normal",
+        "Epoxy"
+      ],
+      "x-enumLabels": [
+        "Normal",
+        "Epoxy-coated"
+      ],
+      "default": "normal"
+    },
+    "main_bar_size": {
+      "type": "string",
+      "description": "Main Bar Size. Symbol: d_{b,main bar}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "5"
+    },
+    "s_main_bar": {
+      "type": "number",
+      "description": "Main Bar Spacing (center-to-center). Symbol: s_{main bar}. Units: in",
+      "default": 7.5,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "main_bars_with_hooks": {
+      "type": "boolean",
+      "description": "Use Main Bars with Hooks?",
+      "default": false
+    },
+    "secondary_bar_size": {
+      "type": "string",
+      "description": "Transverse Bar Size. Symbol: d_{b.secondary bar}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "5"
+    },
+    "transverse_bar_no": {
+      "type": "number",
+      "description": "Number Of Transverse Bars. Symbol: No.. Units: No.",
+      "default": 7,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "wall_material": {
+      "type": "string",
+      "description": "Material. Symbol: Mat_{wall}",
+      "enum": [
+        "rcwall",
+        "masonrywall"
+      ],
+      "x-enumLabels": [
+        "Reinforced Concrete",
+        "Masonry"
+      ],
+      "default": "rcwall"
+    },
+    "wall_width": {
+      "type": "number",
+      "description": "Width. Symbol: b_{wall}. Units: in",
+      "default": 9,
+      "minimum": 4,
+      "maximum": 50
+    },
+    "wall_eccentricity": {
+      "type": "number",
+      "description": "Wall Eccentricity. Symbol: e_{wall}. Units: in",
+      "default": 0,
+      "minimum": -100,
+      "maximum": 100
+    },
+    "wall_bar_size": {
+      "type": "string",
+      "description": "Wall Bar Size. Symbol: d_{b.wall}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "4"
+    },
+    "s_wall_bar": {
+      "type": "number",
+      "description": "Wall Bar Spacing. Symbol: s_{wall.bars}. Units: in",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "double_layer": {
+      "type": "boolean",
+      "description": "Double Layer of Wall Reinforcement?. Display double layer of wall reinforcement for drawing purposes",
+      "default": false
+    },
+    "use_dowels": {
+      "type": "boolean",
+      "description": "Use Dowels for Wall Reinforcement?",
+      "default": false
+    },
+    "dowel_bar_size": {
+      "type": "string",
+      "description": "Dowel Bar Size. Symbol: d_{b.wall}",
+      "enum": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "x-enumLabels": [
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10"
+      ],
+      "default": "4"
+    },
+    "s_dowel": {
+      "type": "number",
+      "description": "Dowels Bar Spacing. Symbol: s_{dowels}. Units: in",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "dowels_with_hooks": {
+      "type": "boolean",
+      "description": "Use Dowels with Hooks?",
+      "default": true
+    },
+    "q_a": {
+      "type": "number",
+      "description": "Allowable Bearing Capacity. Symbol: q_{a}. Units: ksf",
+      "default": 7,
+      "minimum": 0.5,
+      "maximum": 300
+    },
+    "phi_footing_soil": {
+      "type": "number",
+      "description": "Foundation-Soil Friction Angle. Symbol: &#966. Units: °",
+      "default": 20,
+      "minimum": 10,
+      "maximum": 45
+    },
+    "consider_soil_above_foundation": {
+      "type": "boolean",
+      "description": "Consider Soil Above Foundation?",
+      "default": false
+    },
+    "consider_foundation_weight": {
+      "type": "boolean",
+      "description": "Consider Foundation Weight?",
+      "default": false
+    },
+    "soil_unit_weight": {
+      "type": "number",
+      "description": "Soil Unit Weight (ws). Symbol: w_s. Units: lb/ft3",
+      "default": 100,
+      "minimum": 50,
+      "maximum": 150
+    },
+    "min_overturning_SF": {
+      "type": "number",
+      "description": "Min. Overturning SF. Symbol: SF_{overturning}",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 4
+    },
+    "min_sliding_SF": {
+      "type": "number",
+      "description": "Min. Sliding SF. Symbol: SF_{sliding}",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 4
+    },
+    "loading_table": {
+      "type": "array",
+      "description": "Loads",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Dead"
+          },
+          "case": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "DL",
+            "enum": [
+              "DL",
+              "LL",
+              "WS"
+            ]
+          },
+          "N": {
+            "type": "number",
+            "description": "N (kip/ft)",
+            "default": 25,
+            "minimum": 0,
+            "maximum": 200
+          },
+          "M": {
+            "type": "number",
+            "description": "Mz (kip-ft/ft)",
+            "default": 0,
+            "minimum": -100,
+            "maximum": 100
+          },
+          "V": {
+            "type": "number",
+            "description": "Vx (kip/ft)",
+            "default": 0,
+            "minimum": -100,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    "lc_table": {
+      "type": "array",
+      "description": "Load Combinations. Symbol: lc_{table}",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lcname": {
+            "type": "string",
+            "description": "LC Name "
+          },
+          "dlfactor": {
+            "type": "string",
+            "description": "Dead Load Factor",
+            "default": 1,
+            "minimum": 0
+          },
+          "llfactor": {
+            "type": "string",
+            "description": "Live Load Factor",
+            "default": 1,
+            "minimum": 0
+          },
+          "wsfactor": {
+            "type": "string",
+            "description": "Wind/Seismic Load Factor",
+            "default": 1,
+            "minimum": -5
+          }
+        }
+      }
+    },
+    "show_material": {
+      "type": "string",
+      "description": "Wall Material. Show / hide wall material.",
+      "enum": [
+        true,
+        false
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": true
+    },
+    "footing_dims": {
+      "type": "string",
+      "description": "Dimensions. Show / hide footing and wall dimensions on graphic diagram.",
+      "enum": [
+        true,
+        false
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": true
+    },
+    "show_loading": {
+      "type": "number",
+      "description": "Show Load. Show / hide wall loads on graphic diagram.",
+      "enum": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "x-enumLabels": [
+        "Dead load",
+        "Live load",
+        "Wind/seismic load",
+        "Hide"
+      ],
+      "default": 1
+    },
+    "show_reinforcement": {
+      "type": "string",
+      "description": "Reinforcement. Show / hide reinforcement on graphic diagram.",
+      "enum": [
+        true,
+        false
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": true
+    },
+    "uid": {
+      "type": "string",
+      "const": "8001-aci318-strip-footing-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "footing_width",
+    "footing_depth",
+    "footing_height",
+    "footing_material",
+    "f_c",
+    "unit_weight",
+    "max_aggregate_size",
+    "cover",
+    "f_y",
+    "reinforcement_type",
+    "main_bar_size",
+    "s_main_bar",
+    "secondary_bar_size",
+    "transverse_bar_no",
+    "wall_material",
+    "wall_width",
+    "wall_eccentricity",
+    "wall_bar_size",
+    "s_wall_bar",
+    "dowel_bar_size",
+    "s_dowel",
+    "q_a",
+    "phi_footing_soil",
+    "soil_unit_weight",
+    "min_overturning_SF",
+    "min_sliding_SF"
+  ]
+}

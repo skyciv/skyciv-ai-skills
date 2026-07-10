@@ -1,0 +1,19 @@
+{
+  "exposure": "B",
+  "V": 110,
+  "h": 30,
+  "B": 30,
+  "L": 30,
+  "n1": 1,
+  "beta": 0.05,
+  "uid": "7004-asce722-gust-factor-imperial",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

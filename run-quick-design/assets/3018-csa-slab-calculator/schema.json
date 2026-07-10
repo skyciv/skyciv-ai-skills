@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSA A23.3-14 Concrete Slab Design",
+  "description": "Calculate reinforced concrete slab resistance as per CSA A23.3-14.",
+  "type": "object",
+  "properties": {
+    "standard": {
+      "type": "string",
+      "description": "Standard. Symbol: Standard. Standard used for calculations.",
+      "enum": [
+        "CSA A23.4-14"
+      ],
+      "x-enumLabels": [
+        "CSA A23.4-14"
+      ],
+      "default": "CSA A23.4-14"
+    },
+    "cat_input": {
+      "type": "string",
+      "description": "Category. Symbol: Category. Slab category.",
+      "enum": [
+        "Slab",
+        "Wall",
+        "Foundation"
+      ],
+      "x-enumLabels": [
+        "Slab",
+        "Wall",
+        "Foundation"
+      ],
+      "default": "Slab"
+    },
+    "h_input": {
+      "type": "number",
+      "description": "Thickness. Symbol: h. Units: mm. Overall member thickness.",
+      "default": 200,
+      "minimum": 100,
+      "maximum": 5000
+    },
+    "f_pc_input": {
+      "type": "number",
+      "description": "Concrete strength. Symbol: f_{pc}. Units: MPa. Concrete compressive strength (fpc). ",
+      "default": 25,
+      "minimum": 10,
+      "maximum": 60
+    },
+    "rebar_input": {
+      "type": "string",
+      "description": "Rebar. Symbol: Rebar. Size of rebar.",
+      "enum": [
+        "none",
+        "10M",
+        "15M",
+        "20M",
+        "25M",
+        "30M",
+        "35M"
+      ],
+      "x-enumLabels": [
+        "none",
+        "10M",
+        "15M",
+        "20M",
+        "25M",
+        "30M",
+        "35M"
+      ],
+      "default": "15M"
+    },
+    "s_input": {
+      "type": "number",
+      "description": "Spacing. Symbol: s. Units: mm. On center spacing between rebar.",
+      "default": 300,
+      "minimum": 10,
+      "maximum": 1000
+    },
+    "f_y_input": {
+      "type": "number",
+      "description": "Steel strength. Symbol: f_y. Units: MPa. Steel tensile strength.",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 400
+    },
+    "cover_input": {
+      "type": "number",
+      "description": "Cover. Symbol: cover. Units: mm. Clear concrete cover (exterior of rebar to slab face).",
+      "default": 40,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "d_input": {
+      "type": "number",
+      "description": "Lever arm. Symbol: d. Units: mm. Internal lever arm.",
+      "default": 152.5,
+      "minimum": 50,
+      "maximum": 5000
+    },
+    "m_f_input": {
+      "type": "number",
+      "description": "mf. Symbol: m_{f}. Units: kN. Distributed factored moment (kNm/m = kN).",
+      "default": 27.5,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "v_f_input": {
+      "type": "number",
+      "description": "vf. Symbol: v_{f}. Units: kN/m. Distributed factored shear.",
+      "default": 65.3,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "3018-csa-slab-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

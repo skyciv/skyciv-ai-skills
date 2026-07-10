@@ -1,0 +1,417 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSA A23.3:24 Punching Shear Design",
+  "description": "Check slab punching shear in accordance with CSA A23.3:24",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Label. Symbol: Label",
+      "default": "Design 1"
+    },
+    "c1": {
+      "type": "number",
+      "description": "Column Length. Symbol: c_{1}. Units: mm. Column Length in the Z-direction.",
+      "default": 500,
+      "minimum": 100,
+      "maximum": 2500
+    },
+    "c2": {
+      "type": "number",
+      "description": "Column Width. Symbol: c_{2}. Units: mm. Column Width in the X-direction.",
+      "default": 500,
+      "minimum": 100,
+      "maximum": 2500
+    },
+    "location": {
+      "type": "string",
+      "description": "Location. Symbol: -",
+      "enum": [
+        "interior",
+        "edge",
+        "corner"
+      ],
+      "x-enumLabels": [
+        "Interior",
+        "Edge",
+        "Corner"
+      ],
+      "default": "interior"
+    },
+    "x_edge": {
+      "type": "number",
+      "description": "Edge Distance (X-axis). Symbol: x_{edge}. Units: mm. Distance from the nearest column face to the nearest edge in the X-direction.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 2500
+    },
+    "z_edge": {
+      "type": "number",
+      "description": "Edge Distance (Z-axis). Symbol: z_{edge}. Units: mm. Distance from the nearest column face to the nearest edge in the Z-direction.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 2500
+    },
+    "h": {
+      "type": "number",
+      "description": "Thickness. Symbol: h. Units: mm. Thickness of the slab.",
+      "default": 300,
+      "minimum": 120,
+      "maximum": 1200
+    },
+    "include_openings": {
+      "type": "boolean",
+      "description": "Include Openings. Consider nearby openings.",
+      "default": false
+    },
+    "openings_table": {
+      "type": "array",
+      "description": "Openings Table",
+      "items": {
+        "type": "object",
+        "properties": {
+          "num_id": {
+            "type": "string",
+            "description": "Item",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 10
+          },
+          "shape": {
+            "type": "string",
+            "description": "Shape",
+            "default": "rectangle",
+            "enum": [
+              "rectangle",
+              "circle"
+            ]
+          },
+          "x_offset": {
+            "type": "number",
+            "description": "X",
+            "default": 2000,
+            "minimum": -12500,
+            "maximum": 12500
+          },
+          "z_offset": {
+            "type": "number",
+            "description": "Z",
+            "default": 2000,
+            "minimum": -12500,
+            "maximum": 12500
+          },
+          "x_dimension": {
+            "type": "number",
+            "description": "X-Side",
+            "default": 500,
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "z_dimension": {
+            "type": "number",
+            "description": "Z-Side",
+            "default": 500,
+            "minimum": 0,
+            "maximum": 5000
+          }
+        }
+      }
+    },
+    "w_c": {
+      "type": "number",
+      "description": "Unit Weight. Symbol: γ_{c}. Units: kg/m³. Unit weight of concrete.",
+      "default": 2400,
+      "minimum": 1400,
+      "maximum": 3200
+    },
+    "fc": {
+      "type": "number",
+      "description": "Compressive Strength. Symbol: f'_{c}. Units: MPa. Compressive strength of concrete.",
+      "default": 27.5,
+      "minimum": 15,
+      "maximum": 100
+    },
+    "c": {
+      "type": "number",
+      "description": "Clear Cover. Symbol: c_{c}. Units: mm",
+      "default": 25,
+      "minimum": 15,
+      "maximum": 200
+    },
+    "db": {
+      "type": "number",
+      "description": "Main Reinforcement Diameter. Symbol: d_{b}",
+      "enum": [
+        11.3,
+        16,
+        19.5,
+        25.2,
+        29.9,
+        35.7,
+        43.7,
+        56.4
+      ],
+      "x-enumLabels": [
+        "10M",
+        "15M",
+        "20M",
+        "25M",
+        "30M",
+        "35M",
+        "45M",
+        "55M"
+      ],
+      "default": 11.3
+    },
+    "shear_reinforcement": {
+      "type": "boolean",
+      "description": "Shear Reinforcement. Consider the Strength of Shear Reinforcement.",
+      "default": false
+    },
+    "fyv": {
+      "type": "number",
+      "description": "Reinforcement Yield Strength. Symbol: f_{yv}. Units: MPa",
+      "default": 400,
+      "minimum": 275,
+      "maximum": 400
+    },
+    "sr_type": {
+      "type": "string",
+      "description": "Type of Shear Reinforcement. Symbol: -",
+      "enum": [
+        "stirrups",
+        "headed_studs"
+      ],
+      "x-enumLabels": [
+        "Stirrups",
+        "Headed Studs"
+      ],
+      "default": "stirrups"
+    },
+    "dbt": {
+      "type": "number",
+      "description": "Shear Reinforcement Diameter. Symbol: d_{bt}",
+      "enum": [
+        9.5,
+        12.7,
+        16,
+        19.5
+      ],
+      "x-enumLabels": [
+        "3/8\" (9.5)",
+        "1/2\" (12.7)",
+        "5/8\" (16.0)",
+        "3/4\" (19.5)"
+      ],
+      "default": 9.5
+    },
+    "db_stirrups": {
+      "type": "number",
+      "description": "Diameter of Shear Reinforcement. Symbol: d_{b}",
+      "enum": [
+        11.3,
+        16,
+        19.5
+      ],
+      "x-enumLabels": [
+        "10M",
+        "15M",
+        "20M"
+      ],
+      "default": 11.3
+    },
+    "s": {
+      "type": "number",
+      "description": "Spacing. Symbol: s. Units: mm. Studs/stirrups spacing.",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 300
+    },
+    "g": {
+      "type": "number",
+      "description": "Transverse Spacing. Symbol: g. Units: mm. Distance between adjacent legs of stirrups.",
+      "default": 100,
+      "minimum": 25,
+      "maximum": 300
+    },
+    "so": {
+      "type": "number",
+      "description": "First Stud/Strirrup Distance. Symbol: s_o. Units: mm. Distance from the column face to the first stud or stirrup.",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "n_legs": {
+      "type": "number",
+      "description": "Number. Symbol: n_{legs}. Number of studs/rail or stirrups legs.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "n_x": {
+      "type": "number",
+      "description": "Stirrups in X-axis. Symbol: n_x",
+      "default": 3,
+      "minimum": 2,
+      "maximum": 20
+    },
+    "n_z": {
+      "type": "number",
+      "description": "Stirrups in Z-axis. Symbol: n_z",
+      "default": 3,
+      "minimum": 2,
+      "maximum": 20
+    },
+    "Vu": {
+      "type": "number",
+      "description": "Shear Force. Symbol: V_{f}. Units: kN. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 50000
+    },
+    "Mux": {
+      "type": "number",
+      "description": "Bending Moment (X-axis). Symbol: M_{fx}. Units: kN-m. ",
+      "default": 30,
+      "minimum": -1400,
+      "maximum": 1400
+    },
+    "Muz": {
+      "type": "number",
+      "description": "Bending Moment (Z-axis). Symbol: M_{fz}. Units: kN-m. ",
+      "default": 40,
+      "minimum": -1400,
+      "maximum": 1400
+    },
+    "pos_and_neg_moments": {
+      "type": "boolean",
+      "description": "Consider Moments as Positive and Negative?. The analysis will consider the moments as positive and negative, which will affect the stresses.",
+      "default": false
+    },
+    "report_detail": {
+      "type": "string",
+      "description": "Report Detail. Level of detail in the report. Short: only final results. Detailed: including intermediate calculations.",
+      "enum": [
+        false,
+        true
+      ],
+      "x-enumLabels": [
+        "Short",
+        "Detailed"
+      ],
+      "default": false
+    },
+    "graphics_table": {
+      "type": "array",
+      "description": "Graphics",
+      "items": {
+        "type": "object",
+        "properties": {
+          "show_dims": {
+            "type": "string",
+            "description": "Dimensions",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_material": {
+            "type": "string",
+            "description": "Material",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_reinforcement": {
+            "type": "string",
+            "description": "Reinforcement",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_openings": {
+            "type": "string",
+            "description": "Openings",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_axes": {
+            "type": "string",
+            "description": "Axes",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_centerlines": {
+            "type": "string",
+            "description": "Centerlines",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          }
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "const": "3015-csa-punching-slab-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "c1",
+    "c2"
+  ]
+}

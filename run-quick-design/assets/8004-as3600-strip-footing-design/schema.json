@@ -1,0 +1,615 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Strip Footing Design",
+  "description": "Design of strip footings in accordance with AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "footing_name": {
+      "type": "string",
+      "description": "Name. Symbol: Name",
+      "default": "SF1"
+    },
+    "footing_width": {
+      "type": "number",
+      "description": "Width. Symbol: B. Units: mm. Total width of footing.",
+      "default": 1200,
+      "minimum": 400,
+      "maximum": 7000
+    },
+    "footing_depth": {
+      "type": "number",
+      "description": "Footing Depth. Symbol: D. Units: mm. Depth of footing base.",
+      "default": 1500,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "footing_height": {
+      "type": "number",
+      "description": "Footing Height. Symbol: H. Units: mm. The height of the footing base.",
+      "default": 500,
+      "minimum": 200,
+      "maximum": 2000
+    },
+    "wall_material": {
+      "type": "string",
+      "description": "Material. Symbol: Mat_{wall}",
+      "enum": [
+        "concrete",
+        "masonry"
+      ],
+      "x-enumLabels": [
+        "Reinforced Concrete",
+        "Masonry"
+      ],
+      "default": "concrete"
+    },
+    "wall_width": {
+      "type": "number",
+      "description": "Width. Symbol: b_{wall}. Units: mm",
+      "default": 200,
+      "minimum": 50,
+      "maximum": 1500
+    },
+    "wall_eccentricity": {
+      "type": "number",
+      "description": "Wall Eccentricity. Symbol: e_{wall}. Units: mm",
+      "default": 0,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "loading_table": {
+      "type": "array",
+      "description": "Loading",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "default": "Dead"
+          },
+          "case": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "G",
+            "enum": [
+              "G",
+              "Q",
+              "W",
+              "S",
+              "E"
+            ]
+          },
+          "N": {
+            "type": "number",
+            "description": "N (kN)",
+            "default": 500,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "M": {
+            "type": "number",
+            "description": "M (kNm)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          },
+          "V": {
+            "type": "number",
+            "description": "V (kN)",
+            "default": 0,
+            "minimum": -100000,
+            "maximum": 100000
+          }
+        }
+      }
+    },
+    "lc_table": {
+      "type": "array",
+      "description": "Load Combinations. Symbol: lc_{table}",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lcname": {
+            "type": "string",
+            "description": "LC Name "
+          },
+          "type": {
+            "type": "string",
+            "description": "Type",
+            "default": "ULS",
+            "enum": [
+              "ULS",
+              "SLS"
+            ]
+          },
+          "g_factor": {
+            "type": "string",
+            "description": "G Factor",
+            "default": 1,
+            "minimum": 0
+          },
+          "g_factor_stb": {
+            "type": "string",
+            "description": "G Factor (Stability)",
+            "default": 0.9,
+            "minimum": 0
+          },
+          "q_factor": {
+            "type": "string",
+            "description": "Q Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "w_factor": {
+            "type": "string",
+            "description": "W Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "s_factor": {
+            "type": "string",
+            "description": "S Factor",
+            "default": 0,
+            "minimum": 0
+          },
+          "e_factor": {
+            "type": "string",
+            "description": "E Factor",
+            "default": 0,
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "concrete_strength": {
+      "type": "number",
+      "description": "Concrete Strength. Symbol: f'_c. Units: MPa. Concrete characteristic strength in MPa.",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65,
+        80,
+        100
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100"
+      ],
+      "default": 32
+    },
+    "unit_weight": {
+      "type": "number",
+      "description": "Concrete Density. Symbol: ρ. Units: kN/m3",
+      "default": 24,
+      "minimum": 14,
+      "maximum": 30
+    },
+    "max_aggregate_size": {
+      "type": "number",
+      "description": "Max. Size of Aggregate. Symbol: d_g. Units: mm",
+      "default": 20,
+      "minimum": 5,
+      "maximum": 50
+    },
+    "concrete_fabrication": {
+      "type": "string",
+      "description": "Fabrication. Concrete fabrication type.",
+      "enum": [
+        "in_situ",
+        "prefabricated"
+      ],
+      "x-enumLabels": [
+        "In situ",
+        "Prefabricated"
+      ],
+      "default": "in_situ"
+    },
+    "concrete_type": {
+      "type": "string",
+      "description": "Concrete Type. Select between reinforced and unreinforced concrete.",
+      "enum": [
+        "reinforced",
+        "unreinforced"
+      ],
+      "x-enumLabels": [
+        "Reinforced",
+        "Unreinforced"
+      ],
+      "default": "reinforced"
+    },
+    "steel_strength": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Yield strength of reinforcing steel in MPa.",
+      "default": 500,
+      "minimum": 200,
+      "maximum": 700
+    },
+    "ductility_class": {
+      "type": "string",
+      "description": "Ductility Class. Symbol: Class. Ductility class of the reinforcement.",
+      "enum": [
+        "L",
+        "N"
+      ],
+      "x-enumLabels": [
+        "Low (L)",
+        "Normal (N)"
+      ],
+      "default": "N"
+    },
+    "epoxy_coated": {
+      "type": "boolean",
+      "description": "Epoxy Coated Bar. Corrosion resistant reinforcement option.",
+      "default": false
+    },
+    "btm_cover": {
+      "type": "number",
+      "description": "cbot. Symbol: c_{bot}. Units: mm. Concrete cover measured to outside of bottom slab/beam reinforcement. Note, this value is also used for cover to side reinforcement.",
+      "default": 50,
+      "minimum": 20,
+      "maximum": 100
+    },
+    "btm_reinforcement_table": {
+      "type": "array",
+      "description": "Btm & Side Reinforcement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "main_bar_s": {
+            "type": "number",
+            "description": "Main Bar Spacing",
+            "default": 100,
+            "minimum": 10,
+            "maximum": 300
+          },
+          "main_bar_cogs": {
+            "type": "string",
+            "description": "Cogged Ends",
+            "default": true
+          },
+          "main_bar_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "transv_no": {
+            "type": "number",
+            "description": "Transv. Bar Number",
+            "default": 5,
+            "minimum": 2,
+            "maximum": 20
+          },
+          "transv_cogs": {
+            "type": "string",
+            "description": "Cogged Ends",
+            "default": true
+          },
+          "transv_bar_size": {
+            "type": "string",
+            "description": "Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          }
+        }
+      }
+    },
+    "wall_reinforcement_table": {
+      "type": "array",
+      "description": "Wall Reinforcement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "wall_bar_size": {
+            "type": "string",
+            "description": "Wall Bar Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "wall_s": {
+            "type": "number",
+            "description": "Bar Spacing",
+            "default": 100,
+            "minimum": 10,
+            "maximum": 300
+          },
+          "double_layer": {
+            "type": "string",
+            "description": "Double Layer",
+            "default": true
+          },
+          "use_dowels": {
+            "type": "string",
+            "description": "Use Dowels",
+            "default": true
+          },
+          "dowels_size": {
+            "type": "string",
+            "description": "Dowel Size",
+            "default": "12",
+            "enum": [
+              "12",
+              "16",
+              "20",
+              "24",
+              "28",
+              "32",
+              "36",
+              "40"
+            ]
+          },
+          "s_dowels": {
+            "type": "number",
+            "description": " Dowel Spacing.",
+            "default": 100,
+            "minimum": 10,
+            "maximum": 300
+          },
+          "dowels_with_cogs": {
+            "type": "string",
+            "description": "Cogged Ends",
+            "default": true
+          }
+        }
+      }
+    },
+    "bearing_design_method": {
+      "type": "string",
+      "description": "Bearing Capacity Analysis. Method for bearing capacity analysis.",
+      "enum": [
+        "elastic",
+        "plastic"
+      ],
+      "x-enumLabels": [
+        "Elastic in SLS",
+        "Plastic at ULS"
+      ],
+      "default": "elastic"
+    },
+    "q_a": {
+      "type": "number",
+      "description": "Bearing Capacity (qa). Symbol: q_{a}. Units: kPa. Soil allowable bearing capacity. ",
+      "default": 500,
+      "minimum": 25,
+      "maximum": 5000
+    },
+    "q_u": {
+      "type": "number",
+      "description": "Bearing Capacity (qu). Symbol: q_{u}. Units: kPa. Soil ultimate bearing capacity.",
+      "default": 800,
+      "minimum": 25,
+      "maximum": 10000
+    },
+    "consider_soil_above_foundation": {
+      "type": "boolean",
+      "description": "Consider soil above foundation?. Use this option with care for extreme cases like footings with uplift forces.",
+      "default": false
+    },
+    "phi_g": {
+      "type": "number",
+      "description": "Reduction Factor (ϕg). Symbol: ϕ_g. Geotechnical strength reduction factor. ",
+      "default": 0.5,
+      "minimum": 0.3,
+      "maximum": 1
+    },
+    "cohesion": {
+      "type": "number",
+      "description": "Soil Characteristic Cohesion (c). Symbol: c. Units: kPa. Soil cohesion (adhesion) resistance. ",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 200
+    },
+    "friction_angle": {
+      "type": "number",
+      "description": "Soil Characteristic Friction Angle (ϕf). Symbol: ϕ_{f}. Units: °. Characteristic soil internal friction angle. ",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 60
+    },
+    "soil_unit_weight": {
+      "type": "number",
+      "description": "γs. Symbol: γs. Units: kN/m^3. Soil unit weight.",
+      "default": 16,
+      "minimum": 10,
+      "maximum": 30
+    },
+    "shear_calc_method": {
+      "type": "string",
+      "description": "Shear Calculation Method. Shear calculation method to be used. Further information is provided in the Documentation.",
+      "enum": [
+        "simplified",
+        "general"
+      ],
+      "x-enumLabels": [
+        "Simplified",
+        "General"
+      ],
+      "default": "simplified"
+    },
+    "shear_force_application_point": {
+      "type": "string",
+      "description": "Shear Force Application Point. Point of application of the horizontal component of the applied forces.",
+      "enum": [
+        "soil_level",
+        "top"
+      ],
+      "x-enumLabels": [
+        "At soil level",
+        "Top of footing"
+      ],
+      "default": "soil_level"
+    },
+    "report_detail": {
+      "type": "string",
+      "description": "Report Detail. Level of detail in the report. Short: only final results. Detailed: including intermediate calculations.",
+      "enum": [
+        false,
+        true
+      ],
+      "x-enumLabels": [
+        "Short",
+        "Detailed"
+      ],
+      "default": false
+    },
+    "graphics_table": {
+      "type": "array",
+      "description": "Graphics",
+      "items": {
+        "type": "object",
+        "properties": {
+          "footing_dims": {
+            "type": "string",
+            "description": "Footing Dimensions",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_reinforcement": {
+            "type": "string",
+            "description": "Footing Reinforcement",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_levels": {
+            "type": "string",
+            "description": "Levels",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "show_loading": {
+            "type": "string",
+            "description": "Wall Loading",
+            "default": true,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "display_load_case": {
+            "type": "string",
+            "description": "Display Load Case",
+            "default": "G",
+            "enum": [
+              "G",
+              "Q",
+              "W",
+              "S",
+              "E"
+            ]
+          }
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "const": "8004-as3600-strip-footing-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "footing_width",
+    "wall_material",
+    "wall_width",
+    "wall_eccentricity",
+    "concrete_strength",
+    "unit_weight",
+    "max_aggregate_size",
+    "concrete_fabrication",
+    "concrete_type",
+    "steel_strength",
+    "ductility_class",
+    "btm_cover",
+    "bearing_design_method",
+    "q_a",
+    "q_u",
+    "phi_g",
+    "cohesion",
+    "friction_angle"
+  ]
+}

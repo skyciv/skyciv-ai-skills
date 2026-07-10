@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Basic ULS Flexure Check as per Reinforced Concrete Principles Based on ACI 318m",
+  "description": "Basic ULS Flexure Check as per Reinforced Concrete Principles Based on ACI 318m",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image. Diagram of Section"
+    },
+    "f_c": {
+      "type": "number",
+      "description": "Concrete Compressive Strength. Symbol: f'_c. Units: MPa",
+      "default": 28,
+      "minimum": 12.5,
+      "maximum": 100
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Yield Strength of Reinforcing. Symbol: f_y. Units: MPa",
+      "default": 414,
+      "minimum": 200,
+      "maximum": 1000
+    },
+    "b": {
+      "type": "number",
+      "description": "Width of Beam, b. Symbol: b. Units: mm",
+      "default": 200,
+      "minimum": 100,
+      "maximum": 2000
+    },
+    "h": {
+      "type": "number",
+      "description": "Height of Beam, h. Symbol: h. Units: mm",
+      "default": 400,
+      "minimum": 90,
+      "maximum": 2000
+    },
+    "cc": {
+      "type": "number",
+      "description": "Concrete Cover. Symbol: cc. Units: mm",
+      "default": 40,
+      "minimum": 20,
+      "maximum": 100
+    },
+    "d_b": {
+      "type": "number",
+      "description": "Main Reinforcement diameter, db. Symbol: d_b. Main Reinforcement diameter, db",
+      "enum": [
+        10,
+        12,
+        16,
+        20,
+        24,
+        25,
+        28,
+        32,
+        36,
+        40
+      ],
+      "x-enumLabels": [
+        "Ø10",
+        "Ø12",
+        "Ø16",
+        "Ø20",
+        "Ø24",
+        "Ø25",
+        "Ø28",
+        "Ø32",
+        "Ø36",
+        "Ø40"
+      ],
+      "default": 12
+    },
+    "d_s": {
+      "type": "number",
+      "description": "Stirrup Diameter, dst. Symbol: d_s. Stirrup Diameter, dst",
+      "enum": [
+        0,
+        10,
+        12,
+        16,
+        20,
+        24,
+        25
+      ],
+      "x-enumLabels": [
+        "none",
+        "Ø10",
+        "Ø12",
+        "Ø16",
+        "Ø20",
+        "Ø24",
+        "Ø25"
+      ],
+      "default": 10
+    },
+    "M_s": {
+      "type": "number",
+      "description": "ULS Moment Demand, Ms. Symbol: M_s. Units: kNm",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "Ø": {
+      "type": "number",
+      "description": "Reduction Factor. Symbol: Ø",
+      "default": 0.9,
+      "minimum": 0.05,
+      "maximum": 3
+    },
+    "uid": {
+      "type": "string",
+      "const": "9076-mpads-beam-flexure-uls",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

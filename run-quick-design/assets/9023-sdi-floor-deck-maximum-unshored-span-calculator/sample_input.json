@@ -1,0 +1,44 @@
+{
+  "decking_profile": "WR",
+  "decking_gage_standard": 22,
+  "decking_gage_alt": 22,
+  "decking_profile_custom": "[Input Name]",
+  "custom_profile_table": [
+    {
+      "deck_height_custom": 3,
+      "deck_spacing_custom": 12,
+      "deck_gage_custom": 18,
+      "yield_strength_custom": 40,
+      "I_pos_custom": 40,
+      "I_neg_custom": 40,
+      "section_modulus_pos_custom": 0.75,
+      "section_modulus_neg_custom": 0.75,
+      "shear_capacity_custom": 6000,
+      "ext_crippling_A_custom": 300,
+      "ext_crippling_B_custom": 1.5,
+      "int_crippling_A_custom": 500,
+      "int_crippling_B_custom": 1,
+      "deck_weight_custom": 2.5
+    }
+  ],
+  "yield_strength": 40,
+  "end_bearing": 12,
+  "int_bearing": 12,
+  "design_methodology": "LRFD",
+  "load_orientation": "Gravity",
+  "deflection_criteria": 120,
+  "span_range_min": "6",
+  "span_increment": 0.5,
+  "report_span": "10",
+  "design_pressure": 0,
+  "uid": "9023-sdi-floor-deck-maximum-unshored-span-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

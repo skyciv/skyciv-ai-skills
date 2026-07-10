@@ -1,0 +1,39 @@
+{
+  "c1": 24,
+  "c2": 24,
+  "location": "edge",
+  "x_edge": 0,
+  "h": 9.5,
+  "include_openings": false,
+  "w_c": 150,
+  "fc": 4,
+  "c": 0.75,
+  "fy": 60,
+  "db": "0.5",
+  "shear_reinforcement": false,
+  "Vu": 80.8,
+  "Mux": 0,
+  "Muz": 112.1,
+  "increase_gamma_factors": false,
+  "report_detail": true,
+  "graphics_table": [
+    {
+      "show_dims": "true",
+      "show_material": "true",
+      "show_reinforcement": "true",
+      "show_openings": "true",
+      "show_axes": "true",
+      "show_centerlines": "true"
+    }
+  ],
+  "current_unit_system": "imperial",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "3008-aci-punching-slab-calculator"
+}

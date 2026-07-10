@@ -1,0 +1,248 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Bolted Splice Connection Design",
+  "description": "Design bolted splice connections in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "f_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: ksi. Yield Strength of Structural Steel",
+      "default": 50
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Fu. Symbol: F_{u}. Units: ksi. Ultimate Strength of Structural Steel",
+      "default": 65
+    },
+    "d_b": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: in. Depth of Beam",
+      "default": 15.9
+    },
+    "tfw_b": {
+      "type": "string",
+      "description": "tfwb. Symbol: tfw_{b}. Units: in. Top Flange Width of Beam",
+      "default": 6.99
+    },
+    "tft_b": {
+      "type": "string",
+      "description": "tftb. Symbol: tft_{b}. Units: in. Top Flange Thickness of Beam",
+      "default": 0.43
+    },
+    "wt_b": {
+      "type": "string",
+      "description": "wtb. Symbol: wt_{b}. Units: in. Web Thickness of Beam",
+      "default": 0.295
+    },
+    "g_d": {
+      "type": "number",
+      "description": "Gap Distance. Symbol: g_{d}. Units: in",
+      "default": 0.5
+    },
+    "fyp": {
+      "type": "number",
+      "description": "Fyp. Symbol: F_{yp}. Units: ksi. Yield Strength of Splice Plates",
+      "default": 36
+    },
+    "fup": {
+      "type": "number",
+      "description": "Fup. Symbol: F_{up}. Units: ksi. Ultimate Strength of Splice Plates",
+      "default": 58
+    },
+    "b_f": {
+      "type": "number",
+      "description": "bf. Symbol: b_{f}. Units: in. Width of Flange Plate",
+      "default": 7
+    },
+    "d_f": {
+      "type": "number",
+      "description": "df. Symbol: d_f. Units: in. Depth of Flange Plate",
+      "default": 12
+    },
+    "t_f": {
+      "type": "number",
+      "description": "tf. Symbol: t_{f}. Units: in. Thickness of Flange Plate",
+      "default": 0.5
+    },
+    "b_w": {
+      "type": "number",
+      "description": "bw. Symbol: b_{w}. Units: in. Width of Web Plate",
+      "default": 7
+    },
+    "d_w": {
+      "type": "number",
+      "description": "dw. Symbol: d_{w}. Units: in. Depth of Web Plate",
+      "default": 11
+    },
+    "t_w": {
+      "type": "number",
+      "description": "tw. Units: in. Thickness of Web Plate",
+      "default": 0.25
+    },
+    "dia": {
+      "type": "number",
+      "description": "Dia",
+      "default": 0.875
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade",
+      "enum": [
+        "A307-A",
+        "A325-A",
+        "A325M-A",
+        "F1852-A",
+        "F3125-A",
+        "F3125M-A",
+        "F3125-B",
+        "F3125M-B",
+        "A490-B",
+        "A490M-B",
+        "F2280-B",
+        "A354-B",
+        "F3043",
+        "F3111"
+      ],
+      "x-enumLabels": [
+        "A307-A",
+        "A325-A",
+        "A325M-A",
+        "F1852-A",
+        "F3125-A",
+        "F3125M-A",
+        "F3125-B",
+        "F3125M-B",
+        "A490-B",
+        "A490M-B",
+        "F2280-B",
+        "A354-B",
+        "F3043",
+        "F3111"
+      ],
+      "default": "A325-A"
+    },
+    "th": {
+      "type": "string",
+      "description": "Threads",
+      "enum": [
+        "N",
+        "X"
+      ],
+      "x-enumLabels": [
+        "N",
+        "X"
+      ],
+      "default": "N"
+    },
+    "nr_f": {
+      "type": "number",
+      "description": "No.of Rows (nrf). Symbol: nr_f",
+      "default": 2
+    },
+    "nl_f": {
+      "type": "number",
+      "description": "No. of Lines (nlf). Symbol: nl_{f}",
+      "default": 2
+    },
+    "pd_f": {
+      "type": "number",
+      "description": "Pitch Distance (pdf). Symbol: pd_f. Units: in",
+      "default": 2.75
+    },
+    "sg_f": {
+      "type": "number",
+      "description": "Gauge Distance (sgf). Symbol: sg_{f}. Units: in",
+      "default": 3.5
+    },
+    "ag_f": {
+      "type": "number",
+      "description": "Across Gap Distance (agf). Symbol: ag_{f}. Units: in",
+      "default": 3.5
+    },
+    "nr_w": {
+      "type": "number",
+      "description": "No. of Rows (nrw). Symbol: nr_{w}",
+      "default": 4
+    },
+    "nc_w": {
+      "type": "number",
+      "description": "No. of Columns (ncw). Symbol: nc_{w}",
+      "default": 1
+    },
+    "pd_w": {
+      "type": "number",
+      "description": "Pitch Distance (pdw). Symbol: pd_{w}. Units: in",
+      "default": 2.75
+    },
+    "sg_w": {
+      "type": "number",
+      "description": "Gauge Distance (sgw). Symbol: sg_{w}. Units: in",
+      "default": 3.5
+    },
+    "ag_w": {
+      "type": "number",
+      "description": "Across Gap Distance (agw). Symbol: ag_{w}. Units: in",
+      "default": 3.5
+    },
+    "M_u": {
+      "type": "number",
+      "description": "Moment (Mu). Units: kip-in",
+      "default": 800
+    },
+    "V_u": {
+      "type": "number",
+      "description": "Shear (Vu). Units: kip",
+      "default": 15
+    },
+    "P_u": {
+      "type": "number",
+      "description": "Axial (Pu). Units: kip",
+      "default": 1
+    },
+    "uid": {
+      "type": "string",
+      "const": "6002-bolted-splice-connection-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

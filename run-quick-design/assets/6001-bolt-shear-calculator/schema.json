@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CFS Bolt Bearing Strength",
+  "description": "E3.3.1 & E3.3.2 of AISI 2012 - Bearing Strength (Resistance) With and Without Consideration of Bolt Hole Deformation",
+  "type": "object",
+  "properties": {
+    "bolt_image": {
+      "type": "string",
+      "description": "bolt_image. Bolt Dimensions for Check"
+    },
+    "C": {
+      "type": "number",
+      "description": "C. Bearing factor, determined in accordance with Table E3.3.1-1",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "m_f": {
+      "type": "string",
+      "description": "mf. Modification factor for type of bearing connection, which is determined according to Table E3.3.1-2",
+      "enum": [
+        1,
+        0.75,
+        0.7,
+        0.55,
+        1.33,
+        1.1,
+        0.9,
+        "multi"
+      ],
+      "x-enumLabels": [
+        "1.0",
+        "0.75",
+        "0.70",
+        "0.55",
+        "1.33",
+        "1.10",
+        "0.90",
+        "Multi"
+      ],
+      "default": 1
+    },
+    "d": {
+      "type": "number",
+      "description": "Diameter. Units: in. Nominal bolt diameter",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "t": {
+      "type": "number",
+      "description": "Gauge. Units: in. Uncoated sheet thickness",
+      "default": 0.1242,
+      "minimum": 0,
+      "maximum": 52
+    },
+    "Fu": {
+      "type": "number",
+      "description": "Ultimate Strength. Units: ksi. Tensile strength of sheet as defined in Section A2.1 or A2.2",
+      "default": 60000,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Nc": {
+      "type": "number",
+      "description": "Force Applied. Units: lb. Force applied to the bolt",
+      "default": 3000,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "uid": {
+      "type": "string",
+      "const": "6001-bolt-shear-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

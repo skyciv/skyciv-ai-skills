@@ -1,0 +1,30 @@
+{
+  "designMethod": "LRFD",
+  "cols": 3,
+  "rows": 3,
+  "col_spacing": 3,
+  "row_spacing": 3,
+  "boltSize": 0.5,
+  "boltType": "A325N",
+  "blC": "SS",
+  "cTP": "NSC",
+  "toH": "SSH",
+  "ffF": "OFF",
+  "nsP": 1,
+  "msC": "CASC",
+  "P_ult": 1,
+  "angle": 0,
+  "ALBP": "ALBP_C",
+  "x_load": 0,
+  "y_load": 0,
+  "uid": "6016-bolt-group",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

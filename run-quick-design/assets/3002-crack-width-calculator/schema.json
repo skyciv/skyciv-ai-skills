@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BS 8007 Crack Width Calculator",
+  "description": "Calculate the crack width of an RC section for applied loading.",
+  "type": "object",
+  "properties": {
+    "wc_max": {
+      "type": "number",
+      "description": "Max Allowable Crack Width (wcmax). Symbol: w_{cmax}. Units: mm. Maximum Allowable Crack Width",
+      "enum": [
+        0.1,
+        0.2
+      ],
+      "x-enumLabels": [
+        0.1,
+        0.2
+      ],
+      "default": 0.2
+    },
+    "e_s": {
+      "type": "number",
+      "description": "Modulus of Elasticity (Es). Symbol: E_{s}. Units: GPa",
+      "default": 200,
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "m_r": {
+      "type": "number",
+      "description": "Modular Ratio (mr). Symbol: m_{r}. Ratio of modulus of elasticity of steel to modulus of elasticity of concrete in working stress method.",
+      "default": 14.3,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "M": {
+      "type": "number",
+      "description": "Service Moment (M). Symbol: M. Units: kN.m. Absolute value of bending moment.",
+      "default": 2.65,
+      "minimum": 0
+    },
+    "T": {
+      "type": "number",
+      "description": "Service Tension (T). Symbol: T. Units: kN. Tension force in the member.",
+      "default": 86.4,
+      "minimum": 0
+    },
+    "W": {
+      "type": "number",
+      "description": "Member Width (W). Symbol: W. Units: mm",
+      "default": 1000,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "D": {
+      "type": "number",
+      "description": "Member Depth (D). Symbol: D. Units: mm",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "c_c": {
+      "type": "number",
+      "description": "Clear Cover to Concrete (Cc). Symbol: C_{c}. Units: mm",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "d_t": {
+      "type": "number",
+      "description": "Diameter of Tension Reinforcement (dt). Symbol: d_{t}. Units: mm",
+      "default": 16,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "s_t": {
+      "type": "number",
+      "description": "Spacing of Tension Reinforcement (Ts). Symbol: T_{s}. Units: mm",
+      "default": 150,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "d_c": {
+      "type": "number",
+      "description": "Diameter of Compression Reinforcement (dc). Symbol: d_{c}. Units: mm",
+      "default": 16,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "s_c": {
+      "type": "number",
+      "description": "Spacing of Compression Reinforcement (Cs). Symbol: C_{s}. Units: mm. Spacing of Compression Reinforcement",
+      "default": 150,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "3002-crack-width-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

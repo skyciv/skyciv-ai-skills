@@ -1,0 +1,405 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1992-1-1:2004 Concrete Column Design",
+  "description": "Design of reinforced concrete columns in accordance with EN 1992-1-1:2004.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Reference name or ID for the column.",
+      "default": "C1"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Shape of the column.",
+      "enum": [
+        "rectangular",
+        "circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "rectangular"
+    },
+    "D": {
+      "type": "number",
+      "description": "Depth (D). Units: mm. Depth of Section.",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 2500
+    },
+    "W": {
+      "type": "number",
+      "description": "Width (W). Units: mm. Width of Section.",
+      "default": 300,
+      "minimum": 100,
+      "maximum": 2500
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter (D). Units: mm. Diameter of Section.",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 25000
+    },
+    "cover": {
+      "type": "number",
+      "description": "Cover. Units: mm. Concrete cover measured to outside of transverse reinforcement.",
+      "default": 30,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "pattern": {
+      "type": "string",
+      "description": "Reinforcement Pattern. Reinforcement layout.",
+      "enum": [
+        "custom",
+        "standard"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "Standard"
+      ],
+      "default": "custom"
+    },
+    "size_bars": {
+      "type": "number",
+      "description": "Bar Diameter. Symbol: Φ_long. Units: mm. Diameter of reinforcement bars.",
+      "default": 20,
+      "minimum": 6,
+      "maximum": 40
+    },
+    "n_bars_circle": {
+      "type": "number",
+      "description": "Bars. Symbol: N_{bars}. Number of bars.",
+      "default": 8,
+      "minimum": 4,
+      "maximum": 30
+    },
+    "angle": {
+      "type": "number",
+      "description": "Rotation. Symbol: \\text{Angle}. Units: °. Angle to rotate the reinforcement pattern by. 0 degrees is defined to have a bar at the top of the center of the circle.",
+      "default": 0,
+      "minimum": -180,
+      "maximum": 180
+    },
+    "n_bars_z": {
+      "type": "number",
+      "description": "Z-Bars. Symbol: N_{z}. Number of bars in each face in the z-direction.",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "n_bars_y": {
+      "type": "number",
+      "description": "Y-Bars. Symbol: N_{y}. Number of bars in each face in the y-direction.",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "size_shear_bars": {
+      "type": "number",
+      "description": "Bar Diameter. Symbol: Φ_{shear}. Units: mm. Diameter of shear reinforcement bars.",
+      "default": 8,
+      "minimum": 6,
+      "maximum": 40
+    },
+    "n_shear_bars_y": {
+      "type": "number",
+      "description": "Y-Shear Legs. Symbol: N_{v,y}. Number of shear legs parallel to the y-axis (minimum 2 for external link).",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "n_shear_bars_z": {
+      "type": "number",
+      "description": "Z-Shear Legs. Symbol: N_{v,z}. Number of shear legs parallel to the z-axis (minimum 2 for external link).",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "s": {
+      "type": "number",
+      "description": "Ligature Spacing. Symbol: s. Units: mm. Ligature spacing down length of column.",
+      "default": 150,
+      "minimum": 50,
+      "maximum": 2000
+    },
+    "l_u": {
+      "type": "number",
+      "description": "lu. Symbol: l_u. Units: mm. Unsupported length of column.",
+      "default": 3000,
+      "minimum": 500,
+      "maximum": 25000
+    },
+    "k_y": {
+      "type": "number",
+      "description": "kz. Symbol: k_z. Effective length factor for compression members about Z-Axis (buckling in Y direction) (5.8.1). ",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 30
+    },
+    "k_z": {
+      "type": "number",
+      "description": "ky. Symbol: k_y. Effective length factor for compression members about Y-Axis (buckling in Z direction) (5.8.1). ",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 30
+    },
+    "concrete_strength": {
+      "type": "number",
+      "description": "fck. Symbol: f_{ck}. Units: MPa. Concrete compression strength.",
+      "default": 40,
+      "minimum": 12,
+      "maximum": 90
+    },
+    "steel_yield_strength": {
+      "type": "number",
+      "description": "fy. Symbol: f_y. Units: MPa. Yield strength of steel.",
+      "default": 500,
+      "minimum": 400,
+      "maximum": 600
+    },
+    "V_y": {
+      "type": "number",
+      "description": "VEd,y. Symbol: V_{Ed,y}. Units: kN. Factored design shear load in y-direction. ",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "V_z": {
+      "type": "number",
+      "description": "VEd,z. Symbol: V_{Ed,z}. Units: kN. Factored design shear load in z-direction. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "N": {
+      "type": "number",
+      "description": "NEd. Symbol: N_{Ed}. Units: kN. Factored design axial load. (+ve for compression)",
+      "default": 1000,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "slenderness_banner": {
+      "type": "string",
+      "description": "slenderness_banner"
+    },
+    "second_order": {
+      "type": "string",
+      "description": "Moment Input Method. First Order: Provide moments from first-order analysis. This calculator will automatically generate second-order moments based on nominal curvature if the column is slender.Second Order: Provide design moments including second-order effects. This option is unavailable for short columns.",
+      "enum": [
+        "second",
+        "first"
+      ],
+      "x-enumLabels": [
+        "Second-Order",
+        "First-Order"
+      ],
+      "default": "second"
+    },
+    "M_z": {
+      "type": "number",
+      "description": "MEd,z. Symbol: M_{Ed,z}. Units: kN-m. Factored bending moment design load, including second-order effects as per 5.8.7 or 5.8.8, about z-axis. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "M_y": {
+      "type": "number",
+      "description": "MEd,y. Symbol: M_{Ed,y}. Units: kN-m. Factored bending moment design load, including second-order effects as per 5.8.7 or 5.8.8, about y-axis. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "braced_or_unbraced": {
+      "type": "string",
+      "description": "Braced. Structure is braced against sidesway (external systems provide sufficient restraint to lateral loads).",
+      "enum": [
+        " ",
+        "Z",
+        "Y",
+        "ZY"
+      ],
+      "x-enumLabels": [
+        "Not Braced",
+        "Z Braced",
+        "Y Braced",
+        "Z & Y Braced"
+      ],
+      "default": " "
+    },
+    "M_z_top": {
+      "type": "number",
+      "description": "MEd,z,top. Symbol: M_{Ed,z,top}. Units: kN-m. Factored moment about the z-axis at the top of the column. ",
+      "default": 100,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_z_bot": {
+      "type": "number",
+      "description": "MEd,z,bot. Symbol: M_{Ed,z,bot}. Units: kN-m. Factored moment about the z-axis at the bottom of the column. ",
+      "default": 50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_y_top": {
+      "type": "number",
+      "description": "MEd,y,top. Symbol: M_{Ed,y,top}. Units: kN-m. Factored moment about the y-axis at the top of the column. ",
+      "default": 50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_y_bot": {
+      "type": "number",
+      "description": "MEd,y,bot. Symbol: M_{Ed,y,bot}. Units: kN-m. Factored moment about the y-axis at the bottom of the column. ",
+      "default": -50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "creep": {
+      "type": "string",
+      "description": "Effective Creep Ratio. Select method for how to calculate effective creep ratio. Default is only available for short columns. This will set the value of A to 0.7 in Eq 5.13N.",
+      "enum": [
+        "default",
+        "calculated",
+        "user"
+      ],
+      "x-enumLabels": [
+        "Default",
+        "Calculated",
+        "User-Defined"
+      ],
+      "default": "default"
+    },
+    "user_creep_ratio": {
+      "type": "number",
+      "description": "Φef. Symbol: Φ_{ef}. User defined value for effective creep ratio.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "N_Eqp": {
+      "type": "number",
+      "description": "NEqp. Symbol: N_{Eqp}. Units: kN. Quasi-permanent axial load applied to column, EN 1990:2002 (Eq 6.16a).",
+      "default": 400,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "loading_age": {
+      "type": "number",
+      "description": "Age At Loading. The age at which the column is subjected to loading (in days).",
+      "default": 7,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "relative_humidity": {
+      "type": "number",
+      "description": "Relative Humidity. Units: %. The relative humidity of the environment surrounding the column (Typically 50% and 70% for indoor and outdoor environments respectively).",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "cement_class": {
+      "type": "string",
+      "description": "Cement Class. Cement class used for calculation of creep.",
+      "enum": [
+        "s",
+        "n",
+        "r"
+      ],
+      "x-enumLabels": [
+        "S",
+        "N",
+        "R"
+      ],
+      "default": "s"
+    },
+    "ambient_air_temp": {
+      "type": "number",
+      "description": "Ambient Air Temperature. Units: °C. The average ambient air temperature surrounding the column over the period of prior to loading (Age At Loading).",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 80
+    },
+    "apply_best_practice": {
+      "type": "boolean",
+      "description": "Apply Best Practice. Apply best practices throughout calculation. Please see documentation for full clarification on where and how best practice values are applied.",
+      "default": true
+    },
+    "show_table": {
+      "type": "string",
+      "description": "Show Reinforcement Table. Show table in concrete section image.",
+      "enum": [
+        "no",
+        "yes"
+      ],
+      "x-enumLabels": [
+        "No",
+        "Yes"
+      ],
+      "default": "no"
+    },
+    "report_detail": {
+      "type": "string",
+      "description": "Report Detail. Level of detail in the report. Simplified - Hide explicit tension and compression checks and only show interaction diagram in resultant direction.Normal: Show tension and compression explicit and interaction for uniaxial direction and biaxial.Detailed: shows the force in concrete and steel for key points in interaction diagram.",
+      "enum": [
+        "short",
+        "normal",
+        "detailed"
+      ],
+      "x-enumLabels": [
+        "Short",
+        "Normal",
+        "Detailed"
+      ],
+      "default": "short"
+    },
+    "uid": {
+      "type": "string",
+      "const": "3025-eurocode-concrete-column",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

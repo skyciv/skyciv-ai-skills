@@ -1,0 +1,219 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Steel Channel Design",
+  "description": "Design steel channels in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: Section. Section object imported from S3D model."
+    },
+    "method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "LRFD"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "d": {
+      "type": "number",
+      "description": "Depth (d). Units: in. Total section depth.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "bf": {
+      "type": "number",
+      "description": "Width (bf). Symbol: b_{f}. Units: in. Total section width.",
+      "default": 2.74,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "tf": {
+      "type": "number",
+      "description": "Flange Thickness (tf). Symbol: t_{f}. Units: in. Flange thickness for the section.",
+      "default": 0.436,
+      "minimum": 0.05,
+      "maximum": 200
+    },
+    "tw": {
+      "type": "number",
+      "description": "Web Thickness (tw). Symbol: t_{w}. Units: in. Web thickness for the section.",
+      "default": 0.379,
+      "minimum": 0.05,
+      "maximum": 200
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Yield Stress (Fy). Symbol: F_{y}. Units: ksi. Steel yield stress.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "Fu": {
+      "type": "number",
+      "description": "Ultimate Stress (Fu). Symbol: F_{u}. Units: ksi. Steel ultimate stress.",
+      "default": 65,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "Lz": {
+      "type": "number",
+      "description": "Span (Lz). Symbol: L_{z}. Units: ft. Strong geometric axis unbraced length.",
+      "default": 9,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "Ly": {
+      "type": "number",
+      "description": "Span (Ly). Symbol: L_{y}. Units: ft. Weak geometric axis unbraced length.",
+      "default": 9,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "Kz": {
+      "type": "number",
+      "description": "Effective Length Factor (kz). Symbol: k_{z}. Strong geometric axis effective length factor.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 500000
+    },
+    "Ky": {
+      "type": "number",
+      "description": "Effective Length Factor (ky). Symbol: k_{y}. Weak geometric axis effective length factor.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 500000
+    },
+    "Cbz": {
+      "type": "number",
+      "description": "Torsional Buckling Factor (Cbz). Symbol: Cb_{z}. Lateral torsional buckling modification factor for non-uniform moment diagrams about Z (major) axis.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Cby": {
+      "type": "number",
+      "description": "Torsional Buckling Factor (Cby). Symbol: Cb_{y}. Lateral torsional buckling modification factor for non-uniform moment diagrams about Y (minor) axis.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "U": {
+      "type": "number",
+      "description": "Shear Lag Factor (U). Shear lag factor.",
+      "default": 0.9,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "Nc": {
+      "type": "number",
+      "description": "Axial Compression (Nc). Symbol: N_{c}. Units: kip",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 810
+    },
+    "Nt": {
+      "type": "number",
+      "description": "Axial Tension (Nt). Symbol: N_{t}. Units: kip",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "Shear (Vz). Symbol: V_{z}. Units: kip. Shear force about minor axis. ",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Vy": {
+      "type": "number",
+      "description": "Shear (Vy). Symbol: V_{y}. Units: kip. Shear force about major axis. ",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Major Bending Moment (Mz). Symbol: M_{z}. Units: kip-ft. Moment about major axis. ",
+      "default": 5,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "My": {
+      "type": "number",
+      "description": "Minor Bending Moment (My). Symbol: M_{y}. Units: kip-ft. Moment about minor axis. ",
+      "default": 3,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2007-aisc-c-beam-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

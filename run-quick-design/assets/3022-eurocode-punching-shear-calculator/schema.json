@@ -1,0 +1,343 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1992-1-1:2004 Punching Shear Design",
+  "description": "Check slab punching shear in accordance with EN 1992-1-1:2004",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Column Shape. Symbol: shape. Shape of column.",
+      "enum": [
+        "Rectangular",
+        "Circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "Rectangular"
+    },
+    "c_type": {
+      "type": "string",
+      "description": "Column Type. Symbol: C_{type}. Type of column.",
+      "enum": [
+        "Internal",
+        "Edge",
+        "Corner"
+      ],
+      "x-enumLabels": [
+        "Internal",
+        "Edge",
+        "Corner"
+      ],
+      "default": "Internal"
+    },
+    "D": {
+      "type": "number",
+      "description": "Column Diameter (D). Symbol: D. Units: mm. Diameter of column.",
+      "default": 565,
+      "minimum": 75,
+      "maximum": 2000
+    },
+    "C_y": {
+      "type": "number",
+      "description": "Column Dimension (Cy). Symbol: c_y. Units: mm. Column dimension along axis y.",
+      "default": 300,
+      "minimum": 75,
+      "maximum": 2000
+    },
+    "C_z": {
+      "type": "number",
+      "description": "Column Dimension (Cz). Symbol: c_z. Units: mm. Column dimension along axis z.",
+      "default": 300,
+      "minimum": 75,
+      "maximum": 2000
+    },
+    "h": {
+      "type": "number",
+      "description": "Slab Thickness (h). Symbol: h. Units: mm. Overall slab thickness.",
+      "default": 300,
+      "minimum": 100,
+      "maximum": 2000
+    },
+    "c": {
+      "type": "number",
+      "description": "Clear Cover (c). Symbol: c. Units: mm. Clear cover to the reinforcement.",
+      "default": 30,
+      "minimum": 20,
+      "maximum": 127
+    },
+    "grade": {
+      "type": "string",
+      "description": "Concrete Grade. Symbol: grade",
+      "enum": [
+        "C12/15",
+        "C16/20",
+        "C25/30",
+        "C30/37",
+        "C35/45",
+        "C40/50",
+        "C50/60",
+        "C55/67",
+        "C60/75",
+        "C70/85",
+        "C80/95",
+        "C90/105"
+      ],
+      "x-enumLabels": [
+        "C12/15",
+        "C16/20",
+        "C25/30",
+        "C30/37",
+        "C35/45",
+        "C40/50",
+        "C50/60",
+        "C55/67",
+        "C60/75",
+        "C70/85",
+        "C80/95",
+        "C90/105"
+      ],
+      "default": "C12/15"
+    },
+    "fywk": {
+      "type": "number",
+      "description": "Yield Strength (fywk). Symbol: f_{ywk}. Units: MPa. Characteristic yield strength of steel of punching shear reinforcement.",
+      "default": 500,
+      "minimum": 300,
+      "maximum": 600
+    },
+    "pr_type": {
+      "type": "string",
+      "description": "Punching Region. Symbol: PR_{type}. Type of punching region.",
+      "enum": [
+        "Slab supported column",
+        "Foundation of a base"
+      ],
+      "x-enumLabels": [
+        "Slab Supported Column",
+        "Foundation of a Base"
+      ],
+      "default": "Slab supported column"
+    },
+    "shear_type": {
+      "type": "string",
+      "description": "Shear Reinforcment. Symbol: Shear_{type}. Type of punching shear reinforcement.",
+      "enum": [
+        "No punching shear reinforcement",
+        "Bent down bars",
+        "Multiple perimeter of shear reinforcement"
+      ],
+      "x-enumLabels": [
+        "No Punching Shear Reinforcement",
+        "Bent-down bars",
+        "Multiple Shear Reinforcement Perimeters"
+      ],
+      "default": "No punching shear reinforcement"
+    },
+    "pattern": {
+      "type": "string",
+      "description": "Reinforcement Pattern. Symbol: Pattern. Pattern of punching shear reinforcement.",
+      "enum": [
+        "Radial",
+        "Cruciform"
+      ],
+      "x-enumLabels": [
+        "Radial",
+        "Cruciform"
+      ],
+      "default": "Radial"
+    },
+    "Sr": {
+      "type": "number",
+      "description": "Radial Spacing (Sr). Symbol: S_{r}. Units: mm. Radial spacing between perimeter of punching shear reinforcement.",
+      "default": 150,
+      "minimum": 50,
+      "maximum": 190.5
+    },
+    "d_bs": {
+      "type": "number",
+      "description": "Shear Reinforcement Diameter (dbs). Symbol: d_{bs}. Units: mm. Diameter of shear reinforcement.",
+      "default": 12,
+      "minimum": 8,
+      "maximum": 30
+    },
+    "nr": {
+      "type": "number",
+      "description": "Number of Rails (nr). Symbol: n_{r}. Number of rails.",
+      "default": 12,
+      "minimum": 2,
+      "maximum": 20
+    },
+    "n": {
+      "type": "number",
+      "description": "Number of Studs (n). Symbol: n. Number of studs on each rail.",
+      "default": 8,
+      "minimum": 2,
+      "maximum": 20
+    },
+    "alpha": {
+      "type": "number",
+      "description": "Angle (α). Symbol: α. Units: °. Angle between shear reinforcement and the beam axis perpendicular to the shear force (α=90° for typical perpendicular shear reinforcement).",
+      "default": 90,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "d_by": {
+      "type": "number",
+      "description": "Tensile Reinforcement Diameter (dby). Symbol: d_{by}. Units: mm. Diameter of tensile reinforcement along y direction.",
+      "default": 16,
+      "minimum": 8,
+      "maximum": 30
+    },
+    "s_y": {
+      "type": "number",
+      "description": "Tensile Reinforcement Spacing (sy). Symbol: s_{y}. Units: mm. Spacing of tensile reinforcement along y direction.",
+      "default": 300,
+      "minimum": 75,
+      "maximum": 300
+    },
+    "sigma_cy": {
+      "type": "number",
+      "description": "Mean Axial Stress (σcy). Symbol: σ_{cy}. Units: MPa. Mean axial stress along y direction due to loading or pre-stressing (compression positive).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "d_bz": {
+      "type": "number",
+      "description": "Tensile Reinforcement Diameter (dbz). Symbol: d_{bz}. Units: mm. Diameter Of tensile reinforcement along z direction.",
+      "default": 16,
+      "minimum": 8,
+      "maximum": 30
+    },
+    "s_z": {
+      "type": "number",
+      "description": "Tensile Reinforcement Spacing (sz). Symbol: s_{z}. Units: mm. Spacing of tensile reinforcement along z direction.",
+      "default": 300,
+      "minimum": 75,
+      "maximum": 300
+    },
+    "sigma_cz": {
+      "type": "number",
+      "description": "Mean Axial Stress (σcz). Symbol: σ_{cz}. Units: MPa. Mean axial stress along z direction due to loading or pre-stressing (compression positive).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "alpha_cc": {
+      "type": "number",
+      "description": "Coefficient (αcc). Symbol: α_{cc}. Coefficient taking account of long term effects and loading effects on the compressive strength of concrete (for shear).",
+      "default": 1,
+      "minimum": 0.8,
+      "maximum": 1
+    },
+    "k_max": {
+      "type": "number",
+      "description": "Effectiveness Limit (kmax). Symbol: k_{max}. Effectiveness limit of punching shear reinforcement as a factor of the punching shear capacity of concrete alone. Default kmax = 1.5.",
+      "default": 1.5,
+      "minimum": 1,
+      "maximum": 2
+    },
+    "calc_method": {
+      "type": "string",
+      "description": "Calculation Method (β). Symbol: β. Calculation method for the coefficient β accounting for increased shear forces due to eccentric loading.",
+      "enum": [
+        "Standard as per Cl 6.4.3(3)/(4)/(5)",
+        "Refined Eq. 6.42,6.43"
+      ],
+      "x-enumLabels": [
+        "Approx. Solution according to 6.21N",
+        "Refined Solution According to Eq. 6.42 & 6.43"
+      ],
+      "default": "Standard as per Cl 6.4.3(3)/(4)/(5)"
+    },
+    "P_ed": {
+      "type": "number",
+      "description": "Upward Pressure from Soil (PEd). Symbol: P_{Ed}. Units: kN/m^2. Upward pressure from soil excluding self-weight of slab.",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "V_ed": {
+      "type": "number",
+      "description": "Vertical Shear (VEd). Symbol: V_{Ed}. Units: kN. Design value of the vertical shear force transmitted from slab to column.",
+      "default": 900,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "M_edz": {
+      "type": "number",
+      "description": "Bending Moment (MEdz). Symbol: M_{Edz}. Units: kN.m. Design value of the bending moment transmitted from slab to the column (resultant vector) for bending about direction z-z (eccentricity along z axis).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "M_edy": {
+      "type": "number",
+      "description": "Bending Moment (MEdy). Symbol: M_{Edy}. Units: kN.m. Design value of the bending moment transmitted from slab to the column (resultant vector) for bending about direction y-y (eccentricity along y axis).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 5000
+    },
+    "gamma_c": {
+      "type": "number",
+      "description": "Concrete (ϒc). Symbol: ϒ_{c}. Concrete partial material safety factor.",
+      "default": 1.5,
+      "minimum": 1.5,
+      "maximum": 2
+    },
+    "gamma_s": {
+      "type": "number",
+      "description": "Steel (ϒs). Symbol: ϒ_{s}. Reinforcement steel partial material safety factor.",
+      "default": 1.15,
+      "minimum": 1.15,
+      "maximum": 2
+    },
+    "uid": {
+      "type": "string",
+      "const": "3022-eurocode-punching-shear-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

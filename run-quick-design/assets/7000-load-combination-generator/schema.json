@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Load Combination Generator",
+  "description": "Generate load combinations for all major design standards.",
+  "type": "object",
+  "properties": {
+    "region_input": {
+      "type": "string",
+      "description": "Region. Symbol: Region",
+      "enum": [
+        "australia",
+        "united-states",
+        "europe",
+        "canada",
+        "india"
+      ],
+      "x-enumLabels": [
+        "Australia",
+        "United States",
+        "Europe",
+        "Canada",
+        "India"
+      ],
+      "default": "united-states"
+    },
+    "standard_input": {
+      "type": "string",
+      "description": "Standard. Symbol: Standard",
+      "enum": [
+        "Please Select"
+      ],
+      "x-enumLabels": [
+        "Please Select"
+      ],
+      "default": "Please Select"
+    },
+    "criteria_input": {
+      "type": "string",
+      "description": "Criteria. Symbol: Criteria",
+      "enum": [
+        "All"
+      ],
+      "x-enumLabels": [
+        "All"
+      ],
+      "default": "All"
+    },
+    "combination_naming_input": {
+      "type": "string",
+      "description": "Combination Naming. Symbol: Naming",
+      "enum": [
+        "ID",
+        "ID + Criteria",
+        "ID + Factor + Symbol",
+        "ID + Factor + Name",
+        "Schema Row + Increment"
+      ],
+      "x-enumLabels": [
+        "ID",
+        "ID + Criteria",
+        "ID + Factor + Symbol",
+        "ID + Factor + Name",
+        "Schema Row + Increment"
+      ],
+      "default": "ID"
+    },
+    "multi_dropdown_1": {
+      "type": "string",
+      "description": "Filter 01. Symbol: Filter-01",
+      "enum": [
+        null
+      ],
+      "x-enumLabels": [
+        "undefined"
+      ]
+    },
+    "multi_dropdown_2": {
+      "type": "string",
+      "description": "Filter 02. Symbol: Filter-02",
+      "enum": [
+        null
+      ],
+      "x-enumLabels": [
+        "undefined"
+      ]
+    },
+    "multi_dropdown_3": {
+      "type": "string",
+      "description": "Filter 03. Symbol: Filter-03",
+      "enum": [
+        null
+      ],
+      "x-enumLabels": [
+        "undefined"
+      ]
+    },
+    "multi_dropdown_4": {
+      "type": "string",
+      "description": "Filter 04. Symbol: Filter-04",
+      "enum": [
+        null
+      ],
+      "x-enumLabels": [
+        "undefined"
+      ]
+    },
+    "load_case_table": {
+      "type": "array",
+      "description": "Load Cases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "col1": {
+            "type": "string",
+            "description": "Load Case",
+            "default": "D",
+            "enum": [
+              "D"
+            ]
+          },
+          "col2": {
+            "type": "string",
+            "description": "Quantity",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 10
+          },
+          "col3": {
+            "type": "string",
+            "description": "Pattern",
+            "default": "simultaneous",
+            "enum": [
+              "simultaneous",
+              "independent",
+              "mirror",
+              "paired",
+              "sweep",
+              "checker"
+            ]
+          },
+          "col4": {
+            "type": "number",
+            "description": "Main Ratio",
+            "default": 1
+          },
+          "col5": {
+            "type": "number",
+            "description": "Alternate Ratio",
+            "default": 0.5
+          },
+          "col6": {
+            "type": "string",
+            "description": "Name Load Groups",
+            "default": "auto"
+          }
+        }
+      }
+    },
+    "remove_unnecessary": {
+      "type": "boolean",
+      "description": "Remove Unnecessary. Symbol: Toggle",
+      "default": true
+    },
+    "uid": {
+      "type": "string",
+      "const": "7000-load-combination-generator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

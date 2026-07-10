@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IS 800-2007 Shear Lug Desgin",
+  "description": "Design shear lugs in accordance with IS 800-2007..",
+  "type": "object",
+  "properties": {
+    "f_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: MPa. Yield strength.",
+      "default": 248.21,
+      "minimum": 248,
+      "maximum": 500
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Fu. Symbol: F_{u}. Units: MPa. Ultimate strength.",
+      "default": 399.89,
+      "minimum": 350,
+      "maximum": 700
+    },
+    "h": {
+      "type": "number",
+      "description": "h. Symbol: h. Units: mm. Depth of shear lug in plan view.",
+      "default": 350,
+      "minimum": 75,
+      "maximum": 750
+    },
+    "t_f": {
+      "type": "number",
+      "description": "tf. Symbol: t_{f}. Units: mm. Flange thickness of shear Lug.",
+      "default": 19,
+      "minimum": 6,
+      "maximum": 50
+    },
+    "b_f": {
+      "type": "number",
+      "description": "bf. Symbol: b_{f}. Units: mm. Flange width of shear lug.",
+      "default": 350,
+      "minimum": 75,
+      "maximum": 750
+    },
+    "t_w": {
+      "type": "number",
+      "description": "tw. Symbol: t_{w}. Units: mm. Web thickness of shear lug.",
+      "default": 12,
+      "minimum": 6,
+      "maximum": 50
+    },
+    "d": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Shear lug embedded depth.",
+      "default": 150,
+      "minimum": 75,
+      "maximum": 500
+    },
+    "V_z": {
+      "type": "number",
+      "description": "Vz. Symbol: V_{z}. Units: kN. Factored shear force along major axis.",
+      "default": 401,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "V_y": {
+      "type": "number",
+      "description": "Vy. Symbol: V_{y}. Units: kN. Factored shear force along minor axis.",
+      "default": 101.11,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "b_c": {
+      "type": "number",
+      "description": "bc. Symbol: b_{c}. Units: mm. Concrete pedestal width.",
+      "default": 550,
+      "minimum": 450,
+      "maximum": 650
+    },
+    "d_c": {
+      "type": "number",
+      "description": "dc. Symbol: d_{c}. Units: mm. Concrete pedestal depth.",
+      "default": 550,
+      "minimum": 450,
+      "maximum": 650
+    },
+    "h_c": {
+      "type": "number",
+      "description": "hc. Symbol: h_{c}. Units: mm. Concrete pedestal height.",
+      "default": 1000,
+      "minimum": 250,
+      "maximum": 1150
+    },
+    "g": {
+      "type": "number",
+      "description": "g. Symbol: g. Units: mm. Grout thickness.",
+      "default": 25,
+      "minimum": 25,
+      "maximum": 75
+    },
+    "f_c": {
+      "type": "number",
+      "description": "fck. Symbol: f_{ck}. Units: MPa. Concrete strength.",
+      "default": 40,
+      "minimum": 20,
+      "maximum": 65
+    },
+    "fwu": {
+      "type": "number",
+      "description": "Fwu. Symbol: F_{wu}. Units: MPa. Weld electrode ultimate strength.",
+      "default": 482,
+      "minimum": 250,
+      "maximum": 700
+    },
+    "A_m": {
+      "type": "number",
+      "description": "Am. Symbol: A_{m}. Units: mm. Shear lug to base plate fillet weld.",
+      "default": 8,
+      "minimum": 4,
+      "maximum": 9
+    },
+    "lay_n": {
+      "type": "number",
+      "description": "layn. No. of horizontal rebar layer effective to resist anchor shear.",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumLabels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "default": 3
+    },
+    "leg_n": {
+      "type": "number",
+      "description": "legn. No. of horizontal rebar leg effective to resist anchor shear.",
+      "default": 6,
+      "minimum": 2,
+      "maximum": 10
+    },
+    "d_r": {
+      "type": "number",
+      "description": "dr. Units: mm. Horizontal rebar diameter.",
+      "default": 10,
+      "minimum": 8,
+      "maximum": 50
+    },
+    "P_t": {
+      "type": "string",
+      "description": "Pt. Percentage of anchor reinforcement for shear breakout strength calculation.",
+      "enum": [
+        "100%",
+        "50%"
+      ],
+      "x-enumLabels": [
+        "100%",
+        "50%"
+      ],
+      "default": "100%"
+    },
+    "fyr": {
+      "type": "number",
+      "description": "fyr. Symbol: f_{yr}. Units: MPa. Rebar yield strength.",
+      "default": 500,
+      "minimum": 250,
+      "maximum": 500
+    },
+    "uid": {
+      "type": "string",
+      "const": "6004-shear-lug-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-22 Bolt Group Coefficient Calculator",
+  "description": "Determine the Bolt Group Coefficient as per AISC 360-22.",
+  "type": "object",
+  "properties": {
+    "designMethod": {
+      "type": "string",
+      "description": "Design Methodology. Symbol: -. A method for sizing structural elements based on the loads they are subjected to, used to define load combinations and safety or resistance factors in design.",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "LRFD"
+    },
+    "cols": {
+      "type": "number",
+      "description": "Number of Bolt Columns. Symbol: -",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "rows": {
+      "type": "number",
+      "description": "Number of Bolt Rows. Symbol: -",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "col_spacing": {
+      "type": "number",
+      "description": "Column Spacing. Symbol: -. Units: in",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "row_spacing": {
+      "type": "number",
+      "description": "Row Spacing. Symbol: -. Units: in",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "boltSize": {
+      "type": "number",
+      "description": "Bolt Size. Symbol: -. Units: in. Select the size of the bolt element to be used in the analysis.",
+      "enum": [
+        0.5,
+        0.625,
+        0.75,
+        0.875,
+        1,
+        1.125,
+        1.25,
+        1.375,
+        1.5,
+        2
+      ],
+      "x-enumLabels": [
+        "1/2",
+        "5/8",
+        "3/4",
+        "7/8",
+        "1",
+        "1 1/8",
+        "1 1/4",
+        "1 3/8",
+        "1 1/2",
+        "2"
+      ],
+      "default": 0.5
+    },
+    "boltType": {
+      "type": "string",
+      "description": "Bolt Grade. Symbol: -. Bolt grade to be used in the connection: ‘X’ refers to bolts where the threads are excluded from the shear plane, while ‘N’ refers to bolts where the threads are included in the shear plane.",
+      "enum": [
+        "A325N",
+        "A325X",
+        "A490N",
+        "A490X",
+        "A307"
+      ],
+      "x-enumLabels": [
+        "A325N",
+        "A325X",
+        "A490N",
+        "A490X",
+        "A307"
+      ],
+      "default": "A325N"
+    },
+    "blC": {
+      "type": "string",
+      "description": "Loading Condition. Symbol: -. The number of shear planes through which the force is transmitted in the bolt.",
+      "enum": [
+        "SS",
+        "DS"
+      ],
+      "x-enumLabels": [
+        "Single Shear",
+        "Double Shear"
+      ],
+      "default": "SS"
+    },
+    "cTP": {
+      "type": "string",
+      "description": "Type of Connection. You can choose between a normal shear connection or a slip critical connection.",
+      "enum": [
+        "NSC",
+        "SCC"
+      ],
+      "x-enumLabels": [
+        "Normal Shear",
+        "Slip Critical"
+      ],
+      "default": "NSC"
+    },
+    "toH": {
+      "type": "string",
+      "description": "Type of Hole connection. Symbol: -. Select the type of hole used on the slip critical connection.",
+      "enum": [
+        "SSH",
+        "SSPDH",
+        "SSPLH",
+        "OSH",
+        "LSH"
+      ],
+      "x-enumLabels": [
+        "Standard Size",
+        "Short-Slotted perpendicular to load",
+        "Short-Slotted paralell to load",
+        "Over-Sized",
+        "Long-Slotted"
+      ],
+      "default": "SSH"
+    },
+    "ffF": {
+      "type": "string",
+      "description": "Factor for fillers. Symbol: -",
+      "enum": [
+        "OFF",
+        "TFF"
+      ],
+      "x-enumLabels": [
+        "One Filler",
+        "Two or more Fillers"
+      ],
+      "default": "OFF"
+    },
+    "nsP": {
+      "type": "number",
+      "description": "Number of Slip Planes. Symbol: n_{s}. Number of planes to be considered in the slip critical connection.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "msC": {
+      "type": "string",
+      "description": "Mean Slip Coefficient. Symbol: -. Mean Slip Coefficient according to the surface condition.",
+      "enum": [
+        "CASC",
+        "CBSC"
+      ],
+      "x-enumLabels": [
+        "Class A",
+        "Class B"
+      ],
+      "default": "CASC"
+    },
+    "P_ult": {
+      "type": "number",
+      "description": "Magnitude (Pu). Symbol: P_{ult}. Units: kip. Applied load magnitude, considering relevant load combinations, that is supported by the bolt group.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "angle": {
+      "type": "number",
+      "description": "Angle. Symbol: \\theta. Units: °. Applied load angle (positive values are rotated clockwise from the downward direction).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "ALBP": {
+      "type": "string",
+      "description": "Base Point. Symbol: -. Select the insertion point to be used in the analysis.",
+      "enum": [
+        "ALBP_C",
+        "ALBP_BL"
+      ],
+      "x-enumLabels": [
+        "Centroid",
+        "Bottom Left Bolt"
+      ],
+      "default": "ALBP_C"
+    },
+    "x_load": {
+      "type": "number",
+      "description": "X Coordinate Offset. Symbol: -. Units: in. X coordinate of the applied load, relative to the insertion point to be used in the analysis.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "y_load": {
+      "type": "number",
+      "description": "Y Coordinate Offset. Symbol: -. Units: in. Y coordinate of the applied load, relative to the insertion point to be used in the analysis.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "6016-bolt-group",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "nsP",
+    "P_ult"
+  ]
+}

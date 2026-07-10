@@ -1,0 +1,37 @@
+{
+  "c1": 650,
+  "c2": 300,
+  "location": "interior",
+  "h": 150,
+  "include_openings": false,
+  "w_c": 2400,
+  "fc": 25,
+  "c": 20,
+  "fyv": 400,
+  "db": "11.3",
+  "shear_reinforcement": false,
+  "Vu": 299.3,
+  "Mux": 0,
+  "Muz": 0,
+  "report_detail": true,
+  "graphics_table": [
+    {
+      "show_dims": "true",
+      "show_material": "true",
+      "show_reinforcement": "true",
+      "show_openings": "true",
+      "show_axes": "true",
+      "show_centerlines": "true"
+    }
+  ],
+  "current_unit_system": "",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "3015-csa-punching-slab-calculator"
+}

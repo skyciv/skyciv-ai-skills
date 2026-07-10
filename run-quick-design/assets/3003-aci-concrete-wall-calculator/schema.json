@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Concrete Shear Wall Design",
+  "description": "Design reinforced concrete walls in accordance with ACI 318-19.",
+  "type": "object",
+  "properties": {
+    "L": {
+      "type": "number",
+      "description": "Length (L). Units: mm. Length of wall.",
+      "default": 900,
+      "minimum": 100,
+      "maximum": 25000
+    },
+    "H": {
+      "type": "number",
+      "description": "Height (H). Units: mm. Height of Wall.",
+      "default": 1500,
+      "minimum": 100,
+      "maximum": 25000
+    },
+    "W": {
+      "type": "number",
+      "description": "Width (W). Units: mm. Width of wall.",
+      "default": 250,
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "cover": {
+      "type": "number",
+      "description": "Cover. Units: mm. Concrete cover measured to outside of transverse reinforcement.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "N_bl": {
+      "type": "number",
+      "description": "Nbl. Symbol: N_{bl}. Units: #. Bar number of longitudinal reinforcement.",
+      "default": 7,
+      "minimum": 3,
+      "maximum": 9
+    },
+    "no_L_Bars": {
+      "type": "number",
+      "description": "No. of Rows. Symbol: N_{rows}. Number of longitudinal bar rows.",
+      "default": 5,
+      "minimum": 2,
+      "maximum": 250
+    },
+    "long_Spacing": {
+      "type": "number",
+      "description": "Sl. Symbol: S_l. Units: mm. Equivalent spacing based on number of longitudinal bars.",
+      "default": 189.7,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "N_bt": {
+      "type": "number",
+      "description": "Nbt. Symbol: N_{bt}. Units: #. Bar number of transverse reinforcement.",
+      "default": 3,
+      "minimum": 3,
+      "maximum": 9
+    },
+    "S_t": {
+      "type": "number",
+      "description": "St. Units: mm. Spacing of transverse reinforcement.",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "f_c": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Concrete compression strength.",
+      "default": 30,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "f_y": {
+      "type": "number",
+      "description": "fy. Symbol: f_y. Units: MPa. Yield strength of steel.",
+      "default": 415,
+      "minimum": 100,
+      "maximum": 550
+    },
+    "V_u": {
+      "type": "number",
+      "description": "Vu. Symbol: V_u. Units: kN. Factored shear design load.",
+      "default": 427,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "P_u": {
+      "type": "number",
+      "description": "Pu. Symbol: P_u. Units: kN. Factored axial design load.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "M_u": {
+      "type": "number",
+      "description": "Mu. Symbol: M_u. Units: kN-m. Factored bending moment design load.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "load_combo": {
+      "type": "string",
+      "description": "Load Combo Label (optional). Symbol: L_C. Governing Load Combination where loads were taken from",
+      "default": ""
+    },
+    "uid": {
+      "type": "string",
+      "const": "3003-aci-concrete-wall-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

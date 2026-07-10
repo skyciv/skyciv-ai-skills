@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BMI Index",
+  "description": "Sam's first design will be a demonstration of a sample calculation.",
+  "type": "object",
+  "properties": {
+    "gender": {
+      "type": "string",
+      "description": "Gender",
+      "enum": [
+        "Male",
+        "Female"
+      ],
+      "x-enumLabels": [
+        "Male",
+        "Female"
+      ],
+      "default": "Male"
+    },
+    "unit_system": {
+      "type": "string",
+      "description": "Unit System",
+      "enum": [
+        "metric",
+        "Female"
+      ],
+      "x-enumLabels": [
+        "Metric (kg, cm)",
+        "Imperial (lbs, ft)"
+      ],
+      "default": "metric"
+    },
+    "height": {
+      "type": "number",
+      "description": "Height. Units: length. The width of each solar module in inches. This is the individual solar module's short side length.",
+      "default": 170
+    },
+    "weight": {
+      "type": "number",
+      "description": "Weight. Units: mass. The height of each solar module in inches. This is the individual solar module's short side length.",
+      "default": 72
+    },
+    "reinforcement": {
+      "type": "string",
+      "description": "reinforcement"
+    },
+    "uid": {
+      "type": "string",
+      "const": "0002-bmi123_simple",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Concrete Column Design",
+  "description": "Design of reinforced concrete columns in accordance with AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Reference name or ID for the column.",
+      "default": "C1"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Shape of the column.",
+      "enum": [
+        "rectangular",
+        "circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "rectangular"
+    },
+    "D": {
+      "type": "number",
+      "description": "Depth (D). Units: mm. Depth of Section.",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 2500
+    },
+    "W": {
+      "type": "number",
+      "description": "Width (W). Units: mm. Width of Section.",
+      "default": 300,
+      "minimum": 100,
+      "maximum": 2500
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter (D). Units: mm. Diameter of Section.",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 25000
+    },
+    "cover": {
+      "type": "number",
+      "description": "Cover. Units: mm. Concrete cover measured to outside of transverse reinforcement.",
+      "default": 30,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "size_bars": {
+      "type": "number",
+      "description": "Bar Diameter. Symbol: φ_{long}. Units: mm. Diameter of reinforcement bars.",
+      "default": 20,
+      "minimum": 6,
+      "maximum": 40
+    },
+    "n_bars_circle": {
+      "type": "number",
+      "description": "Bars. Symbol: N_{long,circ}. Number of bars.",
+      "default": 8,
+      "minimum": 6,
+      "maximum": 50
+    },
+    "n_bars_z": {
+      "type": "number",
+      "description": "Z-Bars. Symbol: N_{long,z}. Number of bars in each face in the z-direction.",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "n_bars_y": {
+      "type": "number",
+      "description": "Y-Bars. Symbol: N_{long,y}. Number of bars in each face in the y-direction.",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "reinforcement_class_long": {
+      "type": "string",
+      "description": "Ductility Class. Symbol: Class_{long}. Ductility class for longitudinal reinforcement.",
+      "enum": [
+        "N",
+        "L"
+      ],
+      "x-enumLabels": [
+        "Class N",
+        "Class L"
+      ],
+      "default": "N"
+    },
+    "size_shear_bars": {
+      "type": "number",
+      "description": "Bar Diameter. Symbol: φ_{shear}. Units: mm. Diameter of shear reinforcement bars.",
+      "default": 8,
+      "minimum": 6,
+      "maximum": 40
+    },
+    "n_shear_bars_y": {
+      "type": "number",
+      "description": "Y-Shear Legs. Symbol: N_{shear,y}. Number of shear legs parallel to the y-axis.Note: Minimum of 2 legs required as external link is always counted.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "n_shear_bars_z": {
+      "type": "number",
+      "description": "Z-Shear Legs. Symbol: N_{shear,z}. Number of shear legs parallel to the z-axis.Note: Minimum of 2 legs required as external link is always counted.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "s": {
+      "type": "number",
+      "description": "Ligature Spacing. Symbol: s. Units: mm. Ligature spacing along the length of the column.",
+      "default": 150,
+      "minimum": 50,
+      "maximum": 2000
+    },
+    "reinforcement_class_shear": {
+      "type": "string",
+      "description": "Ductility Class. Symbol: Class_{shear}. Ductility class for shear reinforcement.",
+      "enum": [
+        "N",
+        "L"
+      ],
+      "x-enumLabels": [
+        "Class N",
+        "Class L"
+      ],
+      "default": "N"
+    },
+    "L": {
+      "type": "number",
+      "description": "L. Symbol: L. Units: mm. Unsupported length of column.",
+      "default": 3000,
+      "minimum": 500,
+      "maximum": 25000
+    },
+    "k_y": {
+      "type": "number",
+      "description": "kz. Symbol: k_z. Effective length factor for compression buckling about Z-axis (10.5.3). ",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 30
+    },
+    "k_z": {
+      "type": "number",
+      "description": "ky. Symbol: k_y. Effective length factor for compression buckling about Y-axis (10.5.3). ",
+      "default": 1,
+      "minimum": 0.5,
+      "maximum": 30
+    },
+    "f_c": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_{c}. Units: MPa. Concrete characteristic compression strength.",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65,
+        80,
+        100,
+        120
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100",
+        "120"
+      ],
+      "default": 20
+    },
+    "f_y": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Characteristic yield strength of steel.",
+      "default": 500,
+      "minimum": 200,
+      "maximum": 500
+    },
+    "V_y": {
+      "type": "number",
+      "description": "V*y. Symbol: V^*_{y}. Units: kN. Factored design shear load in y-direction. ",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "V_z": {
+      "type": "number",
+      "description": "V*z. Symbol: V^*_{z}. Units: kN. Factored design shear load in z-direction. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "N": {
+      "type": "number",
+      "description": "N*. Symbol: N^*. Units: kN. Factored design axial load. (+ve for compression)",
+      "default": 1350,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "G": {
+      "type": "number",
+      "description": "G. Symbol: G. Units: kN. Unfactored permanent axial load. (+ve for compression)",
+      "default": 500,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "Q": {
+      "type": "number",
+      "description": "Q. Symbol: Q. Units: kN. Unfactored variable axial load. (+ve for compression)",
+      "default": 500,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "slenderness_banner": {
+      "type": "string",
+      "description": "slenderness_banner"
+    },
+    "second_order": {
+      "type": "string",
+      "description": "Design Moments. First Order: Provide moments from first-order analysis. This calculator will automatically generate moment magnification factor if the column is slender.User-Defined (including δ): Provide design moments including moment magnification. This option is unavailable for short columns.",
+      "enum": [
+        "first",
+        "second"
+      ],
+      "x-enumLabels": [
+        "First-Order",
+        "User-Defined (including δ)"
+      ],
+      "default": "first"
+    },
+    "M_z": {
+      "type": "number",
+      "description": "M*z. Symbol: M^*_{z}. Units: kN-m. Factored bending moment design load, including second-order effects as per 10.4, about z-axis. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "M_y": {
+      "type": "number",
+      "description": "M*y. Symbol: M^*_{y}. Units: kN-m. Factored bending moment design load, including second-order effects as per 10.4, about y-axis. ",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "braced_or_unbraced": {
+      "type": "string",
+      "description": "Braced. Structure is braced against sidesway (external systems provide sufficient restraint to lateral loads).",
+      "enum": [
+        " ",
+        "Z",
+        "Y",
+        "ZY"
+      ],
+      "x-enumLabels": [
+        "Not Braced",
+        "Z Braced",
+        "Y Braced",
+        "Z & Y Braced"
+      ],
+      "default": " "
+    },
+    "M_z_top": {
+      "type": "number",
+      "description": "M*z,top. Symbol: M^*_{z,top}. Units: kN-m. Factored moment about the z-axis at the top of the column. ",
+      "default": 100,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_z_bot": {
+      "type": "number",
+      "description": "M*z,bot. Symbol: M^*_{z,bot}. Units: kN-m. Factored moment about the z-axis at the bottom of the column. ",
+      "default": 50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_y_top": {
+      "type": "number",
+      "description": "M*y,top. Symbol: M^*_{y,top}. Units: kN-m. Factored moment about the y-axis at the top of the column. ",
+      "default": 50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_y_bot": {
+      "type": "number",
+      "description": "M*y,bot. Symbol: M^*_{y,bot}. Units: kN-m. Factored moment about the y-axis at the bottom of the column. ",
+      "default": -50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "sway_moment_magnification_factor_y": {
+      "type": "number",
+      "description": "δsy. Symbol: δ_{sy}. Moment magnification factor for sway (δs) in the direction of the y-axis as per 10.4.3(b).",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "sway_moment_magnification_factor_z": {
+      "type": "number",
+      "description": "δsz. Symbol: δ_{sz}. Moment magnification factor for sway (δs) in the direction of the z-axis as per 10.4.3(b).",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "uid": {
+      "type": "string",
+      "const": "3027-au-concrete-column",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

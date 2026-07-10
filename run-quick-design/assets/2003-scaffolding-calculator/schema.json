@@ -1,0 +1,347 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BS EN 12811-1:2003 Scaffold Member Design",
+  "description": "Design scaffolding members as per BS EN 12811-1:2003 & EN 1993-1-1:2005.",
+  "type": "object",
+  "properties": {
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section",
+      "enum": [
+        "48.3x2.5",
+        "48.3x2.6",
+        "48.3x3.0",
+        "48.3x3.2",
+        "48.3x4.0",
+        "48.3x5.0",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "48.3x2.5",
+        "48.3x2.6",
+        "48.3x3.0",
+        "48.3x3.2",
+        "48.3x4.0",
+        "48.3x5.0",
+        "Custom"
+      ],
+      "default": "48.3x2.5"
+    },
+    "d": {
+      "type": "number",
+      "description": "d. Units: mm. Outer Diameter for circular hollow section.",
+      "default": 48.3,
+      "minimum": 20,
+      "maximum": 1000
+    },
+    "t": {
+      "type": "number",
+      "description": "t. Symbol: t. Units: mm. Wall Thickness of circular hollow section.",
+      "default": 3.2,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "manufacturing": {
+      "type": "string",
+      "description": "Manufacturing. Symbol: Manufacturing. Manufacturing type needed for table 6.2 buckling curve selection. Cold Formed more conservative if in doubt.",
+      "enum": [
+        "hot",
+        "cold"
+      ],
+      "x-enumLabels": [
+        "Hot Finished",
+        "Cold Formed"
+      ],
+      "default": "hot"
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. See Table 3.1 of EN 1993 1-1.",
+      "enum": [
+        "S235",
+        "S275",
+        "S355",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "S235",
+        "S275",
+        "S355",
+        "Custom"
+      ],
+      "default": "S235"
+    },
+    "f_y": {
+      "type": "number",
+      "description": "fy. Symbol: f_{y}. Units: MPa. Yield Strength of Member (fy).",
+      "default": 235,
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "f_u": {
+      "type": "number",
+      "description": "fu. Symbol: f_{u}. Units: MPa. Ultimate Strength of Member (fu).",
+      "default": 360,
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "E": {
+      "type": "number",
+      "description": "E. Symbol: E. Units: MPa. Youngs Modulus, defined as 210 GPa in 3.2.6 of EC3.",
+      "default": 210000,
+      "minimum": 50000,
+      "maximum": 1000000
+    },
+    "M": {
+      "type": "number",
+      "description": "M. Symbol: M. Units: kN-m. Unfactored Bending Moment in Member.",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "V": {
+      "type": "number",
+      "description": "V. Symbol: V. Units: kN. Unfactored Shear Force in Member.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "N_t": {
+      "type": "number",
+      "description": "Nt. Symbol: N_{t}. Units: kN. Unfactored Tension Force in Member.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "N_c": {
+      "type": "number",
+      "description": "Nc. Symbol: N_{c}. Units: kN. Unfactored Compression Force in Member.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "T": {
+      "type": "number",
+      "description": "T. Symbol: T. Units: kN-m. Unfactored Torsion Force in Member.",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "L": {
+      "type": "number",
+      "description": "L. Units: mm. Member Span.",
+      "default": 1000,
+      "minimum": 100,
+      "maximum": 10000000
+    },
+    "k_e": {
+      "type": "number",
+      "description": "ke. Symbol: k_{e}. Effective Length Factor for Buckling. Refer to Table 22 in BS 5950-1: 2000 for typical values of ke. ",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "bending_shape": {
+      "type": "string",
+      "description": "Loading. Symbol: Loading. Applied out-of-plane loading type for determination of buckling factors in accordance with Annex B.",
+      "enum": [
+        "conservative",
+        "uniform",
+        "concentrated"
+      ],
+      "x-enumLabels": [
+        "Conservative",
+        "Uniform",
+        "Concentrated"
+      ],
+      "default": "conservative"
+    },
+    "bending_moments": {
+      "type": "string",
+      "description": "Moments. Symbol: Moments. Method for inputting moments on beam for determination of cmy in accordance with Annex B. Automatic applies 0 to the member ends and the max bending moment to the mid span of the beam.",
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "x-enumLabels": [
+        "Automatic",
+        "Manual"
+      ],
+      "default": "auto"
+    },
+    "M_l": {
+      "type": "number",
+      "description": "Ml. Symbol: M_l. Units: kN-m. Unfactored Bending Moment at left member end.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_m": {
+      "type": "number",
+      "description": "Mm. Symbol: M_m. Units: kN-m. Unfactored Bending Moment at member mid-span.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "M_r": {
+      "type": "number",
+      "description": "Mr. Symbol: M_r. Units: kN-m. Unfactored Bending Moment at right member end.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "coupler_div": {
+      "type": "string",
+      "description": "coupler_div. Figure of Scaffolding Coupler."
+    },
+    "c_t": {
+      "type": "string",
+      "description": "Coupler Type. Symbol: Coupler. Type of coupler at connection end. Strength based on BS EN 12811-1 standard connections. If custom is selected then manufacturer WLLs can be specified. Select none to skip connection checks.",
+      "enum": [
+        "right",
+        "swivel",
+        "external",
+        "parallel",
+        "custom",
+        "none"
+      ],
+      "x-enumLabels": [
+        "Right-Angle Coupler",
+        "Swivel Coupler",
+        "External Sleeve Coupler",
+        "Parallel Coupler",
+        "Custom",
+        "None"
+      ],
+      "default": "right"
+    },
+    "coupler_standard": {
+      "type": "string",
+      "description": "Connection Class. Symbol: Class. Connection class used to determine strength of connection",
+      "enum": [
+        "A",
+        "B"
+      ],
+      "x-enumLabels": [
+        "A",
+        "B"
+      ],
+      "default": "A"
+    },
+    "F_sk": {
+      "type": "number",
+      "description": "Fs,k. Symbol: F_{s,k}. Units: kN. Characteristic Slipping Force Resistance (See Table C.1 BS EN 12811-1).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "F_pk": {
+      "type": "number",
+      "description": "Fp,k. Symbol: F_{p,k}. Units: kN. Characteristic Pull-Apart Force Resistance (See Table C.1 BS EN 12811-1).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "M_bk": {
+      "type": "number",
+      "description": "MB,k. Symbol: M_{B,k}. Units: kN-m. Characteristic Cruciform Bending Moment Resistance (See Table C.1 BS EN 12811-1).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "M_tk": {
+      "type": "number",
+      "description": "MT,k. Symbol: M_{T,k}. Units: kN-m. Characteristic Rotational Moment Resistance (See Table C.1 BS EN 12811-1).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "F_s1": {
+      "type": "number",
+      "description": "Fs,1. Symbol: F_{s,1}. Units: kN. Unfactored Slipping Force Acting at Connection.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "F_s2": {
+      "type": "number",
+      "description": "Fs,2. Symbol: F_{s,2}. Units: kN. Unfactored Slipping Force Acting Perpendicular to Connection in Coupled Tube.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "F_p": {
+      "type": "number",
+      "description": "Fp. Symbol: F_{p}. Units: kN. Unfactored Pull-Apart Force Acting at Connection.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "M_t1": {
+      "type": "number",
+      "description": "MT,1. Symbol: M_{T,1}. Units: kN-m. Unfactored Torsion Moment Acting at Connection in tube.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "M_t2": {
+      "type": "number",
+      "description": "MT,2. Symbol: M_{T,2}. Units: kN-m. Unfactored Torsion Moment Acting at Connection in Coupled Tube.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "M_b": {
+      "type": "number",
+      "description": "MB. Symbol: M_{B}. Units: kN-m. Unfactored Cruciform Bending Moment Acting at Connection.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2003-scaffolding-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

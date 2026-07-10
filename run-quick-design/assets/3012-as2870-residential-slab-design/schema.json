@@ -1,0 +1,529 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 2870:2011 Residential Slab Design",
+  "description": "Design a slab on grade in accordance with AS 2870:2011.",
+  "type": "object",
+  "properties": {
+    "slab_width": {
+      "type": "number",
+      "description": "Plan Width. Symbol: W_{plan}. Units: mm. Total width of floor slab, within the bounds of 5000mm and 30000mm.",
+      "default": 12000,
+      "minimum": 5000,
+      "maximum": 30000
+    },
+    "slab_length": {
+      "type": "number",
+      "description": "Plan Length. Symbol: L_{plan}. Units: mm. Total length of floor slab, within the bounds of 5000mm and 30000mm.",
+      "default": 20000,
+      "minimum": 5000,
+      "maximum": 30000
+    },
+    "slab_depth": {
+      "type": "number",
+      "description": "Slab Depth. Symbol: D_{slab}. Units: mm. Depth of floor slab in mm.",
+      "default": 100,
+      "minimum": 85,
+      "maximum": 500
+    },
+    "edge_depth": {
+      "type": "number",
+      "description": "Edge Beam Depth. Symbol: D_{edge}. Units: mm. Total depth of edge beams (including slab depth) within the bounds of 250mm and 1200mm.",
+      "default": 450,
+      "minimum": 250,
+      "maximum": 1200
+    },
+    "edge_width": {
+      "type": "number",
+      "description": "Edge Beam Width. Symbol: B_{edge}. Units: mm. Total width of edge beams, within the bounds of 110mm and 400mm.",
+      "default": 300,
+      "minimum": 110,
+      "maximum": 400
+    },
+    "internal_depth": {
+      "type": "number",
+      "description": "Internal Beam Depth. Symbol: D_{internal}. Units: mm. Total depth of internal beams (including slab depth) within the bounds of 250mm and 1200mm.",
+      "default": 400,
+      "minimum": 250,
+      "maximum": 1200
+    },
+    "internal_width": {
+      "type": "number",
+      "description": "Internal Beam Width. Symbol: B_{internal}. Units: mm. Total width of internal beams, within the bounds of 110mm and 400mm.",
+      "default": 300,
+      "minimum": 110,
+      "maximum": 400
+    },
+    "x_no_internal_beams": {
+      "type": "number",
+      "description": "Internal Beams (X). Symbol: No. \\; Int_{x}. Units: No.. Number of internal beams perpendicular to X-axis.",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "y_no_internal_beams": {
+      "type": "number",
+      "description": "Internal Beams (Y). Symbol: No. \\; Int_{y}. Units: No.. Number of internal beams perpendicular to Y-axis.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "top_cover": {
+      "type": "number",
+      "description": "Top Cover. Symbol: Top \\;Cover. Units: mm. Concrete cover measured to outside of top slab reinforcement.",
+      "default": 30,
+      "minimum": 15,
+      "maximum": 100
+    },
+    "btm_cover": {
+      "type": "number",
+      "description": "Bottom Cover. Symbol: Btm \\; Cover. Units: mm. Concrete cover measured to outside of bottom slab/beam reinforcement. Note, this value is also used for cover to side of bottom reinforcement.",
+      "default": 50,
+      "minimum": 15,
+      "maximum": 100
+    },
+    "slab_top_mesh": {
+      "type": "string",
+      "description": "Slab Top Mesh. Symbol: Mesh_{slab.top}. Mesh size in top layer of slab.",
+      "enum": [
+        "SL72",
+        "SL82",
+        "SL92",
+        "SL102",
+        "SL81"
+      ],
+      "x-enumLabels": [
+        "SL72",
+        "SL82",
+        "SL92",
+        "SL102",
+        "SL81"
+      ],
+      "default": "SL82"
+    },
+    "edge_btm_no": {
+      "type": "number",
+      "description": "Btm No.. Symbol: N_{edge.btm}. Units: No.. Number of bars/layers of mesh in bottom layer of edge beams.",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "edge_btm_size": {
+      "type": "string",
+      "description": "Btm Size. Symbol: d_{b.edge.btm}. Bar or mesh size in bottom layer of edge beams.",
+      "enum": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "x-enumLabels": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "default": "L11TM200"
+    },
+    "edge_top_no": {
+      "type": "number",
+      "description": "Top No.. Symbol: N_{edge.top}. Units: No.. Number of bars/layers of mesh in top layer of edge beams.",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "edge_top_size": {
+      "type": "string",
+      "description": "Top Size. Symbol: d_{b.edge.top}. Bar or mesh size in top layer of edge beams.",
+      "enum": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "x-enumLabels": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "default": "N16"
+    },
+    "int_btm_no": {
+      "type": "number",
+      "description": "Btm No.. Symbol: N_{int.btm}. Units: No.. Number of bars/layers of mesh in bottom layer of internal beams.",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "int_btm_size": {
+      "type": "string",
+      "description": "Btm Size. Symbol: d_{b.int.btm}. Bar or mesh size in bottom layer of internal beams.",
+      "enum": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "x-enumLabels": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "default": "L12TM200"
+    },
+    "int_top_no": {
+      "type": "number",
+      "description": "Top No.. Symbol: N_{int.top}. Units: No.. Number of bars/layers of mesh in top layer of internal beams.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "int_top_size": {
+      "type": "string",
+      "description": "Top Size. Symbol: d_{b.int.top}. Bar or mesh size in top layer of internal beams.",
+      "enum": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "x-enumLabels": [
+        "L8TM200",
+        "L8TM300",
+        "L11TM200",
+        "L11TM300",
+        "L12TM200",
+        "L12TM300",
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36",
+        "N40"
+      ],
+      "default": "N20"
+    },
+    "construction_type": {
+      "type": "string",
+      "description": "Wall Construction. Symbol: Walls. Select a type of wall construction. This input dictates the max allowable differential deflection of the slab. Refer AS 2870 Clause 3.1 for further information.",
+      "enum": [
+        "Clad Frame",
+        "Articulated Masonry Veneer",
+        "Masonry Veneer",
+        "Articulated Full Masonry",
+        "Full Masonry"
+      ],
+      "x-enumLabels": [
+        "Clad Frame",
+        "Articulated Masonry Veneer",
+        "Masonry Veneer",
+        "Articulated Full Masonry",
+        "Full Masonry"
+      ],
+      "default": "Clad Frame"
+    },
+    "deflection_check": {
+      "type": "string",
+      "description": "Deflection Check. Symbol: Δ_{check}. Select whether program checks Table 4.1 deflection for span ratio, deflection limit or both.",
+      "enum": [
+        "limit only",
+        "span ratio only",
+        "span ratio and limit",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Limit Only",
+        "Span Only",
+        "Span & Limit",
+        "Custom"
+      ],
+      "default": "limit only"
+    },
+    "custom_delta_x": {
+      "type": "number",
+      "description": "Delta X. Symbol: Δ_{x}. Units: mm. Custom X-Direction Max Differential Deflection.",
+      "default": 40,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "custom_delta_y": {
+      "type": "number",
+      "description": "Delta (Y). Symbol: Δ_{y}. Units: mm. Custom Y-Direction Max Differential Deflection.",
+      "default": 30,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "distributed_load": {
+      "type": "number",
+      "description": "Distributed Load. Symbol: L^*_{dist}. Units: kPa. Design distributed load applied to slab. Note high point loads and internal line loads must be assessed individually by the designer, refer Figure 3.1 for further information.",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 30
+    },
+    "line_load": {
+      "type": "number",
+      "description": "Edge Line Load. Symbol: L^*_{edge}. Units: kN/m. Design line load applied to perimeter of slab (by boundary walls/facade). Note high point loads and internal line loads must be assessed individually by the designer, refer Figure 3.1 for further information.",
+      "default": 15,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "profile_type": {
+      "type": "string",
+      "description": "Moisture Change. Symbol: Soil \\; Profile. Depth of expected moisture change, obtained from geotechnical investigation. Normal refers to suction change (Hs) less than 3m. Refer Clause 2.1.2.",
+      "enum": [
+        "Normal",
+        "Deep-Seated"
+      ],
+      "x-enumLabels": [
+        "Normal",
+        "Deep-Seated"
+      ],
+      "default": "Normal"
+    },
+    "ys": {
+      "type": "number",
+      "description": "Surface Movement (ys). Symbol: y_s. Units: mm. Characteristic surface movement for specified soil type, obtained from geotechnical investigation. Refer Appendix C Clause 2.2.",
+      "default": 30,
+      "minimum": 10,
+      "maximum": 120
+    },
+    "f_c": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Concrete characteristic strength in MPa.",
+      "enum": [
+        20,
+        25,
+        32,
+        40,
+        50,
+        65,
+        80,
+        100
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100"
+      ],
+      "default": 20
+    },
+    "f_sy": {
+      "type": "number",
+      "description": "fsy. Symbol: f_{sy}. Units: MPa. Yield strength of reinforcing steel in MPa.",
+      "default": 500,
+      "minimum": 200,
+      "maximum": 550
+    },
+    "fctf_calc": {
+      "type": "string",
+      "description": "f'c.tf Calculation. Symbol: f'_{ct.f}. Select whether concrete flexural tensile strength (fct.f) is calculated as per AS 3600 or AS 2870. AS 2870 fixes fct.f values at 2.7MPa (positive bending) and 1.8MPa (negative bending), generally resulting in a lower cracking moment. Refer AS 2870 Clause 4.4(i) for further context.",
+      "enum": [
+        "AS 2870",
+        "AS 3600"
+      ],
+      "x-enumLabels": [
+        "AS 2870",
+        "AS 3600"
+      ],
+      "default": "AS 2870"
+    },
+    "include_flange": {
+      "type": "string",
+      "description": "bef Contribution. Symbol: Slab \\; Flange. Select whether the slab flange (bef) is included in calculation of section modulus (Z), minimum reinforcement (Ast.min), minimum moment (Mmin) and section moment capacity (Mu). Refer AS 2870 Clause 4.4(e) for further context.",
+      "enum": [
+        "include",
+        "exclude"
+      ],
+      "x-enumLabels": [
+        "Include",
+        "Exclude"
+      ],
+      "default": "include"
+    },
+    "bef_limit": {
+      "type": "string",
+      "description": "bef Limit. Symbol: b_{ef} \\; Limit. Select whether the slab flange (bef) is taken as the upper or lower limit within the allowable range specified by AS 2870 Clause 4.4(e). Changing this limit can benefit design utilisation for some slab arrangements.",
+      "enum": [
+        "lower",
+        "upper"
+      ],
+      "x-enumLabels": [
+        "Lower",
+        "Upper"
+      ],
+      "default": "lower"
+    },
+    "ductility_class": {
+      "type": "string",
+      "description": "Ductility. Symbol: Ductility. Select reinforcement ductility class. Note, low ductility (L) reinforcement mandates a lower Φ value in ΦMu calculations.",
+      "enum": [
+        "L",
+        "N"
+      ],
+      "x-enumLabels": [
+        "L",
+        "N"
+      ],
+      "default": "L"
+    },
+    "uid": {
+      "type": "string",
+      "const": "3012-as2870-residential-slab-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "slab_width",
+    "slab_length",
+    "slab_depth",
+    "edge_depth",
+    "edge_width",
+    "internal_depth",
+    "internal_width",
+    "x_no_internal_beams",
+    "y_no_internal_beams",
+    "top_cover",
+    "btm_cover",
+    "slab_top_mesh",
+    "edge_btm_no",
+    "edge_btm_size",
+    "edge_top_no",
+    "edge_top_size",
+    "int_btm_no",
+    "int_btm_size",
+    "int_top_no",
+    "int_top_size",
+    "construction_type",
+    "deflection_check",
+    "custom_delta_x",
+    "custom_delta_y",
+    "distributed_load",
+    "line_load",
+    "profile_type",
+    "ys",
+    "f_c",
+    "f_sy",
+    "fctf_calc",
+    "include_flange",
+    "bef_limit",
+    "ductility_class"
+  ]
+}

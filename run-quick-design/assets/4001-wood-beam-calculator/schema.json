@@ -1,0 +1,585 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSA O86-14 Timber Member Design",
+  "description": "Design structural timber members in accordance with CSA O86-14.",
+  "type": "object",
+  "properties": {
+    "standard": {
+      "type": "string",
+      "description": "Standard. Symbol: Standard. Standard used for calculations.",
+      "enum": [
+        "CSA O86-14"
+      ],
+      "x-enumLabels": [
+        "CSA O86-14"
+      ],
+      "default": "CSA O86-14"
+    },
+    "selection": {
+      "type": "string",
+      "description": "Selection. Symbol: Selections. Method of selection used",
+      "enum": [
+        "Lookup",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Lookup",
+        "Custom"
+      ],
+      "default": "Lookup"
+    },
+    "cat_input": {
+      "type": "string",
+      "description": "Category. Symbol: Category. Category of the timber section.",
+      "enum": [
+        "Sawn",
+        "Light",
+        "MSR",
+        "MEL"
+      ],
+      "x-enumLabels": [
+        "Sawn Framing",
+        "Light Framing",
+        "Machine stress rated (MSR)",
+        "Machine evaluated lumber (MEL)"
+      ],
+      "default": "Sawn"
+    },
+    "cat_sawn": {
+      "type": "string",
+      "description": "Sawn subcategory. Symbol: Cat_{Sawn}. Subcategory of sawn timber.",
+      "enum": [
+        "A",
+        "C",
+        "D"
+      ],
+      "x-enumLabels": [
+        "Structural framing",
+        "Beam and stringer",
+        "Post and timber"
+      ],
+      "default": "A"
+    },
+    "species": {
+      "type": "string",
+      "description": "Species. Symbol: Species. Species of timber.",
+      "enum": [
+        "SPF",
+        "North",
+        "HFir",
+        "DFir"
+      ],
+      "x-enumLabels": [
+        "Spruce Pine Fir",
+        "Northern species",
+        "Hem Fir",
+        "Douglas Fir"
+      ],
+      "default": "SPF"
+    },
+    "grade_sawn": {
+      "type": "string",
+      "description": "Sawn grade. Symbol: Grade_{sawn}. Sawn timber grade.",
+      "enum": [
+        "SSelect",
+        "No1",
+        "No2"
+      ],
+      "x-enumLabels": [
+        "Structural Select",
+        "No1",
+        "No2"
+      ],
+      "default": "No2"
+    },
+    "grade_light": {
+      "type": "string",
+      "description": "Light grade. Symbol: Grade_{light}. Light framing lumber grade.",
+      "enum": [
+        "Construction",
+        "Standard"
+      ],
+      "x-enumLabels": [
+        "Construction",
+        "Standard"
+      ],
+      "default": "Construction"
+    },
+    "grade_msr": {
+      "type": "string",
+      "description": "MSR grade. Symbol: Grade_{MSR}. MSR timber grade.",
+      "enum": [
+        "1200Fb1.2E",
+        "1350Fb1.3E",
+        "1450Fb1.3E",
+        "1500Fb1.4E",
+        "1650Fb1.5E",
+        "1800Fb1.6E",
+        "1950Fb1.7E",
+        "2100Fb1.8E",
+        "2250Fb1.9E",
+        "2400Fb2.0E",
+        "2550Fb2.1E",
+        "2700Fb2.2E",
+        "2850Fb2.3E",
+        "3000Fb2.4E",
+        "1400Fb1.2E",
+        "1600Fb1.4E",
+        "1650Fb1.3E",
+        "1800Fb1.5E",
+        "2000Fb1.6E",
+        "2250Fb1.7E",
+        "2250Fb1.8E",
+        "2400Fb1.8E"
+      ],
+      "x-enumLabels": [
+        "1200Fb1.2E",
+        "1350Fb1.3E",
+        "1450Fb1.3E",
+        "1500Fb1.4E",
+        "1650Fb1.5E",
+        "1800Fb1.6E",
+        "1950Fb1.7E",
+        "2100Fb1.8E",
+        "2250Fb1.9E",
+        "2400Fb2.0E",
+        "2550Fb2.1E",
+        "2700Fb2.2E",
+        "2850Fb2.3E",
+        "3000Fb2.4E",
+        "1400Fb1.2E",
+        "1600Fb1.4E",
+        "1650Fb1.3E",
+        "1800Fb1.5E",
+        "2000Fb1.6E",
+        "2250Fb1.7E",
+        "2250Fb1.8E",
+        "2400Fb1.8E"
+      ],
+      "default": "1200Fb1.2E"
+    },
+    "grade_mel": {
+      "type": "string",
+      "description": "MEL grade. Symbol: Grade_{MEL}. MEL timber grade.",
+      "enum": [
+        "M-10",
+        "M-13",
+        "M-11",
+        "M-15",
+        "M-12",
+        "M-19",
+        "M-14",
+        "M-22",
+        "M-18",
+        "M-23",
+        "M-21",
+        "M-24",
+        "M-26",
+        "M-25"
+      ],
+      "x-enumLabels": [
+        "M-10",
+        "M-13",
+        "M-11",
+        "M-15",
+        "M-12",
+        "M-19",
+        "M-14",
+        "M-22",
+        "M-18",
+        "M-23",
+        "M-21",
+        "M-24",
+        "M-26",
+        "M-25"
+      ],
+      "default": "M-10"
+    },
+    "section_a": {
+      "type": "string",
+      "description": "Section. Symbol: Section_{A}. Structural framing section.",
+      "enum": [
+        "2x2",
+        "2x3",
+        "2x4",
+        "2x5",
+        "2x6",
+        "2x8",
+        "2x10",
+        "2x12",
+        "3x3",
+        "3x4",
+        "3x5",
+        "3x6",
+        "3x8",
+        "3x10",
+        "3x12",
+        "4x4",
+        "4x5",
+        "4x6",
+        "4x8",
+        "4x10",
+        "4x12"
+      ],
+      "x-enumLabels": [
+        "2x2",
+        "2x3",
+        "2x4",
+        "2x5",
+        "2x6",
+        "2x8",
+        "2x10",
+        "2x12",
+        "3x3",
+        "3x4",
+        "3x5",
+        "3x6",
+        "3x8",
+        "3x10",
+        "3x12",
+        "4x4",
+        "4x5",
+        "4x6",
+        "4x8",
+        "4x10",
+        "4x12"
+      ],
+      "default": "2x4"
+    },
+    "section_b": {
+      "type": "string",
+      "description": "Section. Symbol: Section_{B}. Light framing section.",
+      "enum": [
+        "2x2",
+        "2x3",
+        "2x4",
+        "3x3",
+        "3x4",
+        "4x4"
+      ],
+      "x-enumLabels": [
+        "2x2",
+        "2x3",
+        "2x4",
+        "3x3",
+        "3x4",
+        "4x4"
+      ],
+      "default": "2x4"
+    },
+    "section_c": {
+      "type": "string",
+      "description": "Section. Symbol: Section_{C}. Beam and stringer section.",
+      "enum": [
+        "6x10",
+        "6x12",
+        "6x14",
+        "6x16",
+        "6x18",
+        "8x12",
+        "8x14",
+        "8x16",
+        "8x18",
+        "8x20",
+        "10x14",
+        "10x16",
+        "10x18",
+        "10x20",
+        "12x16",
+        "12x18",
+        "12x20"
+      ],
+      "x-enumLabels": [
+        "6x10",
+        "6x12",
+        "6x14",
+        "6x16",
+        "6x18",
+        "8x12",
+        "8x14",
+        "8x16",
+        "8x18",
+        "8x20",
+        "10x14",
+        "10x16",
+        "10x18",
+        "10x20",
+        "12x16",
+        "12x18",
+        "12x20"
+      ],
+      "default": "6x10"
+    },
+    "section_d": {
+      "type": "string",
+      "description": "Section. Symbol: Section_{D}. Post and timber section.",
+      "enum": [
+        "6x6",
+        "6x8",
+        "8x8",
+        "8x10",
+        "10x10",
+        "10x12",
+        "12x12",
+        "12x14"
+      ],
+      "x-enumLabels": [
+        "6x6",
+        "6x8",
+        "8x8",
+        "8x10",
+        "10x10",
+        "10x12",
+        "12x12",
+        "12x14"
+      ],
+      "default": "6x6"
+    },
+    "section_msr": {
+      "type": "string",
+      "description": "Section. Symbol: Section_{MSR}. MSR section.",
+      "enum": [
+        "2x3",
+        "2x4",
+        "2x5",
+        "2x6",
+        "2x8",
+        "2x10",
+        "2x12"
+      ],
+      "x-enumLabels": [
+        "2x3",
+        "2x4",
+        "2x5",
+        "2x6",
+        "2x8",
+        "2x10",
+        "2x12"
+      ],
+      "default": "2x4"
+    },
+    "section_mel": {
+      "type": "string",
+      "description": "Section. Symbol: Section_{MEL}. MEL section.",
+      "enum": [
+        "2x3",
+        "2x4",
+        "2x5",
+        "2x6",
+        "2x8",
+        "2x10",
+        "2x12"
+      ],
+      "x-enumLabels": [
+        "2x3",
+        "2x4",
+        "2x5",
+        "2x6",
+        "2x8",
+        "2x10",
+        "2x12"
+      ],
+      "default": "2x4"
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Single ply width.",
+      "default": "38.1",
+      "minimum": 1,
+      "maximum": 600
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Beam height.",
+      "default": "139.7",
+      "minimum": 1,
+      "maximum": 600
+    },
+    "finish": {
+      "type": "string",
+      "description": "Finish. Symbol: Finish. Finish of the wood surface.",
+      "enum": [
+        "Surfaced",
+        "Rough"
+      ],
+      "x-enumLabels": [
+        "Surfaced",
+        "Rough"
+      ],
+      "default": "Surfaced"
+    },
+    "n_ply": {
+      "type": "number",
+      "description": "Number of plies. Symbol: n_{ply}. Number of plies for built-up members.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 5
+    },
+    "L_z": {
+      "type": "number",
+      "description": "Lz. Symbol: L_{z}. Units: mm. Unbraced length about the Z Axis.",
+      "default": 1800,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "L_y": {
+      "type": "number",
+      "description": "Ly. Symbol: L_{y}. Units: mm. Unbraced length about the Y Axis.",
+      "default": 1800,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "duration_factor": {
+      "type": "string",
+      "description": "Load duration factor. Symbol: K_{D}. Considers the duration of the load.",
+      "enum": [
+        "Short",
+        "Normal",
+        "Long",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Short",
+        "Normal",
+        "Long",
+        "Custom"
+      ],
+      "default": "Normal"
+    },
+    "duration_custom": {
+      "type": "number",
+      "description": "KD-Custom. Symbol: K_{D-Custom}. Custom Load duration factor.",
+      "default": 1,
+      "minimum": 0.65,
+      "maximum": 1.15
+    },
+    "system_factor": {
+      "type": "string",
+      "description": "System factor. Symbol: K_{H}. Considers load sharing between repetitive members.",
+      "enum": [
+        "NoShare",
+        "Case 1",
+        "Case 2"
+      ],
+      "x-enumLabels": [
+        "None",
+        "Case 1",
+        "Case 2"
+      ],
+      "default": "NoShare"
+    },
+    "condition_factor": {
+      "type": "string",
+      "description": "Service condition factor. Symbol: K_{S}. Considers the member conditions (dry or wet).",
+      "enum": [
+        "Dry"
+      ],
+      "x-enumLabels": [
+        "Dry"
+      ],
+      "default": "Dry"
+    },
+    "treatment_factor": {
+      "type": "string",
+      "description": "Treatment factor. Symbol: K_{T}. Considers the member treatment.",
+      "enum": [
+        "NoTreat"
+      ],
+      "x-enumLabels": [
+        "None"
+      ],
+      "default": "NoTreat"
+    },
+    "M_fz": {
+      "type": "number",
+      "description": "Mfz. Symbol: M_{fz}. Units: kN*m. Major Axis Factored moment (About the Z-Axis).",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 5000000
+    },
+    "M_fy": {
+      "type": "number",
+      "description": "Mfy. Symbol: M_{fy}. Units: kN*m. Minor Axis Factored Moment (About the Y-Axis).",
+      "default": 0.1,
+      "minimum": 0,
+      "maximum": 5000000
+    },
+    "V_fy": {
+      "type": "number",
+      "description": "Vfy. Symbol: V_{fy}. Units: kN. Major Axis Factored Shear (Y direction).",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "V_fz": {
+      "type": "number",
+      "description": "Vfz. Symbol: V_{fz}. Units: kN. Minor Axis Factored Shear (Z direction).",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "C_f": {
+      "type": "number",
+      "description": "Cfx. Symbol: C_{f}. Units: kN. Factored Axial Load (X direction, Tension negative).",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "analysis_results": {
+      "type": "string",
+      "description": "analysis_results"
+    },
+    "comb_Kd": {
+      "type": "string",
+      "description": "comb_Kd"
+    },
+    "uid": {
+      "type": "string",
+      "const": "4001-wood-beam-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "n_ply"
+  ]
+}

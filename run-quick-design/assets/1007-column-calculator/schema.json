@@ -1,0 +1,375 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Column Analysis",
+  "description": "Analyse columns for applied axial force and bending.",
+  "type": "object",
+  "properties": {
+    "column_length": {
+      "type": "number",
+      "description": "Column Length. Symbol: L. Units: mm. Length of column.",
+      "default": 2000,
+      "minimum": 100,
+      "maximum": 50000
+    },
+    "angle_of_rotation": {
+      "type": "number",
+      "description": "Bending Direction. Symbol: Bending. Column bending about major or minor axis.",
+      "enum": [
+        90,
+        180
+      ],
+      "x-enumLabels": [
+        "Minor",
+        "Major"
+      ],
+      "default": 180
+    },
+    "support_b": {
+      "type": "string",
+      "description": "Bottom Support. Bottom Support of column.",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Rolled",
+        "Spring"
+      ],
+      "x-enumLabels": [
+        "Fixed",
+        "Pinned",
+        "Rolled",
+        "Spring"
+      ],
+      "default": "Fixed"
+    },
+    "spring_stiffness_bot": {
+      "type": "number",
+      "description": "Bottom Spring Stiffness. Symbol: stiffness_b. Units: kN/m. Spring stiffness for translation along the horizontal axis at the bottom support.",
+      "default": 5000,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "support_t": {
+      "type": "string",
+      "description": "Top Support. Top Support of column.",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Rolled",
+        "Spring"
+      ],
+      "x-enumLabels": [
+        "Fixed",
+        "Pinned",
+        "Rolled",
+        "Spring"
+      ],
+      "default": "Pinned"
+    },
+    "support_o": {
+      "type": "string",
+      "description": "Top Support. Top Support of column.",
+      "enum": [
+        "-",
+        "Fixed",
+        "Pinned",
+        "Rolled",
+        "Spring"
+      ],
+      "x-enumLabels": [
+        "None",
+        "Fixed",
+        "Pinned",
+        "Rolled",
+        "Spring"
+      ],
+      "default": "-"
+    },
+    "spring_stiffness_top": {
+      "type": "number",
+      "description": "Top Spring Stiffness. Symbol: stiffness_t. Units: kN/m. Spring stiffness for translation along the horizontal axis at the top support.",
+      "default": 5000,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "L1": {
+      "type": "number",
+      "description": "Lateral Load. Units: kN. Load applied horizontally to column (x-axis).",
+      "default": 7,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "d": {
+      "type": "number",
+      "description": "Distance (d). Units: mm. Distance Lateral Load is applied from top of column.",
+      "default": 400,
+      "minimum": 0,
+      "maximum": 50000
+    },
+    "L2": {
+      "type": "number",
+      "description": "Axial Load. Units: kN. Load applied vertically to column (y-axis).",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "PL": {
+      "type": "array",
+      "description": "Point Loads",
+      "items": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "number",
+            "description": "Position (mm)",
+            "default": 250,
+            "minimum": 0
+          },
+          "magnitude": {
+            "type": "number",
+            "description": "Magnitude (kN)",
+            "default": 2,
+            "minimum": -10000,
+            "maximum": 10000
+          }
+        }
+      }
+    },
+    "M": {
+      "type": "array",
+      "description": "Moments",
+      "items": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "number",
+            "description": "Position (mm)",
+            "default": 750,
+            "minimum": 0
+          },
+          "magnitude": {
+            "type": "number",
+            "description": "Magnitude (kN-m)",
+            "default": 3,
+            "minimum": -10000,
+            "maximum": 10000
+          }
+        }
+      }
+    },
+    "DL": {
+      "type": "array",
+      "description": "Distributed Loads",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start_position": {
+            "type": "number",
+            "description": "Start Position (mm)",
+            "default": 1000,
+            "minimum": 0
+          },
+          "start_magnitude": {
+            "type": "number",
+            "description": "Start Magnitude (kN/m)",
+            "default": 5,
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "end_position": {
+            "type": "number",
+            "description": "End Position (mm)",
+            "default": 2000,
+            "minimum": 0
+          },
+          "end_magnitude": {
+            "type": "number",
+            "description": "End Magnitude (kN/m)",
+            "default": -2,
+            "minimum": -10000,
+            "maximum": 10000
+          }
+        }
+      }
+    },
+    "E": {
+      "type": "number",
+      "description": "Young's Modulus (E). Units: MPa. Modulus of Elasticity of the column.",
+      "default": 200000,
+      "minimum": 0,
+      "maximum": 400000
+    },
+    "I_y": {
+      "type": "number",
+      "description": "Moment of Inertia (Iy). Units: mm^4. Moment of Inertia about principal y-axis.",
+      "default": "1.3e8",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "I_z": {
+      "type": "number",
+      "description": "Moment of Inertia (Iz). Units: mm^4. Moment of Inertia about principal z-axis.",
+      "default": "1.3e8",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "isection",
+        "tsection",
+        "channel",
+        "angle",
+        "rect",
+        "hollow-rect",
+        "circular",
+        "hollow-circular"
+      ],
+      "x-enumLabels": [
+        "I-Section",
+        "T-Section",
+        "Channel",
+        "Angle",
+        "Rectangular",
+        "Hollow Rectangular",
+        "Circular",
+        "Hollow Circular"
+      ],
+      "default": "isection"
+    },
+    "B": {
+      "type": "number",
+      "description": "Width (B). Symbol: B. Units: mm. Width of section.",
+      "default": 200,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "H": {
+      "type": "number",
+      "description": "Height (H). Symbol: H. Units: mm. Height of section.",
+      "default": 400,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "t_f": {
+      "type": "number",
+      "description": "Flange Thickness (tf). Symbol: t_f. Units: mm. Flange Thickness of section.",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "t_w": {
+      "type": "number",
+      "description": "Web Thickness (tw). Symbol: t_w. Units: mm. Web Thickness of section.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Symbol: t_w. Units: mm. Thickness of section.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 150
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter (d). Symbol: d. Units: mm. Diameter of section.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "material": {
+      "type": "string",
+      "description": "Material. Symbol: Material",
+      "enum": [
+        "custom",
+        "steel",
+        "aluminium",
+        "concrete",
+        "concrete-high-strength",
+        "oakwood"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "Structural Steel",
+        "Aluminium",
+        "Concrete",
+        "Concrete High Strength",
+        "Oakwood"
+      ],
+      "default": "steel"
+    },
+    "E_advanced": {
+      "type": "number",
+      "description": "Young's Modulus (E). Symbol: E. Units: MPa. Modulus of Elasticity of the column.",
+      "default": 200000,
+      "minimum": 0,
+      "maximum": 400000
+    },
+    "p": {
+      "type": "number",
+      "description": "Density (ρ). Symbol: ρ. Units: kg/m³. Density of material.",
+      "default": 7850,
+      "minimum": 0,
+      "maximum": 20000
+    },
+    "v": {
+      "type": "number",
+      "description": "Poisson's Ratio (v). Symbol: v. Poisson's Ratio of material.",
+      "default": 0.3,
+      "minimum": 0,
+      "maximum": 0.5
+    },
+    "advanced_mode": {
+      "type": "boolean",
+      "description": "Advanced Mode. Enable Advanced Mode by selecting ON. This will allow additional inputs including: - Additional supports - Additional loads - Section properties - Material properties",
+      "default": false
+    },
+    "uid": {
+      "type": "string",
+      "const": "1007-column-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

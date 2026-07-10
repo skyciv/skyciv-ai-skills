@@ -1,0 +1,22 @@
+{
+  "des_allow": "ASD",
+  "weldPattern": "CFR",
+  "LV1": 10,
+  "LH1": 5,
+  "W_unit": 0.25,
+  "Fexx_unit": 60,
+  "P_ult": 5,
+  "angle_rl": 45,
+  "ALBP": "ALBP_C",
+  "x_load": 4,
+  "uid": "6017-weld-group-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

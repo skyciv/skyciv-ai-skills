@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSA S16-14 Steel I-Beam Design",
+  "description": "Design steel i-beams in accordance with CSA S16-14.",
+  "type": "object",
+  "properties": {
+    "standard": {
+      "type": "string",
+      "description": "Standard. Symbol: Standard. Standard used for calculations.",
+      "enum": [
+        "CSA S16-14"
+      ],
+      "x-enumLabels": [
+        "CSA S16-14"
+      ],
+      "default": "CSA S16-14"
+    },
+    "section_input": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions or select a shape from our library.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Section Width.",
+      "default": 150,
+      "minimum": 10,
+      "maximum": 1000
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Section Height.",
+      "default": 300,
+      "minimum": 10,
+      "maximum": 1000
+    },
+    "t_f_input": {
+      "type": "number",
+      "description": "tf. Symbol: t_f. Units: mm. Flange Thickness.",
+      "default": 15,
+      "minimum": 1,
+      "maximum": 25
+    },
+    "t_w_input": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: mm. Web Thickness.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 25
+    },
+    "F_y_input": {
+      "type": "number",
+      "description": "Fy. Symbol: F_y. Units: MPa. Steel Yield Strength.",
+      "default": 345,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "KL_z_input": {
+      "type": "number",
+      "description": "KLz. Symbol: KL_{z}. Units: mm. Unbraced length about the Z Axis (compression).",
+      "default": 5000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "KL_y_input": {
+      "type": "number",
+      "description": "KLy. Symbol: KL_{y}. Units: mm. Unbraced length about the Y Axis (compression).",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "KL_t_input": {
+      "type": "number",
+      "description": "KLt. Symbol: KL_{t}. Units: mm. Unbraced torsional length (compression).",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "KL_b_input": {
+      "type": "number",
+      "description": "KLb. Symbol: KL_{b}. Units: mm. Unbraced flexural-torsional length (bending).",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "M_fz_input": {
+      "type": "number",
+      "description": "Mfz. Symbol: M_{fz}. Units: kN*m. Major Axis Factored Moment (About the Z-Axis).",
+      "default": 30,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "M_fy_input": {
+      "type": "number",
+      "description": "Mfy. Symbol: M_{fy}. Units: kN*m. Minor Axis Factored Moment (About the Y-Axis).",
+      "default": 0,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "V_fy_input": {
+      "type": "number",
+      "description": "Vfy. Symbol: V_{fy}. Units: kN. Major Axis Factored Shear (Y direction).",
+      "default": 50,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "V_fz_input": {
+      "type": "number",
+      "description": "Vfz. Symbol: V_{fz}. Units: kN. Minor Axis Factored Shear (Z direction).",
+      "default": 100,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "P_f_input": {
+      "type": "number",
+      "description": "Pf. Symbol: P_{f}. Units: kN. Factored Axial Load (X direction, Tension negative).",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2012-csa-i-beam",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

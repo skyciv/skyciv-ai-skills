@@ -1,0 +1,51 @@
+{
+  "drawing_type": "section",
+  "method": "terzaghi",
+  "shape": "rectangular",
+  "drainage": "drained",
+  "B": 1,
+  "L": 2,
+  "D": 0,
+  "c": 0,
+  "c_u": 20,
+  "c_a": 0,
+  "phi": 30,
+  "gamma": 16,
+  "gamma_l": 17,
+  "D_w": 1,
+  "q": 0,
+  "loading_table": [
+    {
+      "name": "Dead",
+      "case": "G",
+      "V": 100,
+      "M_B": 0,
+      "M_L": 0,
+      "H_B": 0,
+      "H_L": 0
+    }
+  ],
+  "beta": 0,
+  "eta": 0,
+  "bearing_factor": 3,
+  "sliding_factor": 2,
+  "sensitivity": "none",
+  "sensitivity_min": 1,
+  "sensitivity_max": 1,
+  "steps": 8,
+  "alpha_1": 5,
+  "alpha_2": 5,
+  "friction_ratio": 0.667,
+  "passive_resistance": 0,
+  "show_net_bearing": "yes",
+  "uid": "8501-bearing-capacity",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

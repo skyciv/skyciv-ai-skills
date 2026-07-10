@@ -1,0 +1,31 @@
+{
+  "f_c": 3,
+  "concrete_type": "normal",
+  "d_agg": 1,
+  "casting_height": 5,
+  "cover": 3,
+  "f_y": 60,
+  "reinforcement_type": "normal",
+  "main_bar_size": "4",
+  "s": 10,
+  "transverse_reinf_effects": true,
+  "transverse_bar_size": "3",
+  "n_legs": 4,
+  "n": 4,
+  "n_h": 4,
+  "s_t": 10,
+  "n_t": 4,
+  "splice_t": "class_A",
+  "splice_s": 10,
+  "reinf_factor": 1,
+  "uid": "3013-aci-reinforcement-dev-length-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Steel Angle Design",
+  "description": "Design steel angles in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: Section. Section object imported from S3D model."
+    },
+    "method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "LRFD"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select Custom to edit section dimensions.",
+      "enum": [
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "Custom"
+    },
+    "D": {
+      "type": "number",
+      "description": "Depth (D). Units: in. Total section depth.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 200
+    },
+    "B": {
+      "type": "number",
+      "description": "Width (B). Units: in. Total section width.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 200
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Units: in. Angle section thickness.",
+      "default": 0.5,
+      "minimum": 0.125,
+      "maximum": 1.5
+    },
+    "Fy": {
+      "type": "string",
+      "description": "Yield Stress (Fy). Symbol: F_{y}. Units: ksi. Steel yield stress.",
+      "enum": [
+        "36",
+        "50"
+      ],
+      "x-enumLabels": [
+        "36",
+        "50"
+      ],
+      "default": "36"
+    },
+    "Fu": {
+      "type": "string",
+      "description": "Ultimate Stress (Fu). Symbol: F_{u}. Units: ksi. Steel ultimate stress.",
+      "enum": [
+        "60",
+        "65"
+      ],
+      "x-enumLabels": [
+        "60",
+        "65"
+      ],
+      "default": "60"
+    },
+    "Lz": {
+      "type": "number",
+      "description": "Span (Lz). Symbol: L_{z}. Units: ft. Strong principal axis unbraced length.",
+      "default": 9,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "Ly": {
+      "type": "number",
+      "description": "Span (Ly). Symbol: L_{y}. Units: ft. Weak principal axis unbraced length.",
+      "default": 9,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "kz": {
+      "type": "number",
+      "description": "Effective Length Factor (kz). Symbol: k_{z}. Strong principal axis effective length factor.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "ky": {
+      "type": "number",
+      "description": "Effective Length Factor (ky). Symbol: k_{y}. Weak principal axis effective length factor.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "U": {
+      "type": "number",
+      "description": "Shear Lag Factor (U)",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "Nc": {
+      "type": "number",
+      "description": "Axial Compression (Nc). Symbol: N_{c}. Units: kip",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "Nt": {
+      "type": "number",
+      "description": "Axial Tension (Nt). Symbol: N_{t}. Units: kip",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2006-aisc-angle-beam-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

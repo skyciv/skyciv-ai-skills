@@ -1,0 +1,515 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 1720:2010 Timber Connection Design",
+  "description": "Design timber connections in accordance with AS 1720.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Label. Symbol: label",
+      "default": "Detail 1"
+    },
+    "fastener_type": {
+      "type": "string",
+      "description": "Fastener Type. Symbol: \\text{Fastener}",
+      "enum": [
+        "screw",
+        "nail",
+        "bolt",
+        "coach"
+      ],
+      "x-enumLabels": [
+        "Screw",
+        "Nail",
+        "Bolt",
+        "Coach Screw"
+      ],
+      "default": "screw"
+    },
+    "load_type": {
+      "type": "string",
+      "description": "Load Type. Symbol: \\text{Load Type}. Withdrawal refers to a fastener pulling out of timber (Type 2 joint).Shear refers to fasteners laterally loaded (Type 1 joint). See AS1720 4.1.3.",
+      "enum": [
+        "withdrawal",
+        "shear",
+        "double-shear"
+      ],
+      "x-enumLabels": [
+        "Withdrawal",
+        "Shear",
+        "Double-Shear"
+      ],
+      "default": "withdrawal"
+    },
+    "member_angle": {
+      "type": "number",
+      "description": "Member Angle. Symbol: \\text{Member Angle}. Describe the orientation of members in the connection. Refer to diagram below. Note that obtuse angles can be modelled with equivalent acute angles.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "load_angle": {
+      "type": "number",
+      "description": "Load Angle. Symbol: θ_2. Angle of load with reference to member t1 (outer member). An angle of 0 is parallel to the grains of the outer member. An angle of 90 is perpendicular to the grains of the inner member.The orientation of the load with respect to the inner member depends on the member orientation set by the user.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "t_1": {
+      "type": "number",
+      "description": "t1. Symbol: t_1. Units: mm. Thickness of outer timber member(s).",
+      "default": 40,
+      "minimum": 5,
+      "maximum": 500
+    },
+    "t_2": {
+      "type": "number",
+      "description": "t2. Symbol: t_{2}. Units: mm. Thickness of inner timber member.",
+      "default": 50,
+      "minimum": 5,
+      "maximum": 500
+    },
+    "t_p": {
+      "type": "number",
+      "description": "tp. Symbol: t_{p}. Units: mm. Tp is the embedment into the inner/last member of timber (Figure 4.6, AS1720).AS 1720 calls this lp when referring to type 2 connections (Figure 4.4(a) AS1720), however for consistency we have denoted this tp everywhere.",
+      "default": 30,
+      "minimum": 5,
+      "maximum": 500
+    },
+    "n": {
+      "type": "number",
+      "description": "Total No. Fasteners. Symbol: n. The number of Fasteners resisting the design action.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "na": {
+      "type": "number",
+      "description": "No. Fastener Rows. Symbol: n_{a}. Fastener row is perpendicular to the direction of loading (see Figure 4.5(a) AS 1720). Must be a divisor of the total number of fasteners.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "bearing_position": {
+      "type": "string",
+      "description": "Bearing Position. Symbol: \\text{Bearing}. Position of fastener in relation to end of timber member. See AS 1720 2.4.4.",
+      "enum": [
+        "far",
+        "close"
+      ],
+      "x-enumLabels": [
+        "≥ 75 mm From End",
+        "< 75 mm From End"
+      ],
+      "default": "far"
+    },
+    "bolt_size": {
+      "type": "string",
+      "description": "Bolt Size. Symbol: \\text{Size}",
+      "enum": [
+        "M6",
+        "M8",
+        "M10",
+        "M12",
+        "M16",
+        "M20",
+        "M24",
+        "M30",
+        "M36"
+      ],
+      "x-enumLabels": [
+        "M6",
+        "M8",
+        "M10",
+        "M12",
+        "M16",
+        "M20",
+        "M24",
+        "M30",
+        "M36"
+      ],
+      "default": "M6"
+    },
+    "coach_size": {
+      "type": "string",
+      "description": "Coach Size. Symbol: \\text{Size}. For type 1 connections with sizes larger than M20 it may be appropriate to model the coach screw as a bolt.",
+      "enum": [
+        "M6",
+        "M8",
+        "M10",
+        "M12",
+        "M16",
+        "M20"
+      ],
+      "x-enumLabels": [
+        "M6",
+        "M8",
+        "M10",
+        "M12",
+        "M16",
+        "M20"
+      ],
+      "default": "M6"
+    },
+    "screw_size": {
+      "type": "string",
+      "description": "Screw Size. Symbol: \\text{Size}",
+      "enum": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "12",
+        "14",
+        "18"
+      ],
+      "x-enumLabels": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "12",
+        "14",
+        "18"
+      ],
+      "default": "6"
+    },
+    "nail_size": {
+      "type": "string",
+      "description": "Nail Diameter. Symbol: \\text{Size}",
+      "enum": [
+        "2.5",
+        "2.8",
+        "3.15",
+        "3.75",
+        "4.5",
+        "5",
+        "5.6"
+      ],
+      "x-enumLabels": [
+        "2.5",
+        "2.8",
+        "3.15",
+        "3.75",
+        "4.5",
+        "5",
+        "5.6"
+      ],
+      "default": "2.5"
+    },
+    "embedded_into": {
+      "type": "string",
+      "description": "Embedment Location. Symbol: \\text{Embedment}. ",
+      "enum": [
+        "side",
+        "end"
+      ],
+      "x-enumLabels": [
+        "Side Grain",
+        "End Grain"
+      ],
+      "default": "side"
+    },
+    "skewed": {
+      "type": "string",
+      "description": "Skewed Nail(s)?. Symbol: \\text{Skewed Nail(s)?}. Nails must be skewed at a minimum 30 degrees (Figure 4.4(c) AS1720). If skewed less than 30 degrees select 'no'."
+    },
+    "prebored": {
+      "type": "string",
+      "description": "Holes Prebored?. Symbol: \\text{Holes Prebored}. If holes are prebored to 80% of nail diameter the spacing requirements for the nail are reduced based on table 4.4 of AS1720. If unknown the no option is conservative."
+    },
+    "plates": {
+      "type": "string",
+      "description": "Fastener Side Plate. Symbol: \\text{Side Plate}. Metal side plates if selected should be capable of distributing loads between fasteners, and fasteners should be driven through close fitting holes in metal side plate.",
+      "enum": [
+        "none",
+        "plywood",
+        "metal"
+      ],
+      "x-enumLabels": [
+        "None (Conservative)",
+        "Plywood Gusset Plate",
+        "Metal Side Plate"
+      ],
+      "default": "none"
+    },
+    "seasoned": {
+      "type": "string",
+      "description": "Seasoned Timber. Symbol: \\text{Seasoned?}. Cl 1.7.2.21 AS 1720. Timber in which the average moisture content is nominally between 10 and 15%."
+    },
+    "species": {
+      "type": "string",
+      "description": "Species. Symbol: \\text{Species}",
+      "enum": [
+        "custom",
+        "Mixed Australian hardwoods (excluding rainforest species) from S.A. and southern N.S.W",
+        "Ash-type eucalypts from N.S.W.  Highlands, Victoria and Tasmania",
+        "Non-ash-type eucalypts and corymbias from Qld and N.S.W.",
+        "Rainforest species",
+        "Ash, alpine",
+        "Ash, mountain",
+        "Ash, silver-top",
+        "Balau",
+        "Blackbutt",
+        "Box, brush",
+        "Box, grey, coast",
+        "Brown barrel",
+        "Chengal",
+        "Gum, blue, southern",
+        "Gum, blue, Sydney",
+        "Gum, red, river",
+        "Gum, rose",
+        "Gum, spotted",
+        "Hardwood, Johnstone River",
+        "Ironbark, grey",
+        "Ironbark, red, narrow-leaved",
+        "Jarrah",
+        "Kapur",
+        "Karri",
+        "Kempas",
+        "Kwila (Merbau)",
+        "Lumbayau, Chengkulang",
+        "Mahogany, red",
+        "Marri",
+        "Meranti, dark red",
+        "Mersawa",
+        "Messmate",
+        "Oak, tulip, brown",
+        "Stringybark, brown",
+        "Stringybark, yellow",
+        "Tallowwood",
+        "Turpentine",
+        "Wandoo",
+        "Mixed Pinus species (Australian grown)",
+        "Mixed softwood species (excl. Pinus species)",
+        "Imported softwoods (unidentified)",
+        "Fir, Douglas, North America",
+        "Fir, Douglas, elsewhere",
+        "Hemlock western",
+        "Hem-fir (species mixture)",
+        "Pine, cypress, white",
+        "Pine, hoop",
+        "Pine, radiata",
+        "Pine, slash",
+        "Spruce-pine-fir (species mixture)",
+        "MGP10",
+        "MGP12",
+        "MGP15",
+        "A17"
+      ],
+      "x-enumLabels": [
+        "Custom Joint Group",
+        "Mixed Australian hardwoods (excluding rainforest species) from S.A. and southern N.S.W",
+        "Ash-type eucalypts from N.S.W.  Highlands, Victoria and Tasmania",
+        "Non-ash-type eucalypts and corymbias from Qld and N.S.W.",
+        "Rainforest species",
+        "Ash, alpine",
+        "Ash, mountain",
+        "Ash, silver-top",
+        "Balau",
+        "Blackbutt",
+        "Box, brush",
+        "Box, grey, coast",
+        "Brown barrel",
+        "Chengal",
+        "Gum, blue, southern",
+        "Gum, blue, Sydney",
+        "Gum, red, river",
+        "Gum, rose",
+        "Gum, spotted",
+        "Hardwood, Johnstone River",
+        "Ironbark, grey",
+        "Ironbark, red, narrow-leaved",
+        "Jarrah",
+        "Kapur",
+        "Karri",
+        "Kempas",
+        "Kwila (Merbau)",
+        "Lumbayau, Chengkulang",
+        "Mahogany, red",
+        "Marri",
+        "Meranti, dark red",
+        "Mersawa",
+        "Messmate",
+        "Oak, tulip, brown",
+        "Stringybark, brown",
+        "Stringybark, yellow",
+        "Tallowwood",
+        "Turpentine",
+        "Wandoo",
+        "Mixed Pinus species (Australian grown)",
+        "Mixed softwood species (excl. Pinus species)",
+        "Imported softwoods (unidentified)",
+        "Fir, Douglas, North America",
+        "Fir, Douglas, elsewhere",
+        "Hemlock western",
+        "Hem-fir (species mixture)",
+        "Pine, cypress, white",
+        "Pine, hoop",
+        "Pine, radiata",
+        "Pine, slash",
+        "Spruce-pine-fir (species mixture)",
+        "MGP10",
+        "MGP12",
+        "MGP15",
+        "A17"
+      ],
+      "default": "custom"
+    },
+    "seasoned_class": {
+      "type": "string",
+      "description": "Joint Group. Symbol: \\text{Joint Group}. Cl 1.7.2.15 AS 1720.",
+      "enum": [
+        "JD1",
+        "JD2",
+        "JD3",
+        "JD4",
+        "JD5",
+        "JD6"
+      ],
+      "x-enumLabels": [
+        "JD1",
+        "JD2",
+        "JD3",
+        "JD4",
+        "JD5",
+        "JD6"
+      ],
+      "default": "JD4"
+    },
+    "unseasoned_class": {
+      "type": "string",
+      "description": "Joint Group. Symbol: \\text{Joint Group}. Cl 1.7.2.15 AS 1720.",
+      "enum": [
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "J5",
+        "J6"
+      ],
+      "x-enumLabels": [
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "J5",
+        "J6"
+      ],
+      "default": "J4"
+    },
+    "transverse": {
+      "type": "string",
+      "description": "Transverse Restraint?. Symbol: \\text{Transverse Restraint?}. Required for k17 factor. The term ‘transverse restrained’ refers to the possibility of restraint to timber shrinkage due to the connection detail. Table 4.12 AS 1720.",
+      "enum": [
+        "restrained",
+        "unrestrained"
+      ],
+      "x-enumLabels": [
+        "Restrained",
+        "Unrestrained"
+      ],
+      "default": "unrestrained"
+    },
+    "application": {
+      "type": "string",
+      "description": "Application of Structural Connection. Symbol: \\text{Application}. This dropdown relates to the determination of the capacity factor based on Table 2.2 of AS 1720.",
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "x-enumLabels": [
+        "Secondary Joint",
+        "Primary Joint",
+        "Post Disaster Structure"
+      ],
+      "default": "1"
+    },
+    "house": {
+      "type": "string",
+      "description": "Building Type. Symbol: \\text{Building Type}. If the building is a house a less conservative reduction factor can be adopted where the member does not impact an area greater than 25 m2. See Table 2.2 AS 1720."
+    },
+    "area": {
+      "type": "string",
+      "description": "Area of Failure Impact. Symbol: \\text{Area of Failure Impact}. If failure is likely to impact an area greater than 25 m2 select '≥ 25 m2'. See Table 2.2 AS 1720."
+    },
+    "duration": {
+      "type": "string",
+      "description": "Load Duration. Symbol: \\text{Load Duration}. Load duration for calculating k1 factor as per 2.4.1.1 AS 1720.",
+      "enum": [
+        "seconds",
+        "minutes",
+        "hours",
+        "days",
+        "months",
+        "years"
+      ],
+      "x-enumLabels": [
+        "5 Seconds",
+        "5 Minutes",
+        "5 Hours",
+        "5 Days",
+        "5 Months",
+        "50+ Years"
+      ],
+      "default": "seconds"
+    },
+    "N": {
+      "type": "number",
+      "description": "Design Action. Symbol: N*. Units: kN. The force being applied to the fastener group.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "uid": {
+      "type": "string",
+      "const": "4500-as1720-small-timber-connections",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "label",
+    "n"
+  ]
+}

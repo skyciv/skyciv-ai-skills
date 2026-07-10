@@ -1,0 +1,329 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Extended End Plate Connection",
+  "description": "Computes the strength and stiffness of connections between steel plates used in construction, beyond typical plate dimensions.",
+  "type": "object",
+  "properties": {
+    "grade": {
+      "type": "string",
+      "description": "Grade of Section",
+      "enum": [
+        "A992",
+        "A993"
+      ],
+      "x-enumLabels": [
+        "A992",
+        "A993"
+      ],
+      "default": "A992"
+    },
+    "beam": {
+      "type": "string",
+      "description": "Beam Section",
+      "enum": [
+        "W16*36",
+        "W17*43"
+      ],
+      "x-enumLabels": [
+        "W16",
+        "W17"
+      ],
+      "default": "W16*36"
+    },
+    "column": {
+      "type": "string",
+      "description": "Column Section",
+      "enum": [
+        "W12X 65",
+        "W12X 64"
+      ],
+      "x-enumLabels": [
+        "W12",
+        "W12"
+      ],
+      "default": "W12X 65"
+    },
+    "plate_grade": {
+      "type": "string",
+      "description": "Grade of Plates",
+      "enum": [
+        "A36"
+      ],
+      "x-enumLabels": [
+        "A36"
+      ],
+      "default": "A36"
+    },
+    "bp": {
+      "type": "number",
+      "description": "bp. Units: in",
+      "default": 8
+    },
+    "dp": {
+      "type": "number",
+      "description": "dp. Units: in",
+      "default": 24.5
+    },
+    "tp": {
+      "type": "number",
+      "description": "tp. Units: in",
+      "enum": [
+        1
+      ],
+      "x-enumLabels": [
+        1
+      ],
+      "default": 1
+    },
+    "plate_beam": {
+      "type": "number",
+      "description": "Beam to End Plate angle",
+      "enum": [
+        90
+      ],
+      "x-enumLabels": [
+        90
+      ],
+      "default": 90
+    },
+    "Type": {
+      "type": "string",
+      "description": "Type",
+      "enum": [
+        "Bolt",
+        "Welded"
+      ],
+      "x-enumLabels": [
+        "Bolt",
+        "Welded"
+      ],
+      "default": "Bolt"
+    },
+    "dia": {
+      "type": "number",
+      "description": "Bolt Dia.. Units: in",
+      "enum": [
+        0.875
+      ],
+      "x-enumLabels": [
+        0.875
+      ],
+      "default": 0.875
+    },
+    "bolt_grade": {
+      "type": "string",
+      "description": "Bolt Grade. The Grade of the Bolts",
+      "enum": [
+        "A325"
+      ],
+      "x-enumLabels": [
+        "A325"
+      ],
+      "default": "A325"
+    },
+    "threads": {
+      "type": "string",
+      "description": "Threads",
+      "enum": [
+        "N"
+      ],
+      "x-enumLabels": [
+        "N"
+      ],
+      "default": "N"
+    },
+    "col_bolt": {
+      "type": "number",
+      "description": "Columns for Bolts",
+      "default": 2
+    },
+    "Atb": {
+      "type": "number",
+      "description": "At Top Flange. Top flange and bottom flange having same number of bolts",
+      "enum": [
+        4
+      ],
+      "x-enumLabels": [
+        4
+      ],
+      "default": 4
+    },
+    "tob": {
+      "type": "number",
+      "description": "At Top Rows Bolt. No. of Bolts at Top Flange",
+      "enum": [
+        2
+      ],
+      "x-enumLabels": [
+        2
+      ],
+      "default": 2
+    },
+    "ae": {
+      "type": "number",
+      "description": "ae. Units: in. Edge distance from plate edge",
+      "default": 2
+    },
+    "af": {
+      "type": "number",
+      "description": "af. Units: in. Edge distance from beam flange",
+      "default": 2.25
+    },
+    "sg": {
+      "type": "number",
+      "description": "sg. Units: in. Gauge",
+      "default": 4.5
+    },
+    "sp": {
+      "type": "number",
+      "description": "sp. Units: in. Bolt pitch",
+      "default": 5
+    },
+    "fy_w": {
+      "type": "number",
+      "description": "fyw. Units: ksi",
+      "enum": [
+        70
+      ],
+      "x-enumLabels": [
+        70
+      ],
+      "default": 70
+    },
+    "flange": {
+      "type": "string",
+      "description": "Flange Weld",
+      "enum": [
+        "groove"
+      ],
+      "x-enumLabels": [
+        "groove"
+      ],
+      "default": "groove"
+    },
+    "web": {
+      "type": "number",
+      "description": "Web Weld. Units: in",
+      "enum": [
+        0.25
+      ],
+      "x-enumLabels": [
+        0.25
+      ],
+      "default": 0.25
+    },
+    "Stif": {
+      "type": "string",
+      "description": "Stiffener",
+      "enum": [
+        "Unstiffened",
+        "Stiffened"
+      ],
+      "x-enumLabels": [
+        "Unstiffened",
+        "Stiffened"
+      ],
+      "default": "Stiffened"
+    },
+    "sti_grade": {
+      "type": "string",
+      "description": "Stiffener Grade. The Grade of the Stiffener",
+      "enum": [
+        "A36"
+      ],
+      "x-enumLabels": [
+        "A36"
+      ],
+      "default": "A36"
+    },
+    "tts": {
+      "type": "number",
+      "description": "Tts. Units: in. The Thickness of the Top Stiffener",
+      "enum": [
+        0.5
+      ],
+      "x-enumLabels": [
+        "0.5"
+      ],
+      "default": 0.5
+    },
+    "Wts": {
+      "type": "number",
+      "description": "Wts. Units: in. The Wels Size of Top Stiffener",
+      "enum": [
+        0.25
+      ],
+      "x-enumLabels": [
+        "0.25"
+      ],
+      "default": 0.25
+    },
+    "tbs": {
+      "type": "number",
+      "description": "Tbs. Units: in. The Thickness of the Bottom Stiffener",
+      "enum": [
+        0.5
+      ],
+      "x-enumLabels": [
+        "0.5"
+      ],
+      "default": 0.5
+    },
+    "Wbs": {
+      "type": "number",
+      "description": "Wbs. Units: in. The Wels Size of Bottom Stiffener",
+      "enum": [
+        0.25
+      ],
+      "x-enumLabels": [
+        "0.25"
+      ],
+      "default": 0.25
+    },
+    "uid": {
+      "type": "string",
+      "const": "6005-extended-plate-connection",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

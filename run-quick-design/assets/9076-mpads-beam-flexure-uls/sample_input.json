@@ -1,0 +1,21 @@
+{
+  "f_c": 28,
+  "f_y": 414,
+  "b": 200,
+  "h": 400,
+  "cc": 40,
+  "d_b": 12,
+  "d_s": 10,
+  "M_s": 10,
+  "Ø": 0.9,
+  "uid": "9076-mpads-beam-flexure-uls",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

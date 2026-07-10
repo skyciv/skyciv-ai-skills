@@ -1,0 +1,29 @@
+{
+  "alpha": 20,
+  "plate_length": 1.13,
+  "plate_width": 2.28,
+  "wind_factor_overturning": 1.1,
+  "wind_factor_sliding": 1.5,
+  "stabilizing_factor": 1,
+  "friction_factor": 1,
+  "point_A": "0,0",
+  "block_center": "0.8790,0.2355",
+  "ballast_center": "1.1655,0.1020",
+  "insertion_point": "0.0283,0.2760",
+  "ballast_weight": 20,
+  "plate_weight": 27.4,
+  "block_weight": 166,
+  "wind_pressure": 946.4,
+  "number_blocks": 1,
+  "number_ballasts": 0,
+  "uid": "9007-ennova",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

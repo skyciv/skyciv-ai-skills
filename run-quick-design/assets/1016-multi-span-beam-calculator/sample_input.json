@@ -1,0 +1,45 @@
+{
+  "spans": 2,
+  "L_1": 1200,
+  "L_2": 1200,
+  "L_3": 1200,
+  "L_4": 1200,
+  "S_0": "Pinned",
+  "S_1": "Pinned",
+  "S_2": "Pinned",
+  "S_3": "Pinned",
+  "S_4": "Pinned",
+  "DL_mag_1": 1.2,
+  "DL_mag_2": 1.6,
+  "DL_mag_3": 1.2,
+  "DL_mag_4": 1.2,
+  "PL": [
+    {
+      "position": 100,
+      "magnitude": 2
+    }
+  ],
+  "shape": "isection",
+  "B": 200,
+  "H": 400,
+  "t_f": 20,
+  "t_w": 10,
+  "t": 10,
+  "d": 10,
+  "material": "steel",
+  "E": 200000,
+  "p": 7850,
+  "v": 0.3,
+  "calculate_deflection": false,
+  "self_weight": false,
+  "uid": "1016-multi-span-beam-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

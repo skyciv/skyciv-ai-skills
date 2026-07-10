@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-22 Weld Group Coefficient Calculator",
+  "description": "Determine the Weld Group Coefficient and Capacity based on AISC 360-22.",
+  "type": "object",
+  "properties": {
+    "des_allow": {
+      "type": "string",
+      "description": "Design Methodology. Symbol: -. Choice between Allowable Strength Design (ASD) and Load and Resistance Factor Design (LRFD) methodologies.",
+      "enum": [
+        "ASD",
+        "LRFD"
+      ],
+      "x-enumLabels": [
+        "ASD",
+        "LRFD"
+      ],
+      "default": "ASD"
+    },
+    "weldPattern": {
+      "type": "string",
+      "description": "Weld Shape. Symbol: -. Type of welding pattern to be used.",
+      "enum": [
+        "SVL",
+        "SHL",
+        "DVL",
+        "DHL",
+        "TLC",
+        "TRC",
+        "BLC",
+        "BRC",
+        "CFR",
+        "CFL",
+        "CFD",
+        "CFU",
+        "WBOX",
+        "DVL_op"
+      ],
+      "x-enumLabels": [
+        "Single Vertical Line",
+        "Single Horizontal Line",
+        "Double Vertical Lines",
+        "Double Horizontal Lines",
+        "Top Left Corner",
+        "Top Right Corner",
+        "Bottom Left Corner",
+        "Bottom Right Corner",
+        "C Facing Right",
+        "C Facing Left",
+        "C Facing Down",
+        "C Facing Up",
+        "Box",
+        "Double Vertical Line Out of Plane"
+      ],
+      "default": "CFR"
+    },
+    "LV1": {
+      "type": "number",
+      "description": "Length. Symbol: L_v. Units: in. Vertical Weld Length (for DHL, the vertical spacing between the welds).",
+      "default": 10,
+      "minimum": 0.01,
+      "maximum": 100
+    },
+    "LH1": {
+      "type": "number",
+      "description": "Width. Symbol: L_h. Units: in. Horizontal Weld Length (for DVL, the horizontal spacing between the welds).",
+      "default": 5,
+      "minimum": 0.01,
+      "maximum": 100
+    },
+    "W_unit": {
+      "type": "number",
+      "description": "Fillet Weld Size. Symbol: W_s. Units: in",
+      "default": 0.25,
+      "minimum": 0.125,
+      "maximum": 10
+    },
+    "Fexx_unit": {
+      "type": "number",
+      "description": "Weld Electrode Material. Symbol: F_{exx}. Determines the electrode tensile strength (Fexx).",
+      "enum": [
+        60,
+        70,
+        80,
+        90,
+        100,
+        110
+      ],
+      "x-enumLabels": [
+        "E60XX",
+        "E70XX",
+        "E80XX",
+        "E90XX",
+        "E100XX",
+        "E110XX"
+      ],
+      "default": 60
+    },
+    "P_ult": {
+      "type": "number",
+      "description": "Magnitude (P). Symbol: P. Units: kip. Applied load magnitude, considering relevant load combinations, that is supported by the weld group",
+      "default": 5,
+      "minimum": 0.01,
+      "maximum": 10000
+    },
+    "angle_rl": {
+      "type": "number",
+      "description": "Angle. Symbol: θ. Units: °. Applied load angle (positive values are rotated clockwise from the downward direction).",
+      "default": 45,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "ALBP": {
+      "type": "string",
+      "description": "Applied load basepoint. Symbol: ALBP. Select the insertion point to be used in the analysis.",
+      "enum": [
+        "ALBP_C"
+      ],
+      "x-enumLabels": [
+        "Centroid"
+      ],
+      "default": "ALBP_C"
+    },
+    "x_load": {
+      "type": "number",
+      "description": "X Coordinate Offset. Symbol: ecc_x. Units: in. X coordinate of the applied load, relative to the insertion point to be used in the analysis.",
+      "default": 4,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "6017-weld-group-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

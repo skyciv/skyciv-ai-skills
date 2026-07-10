@@ -1,0 +1,679 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1995-1-1 Timber Connection Design",
+  "description": "Timber Connection Design according to EN 1995-1-1:2004 + A1 :2008 (E)",
+  "type": "object",
+  "properties": {
+    "Conn_type": {
+      "type": "string",
+      "description": "Connection Type. Symbol: \\text{Connection type}. Select the type of timber to timber connection to design.",
+      "enum": [
+        "TT1",
+        "TT2"
+      ],
+      "x-enumLabels": [
+        "Single Shear",
+        "Double Shear"
+      ],
+      "default": "TT1"
+    },
+    "alfa_1": {
+      "type": "number",
+      "description": "Angle (α). Symbol: α. Units: °. Angle between Member 1 and Member 2.",
+      "default": 45,
+      "minimum": 30,
+      "maximum": 90
+    },
+    "Timber_type_M1": {
+      "type": "string",
+      "description": "Timber Type. Symbol: \\text{Timber type}. Timber species family for Member 1 (affects material properties and design values).",
+      "enum": [
+        "softwood",
+        "hardwood",
+        "LVL"
+      ],
+      "x-enumLabels": [
+        "Softwood",
+        "Hardwood",
+        "LVL"
+      ],
+      "default": "softwood"
+    },
+    "Service_Class_M1": {
+      "type": "string",
+      "description": "Service Class. Symbol: \\text{Service class}. Service class per EN 1995 determining moisture and load duration effects on timber properties.",
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "x-enumLabels": [
+        "Class 1",
+        "Class 2",
+        "Class 3"
+      ],
+      "default": "1"
+    },
+    "Material_input_M1": {
+      "type": "string",
+      "description": "Material Properties. Symbol: \\text{Material input}. Select whether to use standard material properties according to EN 338 / EN 14374 or to input manually.",
+      "enum": [
+        "standard",
+        "manual"
+      ],
+      "x-enumLabels": [
+        "Standard",
+        "Manual"
+      ],
+      "default": "standard"
+    },
+    "Timber_grade_M1": {
+      "type": "string",
+      "description": "Timber Grade. Symbol: \\text{Timber grade}. Design timber grade (EN 338) used to select characteristic strengths for Member 1.",
+      "enum": [
+        "C24",
+        "C14",
+        "C16",
+        "C18",
+        "C20",
+        "C22",
+        "C27",
+        "C30",
+        "C35",
+        "C40",
+        "C45",
+        "C50",
+        "D18",
+        "D24",
+        "D27",
+        "D30",
+        "D35",
+        "D40",
+        "D45",
+        "D50",
+        "D55",
+        "D60",
+        "D65",
+        "D70",
+        "D75",
+        "D80",
+        "LVL 32 P",
+        "LVL 35 P",
+        "LVL 48 P",
+        "LVL 50 P",
+        "LVL 80 P"
+      ],
+      "x-enumLabels": [
+        "C24",
+        "C14",
+        "C16",
+        "C18",
+        "C20",
+        "C22",
+        "C27",
+        "C30",
+        "C35",
+        "C40",
+        "C45",
+        "C50",
+        "D18",
+        "D24",
+        "D27",
+        "D30",
+        "D35",
+        "D40",
+        "D45",
+        "D50",
+        "D55",
+        "D60",
+        "D65",
+        "D70",
+        "D75",
+        "D80",
+        "LVL 32 P",
+        "LVL 35 P",
+        "LVL 48 P",
+        "LVL 50 P",
+        "LVL 80 P"
+      ],
+      "default": "C24"
+    },
+    "ρ_1": {
+      "type": "number",
+      "description": "ρk,1. Symbol: ρ_{k,1}. Units: kg/m³. Characteristic density of timber.",
+      "default": 350,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "fc90k1": {
+      "type": "number",
+      "description": "fc,90,k,1. Symbol: f_{c,90,k,1}. Units: N/mm². Characteristic compressive strength perpendicular to grain of timber.",
+      "default": 2.5,
+      "minimum": 0.1,
+      "maximum": 25
+    },
+    "gamma_M1": {
+      "type": "number",
+      "description": "γM1. Symbol: γ_{M1}. Partial safety factor.",
+      "default": 1.3,
+      "minimum": 0.1,
+      "maximum": 2
+    },
+    "t1": {
+      "type": "number",
+      "description": "Width (t1). Symbol: t_{1}. Units: mm. Width of the section.",
+      "default": 50,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "h1": {
+      "type": "number",
+      "description": "Height (h1). Symbol: h_{1}. Units: mm. Height of the section.",
+      "default": 200,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "Timber_type_M2": {
+      "type": "string",
+      "description": "Timber Type. Symbol: \\text{Timber type}. Timber species family for Member 2 (affects material properties and design values).",
+      "enum": [
+        "softwood",
+        "hardwood",
+        "LVL"
+      ],
+      "x-enumLabels": [
+        "Softwood",
+        "Hardwoods",
+        "LVL"
+      ],
+      "default": "softwood"
+    },
+    "Service_Class_M2": {
+      "type": "string",
+      "description": "Service Class. Symbol: \\text{Service class}. Service class per EN 1995 determining moisture and load duration effects on timber properties.",
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "x-enumLabels": [
+        "Class 1",
+        "Class 2",
+        "Class 3"
+      ],
+      "default": "1"
+    },
+    "Material_input_M2": {
+      "type": "string",
+      "description": "Material Properties. Symbol: \\text{Material input}. Select whether to use standard material properties according to EN 338 / EN 14374 or to input manually.",
+      "enum": [
+        "standard",
+        "manual"
+      ],
+      "x-enumLabels": [
+        "Standard",
+        "Manual"
+      ],
+      "default": "standard"
+    },
+    "Timber_grade_M2": {
+      "type": "string",
+      "description": "Timber Grade. Symbol: \\text{Timber grade}. Design timber grade (EN 338) used to select characteristic strengths for Member 2.",
+      "enum": [
+        "C24",
+        "C14",
+        "C16",
+        "C18",
+        "C20",
+        "C22",
+        "C27",
+        "C30",
+        "C35",
+        "C40",
+        "C45",
+        "C50",
+        "D18",
+        "D24",
+        "D27",
+        "D30",
+        "D35",
+        "D40",
+        "D45",
+        "D50",
+        "D55",
+        "D60",
+        "D65",
+        "D70",
+        "D75",
+        "D80",
+        "LVL 32 P",
+        "LVL 35 P",
+        "LVL 48 P",
+        "LVL 50 P",
+        "LVL 80 P"
+      ],
+      "x-enumLabels": [
+        "C24",
+        "C14",
+        "C16",
+        "C18",
+        "C20",
+        "C22",
+        "C27",
+        "C30",
+        "C35",
+        "C40",
+        "C45",
+        "C50",
+        "D18",
+        "D24",
+        "D27",
+        "D30",
+        "D35",
+        "D40",
+        "D45",
+        "D50",
+        "D55",
+        "D60",
+        "D65",
+        "D70",
+        "D75",
+        "D80",
+        "LVL 32 P",
+        "LVL 35 P",
+        "LVL 48 P",
+        "LVL 50 P",
+        "LVL 80 P"
+      ],
+      "default": "C24"
+    },
+    "ρ_2": {
+      "type": "number",
+      "description": "ρk,2. Symbol: ρ_{k,2}. Units: kg/m³. Characteristic density of timber.",
+      "default": 350,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "fc90k2": {
+      "type": "number",
+      "description": "fc,90,k,2. Symbol: f_{c,90,k,2}. Units: N/mm². Characteristic compressive strength perpendicular to grain of timber.",
+      "default": 2.5,
+      "minimum": 0.1,
+      "maximum": 25
+    },
+    "gamma_M2": {
+      "type": "number",
+      "description": "γM2. Symbol: γ_{M2}. Partial safety factor.",
+      "default": 1.3,
+      "minimum": 0.1,
+      "maximum": 2
+    },
+    "t2": {
+      "type": "number",
+      "description": "Width (t2). Symbol: t_{2}. Units: mm. Width of the section.",
+      "default": 48,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "h2": {
+      "type": "number",
+      "description": "Height (h2). Symbol: h_{2}. Units: mm. Height of the section.",
+      "default": 200,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "Metal_material_2": {
+      "type": "string",
+      "description": "Metal plate material. Steel grade of any metal plate used in the connection for Member 2 (used when metal plate is present).",
+      "enum": [
+        "S235",
+        "S275"
+      ],
+      "x-enumLabels": [
+        "S235",
+        "S275"
+      ],
+      "default": "S235"
+    },
+    "Fastener_type_1": {
+      "type": "string",
+      "description": "Fastener Type. Symbol: \\text{Fastener Type}. Type of fastener used in the connection.",
+      "enum": [
+        "bolt",
+        "nail",
+        "nail_large",
+        "screw_1",
+        "screw_2"
+      ],
+      "x-enumLabels": [
+        "Bolts",
+        "Nails ≤ 8mm",
+        "Nails > 8mm",
+        "Screws ≤ 6mm",
+        "Screws > 6mm"
+      ],
+      "default": "bolt"
+    },
+    "Nail_shape": {
+      "type": "string",
+      "description": "Nail Shape. Symbol: \\text{Nail shape}. Cross-sectional shape of the nail (round or square) which affects load capacity and behaviour.",
+      "enum": [
+        "round_n",
+        "square_n"
+      ],
+      "x-enumLabels": [
+        "Round Nails",
+        "Square Nails"
+      ],
+      "default": "round_n"
+    },
+    "Hole": {
+      "type": "string",
+      "description": "Hole Pre-Drilled?. Symbol: \\text{Nail hole}. Indicates whether the fastener hole is pre-drilled (affects installation and capacity).",
+      "enum": [
+        "pred_n",
+        "non_pred_n"
+      ],
+      "x-enumLabels": [
+        "Yes",
+        "No"
+      ],
+      "default": "pred_n"
+    },
+    "Nail_finish": {
+      "type": "string",
+      "description": "Nail Finish. Symbol: \\text{Nail finish}. Finish/type of nail (smooth or ring shank) affecting withdrawal strength and splitting risk.",
+      "enum": [
+        "smooth_n",
+        "non_smooth_n"
+      ],
+      "x-enumLabels": [
+        "Smooth Shank Nails",
+        "Ring Shank Nails"
+      ],
+      "default": "non_smooth_n"
+    },
+    "Split_sensitivity": {
+      "type": "string",
+      "description": "Timber Split Sensitivity. Symbol: \\text{Timber Split Sensitivity}. Species like spruce and pine are more sensitive.",
+      "enum": [
+        "sens",
+        "non_sens"
+      ],
+      "x-enumLabels": [
+        "Sensitive",
+        "Not Sensitive"
+      ],
+      "default": "non_sens"
+    },
+    "Penetration_side": {
+      "type": "string",
+      "description": "Penetration side. Symbol: \\text{Penetration side}. Which member the fastener penetrates into (orientation used for design).",
+      "enum": [
+        "t1_t2",
+        "t2_t1"
+      ],
+      "x-enumLabels": [
+        "Member 1 to Member 2",
+        "Member 2 to Member 1"
+      ],
+      "default": "t1_t2"
+    },
+    "Penetration_side_TT2": {
+      "type": "string",
+      "description": "Penetration Side. Symbol: \\text{Penetration side}. For double shear connections, choose single or double side penetration (overlapping fasteners).",
+      "enum": [
+        "single",
+        "double"
+      ],
+      "x-enumLabels": [
+        "Single Side Penetration",
+        "Double Side Penetration (Overlapping Fasteners)"
+      ],
+      "default": "single"
+    },
+    "d_n": {
+      "type": "number",
+      "description": "Nail Diameter (d). Symbol: d. Units: mm. Diameter of nail.",
+      "default": 3.1,
+      "minimum": 0.1,
+      "maximum": 8
+    },
+    "d_s1": {
+      "type": "number",
+      "description": "Screw Smooth Shank Diameter (d). Symbol: d. Units: mm. Screw smooth shank diameter.",
+      "default": 4.85,
+      "minimum": 0.1,
+      "maximum": 6
+    },
+    "d_s2": {
+      "type": "number",
+      "description": "Screw Smooth Shank Diameter (d). Symbol: d. Units: mm. Screw smooth shank diameter.",
+      "default": 6.5,
+      "minimum": 6.1,
+      "maximum": 30
+    },
+    "d_nl": {
+      "type": "number",
+      "description": "Nail Diameter (d). Symbol: d. Units: mm. Nail diameter/side dimension.",
+      "default": 10,
+      "minimum": 8.1,
+      "maximum": 20
+    },
+    "d_1": {
+      "type": "number",
+      "description": "Screw Thread Root Diameter (d1). Symbol: d_{1}. Units: mm. Screw thread root diameter.",
+      "default": 3.15,
+      "minimum": 0.1,
+      "maximum": 30
+    },
+    "l_s": {
+      "type": "number",
+      "description": "Screw Length (ls). Symbol: l_{s}. Units: mm. Length of screw.",
+      "default": 80,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "l_t": {
+      "type": "number",
+      "description": "Screw Thread Length (lt). Symbol: l_{t}. Units: mm. Length of screw thread.",
+      "default": 74,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "d_b": {
+      "type": "number",
+      "description": "Bolt Diameter (d). Symbol: d. Units: mm. Nominal diameter of bolt.",
+      "default": 10,
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "d_nh": {
+      "type": "number",
+      "description": "Nail Head Diameter (dnh). Symbol: d_{nh}. Units: mm. Nail head diameter.",
+      "default": 7.5,
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "d_sh": {
+      "type": "number",
+      "description": "Screw Head Diameter (dsh). Symbol: d_{sh}. Units: mm. Screw head diameter.",
+      "default": 8.3,
+      "minimum": 0.1,
+      "maximum": 30
+    },
+    "l_n": {
+      "type": "number",
+      "description": "Nail Length (ln). Symbol: l_{n}. Units: mm. Length of nail.",
+      "default": 75,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "fu_b": {
+      "type": "number",
+      "description": "Tensile Strength (fb). Symbol: f_{b}. Units: N/mm². Tensile strength of fastener (wire strength for nails or characteristic tensile strength for bolts and screws).",
+      "default": 800,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "d_bw": {
+      "type": "number",
+      "description": "Washer Diameter (dbwM). Symbol: d_{bw}. Units: mm. Diameter of washer.",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "m": {
+      "type": "number",
+      "description": "m. Units: No.. Number of fastener rows in Member 1 (blue lines).",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "dy": {
+      "type": "number",
+      "description": "Δy. Units: mm. Distance between fastener rows in Member 1.",
+      "default": 60,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "n": {
+      "type": "number",
+      "description": "n. Units: No.. Number of fastener rows in Member 2 (green lines).",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "dx": {
+      "type": "number",
+      "description": "Δx. Units: mm. Distance between fastener rows in Member 2.",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "load_duration": {
+      "type": "string",
+      "description": "Load Duration. Symbol: \\text{Load duration}. Load duration class per EN 1995; affects strength through modification factors.",
+      "enum": [
+        "permanent",
+        "long",
+        "medium",
+        "short",
+        "instantaneous"
+      ],
+      "x-enumLabels": [
+        "Permanent",
+        "Long",
+        "Medium",
+        "Short",
+        "Instantaneous"
+      ],
+      "default": "permanent"
+    },
+    "F": {
+      "type": "number",
+      "description": "FvEd. Symbol: F_{vEd}. Units: kN. Axial force in Member 2.",
+      "default": 10,
+      "minimum": 0.01,
+      "maximum": 1000
+    },
+    "Fv1": {
+      "type": "number",
+      "description": "Fv,Ed1. Symbol: F_{v,Ed1}. Units: kN. Shear force in the left part of the joint (sum of the shear forces in the joint should be in equilibrium with the vertical component of force F).",
+      "default": 4.57,
+      "minimum": 0.01,
+      "maximum": 1000
+    },
+    "Fv2": {
+      "type": "number",
+      "description": "Fv,Ed2. Symbol: F_{v,Ed2}. Units: kN. Shear force in the right part of the joint (sum of the shear forces in the joint should be in equilibrium with the vertical component of force F).",
+      "default": 4.57,
+      "minimum": 0.01,
+      "maximum": 1000
+    },
+    "show_dimensions": {
+      "type": "boolean",
+      "description": "Show Dimensions. Symbol: \\text{Show dimensions}. Toggle to show or hide dimensions in the geometry view.",
+      "default": true
+    },
+    "sc_d": {
+      "type": "number",
+      "description": "Dimension Size. Symbol:  \\text{Dimension scale}. Dimension scale for better visibility of dimensions in the geometry view.",
+      "default": 1.5,
+      "minimum": 0.1,
+      "maximum": 5
+    },
+    "zoom_factor": {
+      "type": "number",
+      "description": "Zoom Level. Symbol: \\text{Zoom Level}. Zoom level for the geometry view (1 = 100%).",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 5
+    },
+    "mover": {
+      "type": "number",
+      "description": "Horizontal Position. Symbol: \\text{Horizontal Position}. Mover for adjusting the position of the geometry in the geometry view.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "report": {
+      "type": "string",
+      "description": "Report Detail. Symbol: \\text{Report}. Choose level of detail to include in the generated report.",
+      "enum": [
+        "detailed",
+        "compact"
+      ],
+      "x-enumLabels": [
+        "Detailed",
+        "Compact"
+      ],
+      "default": "compact"
+    },
+    "uid": {
+      "type": "string",
+      "const": "4501-eurocode-small-timber-connections",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

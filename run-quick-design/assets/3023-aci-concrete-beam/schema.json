@@ -1,0 +1,435 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Concrete Beam Design",
+  "description": "Design of reinforced concrete beams in accordance with ACI 318-19.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Shape. Shape of the column.",
+      "enum": [
+        "rectangular",
+        "tee"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "T-Beam"
+      ],
+      "default": "rectangular"
+    },
+    "D": {
+      "type": "number",
+      "description": "Depth (D). Units: in. Depth of Beam.",
+      "default": 16,
+      "minimum": 2,
+      "maximum": 50
+    },
+    "W": {
+      "type": "number",
+      "description": "Width (W). Units: in. Width of beam or width of beam web.",
+      "default": 16,
+      "minimum": 2,
+      "maximum": 40
+    },
+    "flange_depth": {
+      "type": "number",
+      "description": "Flange Depth. Units: in. Depth of Flange in T-Beam.",
+      "default": 6,
+      "minimum": 2,
+      "maximum": 40
+    },
+    "flange_width": {
+      "type": "number",
+      "description": "Flange width. Units: in. Effective Flange Width to be used in design for T-Beam (refer to section 6.3.2). T-Beam only, L-Beam not available.",
+      "default": 40,
+      "minimum": 2,
+      "maximum": 120
+    },
+    "cover": {
+      "type": "number",
+      "description": "Cover. Units: in. Concrete cover measured to outside of transverse reinforcement.",
+      "default": 2,
+      "minimum": 0.25,
+      "maximum": 5
+    },
+    "pattern": {
+      "type": "string",
+      "description": "Reinforcement Pattern. Reinforcement layout.",
+      "enum": [
+        "custom",
+        "standard",
+        "layers"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "Simple",
+        "Layers"
+      ],
+      "default": "custom"
+    },
+    "n_bars_top": {
+      "type": "number",
+      "description": "n. Symbol: N_{rows}. Number of bars.",
+      "default": 4,
+      "minimum": 0,
+      "maximum": 250
+    },
+    "size_bars_top": {
+      "type": "number",
+      "description": "n. Symbol: reinforcement. Units: in. No. size of bars where number represents 1/8 inch.",
+      "default": 8,
+      "minimum": 3,
+      "maximum": 18
+    },
+    "n_bars_bottom": {
+      "type": "number",
+      "description": "n. Symbol: N_{rows}. Number of bars.",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 250
+    },
+    "size_bars_bottom": {
+      "type": "number",
+      "description": "n. Symbol: reinforcement. Units: in. No. size of bars where number represents 1/8 inch.",
+      "default": 8,
+      "minimum": 3,
+      "maximum": 18
+    },
+    "n_bars_left": {
+      "type": "number",
+      "description": "n. Symbol: N_{rows}. Number of bars.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 250
+    },
+    "size_bars_left": {
+      "type": "number",
+      "description": "n. Symbol: reinforcement. Units: #. No. size of bars where number represents 1/8 inch.",
+      "default": 8,
+      "minimum": 3,
+      "maximum": 18
+    },
+    "n_bars_right": {
+      "type": "number",
+      "description": "n. Symbol: N_{rows}. Number of bars.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 250
+    },
+    "size_bars_right": {
+      "type": "number",
+      "description": "n. Symbol: reinforcement. Units: #. No. size of bars where number represents 1/8 inch.",
+      "default": 8,
+      "minimum": 3,
+      "maximum": 18
+    },
+    "top_rows": {
+      "type": "number",
+      "description": "No. Top Rows. Symbol: -. Number of top rows and spacing between the rows",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 9
+    },
+    "top_row_spacing": {
+      "type": "number",
+      "description": "Top Row Spacing Bar. Symbol: -. Units: in",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 12
+    },
+    "btm_rows": {
+      "type": "number",
+      "description": "No. Btm Rows. Symbol: -. Number of bottom rows and spacing between the rows",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 9
+    },
+    "btm_row_spacing": {
+      "type": "number",
+      "description": "Btm Row Spacing Bar. Symbol: -. Units: in",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 12
+    },
+    "reinforcement_table": {
+      "type": "array",
+      "description": "Reinforcement. Coordinates and size of all reinforcement to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "x (in)",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          },
+          "y": {
+            "type": "number",
+            "description": "y (in)",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          },
+          "d": {
+            "type": "number",
+            "description": "Φ (in)",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 3
+          }
+        }
+      }
+    },
+    "layers_table": {
+      "type": "array",
+      "description": "Reinforcement Layers. Data for reinforcement layers to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "y": {
+            "type": "number",
+            "description": "y (in)",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          },
+          "n": {
+            "type": "number",
+            "description": "n",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 100
+          },
+          "d": {
+            "type": "number",
+            "description": "Φ (in)",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 3
+          }
+        }
+      }
+    },
+    "advanced_reo_settings": {
+      "type": "boolean",
+      "description": "Advanced Inputs",
+      "default": false
+    },
+    "external_shear_reinforcement_size": {
+      "type": "number",
+      "description": "External Shear Reinforcement Size. Symbol: N_{bt}. Units: #. No. size of external shear reinforcement bars where number represents 1/8 inch.",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 18
+    },
+    "s": {
+      "type": "number",
+      "description": "Ligature Spacing. Symbol: s. Units: in. Ligature Spacing for external reinforcement and additional ligature bars.",
+      "default": 6,
+      "minimum": 1,
+      "maximum": 80
+    },
+    "n_shear_bars_horizontal": {
+      "type": "number",
+      "description": "Horizontal Ligatures. Symbol: N_{bt}. Additional horizontal ligature bars.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "size_shear_bars_horizontal": {
+      "type": "number",
+      "description": "Horizontal Shear Reinforcement Size. Units: #. No. size of horizontal shear reinforcement bars where number represents 1/8 inch.",
+      "default": 3,
+      "minimum": 3,
+      "maximum": 18
+    },
+    "n_shear_bars_vertical": {
+      "type": "number",
+      "description": "Vertical Ligatures. Symbol: N_{bt}. Additional vertical ligature bars.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "size_shear_bars_vertical": {
+      "type": "number",
+      "description": "Vertical Shear Reinforcement size. Units: #. No. size of vertical shear reinforcement bars where number represents 1/8 inch.",
+      "default": 3,
+      "minimum": 3,
+      "maximum": 18
+    },
+    "advanced_shear_reo_settings": {
+      "type": "boolean",
+      "description": "Advanced Inputs",
+      "default": false
+    },
+    "f_c": {
+      "type": "number",
+      "description": "f'c. Symbol: f'_c. Units: psi. Concrete compression strength.",
+      "default": 4000,
+      "minimum": 1000,
+      "maximum": 15000
+    },
+    "f_y": {
+      "type": "number",
+      "description": "fy. Symbol: f_y. Units: psi. Yield strength of flexural steel.",
+      "default": 60000,
+      "minimum": 20000,
+      "maximum": 100000
+    },
+    "f_yt": {
+      "type": "number",
+      "description": "fyt. Symbol: f_{yt}. Units: psi. Yield strength of shear steel.",
+      "default": 60000,
+      "minimum": 20000,
+      "maximum": 100000
+    },
+    "M_z": {
+      "type": "number",
+      "description": "Mz. Symbol: M_z. Units: kip-ft. Factored bending moment design load (about Z).",
+      "default": 50,
+      "minimum": -1000000,
+      "maximum": 1000000
+    },
+    "M_y": {
+      "type": "number",
+      "description": "My. Symbol: M_y. Units: kip-ft. Factored bending moment design load (about Y).",
+      "default": 0,
+      "minimum": -1000000,
+      "maximum": 1000000
+    },
+    "V_z": {
+      "type": "number",
+      "description": "Vz. Symbol: V_z. Units: kip. Factored shear design load (in Z direction).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 20000
+    },
+    "V_y": {
+      "type": "number",
+      "description": "Vy. Symbol: V_y. Units: kip. Factored shear design load (in Y direction).",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 20000
+    },
+    "P_u": {
+      "type": "number",
+      "description": "Pu. Symbol: P_u. Units: kip. Factored axial design load. (+ve for compression)",
+      "default": 0,
+      "minimum": -20000,
+      "maximum": 20000
+    },
+    "check_spacing": {
+      "type": "string",
+      "description": "Check Spacing. Check the flexural bar spacing requirements.",
+      "enum": [
+        "no",
+        "yes"
+      ],
+      "x-enumLabels": [
+        "No",
+        "Yes"
+      ],
+      "default": "no"
+    },
+    "check_cover": {
+      "type": "string",
+      "description": "Check Cover. Check the cover requirements.",
+      "enum": [
+        "no",
+        "yes"
+      ],
+      "x-enumLabels": [
+        "No",
+        "Yes"
+      ],
+      "default": "no"
+    },
+    "construction_method": {
+      "type": "string",
+      "description": "Construction Method. Check the cover requirements.",
+      "enum": [
+        "Cast-In-Place",
+        "Precast"
+      ],
+      "x-enumLabels": [
+        "Cast-In-Place",
+        "Precast"
+      ],
+      "default": "Cast-In-Place"
+    },
+    "exposure": {
+      "type": "string",
+      "description": "Exposure. Exposure classification for the purpose of assessing cover requirements.",
+      "enum": [
+        "Cast Against Ground",
+        "Exposed to Weather/Ground",
+        "Not Exposed to Weather/Ground"
+      ],
+      "x-enumLabels": [
+        "Cast Against Ground",
+        "Exposed to Weather/Ground",
+        "Not Exposed to Weather/Ground"
+      ],
+      "default": "Cast Against Ground"
+    },
+    "show_table": {
+      "type": "string",
+      "description": "Show Reinforcement Table. Show table in concrete section image.",
+      "enum": [
+        "no",
+        "yes"
+      ],
+      "x-enumLabels": [
+        "No",
+        "Yes"
+      ],
+      "default": "no"
+    },
+    "uid": {
+      "type": "string",
+      "const": "3023-aci-concrete-beam",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

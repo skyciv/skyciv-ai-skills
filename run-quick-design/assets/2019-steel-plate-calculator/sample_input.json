@@ -1,0 +1,20 @@
+{
+  "b": 300,
+  "t": 12,
+  "steel_grade": "S 275",
+  "custom_yield_strength": 275,
+  "section_partial_factor": 1,
+  "M": 2,
+  "V": 50,
+  "analysis_type": "p",
+  "uid": "2019-steel-plate-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

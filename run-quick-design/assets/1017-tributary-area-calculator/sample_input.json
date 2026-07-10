@@ -1,0 +1,16 @@
+{
+  "length": 5,
+  "width": 3,
+  "load_type": "twoway",
+  "total_load": 1.2,
+  "uid": "1017-tributary-area-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

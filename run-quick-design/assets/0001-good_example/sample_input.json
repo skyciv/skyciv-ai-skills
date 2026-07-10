@@ -1,0 +1,18 @@
+{
+  "shape": "Rectangular",
+  "h": 80,
+  "b": 40,
+  "d": 40,
+  "section_name": "Some Text",
+  "my_checkbox": false,
+  "uid": "0001-good_example",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

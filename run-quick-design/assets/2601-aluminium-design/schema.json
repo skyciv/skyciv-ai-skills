@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS/NZS 1664 Aluminium Member Design",
+  "description": "Design aluminium members in accordance with AS/NZS 1664.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: S3D\\;Section\\;ID. Section object imported from S3D model."
+    },
+    "shape": {
+      "type": "string",
+      "description": "Section Shape. Symbol: Section\\;Shape",
+      "enum": [
+        "hollow rectangular",
+        "tube",
+        "i_section",
+        "c_section",
+        "hat_section",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Hollow Rectangle",
+        "Hollow Circular",
+        "I-Section",
+        "C-Section",
+        "Hat Section",
+        "Custom"
+      ],
+      "default": "hollow rectangular"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section Size. Symbol: Section\\;Size. Select Custom to edit section dimensions.",
+      "enum": [
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "custom"
+    },
+    "custom_material": {
+      "type": "boolean",
+      "description": "Custom Properties?. Symbol: Custom\\;Material?. Toggle on to enter custom material properties, toggle off to select from standard database of alloys and tempers from AS1664.1",
+      "default": false
+    },
+    "welded": {
+      "type": "string",
+      "description": "Welded. Symbol: Welded. Select welded or not welded.",
+      "enum": [
+        "Not Welded",
+        "Welded"
+      ],
+      "x-enumLabels": [
+        "Not Welded",
+        "Welded"
+      ],
+      "default": "Welded"
+    },
+    "alloy": {
+      "type": "number",
+      "description": "Alloy. Symbol: Alloy",
+      "enum": [
+        1100
+      ],
+      "x-enumLabels": [
+        "1100"
+      ],
+      "default": 1100
+    },
+    "temper": {
+      "type": "string",
+      "description": "Temper. Symbol: Temper",
+      "enum": [
+        "H12"
+      ],
+      "x-enumLabels": [
+        "H12"
+      ],
+      "default": "H12"
+    },
+    "s3d_alloy": {
+      "type": "string",
+      "description": "(S3D Loaded) Alloy. Symbol: Alloy"
+    },
+    "s3d_temper": {
+      "type": "string",
+      "description": "(S3D Loaded) Temper. Symbol: Temper"
+    },
+    "product": {
+      "type": "string",
+      "description": "Product. Symbol: Product",
+      "enum": [
+        "Sheet, plate"
+      ],
+      "x-enumLabels": [
+        "Sheet, plate"
+      ],
+      "default": "Sheet, plate"
+    },
+    "custom_material_properties": {
+      "type": "array",
+      "description": "Custom Properties",
+      "items": {
+        "type": "object",
+        "properties": {
+          "custom_alloy_name": {
+            "type": "string",
+            "description": "Name (Optional)",
+            "default": "Custom Material"
+          },
+          "temper_designation": {
+            "type": "string",
+            "description": "Temper",
+            "default": "H",
+            "enum": [
+              "O",
+              "H",
+              "T1",
+              "T2",
+              "T3",
+              "T4",
+              "T5",
+              "T6",
+              "T7",
+              "T8",
+              "T9"
+            ]
+          },
+          "Ftu": {
+            "type": "string",
+            "description": "Ftu (MPa)",
+            "default": "76"
+          },
+          "Fty": {
+            "type": "string",
+            "description": "Fty (MPa)",
+            "default": "31"
+          },
+          "Fcy": {
+            "type": "string",
+            "description": "Fcy (MPa)",
+            "default": "31"
+          },
+          "Fsu": {
+            "type": "string",
+            "description": "Fsu (MPa)",
+            "default": "55"
+          },
+          "Fsy": {
+            "type": "string",
+            "description": "Fsy (MPa)",
+            "default": "17"
+          },
+          "Fbu": {
+            "type": "string",
+            "description": "Fbu (MPa)",
+            "default": "17"
+          },
+          "Fby": {
+            "type": "string",
+            "description": "Fby (MPa)",
+            "default": "17"
+          },
+          "E": {
+            "type": "string",
+            "description": "E (MPa)",
+            "default": "70000"
+          },
+          "kt": {
+            "type": "number",
+            "description": "kt",
+            "default": "1"
+          },
+          "kc": {
+            "type": "number",
+            "description": "kc",
+            "default": "1"
+          }
+        }
+      }
+    },
+    "D": {
+      "type": "number",
+      "description": "D. Units: mm. Total height (or diameter) of section.",
+      "default": 38,
+      "minimum": 3,
+      "maximum": 400
+    },
+    "B": {
+      "type": "number",
+      "description": "B. Units: mm. Total width of section.",
+      "default": 16,
+      "minimum": 3,
+      "maximum": 800
+    },
+    "legs_y": {
+      "type": "number",
+      "description": "Legs (Y)",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 4
+    },
+    "legs_z": {
+      "type": "number",
+      "description": "Legs (Z)",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 4
+    },
+    "t_f": {
+      "type": "number",
+      "description": "tf. Symbol: t_f. Units: mm. Flange thickness, top/btm wall thickness (RHS/SHS).",
+      "default": 1.6,
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "t_w": {
+      "type": "number",
+      "description": "tw. Symbol: t_w. Units: mm. Web thickness, or side wall thickness (RHS/SHS) or CHS thickness.",
+      "default": 1.6,
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "La": {
+      "type": "number",
+      "description": "La. Symbol: L_a. Units: mm. Hat section arm length. (Hat section only)",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Lb": {
+      "type": "number",
+      "description": "Lb. Units: mm. Length between bending restraints. ",
+      "default": 1200,
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "Lz": {
+      "type": "number",
+      "description": "Lz.comp. Units: mm. Distance between restraints against compression buckling about the Z-axis. ",
+      "default": 1200,
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "Ly": {
+      "type": "number",
+      "description": "Ly.comp. Units: mm. Distance between restraints against compression buckling about the Y-axis. ",
+      "default": 1200,
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "kz": {
+      "type": "number",
+      "description": "kz. Effective length coefficient for buckling about the major Z axis.",
+      "default": 1,
+      "minimum": 0.7,
+      "maximum": 5
+    },
+    "ky": {
+      "type": "number",
+      "description": "ky. Effective length coefficient for buckling about the minor Y axis.",
+      "default": 1,
+      "minimum": 0.7,
+      "maximum": 5
+    },
+    "Mz": {
+      "type": "number",
+      "description": "M*z. Units: kNm. Major (Z) Axis Factored Moment. Positive value results in compression at top of section. ",
+      "default": 0.5,
+      "minimum": -50000000,
+      "maximum": 50000000
+    },
+    "My": {
+      "type": "number",
+      "description": "M*y. Units: kNm. Minor (Y) Axis Factored Moment. Positive value results in compression at right of section. ",
+      "default": 0.25,
+      "minimum": -50000000,
+      "maximum": 50000000
+    },
+    "Vy": {
+      "type": "number",
+      "description": "V*y. Units: kN. Major (Y) Axis Factored Shear. ",
+      "default": 0.75,
+      "minimum": -500000,
+      "maximum": 500000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "V*z. Units: kN. Minor (Z) Axis Factored Shear. ",
+      "default": 0.5,
+      "minimum": -500000,
+      "maximum": 500000
+    },
+    "Nc": {
+      "type": "number",
+      "description": "N*comp. Units: kN. Factored Axial Compression.",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Nt": {
+      "type": "number",
+      "description": "N*tension. Units: kN. Factored Axial Tension.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2601-aluminium-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

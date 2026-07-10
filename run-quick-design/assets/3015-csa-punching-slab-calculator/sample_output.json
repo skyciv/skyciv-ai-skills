@@ -1,0 +1,21 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "CSA23Compliance": {
+        "label": "CSA 23.3 Compliance",
+        "value": 1,
+        "units": "utility_boolean"
+      },
+      "Punching Shear at Perimeter Near Column Face": {
+        "label": "Punching Shear at Perimeter Near Column Face",
+        "value": 0.89,
+        "units": "utility"
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

@@ -1,0 +1,31 @@
+{
+  "Lw": 5000,
+  "Tw": 200,
+  "Hw": 3200,
+  "Support": "Three Sides",
+  "Rotation": "None",
+  "fc": 32,
+  "fsy": 500,
+  "db_long": 12,
+  "db_long_space": 300,
+  "db_long_layers": 2,
+  "db_trans": 12,
+  "db_trans_space": 300,
+  "db_trans_layers": 2,
+  "exposure_class": "A1",
+  "crack_control": "Minor",
+  "M_u": 200,
+  "N_u": -1000,
+  "eccentricity": 0,
+  "V_u": 1800,
+  "uid": "3005-as3600-concrete-wall-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

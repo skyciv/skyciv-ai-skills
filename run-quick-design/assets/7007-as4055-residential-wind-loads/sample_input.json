@@ -1,0 +1,29 @@
+{
+  "design_code": "2021",
+  "wind_region": "A",
+  "boundary_distance": 0.1,
+  "terrain_cat": "TC1",
+  "shielding": "NS",
+  "hill_type": "hill",
+  "hill_height": 10,
+  "hill_slope": 2,
+  "hill_zone": "Lower-Third Zone",
+  "structure_type": "structure",
+  "roof_profile": "hip",
+  "roof_type": "Tile",
+  "roof_slope": 10,
+  "width": 10,
+  "length": 10,
+  "height": 5,
+  "floors": "one",
+  "uid": "7007-as4055-residential-wind-loads",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

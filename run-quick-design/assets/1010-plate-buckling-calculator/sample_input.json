@@ -1,0 +1,18 @@
+{
+  "support_t": "1a",
+  "a": "150",
+  "b": "56.2",
+  "t": "1.5",
+  "E": 200000,
+  "v": 0.3,
+  "uid": "1010-plate-buckling-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

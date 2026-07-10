@@ -1,0 +1,20 @@
+{
+  "design_method": "LRFD",
+  "b": 12,
+  "t": 0.5,
+  "steel_grade": "ASTM A572 Grade 50",
+  "yield_strength": 40,
+  "M": 1.5,
+  "V": 10,
+  "analysis_type": "p",
+  "uid": "2024-aisc-steel-plate",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

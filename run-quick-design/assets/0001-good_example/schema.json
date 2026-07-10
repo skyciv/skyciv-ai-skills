@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Example",
+  "description": "A good example showing a range of inputs, calculations and ReportHelpers",
+  "type": "object",
+  "properties": {
+    "rect_image": {
+      "type": "string",
+      "description": "rect_image. Image showing the height and width of a rectangle"
+    },
+    "circ_image": {
+      "type": "string",
+      "description": "circ_image. Image showing the height and width of a rectangle"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape",
+      "enum": [
+        "Rectangular",
+        "Circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "Rectangular"
+    },
+    "h": {
+      "type": "number",
+      "description": "Height. Units: mm. The height of the section.Hello HTML works here so add images or whatever you like:",
+      "default": 80,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "b": {
+      "type": "number",
+      "description": "Width. Units: mm. The width of the section.",
+      "default": 40,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "d": {
+      "type": "number",
+      "description": "Diameter. Units: mm. The diameter of the section.",
+      "default": 40
+    },
+    "section_name": {
+      "type": "string",
+      "description": "My Section Name. Symbol: S_{name}",
+      "default": "Some Text"
+    },
+    "my_checkbox": {
+      "type": "boolean",
+      "description": "My Checkbox. Symbol: C_{box}",
+      "default": false
+    },
+    "uid": {
+      "type": "string",
+      "const": "0001-good_example",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

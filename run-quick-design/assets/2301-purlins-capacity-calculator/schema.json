@@ -1,0 +1,236 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISI S100-16 Purlin Design",
+  "description": "Design steel purlins in accordance with AISI S100-16.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Shape",
+      "enum": [
+        "C-Purlins",
+        "Z-Purlins"
+      ],
+      "x-enumLabels": [
+        "C-Purlins",
+        "Z-Purlins"
+      ],
+      "default": "C-Purlins"
+    },
+    "sectionName": {
+      "type": "string",
+      "description": "Section Name",
+      "default": "C 75x50x12x1.5"
+    },
+    "areaCustom": {
+      "type": "number",
+      "description": "Area, A. Units: mm2. Area of Purlin Section",
+      "default": 300,
+      "minimum": 1
+    },
+    "moixCustom": {
+      "type": "number",
+      "description": "Ix. Units: mm4. Moment of Inertia about Major Axis",
+      "default": 300000,
+      "minimum": 1
+    },
+    "moiyCustom": {
+      "type": "number",
+      "description": "Iy. Units: mm4. Moment of Inertia about Minor Axis",
+      "default": 120000,
+      "minimum": 1
+    },
+    "sxCustom": {
+      "type": "number",
+      "description": "Sx. Units: mm3. Elastic Section Modulus about Major Axis",
+      "default": 8000,
+      "minimum": 1
+    },
+    "syCustom": {
+      "type": "number",
+      "description": "Sy. Units: mm3. Elastic Section Modulus about Minor Axis",
+      "default": 4000,
+      "minimum": 1
+    },
+    "d": {
+      "type": "number",
+      "description": "Depth (d). Units: mm. Depth of the Section",
+      "default": 75,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "b": {
+      "type": "number",
+      "description": "Flange (b). Units: mm. Width of the Section",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "l": {
+      "type": "number",
+      "description": "Lips (l). Units: mm. Length of the Lip",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Units: mm. Thickness of the Section",
+      "default": 1.5,
+      "minimum": 0.1,
+      "maximum": 100
+    },
+    "custom": {
+      "type": "boolean",
+      "description": "Custom Properties. Symbol: Custom_{box}. Toggle to Input Custom Section Properties",
+      "default": false
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Yield Strength (Fy). Units: MPa. Yield Strength of Steel",
+      "default": 248,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "E": {
+      "type": "number",
+      "description": "Modulus of Elasticity (E). Units: MPa. Modulus of Elasticity of Steel",
+      "default": 200000,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "W": {
+      "type": "number",
+      "description": "Density (W). Units: kg/m^3. Mass Density of Steel",
+      "default": 7850,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "deflection": {
+      "type": "string",
+      "description": "Allowable Deflection",
+      "enum": [
+        "L_360",
+        "L_240",
+        "L_180"
+      ],
+      "x-enumLabels": [
+        "L/360",
+        "L/240",
+        "L/180"
+      ],
+      "default": "L_360"
+    },
+    "roof_image": {
+      "type": "string",
+      "description": "roof_image. roof"
+    },
+    "L": {
+      "type": "number",
+      "description": "Bay Length (L). Units: m. Distance Between Supports",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "s": {
+      "type": "number",
+      "description": "Spacing (s). Units: m. Center-to-center Spacing of Purlins",
+      "default": 0.75,
+      "minimum": 0.1,
+      "maximum": 500
+    },
+    "a": {
+      "type": "number",
+      "description": "Roof Slope (θ). Roof Slope in Degrees",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 90
+    },
+    "x": {
+      "type": "string",
+      "description": "Sagrod Location (x). Sagrod Location",
+      "enum": [
+        "thirdpoint",
+        "midpoint"
+      ],
+      "x-enumLabels": [
+        "Third points",
+        "Midpoint"
+      ],
+      "default": "midpoint"
+    },
+    "DL": {
+      "type": "number",
+      "description": "Dead Load (DL). Units: Pa. Area Load",
+      "default": 2000,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "LL": {
+      "type": "number",
+      "description": "Live Load (LL). Units: Pa. Area Load",
+      "default": 1000,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "WL": {
+      "type": "number",
+      "description": "Wind Load (WL). Units: Pa. Area Load (Negative Value Represents Suction)",
+      "default": -3000,
+      "minimum": -100000,
+      "maximum": 100000
+    },
+    "SL": {
+      "type": "number",
+      "description": "Snow Load (SL). Units: Pa. Area Load",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "uid": {
+      "type": "string",
+      "const": "2301-purlins-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

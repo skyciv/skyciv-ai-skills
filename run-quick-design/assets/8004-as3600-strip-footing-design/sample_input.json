@@ -1,0 +1,169 @@
+{
+  "footing_name": "SF1",
+  "footing_width": 1500,
+  "footing_depth": 1500,
+  "footing_height": 400,
+  "wall_material": "concrete",
+  "wall_width": 200,
+  "wall_eccentricity": 200,
+  "loading_table": [
+    {
+      "name": "Dead",
+      "case": "G",
+      "N": 500,
+      "M": 10,
+      "V": 2
+    }
+  ],
+  "lc_table": [
+    {
+      "lcname": "S1",
+      "type": "SLS",
+      "g_factor": "1.0",
+      "g_factor_stb": "1.0",
+      "q_factor": "0.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "S2",
+      "type": "SLS",
+      "g_factor": "1.0",
+      "g_factor_stb": "1.0",
+      "q_factor": "1.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U1",
+      "type": "ULS",
+      "g_factor": "0.9",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U2",
+      "type": "ULS",
+      "g_factor": "0.9",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.0",
+      "w_factor": "1.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U3",
+      "type": "ULS",
+      "g_factor": "1.35",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.0",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U4",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "0.9",
+      "q_factor": "1.5",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U5",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.4",
+      "w_factor": "1.0",
+      "s_factor": "0.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U6",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.4",
+      "w_factor": "0.0",
+      "s_factor": "1.0",
+      "e_factor": "0.0"
+    },
+    {
+      "lcname": "U7",
+      "type": "ULS",
+      "g_factor": "1.20",
+      "g_factor_stb": "0.9",
+      "q_factor": "0.4",
+      "w_factor": "0.0",
+      "s_factor": "0.0",
+      "e_factor": "1.0"
+    }
+  ],
+  "concrete_strength": "32",
+  "unit_weight": 24,
+  "max_aggregate_size": 20,
+  "concrete_fabrication": "in_situ",
+  "concrete_type": "reinforced",
+  "steel_strength": 500,
+  "ductility_class": "N",
+  "epoxy_coated": false,
+  "btm_cover": 50,
+  "btm_reinforcement_table": [
+    {
+      "main_bar_s": 125,
+      "main_bar_cogs": true,
+      "main_bar_size": "12",
+      "transv_no": 5,
+      "transv_cogs": true,
+      "transv_bar_size": "12"
+    }
+  ],
+  "wall_reinforcement_table": [
+    {
+      "wall_bar_size": "12",
+      "wall_s": 100,
+      "double_layer": true,
+      "use_dowels": true,
+      "dowels_size": "12",
+      "s_dowels": 100,
+      "dowels_with_cogs": true
+    }
+  ],
+  "bearing_design_method": "elastic",
+  "q_a": 500,
+  "consider_soil_above_foundation": false,
+  "phi_g": 0.5,
+  "cohesion": 5,
+  "friction_angle": 30,
+  "soil_unit_weight": 16,
+  "shear_calc_method": "simplified",
+  "shear_force_application_point": "top",
+  "report_detail": true,
+  "graphics_table": [
+    {
+      "footing_dims": "true",
+      "show_reinforcement": "true",
+      "show_levels": "true",
+      "show_loading": "true",
+      "display_load_case": "G"
+    }
+  ],
+  "current_unit_system": "",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  },
+  "uid": "8004-as3600-strip-footing-design"
+}

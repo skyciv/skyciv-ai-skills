@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IBC 2021 Pile Design",
+  "description": "Pile Design",
+  "type": "object",
+  "properties": {
+    "region": {
+      "type": "string",
+      "description": "Region",
+      "enum": [
+        "american",
+        "australian",
+        "canadian",
+        "european"
+      ],
+      "x-enumLabels": [
+        "American Standard",
+        "Australian Standard",
+        "Canadian Standard",
+        "European Standard"
+      ],
+      "default": "american"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Cross-sectional shape",
+      "enum": [
+        "rectangular",
+        "round"
+      ],
+      "x-enumLabels": [
+        "Square",
+        "Round"
+      ],
+      "default": "round"
+    },
+    "section_width": {
+      "type": "number",
+      "description": "Width (b). Symbol: b. Units: in. Section width",
+      "default": 36,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "section_depth": {
+      "type": "number",
+      "description": "Depth (D). Symbol: D. Units: in. Section depth",
+      "default": 36,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "section_diameter": {
+      "type": "number",
+      "description": "Diameter (D). Symbol: D. Units: in. Section diameter",
+      "default": 36,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "L": {
+      "type": "number",
+      "description": "Total Length (L). Symbol: L. Units: ft. Total length of the pile",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "lateral_load_height": {
+      "type": "number",
+      "description": "h1. Symbol: h_1. Units: ft. Lateral load height from the top of the pile",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "resting_surface_depth": {
+      "type": "number",
+      "description": "h2. Symbol: h_2. Units: ft. Depth to resisting surface",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "exposed_length": {
+      "type": "number",
+      "description": "he. Symbol: h_e. Units: ft. Length of pile exposed above the ground",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "concrete_strength": {
+      "type": "number",
+      "description": "Concrete Strength (f'c). Symbol: f'_{c}. Units: ksi. Concrete strength",
+      "default": 2.5,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "steel_strength": {
+      "type": "number",
+      "description": "Rebar Strength (fy). Symbol: f_{y}. Units: ksi. Reinforcing bar strength",
+      "default": 60,
+      "minimum": 0.1,
+      "maximum": 2000
+    },
+    "soil_type": {
+      "type": "string",
+      "description": "Soil Type",
+      "enum": [
+        "soil_1",
+        "soil_2",
+        "soil_3",
+        "soil_4",
+        "soil_5"
+      ],
+      "x-enumLabels": [
+        "Crystalline bedrock",
+        "Sedimentary & foliated rock",
+        "Sandy gravel and/or gravel",
+        "Sand, silty sand, clayey sand, silty gravel & clayey gravel",
+        "Clay, sandy clay, silty clay, clayey silt, silt and sandy silt"
+      ],
+      "default": "soil_1"
+    },
+    "main_bar_diameter": {
+      "type": "string",
+      "description": "Bar diameter",
+      "enum": [
+        "0.375",
+        "0.500",
+        "0.625",
+        "0.750",
+        "0.875",
+        "1.000",
+        "1.128",
+        "1.270",
+        "1.410",
+        "1.693",
+        "2.257"
+      ],
+      "x-enumLabels": [
+        "#3 (0.375in)",
+        "#4 (0.500in)",
+        "#5 (0.625in)",
+        "#6 (0.750in)",
+        "#7 (0.875in)",
+        "#8 (1.000in)",
+        "#9 (1.128in)",
+        "#10 (1.270in)",
+        "#11 (1.410in)",
+        "#14 (1.693in)",
+        "#18 (2.257in)"
+      ],
+      "default": "0.375"
+    },
+    "concrete_cover": {
+      "type": "number",
+      "description": "Concrete cover. Symbol: c. Units: in",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "asd_P": {
+      "type": "number",
+      "description": "P. Symbol: P. Units: kip",
+      "default": 0
+    },
+    "asd_Vx": {
+      "type": "number",
+      "description": "Vx. Symbol: V<sub>x</sub>. Units: kip",
+      "default": 0
+    },
+    "asd_Vz": {
+      "type": "number",
+      "description": "Vz. Symbol: V<sub>z</sub>. Units: kip",
+      "default": 0
+    },
+    "asd_Mx": {
+      "type": "number",
+      "description": "Mx. Symbol: M<sub>x</sub>. Units: kip-ft",
+      "default": 0
+    },
+    "asd_Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M<sub>z</sub>. Units: kip-ft",
+      "default": 0
+    },
+    "lrfd_P": {
+      "type": "number",
+      "description": "P. Symbol: P. Units: kip",
+      "default": 0
+    },
+    "lrfd_Vx": {
+      "type": "number",
+      "description": "Vx. Symbol: V<sub>x</sub>. Units: kip",
+      "default": 0
+    },
+    "lrfd_Vz": {
+      "type": "number",
+      "description": "Vz. Symbol: V<sub>z</sub>. Units: kip",
+      "default": 0
+    },
+    "lrfd_Mx": {
+      "type": "number",
+      "description": "Mx. Symbol: M<sub>x</sub>. Units: kip-ft",
+      "default": 0
+    },
+    "lrfd_Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M<sub>z</sub>. Units: kip-ft",
+      "default": 0
+    },
+    "uid": {
+      "type": "string",
+      "const": "9008-ibc-pile-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

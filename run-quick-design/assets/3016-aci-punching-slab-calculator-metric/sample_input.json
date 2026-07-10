@@ -1,0 +1,30 @@
+{
+  "b": 300,
+  "d": 500,
+  "Ct": "Interior",
+  "t": 100,
+  "c": 25,
+  "Crt": "Normal Weight",
+  "Fc": 36,
+  "Fy": 260,
+  "Fyt": 260,
+  "db": 9.525,
+  "Rc": "Without Shear Reinforcement",
+  "St": "Stirrups",
+  "ds": 6.4,
+  "dst": 10,
+  "s": 160,
+  "nl": 2,
+  "Vu": 15,
+  "phi": 0.75,
+  "uid": "3016-aci-punching-slab-calculator-metric",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

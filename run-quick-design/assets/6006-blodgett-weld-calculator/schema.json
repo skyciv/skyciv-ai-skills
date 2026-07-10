@@ -1,0 +1,495 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 Blodgett Weld Capacity",
+  "description": "Design weld groups in accordance with AISC 360-16.",
+  "type": "object",
+  "properties": {
+    "DM": {
+      "type": "string",
+      "description": "Design Method",
+      "enum": [
+        "LRFD",
+        "ASD"
+      ],
+      "x-enumLabels": [
+        "LRFD",
+        "ASD"
+      ],
+      "default": "ASD"
+    },
+    "grade_1": {
+      "type": "string",
+      "description": "Grade of Member 1",
+      "enum": [
+        "A992",
+        "A36",
+        "A500-A",
+        "A500-B",
+        "A500-C",
+        "A53-Gr.B"
+      ],
+      "x-enumLabels": [
+        "A992",
+        "A36",
+        "A500-A",
+        "A500-B",
+        "A500-C",
+        "A53-Gr.B"
+      ],
+      "default": "A36"
+    },
+    "thk_1": {
+      "type": "number",
+      "description": "thk1. Units: in. Thickness of Member 1",
+      "default": 0.125,
+      "minimum": 0,
+      "maximum": 6
+    },
+    "grade_2": {
+      "type": "string",
+      "description": "Grade of Member 2",
+      "enum": [
+        "A992",
+        "A36",
+        "A500-A",
+        "A500-B",
+        "A500-C",
+        "A53-Gr.B"
+      ],
+      "x-enumLabels": [
+        "A992",
+        "A36",
+        "A500-A",
+        "A500-B",
+        "A500-C",
+        "A53-Gr.B"
+      ],
+      "default": "A36"
+    },
+    "thk_2": {
+      "type": "number",
+      "description": "thk2. Units: in. Thickness of Member 2",
+      "default": 0.125,
+      "minimum": 0,
+      "maximum": 6
+    },
+    "pattern_1_image": {
+      "type": "string",
+      "description": "pattern_1_image"
+    },
+    "pattern_2_image": {
+      "type": "string",
+      "description": "pattern_2_image"
+    },
+    "pattern_3_image": {
+      "type": "string",
+      "description": "pattern_3_image"
+    },
+    "pattern_4_image": {
+      "type": "string",
+      "description": "pattern_4_image"
+    },
+    "pattern_5_image": {
+      "type": "string",
+      "description": "pattern_5_image"
+    },
+    "pattern_6_image": {
+      "type": "string",
+      "description": "pattern_6_image"
+    },
+    "pattern_7_image": {
+      "type": "string",
+      "description": "pattern_7_image"
+    },
+    "pattern_8_image": {
+      "type": "string",
+      "description": "pattern_8_image"
+    },
+    "pattern_9_image": {
+      "type": "string",
+      "description": "pattern_9_image"
+    },
+    "pattern_10_image": {
+      "type": "string",
+      "description": "pattern_10_image"
+    },
+    "pattern_11_image": {
+      "type": "string",
+      "description": "pattern_11_image"
+    },
+    "pattern_12_image": {
+      "type": "string",
+      "description": "pattern_12_image"
+    },
+    "pattern_13_image": {
+      "type": "string",
+      "description": "pattern_13_image"
+    },
+    "pattern_14_image": {
+      "type": "string",
+      "description": "pattern_14_image"
+    },
+    "pattern_15_image": {
+      "type": "string",
+      "description": "pattern_15_image"
+    },
+    "pattern_16_image": {
+      "type": "string",
+      "description": "pattern_16_image"
+    },
+    "pattern_17_image": {
+      "type": "string",
+      "description": "pattern_17_image"
+    },
+    "pattern_18_image": {
+      "type": "string",
+      "description": "pattern_18_image"
+    },
+    "pattern_19_image": {
+      "type": "string",
+      "description": "pattern_19_image"
+    },
+    "pattern_20_image": {
+      "type": "string",
+      "description": "pattern_20_image"
+    },
+    "pattern_21_image": {
+      "type": "string",
+      "description": "pattern_21_image"
+    },
+    "blodgett": {
+      "type": "string",
+      "description": "Blodgett Weld Type ",
+      "enum": [
+        "pattern_1",
+        "pattern_2",
+        "pattern_3",
+        "pattern_4",
+        "pattern_5",
+        "pattern_6",
+        "pattern_7",
+        "pattern_8",
+        "pattern_9",
+        "pattern_10",
+        "pattern_11",
+        "pattern_12",
+        "pattern_13",
+        "pattern_14",
+        "pattern_15",
+        "pattern_16",
+        "pattern_17",
+        "pattern_18",
+        "pattern_19",
+        "pattern_20",
+        "pattern_21"
+      ],
+      "x-enumLabels": [
+        "<span style='white-space: nowrap;'>Pattern 1 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_1.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 2 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_2.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 3 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_3.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 4 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_4.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 5 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_5.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 6 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_6.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 7 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_7.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 8 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_8.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 9 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_9.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 10 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_10.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 11 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_11.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 12 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_12.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 13 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_13.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 14 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_14.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 15 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_15.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 16 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_16.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 17 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_17.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 18 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_18.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 19 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_19.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 20 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_20.png' style='height: 25px; vertical-align: middle;'></span>",
+        "<span style='white-space: nowrap;'>Pattern 21 <img src='https://skyciv.com/media/qd/ellen/pattern/Pattern_21.png' style='height: 25px; vertical-align: middle;'></span>"
+      ],
+      "default": "pattern_1"
+    },
+    "fu_w": {
+      "type": "number",
+      "description": "Fuw. Units: ksi. Ultimate Strength of Weld",
+      "enum": [
+        60,
+        80,
+        90,
+        100,
+        110,
+        70
+      ],
+      "x-enumLabels": [
+        60,
+        80,
+        90,
+        100,
+        110,
+        70
+      ],
+      "default": 60
+    },
+    "w1": {
+      "type": "number",
+      "description": "w1. Units: in. Weld Size",
+      "enum": [
+        0.125,
+        0.188,
+        0.25,
+        0.313,
+        0.375,
+        0.4375,
+        0.5,
+        0.5625,
+        0.625,
+        0.6875,
+        0.75,
+        0.875,
+        1
+      ],
+      "x-enumLabels": [
+        0.125,
+        0.188,
+        0.25,
+        0.313,
+        0.375,
+        0.4375,
+        0.5,
+        0.5625,
+        0.625,
+        0.6875,
+        0.75,
+        0.875,
+        1
+      ],
+      "default": 0.188
+    },
+    "dw": {
+      "type": "number",
+      "description": "dw. Units: in. Depth of Weld",
+      "default": 6,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "bw": {
+      "type": "number",
+      "description": "bw. Units: in. Width of Weld",
+      "default": 4,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cb": {
+      "type": "number",
+      "description": "cb. Units: in. Horizontal Weld Gap",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c1b": {
+      "type": "number",
+      "description": "c1b. Units: in. Horizontal Weld Gap",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c2b": {
+      "type": "number",
+      "description": "c2b. Units: in. Horizontal Weld Gap",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "cd": {
+      "type": "number",
+      "description": "cd. Units: in. Vertical Weld Gap",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c1d": {
+      "type": "number",
+      "description": "c1d. Units: in. Vertical Weld Gap",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "c2d": {
+      "type": "number",
+      "description": "c2d. Units: in. Vertical Weld Gap",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "load_1_image": {
+      "type": "string",
+      "description": "load_1_image"
+    },
+    "load_2_image": {
+      "type": "string",
+      "description": "load_2_image"
+    },
+    "load_3_image": {
+      "type": "string",
+      "description": "load_3_image"
+    },
+    "load_4_image": {
+      "type": "string",
+      "description": "load_4_image"
+    },
+    "load_5_image": {
+      "type": "string",
+      "description": "load_5_image"
+    },
+    "load_6_image": {
+      "type": "string",
+      "description": "load_6_image"
+    },
+    "load_7_image": {
+      "type": "string",
+      "description": "load_7_image"
+    },
+    "load_8_image": {
+      "type": "string",
+      "description": "load_8_image"
+    },
+    "load_9_image": {
+      "type": "string",
+      "description": "load_9_image"
+    },
+    "load_10_image": {
+      "type": "string",
+      "description": "load_10_image"
+    },
+    "load_11_image": {
+      "type": "string",
+      "description": "load_11_image"
+    },
+    "load_12_image": {
+      "type": "string",
+      "description": "load_12_image"
+    },
+    "load_13_image": {
+      "type": "string",
+      "description": "load_13_image"
+    },
+    "load_14_image": {
+      "type": "string",
+      "description": "load_14_image"
+    },
+    "load_15_image": {
+      "type": "string",
+      "description": "load_15_image"
+    },
+    "load_16_image": {
+      "type": "string",
+      "description": "load_16_image"
+    },
+    "load_17_image": {
+      "type": "string",
+      "description": "load_17_image"
+    },
+    "load_18_image": {
+      "type": "string",
+      "description": "load_18_image"
+    },
+    "load_19_image": {
+      "type": "string",
+      "description": "load_19_image"
+    },
+    "load_20_image": {
+      "type": "string",
+      "description": "load_20_image"
+    },
+    "load_21_image": {
+      "type": "string",
+      "description": "load_21_image"
+    },
+    "Fx": {
+      "type": "number",
+      "description": "Fx. Units: kip. Applied force along x-axis.",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Fy. Units: kip. Applied force along y-axis.",
+      "default": 0.65,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Fz": {
+      "type": "number",
+      "description": "Fz. Units: kip. Applied force along z-axis.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Mx. Units: kip-ft. Moment about x-axis.",
+      "default": 0.9,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "My": {
+      "type": "number",
+      "description": "My. Units: kip-ft. Moment about y-axis.",
+      "default": 0.7,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz. Units: kip-ft. Moment about z-axis.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "6006-blodgett-weld-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

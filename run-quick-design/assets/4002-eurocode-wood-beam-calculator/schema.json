@@ -1,0 +1,418 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EN 1995-1-1 Timber Member Design",
+  "description": "Design structural timber members in accordance with EN 1995-1-1.",
+  "type": "object",
+  "properties": {
+    "member": {
+      "type": "string",
+      "description": "Member Type. Symbol: Member\\;Type. Beam or Column?",
+      "enum": [
+        "Beam",
+        "Column"
+      ],
+      "x-enumLabels": [
+        "Beam",
+        "Column"
+      ],
+      "default": "Beam"
+    },
+    "service": {
+      "type": "string",
+      "description": "Service Class. Symbol: Service\\;Class. Characterised by a moisture content and the relative humidity of the surrounding air.",
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "x-enumLabels": [
+        "Service Class 1",
+        "Service Class 2",
+        "Service Class 3"
+      ],
+      "default": "1"
+    },
+    "load": {
+      "type": "string",
+      "description": "Load Duration Class. Symbol: Load\\;Duration\\;Class. The period of time over which the timber and wood products are loaded.",
+      "enum": [
+        "permanent",
+        "long-term",
+        "medium-term",
+        "short-term",
+        "instantaneous"
+      ],
+      "x-enumLabels": [
+        "Permanent",
+        "Long-term",
+        "Medium-term",
+        "Short-term",
+        "Instantaneous"
+      ],
+      "default": "permanent"
+    },
+    "specie": {
+      "type": "string",
+      "description": "Species",
+      "enum": [
+        "Solid Timber",
+        "Glulam",
+        "LVL"
+      ],
+      "x-enumLabels": [
+        "Solid Timber",
+        "Glulam",
+        "LVL"
+      ],
+      "default": "Solid Timber"
+    },
+    "solidType": {
+      "type": "string",
+      "description": "Timber Type",
+      "enum": [
+        "Coniferous species and Poplar",
+        "Deciduous species"
+      ],
+      "x-enumLabels": [
+        "Coniferous species and Poplar",
+        "Deciduous species"
+      ],
+      "default": "Coniferous species and Poplar"
+    },
+    "coniferousSpecie": {
+      "type": "string",
+      "description": "Solid Grade",
+      "enum": [
+        "C14",
+        "C16",
+        "C18",
+        "C20",
+        "C22",
+        "C24",
+        "C27",
+        "C30",
+        "C35",
+        "C40",
+        "C45"
+      ],
+      "x-enumLabels": [
+        "C14",
+        "C16",
+        "C18",
+        "C20",
+        "C22",
+        "C24",
+        "C27",
+        "C30",
+        "C35",
+        "C40",
+        "C45"
+      ],
+      "default": "C14"
+    },
+    "deciduousSpecie": {
+      "type": "string",
+      "description": "Solid Grade",
+      "enum": [
+        "D30",
+        "D35",
+        "D40",
+        "D50",
+        "D60",
+        "D70"
+      ],
+      "x-enumLabels": [
+        "D30",
+        "D35",
+        "D40",
+        "D50",
+        "D60",
+        "D70"
+      ],
+      "default": "D30"
+    },
+    "glulamType": {
+      "type": "string",
+      "description": "Glulam Type",
+      "enum": [
+        "Combined Glulam",
+        "Homogeneous Glulam",
+        "Buckland Product Glulam",
+        "Hasslacher Product Glulam"
+      ],
+      "x-enumLabels": [
+        "Combined Glulam",
+        "Homogeneous Glulam",
+        "Buckland Product Glulam",
+        "Hasslacher Product Glulam"
+      ],
+      "default": "Combined Glulam"
+    },
+    "combinedGlulam": {
+      "type": "string",
+      "description": "Glulam Grade",
+      "enum": [
+        "GL 24c",
+        "GL 28c",
+        "GL 32c",
+        "GL 36c"
+      ],
+      "x-enumLabels": [
+        "GL 24c",
+        "GL 28c",
+        "GL 32c",
+        "GL 36c"
+      ],
+      "default": "GL 24c"
+    },
+    "homogeneousGlulam": {
+      "type": "string",
+      "description": "Glulam Grade",
+      "enum": [
+        "GL 24h",
+        "GL 28h",
+        "GL 32h",
+        "GL36h"
+      ],
+      "x-enumLabels": [
+        "GL 24h",
+        "GL 28h",
+        "GL 32h",
+        "GL 36h"
+      ],
+      "default": "GL 24h"
+    },
+    "BucklandProduct": {
+      "type": "string",
+      "description": "Glulam Grade",
+      "enum": [
+        "GL 20h",
+        "GL 24h",
+        "GL 28h",
+        "GL 30h",
+        "GL 32h"
+      ],
+      "x-enumLabels": [
+        "GL 20h",
+        "GL 24h",
+        "GL 28h",
+        "GL 30h",
+        "GL 32h"
+      ],
+      "default": "GL 20h"
+    },
+    "HasslacherProduct": {
+      "type": "string",
+      "description": "Glulam Grade",
+      "enum": [
+        "GL 20h",
+        "GL 24h",
+        "GL 28h",
+        "GL 30h",
+        "GL 32h"
+      ],
+      "x-enumLabels": [
+        "GL 20h",
+        "GL 24h",
+        "GL 28h",
+        "GL 30h",
+        "GL 32h"
+      ],
+      "default": "GL 20h"
+    },
+    "LVLType": {
+      "type": "string",
+      "description": "LVL Type",
+      "enum": [
+        "Kerto Product LVL",
+        "Steico Product LVL",
+        "Stora-Enso Product LVL"
+      ],
+      "x-enumLabels": [
+        "Kerto Product LVL",
+        "Steico Product LVL",
+        "Stora-Enso Product LVL"
+      ],
+      "default": "Kerto Product LVL"
+    },
+    "KertoLVL": {
+      "type": "string",
+      "description": "LVL Grade",
+      "enum": [
+        "Kerto-Q LVL",
+        "Kerto-S LVL"
+      ],
+      "x-enumLabels": [
+        "Kerto-Q LVL",
+        "Kerto-S LVL"
+      ],
+      "default": "Kerto-Q LVL"
+    },
+    "SteicoLVL": {
+      "type": "string",
+      "description": "LVL Grade",
+      "enum": [
+        "Steico LVL R",
+        "Steico LVL X"
+      ],
+      "x-enumLabels": [
+        "Steico LVL R",
+        "Steico LVL X"
+      ],
+      "default": "Steico LVL R"
+    },
+    "StoraLVL": {
+      "type": "string",
+      "description": "LVL Grade",
+      "enum": [
+        "Stora Enso-S",
+        "Stora Enso-X"
+      ],
+      "x-enumLabels": [
+        "Stora Enso-S",
+        "Stora Enso-X"
+      ],
+      "default": "Stora Enso-S"
+    },
+    "d": {
+      "type": "number",
+      "description": "Section Depth (d). Symbol: d. Units: mm",
+      "default": 80,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "b": {
+      "type": "number",
+      "description": "Section Width (b). Symbol: b. Units: mm",
+      "default": 45,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "l": {
+      "type": "number",
+      "description": "Member Length (L). Symbol: L. Units: mm. Total length of the design member.",
+      "default": 2500,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "l_e": {
+      "type": "string",
+      "description": "Effective Length Factor. Symbol: l_{e}. Column 0.70.851.01.52.0 Beam0.50.80.91.0",
+      "enum": [
+        "0.5",
+        "0.7",
+        "0.8",
+        "0.85",
+        "0.9",
+        "1.0",
+        "1.5",
+        "2.0"
+      ],
+      "x-enumLabels": [
+        "0.5",
+        "0.7",
+        "0.8",
+        "0.85",
+        "0.9",
+        "1.0",
+        "1.5",
+        "2.0"
+      ],
+      "default": "0.5"
+    },
+    "l_b": {
+      "type": "number",
+      "description": "Bearing Length (lb). Symbol: l_{b}. Units: mm",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "P": {
+      "type": "number",
+      "description": "P. Symbol: P. Units: kN. Axial force.",
+      "default": 0.3,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "Vy": {
+      "type": "number",
+      "description": "Vy. Symbol: V_{y}. Units: kN. Shear force Y.",
+      "default": 0.4,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "Vz. Symbol: V_{z}. Units: kN. Shear force Z.",
+      "default": 0.6,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "T": {
+      "type": "number",
+      "description": "T. Symbol: T. Units: kN-m. Torsion.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "My": {
+      "type": "number",
+      "description": "My. Symbol: M_{y}. Units: kN-m. Bending Moment about y-axis.",
+      "default": 0.1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M_{z}. Units: kN-m. Bending Moment about z-axis.",
+      "default": 0.1,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "4002-eurocode-wood-beam-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

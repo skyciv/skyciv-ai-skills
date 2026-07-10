@@ -1,0 +1,375 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS/NZS 4600:2018 Cold-Formed Steel Member Design",
+  "description": "Design cold-formed steel members in accordance with AS/NZS 4600.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Symbol: Label",
+      "default": "Member 1"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Manufacturer. Symbol: Product. Select Australian Cold-Formed Steel manufacturer.",
+      "enum": [
+        "Lysaght",
+        "Enduroframe",
+        "FrameCAD",
+        "Metalcraft",
+        "Metroll",
+        "Millform",
+        "Steeline",
+        "Stramit",
+        "Stratco",
+        "Studco"
+      ],
+      "x-enumLabels": [
+        "Lysaght",
+        "Enduroframe",
+        "FrameCAD",
+        "Metalcraft",
+        "Metroll",
+        "Millform",
+        "Steeline",
+        "Stramit",
+        "Stratco",
+        "Studco"
+      ],
+      "default": "Lysaght"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape. Select available manufacturer shapes.",
+      "enum": [
+        "channels",
+        "channels_lipped",
+        "double_channels",
+        "zee",
+        "hat",
+        "cee",
+        "z",
+        "u",
+        "exacta_cee",
+        "exacta_zee",
+        "c_purlins",
+        "z_purlins",
+        "megaspan_c_purlin",
+        "megaspan_z_purlin",
+        "extreme_c_purlins",
+        "extreme_z_purlins",
+        "deflection_head_track",
+        "steel_stud",
+        "mc_purlins",
+        "mss_purlins",
+        "mz_purlins",
+        "ms_tophats_lipped",
+        "top_hat"
+      ],
+      "x-enumLabels": [
+        "Channels",
+        "Channels (Lipped)",
+        "Double Channels (Lipped)",
+        "Z-Sections (Lipped)",
+        "Topspan (Hat)",
+        "Cee",
+        "Zee",
+        "U",
+        "Exacta Cee",
+        "Exacta Zee",
+        "C Purlins",
+        "Z Purlins",
+        "Megaspan C Purlin",
+        "Megaspan Z Purlin",
+        "Extreme C Purlins",
+        "Extreme Z Purlins",
+        "Deflection Head Track",
+        "Steel Stud",
+        "MC Purlins",
+        "MSS Purlins",
+        "MZ Purlins",
+        "MS Tophats (Lipped)",
+        "Top Hat"
+      ],
+      "default": "channels_lipped"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Select from library to edit Section Dimensions.",
+      "enum": [
+        "C30024"
+      ],
+      "x-enumLabels": [
+        "C30024"
+      ],
+      "default": "C30024"
+    },
+    "d_input": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Total height of section.",
+      "default": 300,
+      "minimum": 0.01,
+      "maximum": 2000
+    },
+    "b_input": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Total width of section.",
+      "default": 96,
+      "minimum": 0.01,
+      "maximum": 2000
+    },
+    "b2_input": {
+      "type": "number",
+      "description": "b2. Symbol: b_2. Units: mm. Bottom width of section.",
+      "default": 96,
+      "minimum": 0.01,
+      "maximum": 2000
+    },
+    "r_input": {
+      "type": "number",
+      "description": "r. Symbol: r. Units: mm. Fillet radius.",
+      "default": 2.4,
+      "minimum": 0.01,
+      "maximum": 2000
+    },
+    "t_input": {
+      "type": "number",
+      "description": "t. Symbol: t. Units: mm. Thickness of section.",
+      "default": 2.4,
+      "minimum": 0.01,
+      "maximum": 150
+    },
+    "tl_input": {
+      "type": "number",
+      "description": "tl. Symbol: t_l. Units: mm. Width of lip.",
+      "default": 27.5,
+      "minimum": 0.01,
+      "maximum": 150
+    },
+    "la_input": {
+      "type": "number",
+      "description": "la. Symbol: l_a. Units: mm. Lip angle.",
+      "default": 27.5,
+      "minimum": 0.01,
+      "maximum": 150
+    },
+    "ha_input": {
+      "type": "number",
+      "description": "ha. Symbol: h_a. Units: °. Hat Angle.",
+      "default": 27.5,
+      "minimum": 0.01,
+      "maximum": 150
+    },
+    "standard": {
+      "type": "string",
+      "description": "Standard. Symbol: Standard. Select Custom to edit Material Properties.",
+      "enum": [
+        "Custom",
+        "AS/NZS 1163",
+        "AS 1397",
+        "AS/NZS 1594",
+        "AS/NZS 1595",
+        "AS/NZS 3678"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "AS/NZS 1163",
+        "AS 1397",
+        "AS/NZS 1594",
+        "AS/NZS 1595",
+        "AS/NZS 3678"
+      ],
+      "default": "AS 1397"
+    },
+    "steel_grade": {
+      "type": "string",
+      "description": "Grade. Symbol: Grade. Select Custom to edit Material Properties.",
+      "enum": [
+        "G550"
+      ],
+      "x-enumLabels": [
+        "G550"
+      ],
+      "default": "G550"
+    },
+    "F_y_flange_input": {
+      "type": "number",
+      "description": "fy. Symbol: f_y. Units: MPa. Section Yield Strength.",
+      "default": 413,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "F_u_flange_input": {
+      "type": "number",
+      "description": "fu. Symbol: f_u. Units: MPa. Section Tensile Strength.",
+      "default": 413,
+      "minimum": 50,
+      "maximum": 1200
+    },
+    "E_input": {
+      "type": "number",
+      "description": "E. Symbol: E. Units: MPa. Elastic Modulus.",
+      "default": 200000,
+      "minimum": 50,
+      "maximum": 300000
+    },
+    "G_input": {
+      "type": "number",
+      "description": "G. Symbol: G. Units: MPa. Shear Modulus.",
+      "default": 80000,
+      "minimum": 50,
+      "maximum": 80000
+    },
+    "v_input": {
+      "type": "number",
+      "description": "v. Symbol: v. Poisson's Ratio.",
+      "default": 0.3,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "global_buckling": {
+      "type": "string",
+      "description": "Global Buckling. Flexural Torsional Buckling checks will be skipped when set to Fully Braced.  (i.e. Mbe = My & Nce = Ny)",
+      "enum": [
+        "unbraced",
+        "fully_braced"
+      ],
+      "x-enumLabels": [
+        "Unbraced",
+        "Fully Braced"
+      ],
+      "default": "unbraced"
+    },
+    "L_ex_flexure_input": {
+      "type": "number",
+      "description": "Lez. Symbol: L_{ez}. Units: mm. Effective length for buckling about Z-Axis.",
+      "default": 2000,
+      "minimum": 10,
+      "maximum": 1000000
+    },
+    "L_ey_flexure_input": {
+      "type": "number",
+      "description": "Ley. Symbol: L_{ey}. Units: mm. Effective length for buckling about Y-Axis.",
+      "default": 2000,
+      "minimum": 10,
+      "maximum": 1000000
+    },
+    "L_ez_flexure_twist_input": {
+      "type": "number",
+      "description": "Lex.twist. Symbol: L_{ex.twist}. Units: mm. Effective length for twisting about X-Axis.",
+      "default": 2000,
+      "minimum": 10,
+      "maximum": 1000000
+    },
+    "kt_input": {
+      "type": "number",
+      "description": "kt. Symbol: k_{t}. Correction factor for distribution of forces determined in accordance with Clause 3.2.3.2.",
+      "enum": [
+        0.7,
+        0.85,
+        0.9,
+        1
+      ],
+      "x-enumLabels": [
+        "0.7",
+        "0.85",
+        "0.9",
+        "1.0"
+      ],
+      "default": 0.85
+    },
+    "Mz": {
+      "type": "number",
+      "description": "M*z. Symbol: M*_{z}. Units: kNm. Major (Z) Axis Factored Moment. Positive value results in compression at top of section. ",
+      "default": 1,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "My": {
+      "type": "number",
+      "description": "M*y. Symbol: M*_{y}. Units: kNm. Minor (Y) Axis Factored Moment. Positive value results in compression at right of section. ",
+      "default": 1,
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "Vy": {
+      "type": "number",
+      "description": "V*y. Symbol: V*_{y}. Units: kN. Major (Y) Axis Factored Shear. ",
+      "default": 2,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "V*z. Symbol: V*_{z}. Units: kN. Minor (Z) Axis Factored Shear. ",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "N": {
+      "type": "number",
+      "description": "N*. Symbol: N^*. Units: kN. Compressive (+) or Tensile (-) Axial Force.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "load_axes": {
+      "type": "string",
+      "description": "Load Axes. Select which axis system design loads are applied. Loads applied in Geometric Axes will be rotated to Principal Axes for Capacity Checks.",
+      "enum": [
+        "geometric_axes",
+        "principal_axes"
+      ],
+      "x-enumLabels": [
+        "Geometric Axes",
+        "Principal Axes"
+      ],
+      "default": "geometric_axes"
+    },
+    "uid": {
+      "type": "string",
+      "const": "2304-as4600-cfs-design-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NZS 1720.1:2022 Timber Member Design",
+  "description": "Design structural timber members in accordance with NZS 1720.1:2022.",
+  "type": "object",
+  "properties": {
+    "member_label": {
+      "type": "string",
+      "description": "Member Label. Label for the timber member.",
+      "default": "Member 1"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type. Type of Timber Product.",
+      "enum": [
+        "sawn",
+        "glulam",
+        "lvl"
+      ],
+      "x-enumLabels": [
+        "Sawn Timber",
+        "Glulam",
+        "LVL"
+      ],
+      "default": "sawn"
+    },
+    "grade": {
+      "type": "string",
+      "description": "Grade. Timber Grade",
+      "enum": [
+        "SG6",
+        "SG8",
+        "SG10",
+        "SG12",
+        "SG15",
+        "No1_framing",
+        "A17",
+        "F4",
+        "F5",
+        "F7",
+        "F8",
+        "F11",
+        "F14",
+        "F17",
+        "F22",
+        "F27",
+        "F34",
+        "MGP10",
+        "MGP12",
+        "MGP15"
+      ],
+      "x-enumLabels": [
+        "SG6",
+        "SG8",
+        "SG10",
+        "SG12",
+        "SG15",
+        "No. 1 Framing",
+        "A17",
+        "F4",
+        "F5",
+        "F7",
+        "F8",
+        "F11",
+        "F14",
+        "F17",
+        "F22",
+        "F27",
+        "F34",
+        "MGP10",
+        "MGP12",
+        "MGP15"
+      ],
+      "default": "SG6"
+    },
+    "seasoned": {
+      "type": "string",
+      "description": "Treatment. Unseasoned timber has an average moisture content that exceeds 25%.",
+      "enum": [
+        "seasoned",
+        "unseasoned"
+      ],
+      "x-enumLabels": [
+        "Seasoned",
+        "Unseasoned"
+      ],
+      "default": "seasoned"
+    },
+    "hard_soft": {
+      "type": "string",
+      "description": "Species Type. Is the timber species a hardwood or softwood?",
+      "enum": [
+        "softwood",
+        "hardwood"
+      ],
+      "x-enumLabels": [
+        "Softwood",
+        "Hardwood"
+      ],
+      "default": "softwood"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section. Symbol: Section. Typical section sizes from manufactures taken from SkyCiv Section Library.If required size not available use 'custom' to input width and depth of section manually.",
+      "enum": [
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Custom"
+      ],
+      "default": "custom"
+    },
+    "d": {
+      "type": "number",
+      "description": "d. Symbol: d. Units: mm. Section Depth.",
+      "default": 70,
+      "minimum": 20,
+      "maximum": 1000
+    },
+    "b": {
+      "type": "number",
+      "description": "b. Symbol: b. Units: mm. Section Width.",
+      "default": 35,
+      "minimum": 10,
+      "maximum": 1000
+    },
+    "number_holes": {
+      "type": "number",
+      "description": "No. of Bolt Holes. Maximum number of bolt holes that intersect a tension plane along the member (perpendicular area to grain). For example if there was a 3 x 3 grid of bolt holes, the number of bolt holes would be 3.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "hole_diameter": {
+      "type": "number",
+      "description": "Hole Diameter. Units: mm. Diameter of bolt holes in the timber member.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 24
+    },
+    "duration": {
+      "type": "string",
+      "description": "Load Duration. Used to calculate k1 factor as per 2.4.1.1 NZS 1720. Wind and Earthquake loads have a 5 second duration & long term dead loads have a 50+ year duration for example.",
+      "enum": [
+        "seconds",
+        "minutes",
+        "hours",
+        "days",
+        "months",
+        "years"
+      ],
+      "x-enumLabels": [
+        "5 Seconds",
+        "5 Minutes",
+        "5 Hours",
+        "5 Days",
+        "5 Months",
+        "50+ Years"
+      ],
+      "default": "seconds"
+    },
+    "load_sharing_direction": {
+      "type": "string",
+      "description": "Load Sharing. Direction of load sharing to consider for the k9 factor. The other direction will consider no load sharing (k9 = 1). Alternatively can conservatively select the 'No Load Sharing' option.",
+      "enum": [
+        "z",
+        "y",
+        "none"
+      ],
+      "x-enumLabels": [
+        "Major Axis",
+        "Minor Axis",
+        "No Load Sharing"
+      ],
+      "default": "none"
+    },
+    "ncom": {
+      "type": "number",
+      "description": "ncom. Symbol: n_{com}. Number of elements that are effectively fastened together to form a single group.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "nmem": {
+      "type": "number",
+      "description": "nmem. Symbol: n_{mem}. Number of members that are discretely spaced parallel to each other.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "s": {
+      "type": "number",
+      "description": "s. Symbol: s. Units: mm. Centre to Centre spacing of discrete parallel members.",
+      "default": 300,
+      "minimum": 50,
+      "maximum": 10000
+    },
+    "restraint_type": {
+      "type": "string",
+      "description": "Restraint Type. Specify restraint arrangement for major axis bending. Refer Clause 3.2.3 for further information.",
+      "enum": [
+        "discrete",
+        "continuous"
+      ],
+      "x-enumLabels": [
+        "Discrete",
+        "Continuous"
+      ],
+      "default": "discrete"
+    },
+    "restraint_side": {
+      "type": "string",
+      "description": "Restraint Face. Specify whether the tension or compression edge is restrained for major axis bending.",
+      "enum": [
+        "compression",
+        "tension"
+      ],
+      "x-enumLabels": [
+        "Compression Edge",
+        "Tension Edge"
+      ],
+      "default": "compression"
+    },
+    "L": {
+      "type": "number",
+      "description": "L. Symbol: L. Units: mm. Total Member Segment Length.",
+      "default": 1000,
+      "minimum": 50,
+      "maximum": 30000
+    },
+    "Laz": {
+      "type": "number",
+      "description": "Laz. Symbol: L_{az}. Units: mm. Distance between restraints against buckling about the Z-axis. ",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Lay": {
+      "type": "number",
+      "description": "Lay. Symbol: L_{ay}. Units: mm. Distance between restraints against buckling about the Y-axis. ",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "g13": {
+      "type": "number",
+      "description": "g13. Symbol: g_{13}. Effective length factor g13 as per Table 3.2. Can be conservatively taken as 2.0. ",
+      "default": 0.9,
+      "minimum": 0.7,
+      "maximum": 2
+    },
+    "EMC": {
+      "type": "number",
+      "description": "Moisture. Units: %. Equilibrium Moisture Content. Highest value of the annual average moisture content (%) that the timber will attain in service.For reference, seasoned timber (including Glulam & LVL) has a MC  25%.",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "k6": {
+      "type": "number",
+      "description": "k6. Symbol: k_6. Temperature factor that reduces the strength of seasoned timber at high temperature locations. ",
+      "enum": [
+        0.9,
+        1
+      ],
+      "x-enumLabels": [
+        "0.9",
+        "1.0"
+      ],
+      "default": 1
+    },
+    "Mz": {
+      "type": "number",
+      "description": "M*z. Symbol: M^{*}_{z}. Units: kN-m. Design Bending Moment about Z-axis (major axis).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "My": {
+      "type": "number",
+      "description": "M*y. Symbol: M^{*}_{y}. Units: kN-m. Design Bending Moment about Y-axis (minor axis).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "Vy": {
+      "type": "number",
+      "description": "V*y. Symbol: V^{*}_{y}. Units: kN. Design shear force in Y-axis direction (major axis).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "V*z. Symbol: V^{*}_{z}. Units: kN. Design shear force in Z-axis direction (minor axis).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "P": {
+      "type": "number",
+      "description": "N*. Symbol: N^*. Units: kN. Design Axial Force (Compression Positive).",
+      "default": 0,
+      "minimum": -1000,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "4007-nz-timber-beam-design",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "mode": "Stress/Strain",
+  "F": 12,
+  "A": 12,
+  "L_i": 1,
+  "L_f": 1.5,
+  "table": [
+    {
+      "strain": 1,
+      "stress": 1
+    },
+    {
+      "strain": 2,
+      "stress": 2
+    },
+    {
+      "strain": 3,
+      "stress": 3
+    }
+  ],
+  "uid": "1003-youngs-modulus-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

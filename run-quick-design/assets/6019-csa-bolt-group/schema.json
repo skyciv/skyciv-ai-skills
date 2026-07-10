@@ -1,0 +1,480 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSA S16-24 Bolt Group Capacity",
+  "description": "Design bolt groups in accordance with CSA S16-24.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Bolt Pattern. Symbol: \\text{Pattern}. Bolt Pattern Shape.",
+      "enum": [
+        "rect",
+        "circ",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular",
+        "Custom"
+      ],
+      "default": "rect"
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter. Symbol: \\text{Diameter}. Units: mm. The diameter of the bolt pattern.",
+      "default": 250,
+      "minimum": 1,
+      "maximum": 7500
+    },
+    "angle": {
+      "type": "number",
+      "description": "Rotation. Symbol: \\text{Angle}. Units: °. Angle to rotate the bolt pattern by. 0 degrees is defined to have a bolt at the top of the center of the circle.",
+      "default": 0,
+      "minimum": -180,
+      "maximum": 180
+    },
+    "circular_bolts": {
+      "type": "number",
+      "description": "No. Bolts. Symbol: n. The number of bolts in the circular pattern.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 30
+    },
+    "s_c": {
+      "type": "number",
+      "description": "sc. Symbol: s_c. Units: mm. Spacing of bolt columns (spacing in X).",
+      "default": 125,
+      "minimum": 1,
+      "maximum": 600
+    },
+    "s_r": {
+      "type": "number",
+      "description": "sr. Symbol: s_r. Units: mm. Spacing of bolt rows (spacing in Y).",
+      "default": 125,
+      "minimum": 1,
+      "maximum": 600
+    },
+    "x_bolts": {
+      "type": "number",
+      "description": "No. Bolt Columns. Symbol: n_c. The number of bolt columns (in X direction).",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "y_bolts": {
+      "type": "number",
+      "description": "No. Bolt Rows. Symbol: n_r. The number of bolt rows (in Y direction).",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "bolts_table": {
+      "type": "array",
+      "description": "Bolt Coordinates. Coordinates of all bolts to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "x",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          },
+          "y": {
+            "type": "number",
+            "description": "y",
+            "default": 0,
+            "minimum": -1000,
+            "maximum": 1000
+          }
+        }
+      }
+    },
+    "edge_type": {
+      "type": "string",
+      "description": "Edge Type. Symbol: \\text{Edge}. Edge condition used to determine minimum edge distance per CSA S16-24 Table 5.",
+      "enum": [
+        "sheared",
+        "rolled"
+      ],
+      "x-enumLabels": [
+        "Sheared edges",
+        "Rolled, sawn or machine-cut edge"
+      ],
+      "default": "sheared"
+    },
+    "L_eh": {
+      "type": "number",
+      "description": "Edge Distance (X). Symbol: L_{eh}. Units: mm. Minimum spacing between centre of bolts and plate edge in X direction.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 1250
+    },
+    "L_ev": {
+      "type": "number",
+      "description": "Edge Distance (Y). Symbol: L_{ev}. Units: mm. Minimum spacing between centre of bolts and plate edge in Y direction.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 1250
+    },
+    "L_ehl": {
+      "type": "number",
+      "description": "Edge Distance (Xleft). Symbol: L_{eh,left}. Units: mm. Minimum spacing between centre of bolts and plate edge in Xleft direction.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 1250
+    },
+    "L_evb": {
+      "type": "number",
+      "description": "Edge Distance (Ybottom). Symbol: L_{ev,bottom}. Units: mm. Minimum spacing between centre of bolts and plate edge in Ybottom direction.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 1250
+    },
+    "L_ehr": {
+      "type": "number",
+      "description": "Edge Distance (Xright). Symbol: L_{eh,right}. Units: mm. Minimum spacing between centre of bolts and plate edge in Xright direction.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 1250
+    },
+    "L_evt": {
+      "type": "number",
+      "description": "Edge Distance (Ytop). Symbol: L_{ev,top}. Units: mm. Minimum spacing between centre of bolts and plate edge in Ytop direction.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 1250
+    },
+    "plate_width": {
+      "type": "number",
+      "description": "Plate Width (W). Symbol: W. Units: mm. Total Width of the plate (length in X).",
+      "default": 500,
+      "minimum": 10,
+      "maximum": 25000
+    },
+    "plate_height": {
+      "type": "number",
+      "description": "Plate Height (H). Symbol: H. Units: mm. Total Height of the plate (length in Y).",
+      "default": 500,
+      "minimum": 10,
+      "maximum": 25000
+    },
+    "t": {
+      "type": "number",
+      "description": "Plate Thickness (t). Symbol: t. Units: mm. Thickness of smallest steel plate in the connection.",
+      "default": 25,
+      "minimum": 3,
+      "maximum": 300
+    },
+    "bolt_size": {
+      "type": "number",
+      "description": "Bolt Size. Symbol: \\text{Size}",
+      "enum": [
+        16,
+        20,
+        22,
+        24,
+        27,
+        30,
+        36
+      ],
+      "x-enumLabels": [
+        "M16",
+        "M20",
+        "M22",
+        "M24",
+        "M27",
+        "M30",
+        "M36"
+      ],
+      "default": 16
+    },
+    "grade": {
+      "type": "string",
+      "description": "Bolt Grade. Symbol: \\text{Grade}. Bolt grade per ASTM A307 & ASTM F3125 as referenced in CSA S16-24. Grade determines the ultimate tensile strength (Fu) of the bolt.",
+      "enum": [
+        "A307",
+        "F3125-A325M",
+        "F3125-A490M",
+        "Custom"
+      ],
+      "x-enumLabels": [
+        "A307",
+        "A325M",
+        "A490M",
+        "Custom"
+      ],
+      "default": "A307"
+    },
+    "f_ub": {
+      "type": "number",
+      "description": "Fub. Symbol: F_{ub}. Units: MPa. Effective tensile strength of bolt. Related to grade of bolt per ASTM F3125 (CSA S16-24).",
+      "default": 825,
+      "minimum": 400,
+      "maximum": 1700
+    },
+    "shear_plane": {
+      "type": "string",
+      "description": "Threads in Shear Plane. Symbol: \\text{Threads}. Indicates whether the bolt threads intersect the shear plane per CSA S16-24 Cl. 13.12.1.2. If threads are included, shear resistance is reduced.",
+      "enum": [
+        "included",
+        "excluded"
+      ],
+      "x-enumLabels": [
+        "Included",
+        "Excluded"
+      ],
+      "default": "included"
+    },
+    "bolt_type": {
+      "type": "string",
+      "description": "Bolt Type. Symbol: \\text{Bolt Type}. Slip-critical or bearing type bolt per CSA S16-24 Cl. 13.12.",
+      "enum": [
+        "bearing",
+        "slip"
+      ],
+      "x-enumLabels": [
+        "Bearing",
+        "Slip-Critical"
+      ],
+      "default": "bearing"
+    },
+    "faying_surface": {
+      "type": "string",
+      "description": "Faying Surface Class. Symbol: \\text{Class}. Faying surface class per CSA S16-24 Table 3. Determines slip coefficient ks and resistance factor cs used in Cl. 13.12.2.2.Class A: Unpainted clean mill scale (ks = 0.30)Class B: Blast-cleaned with Class B coating (ks = 0.52)Class C: Hot-dipped galvanized (ks = 0.30)Class D: Metallized surfaces (ks = 0.45)",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "x-enumLabels": [
+        "Class A - Unpainted clean mill scale",
+        "Class B - Blast-cleaned + Class B coating",
+        "Class C - Hot-dipped galvanized",
+        "Class D - Metallized surfaces"
+      ],
+      "default": "A"
+    },
+    "plate_grade": {
+      "type": "string",
+      "description": "Plate Grade. Symbol: \\text{Plate Grade}. Plate grade per CSA G40.21. Grade determines the yield and ultimate tensile strength of the steel plate.",
+      "enum": [
+        "300W",
+        "350W",
+        "350WT",
+        "400W",
+        "400WT",
+        "480W",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "300W",
+        "350W",
+        "350WT",
+        "400W",
+        "400WT",
+        "480W",
+        "Custom"
+      ],
+      "default": "300W"
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Fy. Symbol: F_{y}. Units: MPa. Yield strength of the steel plate per CSA G40.21.",
+      "default": 350,
+      "minimum": 200,
+      "maximum": 700
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Fu. Symbol: F_{u}. Units: MPa. Ultimate tensile strength of the steel plate per CSA G40.21.",
+      "default": 480,
+      "minimum": 300,
+      "maximum": 700
+    },
+    "U_t": {
+      "type": "number",
+      "description": "Ut. Symbol: U_{t}. Block shear reduction coefficient per CSA S16-24 Cl. 13.11.",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 1
+    },
+    "hole": {
+      "type": "string",
+      "description": "Hole Type. Symbol: \\text{Hole}. Bolt hole type per CSA S16-24 Table 5. Slotted holes only available for rectangular bolt pattern.",
+      "enum": [
+        "standard",
+        "oversized",
+        "short-slotted-h",
+        "short-slotted-v",
+        "long-slotted-h",
+        "long-slotted-v"
+      ],
+      "x-enumLabels": [
+        "Standard",
+        "Oversized",
+        "Short-Slotted (H)",
+        "Short-Slotted (V)",
+        "Long-Slotted (H)",
+        "Long-Slotted (V)"
+      ],
+      "default": "standard"
+    },
+    "clearance": {
+      "type": "number",
+      "description": "Nominal Hole Clearance. Symbol: clearance. Units: mm. Nominal hole clearance per CSA S16-24 Table 5. Standard clearance is 2 mm for bolts up to M24, and 3 mm for M27 and larger.",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 25
+    },
+    "d_h": {
+      "type": "number",
+      "description": "Hole Size (dh). Symbol: d_h. Units: mm. Diameter of bolt hole per CSA S16-24 Table 5.",
+      "default": 18,
+      "minimum": 5,
+      "maximum": 100
+    },
+    "d_l": {
+      "type": "number",
+      "description": "Slot Length. Symbol: L. Units: mm. Length of slotted hole per CSA S16-24 Table 5.",
+      "default": 24,
+      "minimum": 0,
+      "maximum": 200
+    },
+    "prying_method": {
+      "type": "string",
+      "description": "Prying Analysis. Symbol: \\text{Prying}. Method for calculating the impact of prying on tensile loads. Must be supplied as simplified factor for circular and custom bolting arrangements.",
+      "enum": [
+        "vertical",
+        "horizontal",
+        "parameter"
+      ],
+      "x-enumLabels": [
+        "Vertical Stub",
+        "Horizontal Stub",
+        "Simplified Parameter"
+      ],
+      "default": "vertical"
+    },
+    "prying_factor": {
+      "type": "number",
+      "description": "Prying Factor (p). Symbol: p. Factor to account for prying effect by increasing tensile loads. A value of 1.1 may be suitable for rigid plates and a value of 1.2 to 1.4 may be suitable for flexible plates.",
+      "default": 1.1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "stub_thickness": {
+      "type": "number",
+      "description": "Stub Thickness. Symbol: t_{stub}. Units: mm. Thickness of stub in mm considered for prying action calculation.",
+      "default": 25,
+      "minimum": 0,
+      "maximum": 2540
+    },
+    "load_image": {
+      "type": "string",
+      "description": "load_image"
+    },
+    "Fx": {
+      "type": "number",
+      "description": "Fx. Symbol: F_x. Units: kN. Applied design action along X-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -4500,
+      "maximum": 4500
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Fy. Symbol: F_y. Units: kN. Applied design action along Y-axis. Negative value reverses the load direction.",
+      "default": 0,
+      "minimum": -4500,
+      "maximum": 4500
+    },
+    "Fz": {
+      "type": "number",
+      "description": "Fz. Symbol: F_z. Units: kN. Applied design action along Z-axis. A positive value is considered to apply tension to the bolts. A negative value is considered to apply compression.",
+      "default": 0,
+      "minimum": -4500,
+      "maximum": 4500
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Mx. Symbol: M_x. Units: kNm. Design moment about X-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -13500,
+      "maximum": 13500
+    },
+    "My": {
+      "type": "number",
+      "description": "My. Symbol: M_y. Units: kNm. Design moment about Y-axis. Negative value reverses the load direction.",
+      "default": 0,
+      "minimum": -13500,
+      "maximum": 13500
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Mz. Symbol: M_z. Units: kNm. Design moment about Z-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -3390,
+      "maximum": 3390
+    },
+    "graph_on": {
+      "type": "string",
+      "description": "Show Stress Graphs. Toggle on/off to show stress graphs in reporting. Disabling stress graphs will result in quicker solve times.",
+      "enum": [
+        "show",
+        "hide"
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": "hide"
+    },
+    "uid": {
+      "type": "string",
+      "const": "6019-csa-bolt-group",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

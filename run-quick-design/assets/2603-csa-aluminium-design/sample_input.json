@@ -1,0 +1,30 @@
+{
+  "standard": "CSA S157",
+  "alloy_input": "6061-T6_extrusion",
+  "shape_input": "Rectangular Tube",
+  "b_input": 150,
+  "d_input": 300,
+  "t_f_input": 5,
+  "t_w_input": 5,
+  "t_input": 5,
+  "KL_z_input": 5000,
+  "KL_y_input": 2000,
+  "KL_t_input": 2000,
+  "M_fz_input": 3,
+  "M_fy_input": 4,
+  "V_fy_input": 7.5,
+  "V_fz_input": 0,
+  "P_f_input": 0,
+  "lower_omega_input": 1,
+  "upper_omega_input": 1.4,
+  "uid": "2603-csa-aluminium-design",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

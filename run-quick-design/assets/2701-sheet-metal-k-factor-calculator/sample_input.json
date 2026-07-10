@@ -1,0 +1,16 @@
+{
+  "Material_Thickness": 10,
+  "Inner_Radius": 5,
+  "Bend_Angle": 90,
+  "Bend_Allowance": 14,
+  "uid": "2701-sheet-metal-k-factor-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

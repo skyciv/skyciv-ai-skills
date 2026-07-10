@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timber beam check for flexure as per NZS 3603",
+  "description": "Timber beam check for flexure as pe NZS 3603",
+  "type": "object",
+  "properties": {
+    "b": {
+      "type": "number",
+      "description": "Beam Width (b). Symbol: b. Units: mm",
+      "default": 45,
+      "minimum": 35,
+      "maximum": 400
+    },
+    "d": {
+      "type": "number",
+      "description": "Beam Depth (d). Symbol: d. Units: mm",
+      "default": 90,
+      "minimum": 35,
+      "maximum": 1000
+    },
+    "Lb": {
+      "type": "number",
+      "description": "Unbraced Length (Lb). Symbol: Lb. Units: mm",
+      "default": 1000,
+      "minimum": 300,
+      "maximum": 10000
+    },
+    "Lb message": {
+      "type": "string",
+      "description": "Distance between restraints of portion with compression"
+    },
+    "fb": {
+      "type": "number",
+      "description": "Flexure Capacity. Symbol: f'b. Units: MPa",
+      "default": 14,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "k4": {
+      "type": "number",
+      "description": "Parallel factor (k4). Symbol: k4",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 1.33
+    },
+    "k4 link": {
+      "type": "string",
+      "description": "See NZS3603.1993 2.9.1 Table 2.7"
+    },
+    "spa": {
+      "type": "number",
+      "description": "Joist Spacing (mm). Symbol: spa. Units: mm",
+      "default": 10000,
+      "minimum": 200,
+      "maximum": 10000
+    },
+    "Green": {
+      "type": "boolean",
+      "description": "Green?",
+      "default": false
+    },
+    "Ms_brief": {
+      "type": "number",
+      "description": "M*_brief. Symbol: Ms_b. Units: kNm",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Ms_medium": {
+      "type": "number",
+      "description": "M*_medium. Symbol: Ms_m. Units: kNm",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "Ms_perm": {
+      "type": "number",
+      "description": "M*_perm. Symbol: Ms_p. Units: kNm",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "E": {
+      "type": "number",
+      "description": "Mod. of Elasticity. Symbol: E. Units: MPa",
+      "default": 5400,
+      "minimum": 100,
+      "maximum": 20000
+    },
+    "Span": {
+      "type": "number",
+      "description": "Span (mm). Symbol: Span. Units: mm",
+      "default": 1500,
+      "minimum": 100,
+      "maximum": 10000
+    },
+    "DefLimit_Perm": {
+      "type": "number",
+      "description": "Deflection Limit Denominator (L/XXX) for Pemanent Loading",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "DefLimit_Brief": {
+      "type": "number",
+      "description": "Deflection Limit Denominator (L/XXX) for Brief Loading",
+      "default": 200,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "w_permanent": {
+      "type": "number",
+      "description": "Line Loading due to Service Permanent Loads. Symbol: w_p. Units: kN/m",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "w_brief": {
+      "type": "number",
+      "description": "Line Loading due to Sevice Brief Loads. Symbol: w_b. Units: kN/m",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "9072-mpads-timber-beam-flexure",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

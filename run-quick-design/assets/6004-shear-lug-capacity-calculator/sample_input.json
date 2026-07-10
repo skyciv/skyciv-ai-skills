@@ -1,0 +1,33 @@
+{
+  "f_y": 248.21,
+  "f_u": 399.89,
+  "h": 350,
+  "t_f": 19,
+  "b_f": 350,
+  "t_w": 12,
+  "d": 150,
+  "V_z": 401,
+  "V_y": 101.11,
+  "b_c": 550,
+  "d_c": 550,
+  "h_c": 1000,
+  "g": 25,
+  "f_c": 40,
+  "fwu": 482,
+  "A_m": 8,
+  "lay_n": 3,
+  "leg_n": 6,
+  "d_r": 10,
+  "P_t": "100%",
+  "fyr": 500,
+  "uid": "6004-shear-lug-capacity-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

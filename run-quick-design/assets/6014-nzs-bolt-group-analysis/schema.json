@@ -1,0 +1,335 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NZS 3404:1997 Bolt Group Capacity",
+  "description": "Design bolt groups in accordance with NZS 3404:1997.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "Bolt Pattern. Symbol: \\text{Pattern}. Bolt Pattern Shape.",
+      "enum": [
+        "rect",
+        "circ",
+        "custom"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular",
+        "Custom"
+      ],
+      "default": "rect"
+    },
+    "diameter": {
+      "type": "number",
+      "description": "Diameter. Symbol: \\text{Diameter}. Units: mm. The diameter of the bolt pattern.",
+      "default": 200,
+      "minimum": 1,
+      "maximum": 3000
+    },
+    "circular_bolts": {
+      "type": "number",
+      "description": "No. Bolts. Symbol: n_b. The number of bolts in the circular pattern.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 30
+    },
+    "angle": {
+      "type": "number",
+      "description": "Rotation. Symbol: \\text{Angle}. Units: °. Angle to rotate the bolt pattern by. 0 degrees is defined to have a bolt at the top of the center of the circle.",
+      "default": 0,
+      "minimum": -180,
+      "maximum": 180
+    },
+    "x_s": {
+      "type": "number",
+      "description": "xs. Symbol: x_{s}. Units: mm. Spacing of bolts in the X direction.",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 300
+    },
+    "y_s": {
+      "type": "number",
+      "description": "ys. Symbol: y_{s}. Units: mm. Spacing of bolts in the Y direction.",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 300
+    },
+    "x_bolts": {
+      "type": "number",
+      "description": "No. Bolts in X. Symbol: n_{bx}. The number of bolts in the X direction",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "y_bolts": {
+      "type": "number",
+      "description": "No. Bolts in Y. Symbol: n_{by}. The number of bolts in the Y direction",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "bolts_table": {
+      "type": "array",
+      "description": "Bolt Coordinates. Coordinates of all bolts to be considered.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "x",
+            "default": 0,
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "y": {
+            "type": "number",
+            "description": "y",
+            "default": 0,
+            "minimum": -1000
+          }
+        }
+      }
+    },
+    "bolt_size": {
+      "type": "number",
+      "description": "Bolt Size. Symbol: \\text{Size}",
+      "enum": [
+        4,
+        5,
+        6,
+        8,
+        10,
+        12,
+        16,
+        20,
+        24,
+        30,
+        36,
+        42,
+        48,
+        56,
+        64
+      ],
+      "x-enumLabels": [
+        "M4",
+        "M5",
+        "M6",
+        "M8",
+        "M10",
+        "M12",
+        "M16",
+        "M20",
+        "M24",
+        "M30",
+        "M36",
+        "M42",
+        "M48",
+        "M56",
+        "M64"
+      ],
+      "default": 4
+    },
+    "grade": {
+      "type": "string",
+      "description": "Bolt Grade. Symbol: \\text{Grade}. Bolt Grade is related to the minimum tensile strength (fuf) of the bolt (see NZS 3404:1997 Table 9.3.1).",
+      "enum": [
+        4.6,
+        8.8,
+        "custom"
+      ],
+      "x-enumLabels": [
+        4.6,
+        8.8,
+        "Custom"
+      ],
+      "default": 8.8
+    },
+    "f_uf": {
+      "type": "number",
+      "description": "fuf. Symbol: f_{uf}. Units: MPa. Minimum tensile strength of bolt (see NZS 3404:1997 Table 9.3.1). Related to grade of bolt.",
+      "default": 400,
+      "minimum": 50,
+      "maximum": 2000
+    },
+    "shear_plane": {
+      "type": "string",
+      "description": "Shear Plane. Symbol: \\text{Shear Plane}. Specify if the plane in which the bolts are sheared passes through the shank or the threaded portion of the bolt. The threaded portion has a smaller cross-sectional area and may be selected for a conservative design.",
+      "enum": [
+        "thread",
+        "shaft"
+      ],
+      "x-enumLabels": [
+        "Thread",
+        "Shaft"
+      ],
+      "default": "thread"
+    },
+    "prying": {
+      "type": "number",
+      "description": "Prying Factor. Symbol: p. Factor to account for prying effect by increasing tensile loads. A value of 1.1 is recommended for rigid plates and a value of 1.2 to 1.4 is recommended for flexible plates in the Australian Guidebook for Structural Engineers.",
+      "default": 1.1,
+      "minimum": 1,
+      "maximum": 3
+    },
+    "lap_length": {
+      "type": "number",
+      "description": "Lap Length. Symbol: l_j. Units: mm. Length of bolted lap splice connection (if applicable). Lapped connections have reduced shear capacity captured in kr factor (NZS 3404:1997 9.3.2.1).",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 3000
+    },
+    "analysis": {
+      "type": "string",
+      "description": "Analysis Method. Symbol: \\text{Analysis}. Analysis method for calculating tensile/compressive forces on bolts resulting from out-of-plane moments.",
+      "enum": [
+        "elastic",
+        "plastic"
+      ],
+      "x-enumLabels": [
+        "Elastic",
+        "Plastic"
+      ],
+      "default": "elastic"
+    },
+    "f_up": {
+      "type": "number",
+      "description": "fup. Symbol: f_{up}. Units: MPa. Tensile strength of the steel plate.",
+      "default": 300,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "t_p": {
+      "type": "number",
+      "description": "tp. Symbol: t_{p}. Units: mm. Thickness of steel plate.",
+      "default": 10,
+      "minimum": 5,
+      "maximum": 150
+    },
+    "a_e": {
+      "type": "number",
+      "description": "Edge Distance. Symbol: a_e. Units: mm. Minimum edge distance (ae). Is defined as minimum distance from edge of a bolt to edge of a plate plus half the bolt diameter.",
+      "default": 50,
+      "minimum": 10,
+      "maximum": 150
+    },
+    "cut": {
+      "type": "string",
+      "description": "Edge Preparation. Symbol: \\text{Edge Preparation}. Required for minimum edge distance requirements (NZS 3404:1997 9.6.2 .",
+      "enum": [
+        "sheared",
+        "machine",
+        "rolled"
+      ],
+      "x-enumLabels": [
+        "Sheared or hand flame cut edge",
+        "Machine flame cut, sawn or planed edge",
+        "Rolled edge"
+      ],
+      "default": "sheared"
+    },
+    "load_image": {
+      "type": "string",
+      "description": "load_image"
+    },
+    "Fx": {
+      "type": "number",
+      "description": "F*x. Symbol: F^*_x. Units: kN. Applied design action along X-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "Fy": {
+      "type": "number",
+      "description": "F*y. Symbol: F^*_y. Units: kN. Applied design action along Y-axis. Negative value reverses the load direction.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "Fz": {
+      "type": "number",
+      "description": "F*z. Symbol: F^*_z. Units: kN. Applied design action along Z-axis. A positive value is considered to apply tension to the bolts. A negative value is considered to apply compression.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "Mx": {
+      "type": "number",
+      "description": "M*x. Symbol: M^*_x. Units: kN-m. Design moment about X-axis. Negative value reverses the load direction.",
+      "default": 1,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "My": {
+      "type": "number",
+      "description": "M*y. Symbol: M^*_y. Units: kN-m. Design moment about Y-axis. Negative value reverses the load direction.",
+      "default": 0,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "Mz": {
+      "type": "number",
+      "description": "M*z. Symbol: M^*_z. Units: kN-m. Design moment about Z-axis. Negative value reverses the load direction.",
+      "default": 0.7,
+      "minimum": -10000,
+      "maximum": 10000
+    },
+    "graph_on": {
+      "type": "string",
+      "description": "Show Stress Graphs. Toggle on/off to show stress graphs in reporting. Disabling stress graphs will result in quicker solve times.",
+      "enum": [
+        "show",
+        "hide"
+      ],
+      "x-enumLabels": [
+        "Show",
+        "Hide"
+      ],
+      "default": "hide"
+    },
+    "uid": {
+      "type": "string",
+      "const": "6014-nzs-bolt-group-analysis",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

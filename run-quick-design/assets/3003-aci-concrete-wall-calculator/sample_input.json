@@ -1,0 +1,27 @@
+{
+  "L": 900,
+  "H": 1500,
+  "W": 250,
+  "cover": 50,
+  "N_bl": 7,
+  "no_L_Bars": 5,
+  "long_Spacing": 189.7,
+  "N_bt": 3,
+  "S_t": 100,
+  "f_c": 30,
+  "f_y": 415,
+  "V_u": 427,
+  "P_u": 50,
+  "M_u": 50,
+  "load_combo": "",
+  "uid": "3003-aci-concrete-wall-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Concrete Stress Strain Calculator",
+  "description": "Determine concrete stress strain based on Mander's (1988) theory.",
+  "type": "object",
+  "properties": {
+    "rect_image": {
+      "type": "string",
+      "description": "rect_image"
+    },
+    "B": {
+      "type": "number",
+      "description": "Section Width (B). Symbol: B. Units: mm",
+      "default": 200,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "D": {
+      "type": "number",
+      "description": "Section Height (D). Symbol: D. Units: mm",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "C": {
+      "type": "number",
+      "description": "Clear Cover (C). Symbol: C. Units: mm",
+      "default": 25,
+      "minimum": 20,
+      "maximum": 100
+    },
+    "ϵ_co": {
+      "type": "number",
+      "description": "Steel Strain (ϵco). Symbol: \\epsilon_{so}",
+      "default": 0.002
+    },
+    "w": {
+      "type": "number",
+      "description": "Clear Distance Between Longitudinal Bars (w). Symbol: w. Units: mm",
+      "default": 75
+    },
+    "s": {
+      "type": "number",
+      "description": "Transverse Spacing (s). Symbol: s. Units: mm",
+      "default": 150
+    },
+    "n": {
+      "type": "number",
+      "description": "Number of Bars (n). Symbol: n",
+      "default": 4
+    },
+    "Db": {
+      "type": "number",
+      "description": "Transverse Bar Diameter (dbt). Symbol: db_t. Units: mm",
+      "default": 12,
+      "minimum": 10,
+      "maximum": 36
+    },
+    "Ds": {
+      "type": "number",
+      "description": "Shear Bar Diameter (ds). Symbol: d_s. Units: mm",
+      "default": 10,
+      "minimum": 10,
+      "maximum": 36
+    },
+    "fco": {
+      "type": "number",
+      "description": "Characteristic Compressive Strength of Concrete (fco). Symbol: f_{co}. Units: MPa",
+      "default": 25
+    },
+    "fyh": {
+      "type": "number",
+      "description": "Yield Strength of Transverse Reinforcement (fyh). Symbol: f_{yh}. Units: MPa",
+      "default": 345
+    },
+    "fy": {
+      "type": "number",
+      "description": "Yield Strength of Main Reinforcement (fy). Symbol: f_{y}. Units: MPa",
+      "default": 345
+    },
+    "uid": {
+      "type": "string",
+      "const": "1005-stress-strain-mander-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

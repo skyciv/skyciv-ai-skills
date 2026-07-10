@@ -1,0 +1,25 @@
+{
+  "W": 120,
+  "H": 100,
+  "dpin": 29,
+  "d_h": 30,
+  "t_p": 8,
+  "w_s": 6,
+  "theta": 60,
+  "f_y": 250,
+  "f_u": 410,
+  "f_u_pin": 410,
+  "threads_intercepted": "included",
+  "Fexx": 482,
+  "P": 50,
+  "uid": "6021-lifting-lug-capacity-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

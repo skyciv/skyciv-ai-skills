@@ -1,0 +1,631 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NDS<sup>®</sup> 2018 Wood Member Design",
+  "description": "Design structural wood members in accordance with NDS® 2018.",
+  "type": "object",
+  "properties": {
+    "s3d_section": {
+      "type": "string",
+      "description": "Section ID. Symbol: Section. Section object imported from S3D model."
+    },
+    "method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method",
+      "enum": [
+        "ASD",
+        "LRFD"
+      ],
+      "x-enumLabels": [
+        "ASD",
+        "LRFD"
+      ],
+      "default": "ASD"
+    },
+    "adjust_factor_only": {
+      "type": "boolean",
+      "description": "Adjustment Factory Flag",
+      "default": false
+    },
+    "table_no": {
+      "type": "string",
+      "description": "NDS® Table. Symbol: Table",
+      "enum": [
+        "Table 4A",
+        "Table 4B",
+        "Table 4C",
+        "Table 4D",
+        "Table 4F",
+        "Table 5A",
+        "Table 5B",
+        "Table 5C",
+        "Table 5D"
+      ],
+      "x-enumLabels": [
+        "Table 4A",
+        "Table 4B",
+        "Table 4C",
+        "Table 4D",
+        "Table 4F",
+        "Table 5A",
+        "Table 5B",
+        "Table 5C",
+        "Table 5D"
+      ],
+      "default": "Table 4A"
+    },
+    "species": {
+      "type": "string",
+      "description": "Species. Symbol: S_p",
+      "enum": [
+        "-",
+        "ALASKA CEDAR",
+        "ALASKA HEMLOCK",
+        "ALASKA SPRUCE",
+        "ALASKA YELLOW CEDAR",
+        "ASPEN",
+        "BALDCYPRESS",
+        "BEECH-BIRCH-HICKORY",
+        "COAST SITKA SPRUCE",
+        "COTTONWOOD",
+        "DOUGLAS FIR-LARCH",
+        "DOUGLAS FIR-LARCH (NORTH)",
+        "DOUGLAS FIR-SOUTH",
+        "EASTERN HEMLOCK-BALSAM FIR",
+        "EASTERN HEMLOCK-TAMARACK",
+        "EASTERN SOFTWOODS",
+        "EASTERN WHITE PINE",
+        "HEM-FIR",
+        "HEM-FIR (NORTH)",
+        "MIXED MAPLE",
+        "MIXED OAK",
+        "NORTHERN RED OAK",
+        "NORTHERN SPECIES",
+        "NORTHERN WHITE CEDAR",
+        "RED MAPLE",
+        "RED OAK",
+        "REDWOOD",
+        "SPRUCE-PINE-FIR",
+        "SPRUCE-PINE-FIR (SOUTH)",
+        "WESTERN CEDARS",
+        "WESTERN WOODS",
+        "WHITE OAK",
+        "YELLOW CEDAR",
+        "YELLOW POPLAR"
+      ],
+      "x-enumLabels": [
+        "Please Select",
+        "ALASKA CEDAR",
+        "ALASKA HEMLOCK",
+        "ALASKA SPRUCE",
+        "ALASKA YELLOW CEDAR",
+        "ASPEN",
+        "BALDCYPRESS",
+        "BEECH-BIRCH-HICKORY",
+        "COAST SITKA SPRUCE",
+        "COTTONWOOD",
+        "DOUGLAS FIR-LARCH",
+        "DOUGLAS FIR-LARCH (NORTH)",
+        "DOUGLAS FIR-SOUTH",
+        "EASTERN HEMLOCK-BALSAM FIR",
+        "EASTERN HEMLOCK-TAMARACK",
+        "EASTERN SOFTWOODS",
+        "EASTERN WHITE PINE",
+        "HEM-FIR",
+        "HEM-FIR (NORTH)",
+        "MIXED MAPLE",
+        "MIXED OAK",
+        "NORTHERN RED OAK",
+        "NORTHERN SPECIES",
+        "NORTHERN WHITE CEDAR",
+        "RED MAPLE",
+        "RED OAK",
+        "REDWOOD",
+        "SPRUCE-PINE-FIR",
+        "SPRUCE-PINE-FIR (SOUTH)",
+        "WESTERN CEDARS",
+        "WESTERN WOODS",
+        "WHITE OAK",
+        "YELLOW CEDAR",
+        "YELLOW POPLAR"
+      ],
+      "default": "DOUGLAS FIR-LARCH"
+    },
+    "grade": {
+      "type": "string",
+      "description": "Commercial Grade. Symbol: c_g",
+      "enum": [
+        "-",
+        "Select Structural",
+        "No.1 & Btr",
+        "No.1",
+        "No.2",
+        "No.3",
+        "Stud",
+        "Construction",
+        "Standard",
+        "Utility"
+      ],
+      "x-enumLabels": [
+        "Please Select",
+        "Select Structural",
+        "No.1 & Btr",
+        "No.1",
+        "No.2",
+        "No.3",
+        "Stud",
+        "Construction",
+        "Standard",
+        "Utility"
+      ],
+      "default": "No.1"
+    },
+    "size": {
+      "type": "string",
+      "description": "Size Classification. Symbol: s_c",
+      "enum": [
+        "-",
+        "2in & wider"
+      ],
+      "x-enumLabels": [
+        "Please Select",
+        "2in & wider"
+      ],
+      "default": "2in & wider"
+    },
+    "laminations": {
+      "type": "number",
+      "description": "Number of Laminations. Symbol: n_{lam}",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "Cr_app": {
+      "type": "boolean",
+      "description": "Repetitive Factor Applicable?. Symbol: -. Is the member meeting criteria specified in Cl. 4.3.9 for repetitive factor ( Cr ). If yes, then Cr = 1.15, else Cr = 1.0.",
+      "default": false
+    },
+    "Ci_app": {
+      "type": "boolean",
+      "description": "Incision Factor Applicable?. Symbol: -. Is the dimension lumber considered as incised lumber as per Cl. 4.3.8 ? If yes, then incision factor Ci is as per table 4.3.8, else Ci = 1.0.",
+      "default": false
+    },
+    "auto_adjust": {
+      "type": "boolean",
+      "description": "Automatically Update Adjustment Factors?. Symbol: -. If checked the calculator will automatically adjust input factors as your input is changed. If unchecked you will need to manually update the adjustment factors.",
+      "default": true
+    },
+    "adjust_factor_asd": {
+      "type": "array",
+      "description": "Adjustment Factors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_name": {
+            "type": "string",
+            "description": "Item",
+            "default": "E",
+            "minimum": 0
+          },
+          "CD": {
+            "type": "string",
+            "description": "CD",
+            "default": "-",
+            "minimum": 0
+          },
+          "CM": {
+            "type": "string",
+            "description": "CM",
+            "default": "-",
+            "minimum": 0
+          },
+          "Ct": {
+            "type": "string",
+            "description": "Ct",
+            "default": "-",
+            "minimum": 0
+          },
+          "CL": {
+            "type": "string",
+            "description": "CL",
+            "default": "-",
+            "minimum": 0
+          },
+          "CF": {
+            "type": "string",
+            "description": "CF",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cfu": {
+            "type": "string",
+            "description": "Cfu",
+            "default": "-",
+            "minimum": 0
+          },
+          "Ci": {
+            "type": "string",
+            "description": "Ci",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cr": {
+            "type": "string",
+            "description": "Cr",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cp": {
+            "type": "string",
+            "description": "Cp",
+            "default": "-",
+            "minimum": 0
+          },
+          "CT": {
+            "type": "string",
+            "description": "CT",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cb": {
+            "type": "string",
+            "description": "Cb",
+            "default": "-",
+            "minimum": 0
+          },
+          "CV": {
+            "type": "string",
+            "description": "CV",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cvr": {
+            "type": "string",
+            "description": "Cvr",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cc": {
+            "type": "string",
+            "description": "Cc",
+            "default": "-",
+            "minimum": 0
+          },
+          "CI": {
+            "type": "string",
+            "description": "CI",
+            "default": "-",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "adjust_factor_lrfd": {
+      "type": "array",
+      "description": "Adjustment Factors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_name": {
+            "type": "string",
+            "description": "Item",
+            "default": "E",
+            "minimum": 0
+          },
+          "CM": {
+            "type": "string",
+            "description": "CM",
+            "default": "-",
+            "minimum": 0
+          },
+          "Ct": {
+            "type": "string",
+            "description": "Ct",
+            "default": "-",
+            "minimum": 0
+          },
+          "CL": {
+            "type": "string",
+            "description": "CL",
+            "default": 1,
+            "minimum": 0
+          },
+          "CF": {
+            "type": "string",
+            "description": "CF",
+            "default": 1,
+            "minimum": 0
+          },
+          "Cfu": {
+            "type": "string",
+            "description": "Cfu",
+            "default": "-",
+            "minimum": 0
+          },
+          "Ci": {
+            "type": "string",
+            "description": "Ci",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cr": {
+            "type": "string",
+            "description": "Cr",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cp": {
+            "type": "string",
+            "description": "Cp",
+            "default": "-",
+            "minimum": 0
+          },
+          "CT": {
+            "type": "string",
+            "description": "CT",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cb": {
+            "type": "string",
+            "description": "Cb",
+            "default": "-",
+            "minimum": 0
+          },
+          "CV": {
+            "type": "string",
+            "description": "CV",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cvr": {
+            "type": "string",
+            "description": "Cvr",
+            "default": "-",
+            "minimum": 0
+          },
+          "Cc": {
+            "type": "string",
+            "description": "Cc",
+            "default": "-",
+            "minimum": 0
+          },
+          "CI": {
+            "type": "string",
+            "description": "CI",
+            "default": "-",
+            "minimum": 0
+          },
+          "KF": {
+            "type": "string",
+            "description": "KF",
+            "default": "-",
+            "minimum": 0
+          },
+          "Phi": {
+            "type": "string",
+            "description": "Φ",
+            "default": "-",
+            "minimum": 0
+          },
+          "lambda": {
+            "type": "string",
+            "description": "λ",
+            "default": "-",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "b": {
+      "type": "number",
+      "description": "Nominal Width (b). Units: in",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 24
+    },
+    "d": {
+      "type": "number",
+      "description": "Nominal Depth (d). Units: in",
+      "default": 10,
+      "minimum": 3,
+      "maximum": 24
+    },
+    "L": {
+      "type": "number",
+      "description": "Un-supported Length of Beam (L). Units: ft",
+      "default": 15,
+      "minimum": 1,
+      "maximum": 200
+    },
+    "Le": {
+      "type": "number",
+      "description": "Effective Length for Bending. Units: ft. Default value is 2.06 * L as this is the most conservative value.",
+      "default": 30.9,
+      "minimum": 1,
+      "maximum": 412
+    },
+    "kz": {
+      "type": "number",
+      "description": "Effective Length Factor- Major (kz). Symbol: k_z",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 5000
+    },
+    "ky": {
+      "type": "number",
+      "description": "Effective Length Factor- Minor (ky). Symbol: k_y",
+      "default": 0.5,
+      "minimum": 0.1,
+      "maximum": 5000
+    },
+    "mc": {
+      "type": "number",
+      "description": "Moisture Content (%). Symbol: m_{c}. Percentage of Moisture Content.",
+      "default": 18,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "temp": {
+      "type": "number",
+      "description": "Temperature (°F). Units: F",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 200
+    },
+    "msc": {
+      "type": "string",
+      "description": "Moisture Service Condition. Symbol: m_{sc}",
+      "enum": [
+        "Dry",
+        "Wet"
+      ],
+      "x-enumLabels": [
+        "Dry",
+        "Wet"
+      ],
+      "default": "Dry"
+    },
+    "df_LL": {
+      "type": "number",
+      "description": "dfLL. Symbol: df_{LL}. Deflection Limit- Live Load.",
+      "default": 360,
+      "minimum": 100,
+      "maximum": 360
+    },
+    "df_LT": {
+      "type": "number",
+      "description": "dfLT. Symbol: df_{LT}. Deflection Limit- Long Term Load.",
+      "default": 180,
+      "minimum": 100,
+      "maximum": 360
+    },
+    "ad_LL": {
+      "type": "number",
+      "description": "adLL. Symbol: ad_{LL}. Units: in. Actual Deflection- Live Load.",
+      "default": 0.1,
+      "minimum": 0.01,
+      "maximum": 100
+    },
+    "ad_LT": {
+      "type": "number",
+      "description": "adLT. Symbol: ad_{LT}. Units: in. Actual Deflection- Long Term Load.",
+      "default": 0.12,
+      "minimum": 0.01,
+      "maximum": 100
+    },
+    "lambda_c": {
+      "type": "number",
+      "description": "λperm_c. Symbol: λ_{perm,c}. Allowable Slenderness Ratio- Compression.",
+      "default": 50,
+      "minimum": 50,
+      "maximum": 200
+    },
+    "lambda_b": {
+      "type": "number",
+      "description": "λperm_b. Symbol: λ_{perm,b}. Allowable Slenderness Ratio- Bending.",
+      "default": 50,
+      "minimum": 50,
+      "maximum": 200
+    },
+    "bp": {
+      "type": "string",
+      "description": "Bending Pattern. Symbol: b_{p}",
+      "enum": [
+        "Sagging",
+        "Hogging"
+      ],
+      "x-enumLabels": [
+        "Sagging",
+        "Hogging"
+      ],
+      "default": "Sagging"
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Major Bending (Mz). Symbol: M_z. Units: kip-ft. ",
+      "default": 0.4,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "My": {
+      "type": "number",
+      "description": "Minor Bending (My). Symbol: M_y. Units: kip-ft. ",
+      "default": 0.1,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Vz": {
+      "type": "number",
+      "description": "Minor Shear (Vz). Symbol: V_z. Units: kip. ",
+      "default": 2.5,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Vy": {
+      "type": "number",
+      "description": "Major Shear (Vy). Symbol: V_y. Units: kip. ",
+      "default": 2.5,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Nc": {
+      "type": "number",
+      "description": "Axial Compression (Nc). Symbol: N_c. Units: kip. ",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Nt": {
+      "type": "number",
+      "description": "Axial Tension (Nt). Symbol: N_t. Units: kip. ",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "4003-nds-wood-beam-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "member_label": "Member 1",
+  "method": "LRFD",
+  "section": "Custom",
+  "D": 5,
+  "B": 5,
+  "t": 0.5,
+  "Fy": "36",
+  "Fu": "60",
+  "Lz": 9,
+  "Ly": 9,
+  "kz": 1,
+  "ky": 1,
+  "U": 1,
+  "Nc": 1,
+  "Nt": 1,
+  "uid": "2006-aisc-angle-beam-capacity-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

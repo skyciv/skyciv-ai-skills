@@ -1,0 +1,241 @@
+{
+  "status": 0,
+  "data": {
+    "report": "https://pdf.skyciv.com/...  (PDF report link, valid for 1 hour)",
+    "results": {
+      "AS3600Compliance": {
+        "value": 0,
+        "label": "AS 3600-18 Compliance",
+        "units": "utility_boolean"
+      },
+      "Stability": {
+        "label": "Stability Checks",
+        "units": "heading"
+      },
+      "Eccentricity Ratio": {
+        "label": "Eccentricity Ratio",
+        "units": "utility",
+        "value": 0.88
+      },
+      "Eccentricity": {
+        "label": "Eccentricity Check",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "Maximum Soil Pressure": {
+        "label": "Maximum Soil Pressure",
+        "units": "kPa",
+        "value": "632.00"
+      },
+      "Allowable Soil Pressure": {
+        "label": "Allowable Soil Pressure",
+        "units": "kPa",
+        "value": "500.00"
+      },
+      "Soil Bearing Ratio": {
+        "label": "Soil Bearing Ratio",
+        "units": "utility",
+        "value": 1.26
+      },
+      "SoilBear": {
+        "label": "Bearing Capacity",
+        "units": "custom_box",
+        "value": "FAIL",
+        "color": "#DB2828"
+      },
+      "Resisting Moment": {
+        "label": "Resisting Moment",
+        "units": "kN-m",
+        "value": "440.28"
+      },
+      "Overturning Moment": {
+        "label": "Overturning Moment",
+        "units": "kN-m",
+        "value": "14.58"
+      },
+      "Overturning Ratio": {
+        "label": "Overturning Ratio",
+        "units": "utility",
+        "value": 0.03
+      },
+      "Overturning": {
+        "label": "Overturning",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "Sliding Force": {
+        "label": "Sliding Force",
+        "units": "kN",
+        "value": "2.70"
+      },
+      "Sliding Resistance": {
+        "label": "Sliding Resistance",
+        "units": "kN",
+        "value": "102.82"
+      },
+      "Sliding Ratio": {
+        "label": "Sliding Ratio",
+        "units": "utility",
+        "value": 0.03
+      },
+      "Sliding": {
+        "label": "Sliding",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45"
+      },
+      "Strength": {
+        "label": "Strength Utilization",
+        "units": "heading"
+      },
+      "Shear Force": {
+        "label": "Shear Force",
+        "value": "113.94",
+        "units": "kN"
+      },
+      "Shear Resistance": {
+        "label": "Shear Resistance",
+        "value": "149.85",
+        "units": "kN"
+      },
+      "Shear": {
+        "label": "Shear",
+        "value": 0.76,
+        "units": "utility"
+      },
+      "Reinforcement Ratio": {
+        "label": "Reinforcement Ratio",
+        "units": "1/1000",
+        "value": 1.5724547597156038
+      },
+      "Maximum Reinforcement Ratio": {
+        "label": "Maximum Reinforcement Ratio",
+        "units": "1/1000",
+        "value": 16.4454912
+      },
+      "Provided Reinforcement Area": {
+        "label": "Provided Reinforcement Area",
+        "units": "mm²",
+        "value": "905"
+      },
+      "Required Reinforcement Area": {
+        "label": "Required Reinforcement Area",
+        "units": "mm²",
+        "value": "541"
+      },
+      "Minimum Reinforcement Area": {
+        "label": "Minimum Reinforcement Area",
+        "units": "mm²",
+        "value": "600"
+      },
+      "Maximum Reinforcement Area": {
+        "label": "Maximum Reinforcement Area",
+        "units": "mm²",
+        "value": "5657"
+      },
+      "Maximum Bending Moment": {
+        "label": "Maximum Bending Moment",
+        "units": "kN-m",
+        "value": "77.87"
+      },
+      "Maximum Resistance Moment": {
+        "label": "Maximum Resistance Moment",
+        "units": "kN-m",
+        "value": "128.89"
+      },
+      "Bending": {
+        "label": "Bending Capacity",
+        "value": 0.604174714610426,
+        "units": "utility"
+      },
+      "Bearing": {
+        "label": "Bearing Capacity",
+        "value": 0.09765624999999999,
+        "units": "utility"
+      },
+      "Detailing": {
+        "label": "Detailing",
+        "units": "heading"
+      },
+      "Main Reinforcement": {
+        "label": "Main Reinforcement",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Transverse Reinforcement": {
+        "label": "Transverse Bar Reinforcement",
+        "units": "custom_box",
+        "value": "FAIL",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Bar Spacing": {
+        "label": "Bar Spacing",
+        "units": "custom_box",
+        "value": "FAIL",
+        "color": "#DB2828",
+        "paid_only": true
+      },
+      "Development Length": {
+        "label": "Development Length",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Dowels Reinforcement": {
+        "label": "Dowels Reinforcement",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Min Height": {
+        "label": "Footing Height Check",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "paid_only": true
+      },
+      "Reinforcement": {
+        "label": "Reinforcement Area",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "X-axis Ductility Reinforcement": {
+        "label": "Ductility Check",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "X-axis Min Reinforcement": {
+        "label": "Minimum Reinforcement Area",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      },
+      "Max Reinforcement": {
+        "label": "Maximum Reinforcement Area",
+        "units": "custom_box",
+        "value": "PASS",
+        "color": "#21BA45",
+        "intermediate": true,
+        "paid_only": true
+      }
+    }
+  },
+  "log": "",
+  "warnings": [],
+  "msg": "Design Calc ran successfully"
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plate Buckling Stress",
+  "description": "Calculate buckling stresses for steel plates.",
+  "type": "object",
+  "properties": {
+    "plate_compression_diagram": {
+      "type": "string",
+      "description": "plate_compression_diagram"
+    },
+    "support_t": {
+      "type": "string",
+      "description": "Support Type",
+      "enum": [
+        "1a",
+        "1b",
+        "1c",
+        "1d",
+        "1e",
+        "1f"
+      ],
+      "x-enumLabels": [
+        "All edges simply supported",
+        "All edges clamped",
+        "Edges b simply supported, edges a clamped",
+        "Edges b simply supported, one edge a simply supported, other edge a free",
+        "Edges b simply supported, one edge a clamped, other edge a free",
+        "Edges b clamped, edges a simply supported"
+      ],
+      "default": "1a"
+    },
+    "a": {
+      "type": "number",
+      "description": "Length of Plate (a). Units: mm",
+      "default": "150",
+      "minimum": 0
+    },
+    "b": {
+      "type": "number",
+      "description": "Width of Plate (b). Units: mm",
+      "default": "56.2",
+      "minimum": 0
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness of Plate (t). Units: mm",
+      "default": "1.5",
+      "minimum": 0
+    },
+    "E": {
+      "type": "number",
+      "description": "Young's Modulus (E). Units: MPa. Modulus of Elasticity of the plate.",
+      "default": 200000,
+      "minimum": 0
+    },
+    "v": {
+      "type": "number",
+      "description": "Poisson's Ratio (v). Relationship between transverse and axial strain for the plate.",
+      "default": 0.3,
+      "minimum": 0,
+      "maximum": 0.5
+    },
+    "uid": {
+      "type": "string",
+      "const": "1010-plate-buckling-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Block Retaining Wall Design as Per NZGS Module 6",
+  "description": "Block Retaining Wall Design as Per NZGS Module 6",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image. Typical Section"
+    },
+    "H_w": {
+      "type": "number",
+      "description": "Height of Wall, H_w. Symbol: H_w. Units: mm",
+      "default": 2000,
+      "minimum": 500,
+      "maximum": 3500
+    },
+    "L_stem": {
+      "type": "number",
+      "description": "Thickness of wall stem, L_stem. Symbol: L_{stem}. Units: mm",
+      "default": 190,
+      "minimum": 100,
+      "maximum": 400
+    },
+    "L_toe": {
+      "type": "number",
+      "description": "Length of toe, L_toe. Symbol: L_{toe}. Units: mm",
+      "default": 650,
+      "minimum": 0,
+      "maximum": 3000
+    },
+    "L_heel": {
+      "type": "number",
+      "description": "Length of heel, L_heel. Symbol: L_{heel}. Units: mm",
+      "default": 1000,
+      "minimum": 0,
+      "maximum": 4000
+    },
+    "L_base": {
+      "type": "number",
+      "description": "Thickness of base, L_base. Symbol: L_{base}. Units: mm",
+      "default": 300,
+      "minimum": 150,
+      "maximum": 2000
+    },
+    "L_key": {
+      "type": "number",
+      "description": "Height of shear key, L_key. Symbol: L_{key}. Units: mm",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "β_deg": {
+      "type": "number",
+      "description": "Slope of Backwall, β. Symbol: β_{deg}. Units: °",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 0
+    },
+    "i": {
+      "type": "number",
+      "description": "Slope of Backfill, i. Symbol: i. Units: °",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 25
+    },
+    "Ø_b": {
+      "type": "number",
+      "description": "Soil Friction Angle, Backfill, Ø_b. Symbol: Ø_b. Units: °",
+      "default": 36,
+      "minimum": 20,
+      "maximum": 50
+    },
+    "Øn_deg": {
+      "type": "number",
+      "description": "Soil Friction Angle, Native, Ø_n. Symbol: Øn_deg. Units: °",
+      "default": 28,
+      "minimum": 20,
+      "maximum": 50
+    },
+    "K_p": {
+      "type": "number",
+      "description": "Passive earth pressure as per NZTA BM Figure 4.2. Symbol: K_p",
+      "default": 4.5,
+      "minimum": 0.05,
+      "maximum": 12
+    },
+    "S_u": {
+      "type": "number",
+      "description": "Soil Undrained Shear Strength, Native, S_u. Symbol: S_u. Units: kPa",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "c_a": {
+      "type": "number",
+      "description": "Sliding resistance, c_a. Symbol: c_a. Units: kPa",
+      "default": 50,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "γ_b": {
+      "type": "number",
+      "description": "Soil Unit Weight, Backfill, γ_b. Symbol: γ_b. Units: kN/m^3",
+      "default": 19,
+      "minimum": 12,
+      "maximum": 30
+    },
+    "γ_n": {
+      "type": "number",
+      "description": "Soil Unit Weight, Native, γ_n. Symbol: γ_n. Units: kN/m^3",
+      "default": 17,
+      "minimum": 12,
+      "maximum": 30
+    },
+    "γ_c": {
+      "type": "number",
+      "description": "Concrete Unit Weight. Symbol: γ_n. Units: kN/m^3",
+      "default": 25,
+      "minimum": 12,
+      "maximum": 30
+    },
+    "w_g": {
+      "type": "number",
+      "description": "Unfactored G load surcharge. Symbol: w_g. Units: kPa",
+      "default": 0.4,
+      "minimum": 0,
+      "maximum": 20
+    },
+    "w_q": {
+      "type": "number",
+      "description": "Unfactored Q load surcharge. Symbol: w_g. Units: kPa",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 20
+    },
+    "q_u": {
+      "type": "number",
+      "description": "ULS Bearing capacity of soil, q_u. Symbol: q_u. Units: kPa",
+      "default": 300,
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "a_max": {
+      "type": "number",
+      "description": "Maximum acceleration, a_max. Symbol: a_{max}. Units: g",
+      "default": 0.68,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "w_d": {
+      "type": "number",
+      "description": "Wall Displacement Factor, w_d. Symbol: w_d",
+      "default": 0.5,
+      "minimum": 0.3,
+      "maximum": 0.7
+    },
+    "wd link": {
+      "type": "string",
+      "description": "See Table 5.2 of Module 6 for Situations and Values"
+    },
+    "a_topo": {
+      "type": "number",
+      "description": "Topographic Amplification factor, a_topo. Symbol: a_{topo}",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 1.4
+    },
+    "check_sliding": {
+      "type": "boolean",
+      "description": "Check Sliding?. Symbol: checksliding",
+      "default": true
+    },
+    "Φ_bc": {
+      "type": "number",
+      "description": "Resistance factor for bearing capacity, Φ_bc. Symbol: Φ_{bc}",
+      "default": 0.5,
+      "minimum": 0.05,
+      "maximum": 2
+    },
+    "Φ_sl": {
+      "type": "number",
+      "description": "Resistance factor for sliding, gravity case, Φ_sl. Symbol: Φ_{sl}",
+      "default": 0.8,
+      "minimum": 0.05,
+      "maximum": 2
+    },
+    "Φ_p": {
+      "type": "number",
+      "description": "Resistance factor for passive pressure, Φ_p. Symbol: Φ_{p}",
+      "default": 0.5,
+      "minimum": 0.05,
+      "maximum": 2
+    },
+    "Φ_eq": {
+      "type": "number",
+      "description": "Resistance factor for bearing and sliding EQ case, Φ_eq. Symbol: Φ_{eq}",
+      "default": 1,
+      "minimum": 0.05,
+      "maximum": 2
+    },
+    "α_G_stab": {
+      "type": "number",
+      "description": "Factor for Self weight, stabilising, α_G_stab. Symbol: α_{G_stab}",
+      "default": 0.9,
+      "minimum": 0.05,
+      "maximum": 5
+    },
+    "α_G_destab": {
+      "type": "number",
+      "description": "Factor for Self weight, de-stabilising, α_G_destab. Symbol: α_{G_destab}",
+      "default": 1.2,
+      "minimum": 0.05,
+      "maximum": 5
+    },
+    "αep_s": {
+      "type": "number",
+      "description": "Factor for Earth Pressure Gravity Case, αep_s. Symbol: αep_s",
+      "default": 1.5,
+      "minimum": 0.05,
+      "maximum": 5
+    },
+    "αep_eq": {
+      "type": "number",
+      "description": "Factor for Earth Pressure EQ Case, αep_eq. Symbol: αep_{eq}",
+      "default": 1,
+      "minimum": 0.05,
+      "maximum": 5
+    },
+    "uid": {
+      "type": "string",
+      "const": "9082-mpads-retaining-wall-block-wall",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,349 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Multi-Span Beam Analysis",
+  "description": "Analyse multi-span beams for distributed and point loading.",
+  "type": "object",
+  "properties": {
+    "spans": {
+      "type": "number",
+      "description": "Spans",
+      "enum": [
+        2,
+        3,
+        4
+      ],
+      "x-enumLabels": [
+        2,
+        3,
+        4
+      ],
+      "default": 2
+    },
+    "L_1": {
+      "type": "number",
+      "description": "Span 1 (L1). Symbol: L. Units: mm. Length of Span 1.",
+      "default": 1200,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "L_2": {
+      "type": "number",
+      "description": "Span 2 (L2). Symbol: L. Units: mm. Length of Span 2.",
+      "default": 1200,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "L_3": {
+      "type": "number",
+      "description": "Span 3 (L3). Symbol: L. Units: mm. Length of Span 3.",
+      "default": 1200,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "L_4": {
+      "type": "number",
+      "description": "Span 4 (L4). Symbol: L. Units: mm. Length of Span 4.",
+      "default": 1200,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "S_0": {
+      "type": "string",
+      "description": "Support 1",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "None"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "None"
+      ],
+      "default": "Pinned"
+    },
+    "S_1": {
+      "type": "string",
+      "description": "Support 2",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "None"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "None"
+      ],
+      "default": "Pinned"
+    },
+    "S_2": {
+      "type": "string",
+      "description": "Support 3",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "None"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "None"
+      ],
+      "default": "Pinned"
+    },
+    "S_3": {
+      "type": "string",
+      "description": "Support 4",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "None"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "None"
+      ],
+      "default": "Pinned"
+    },
+    "S_4": {
+      "type": "string",
+      "description": "Support 5",
+      "enum": [
+        "Fixed",
+        "Pinned",
+        "Roller",
+        "None"
+      ],
+      "x-enumLabels": [
+        "Fixed (FFFFFF)",
+        "Pinned (FFFFFR)",
+        "Roller (RFFRRR)",
+        "None"
+      ],
+      "default": "Pinned"
+    },
+    "DL_mag_1": {
+      "type": "number",
+      "description": "Span 1 Dist. Load. Symbol: D_{L1}. Units: kN/m",
+      "default": 1.2,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "DL_mag_2": {
+      "type": "number",
+      "description": "Span 2 Dist. Load. Symbol: D_{L1}. Units: kN/m",
+      "default": 1.6,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "DL_mag_3": {
+      "type": "number",
+      "description": "Span 3 Dist. Load. Symbol: D_{L1}. Units: kN/m",
+      "default": 1.2,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "DL_mag_4": {
+      "type": "number",
+      "description": "Span 4 Dist. Load. Symbol: D_{L1}. Units: kN/m",
+      "default": 1.2,
+      "minimum": 0,
+      "maximum": 400
+    },
+    "PL": {
+      "type": "array",
+      "description": "Point Loads",
+      "items": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "number",
+            "description": "Position (mm)",
+            "default": 100,
+            "minimum": 0
+          },
+          "magnitude": {
+            "type": "string",
+            "description": "Magnitude (kN)",
+            "default": 2,
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape",
+      "enum": [
+        "isection",
+        "tsection",
+        "channel",
+        "angle",
+        "rect",
+        "hollow-rect",
+        "circular",
+        "hollow-circular"
+      ],
+      "x-enumLabels": [
+        "I-Section",
+        "T-Section",
+        "Channel",
+        "Angle",
+        "Rectangular",
+        "Hollow Rectangular",
+        "Circular",
+        "Hollow Circular"
+      ],
+      "default": "isection"
+    },
+    "B": {
+      "type": "number",
+      "description": "Width (B). Symbol: B. Units: mm. Width of your section.",
+      "default": 200,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "H": {
+      "type": "number",
+      "description": "Height (H). Symbol: H. Units: mm. Height of your section.",
+      "default": 400,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "t_f": {
+      "type": "number",
+      "description": "Flange Thickness (tf). Symbol: t_f. Units: mm. Flange Thickness of your section.",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "t_w": {
+      "type": "number",
+      "description": "Web Thickness (tw). Symbol: t_w. Units: mm. Web Thickness of your section.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "t": {
+      "type": "number",
+      "description": "Thickness (t). Symbol: t_w. Units: mm. Thickness of your section.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "d": {
+      "type": "number",
+      "description": "Diameter (d). Symbol: t_w. Units: mm. Diameter of your section.",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "material": {
+      "type": "string",
+      "description": "Material",
+      "enum": [
+        "custom",
+        "steel",
+        "aluminum",
+        "concrete",
+        "concrete-high-strength",
+        "oakwood"
+      ],
+      "x-enumLabels": [
+        "Custom",
+        "Structural Steel",
+        "Aluminum",
+        "Concrete",
+        "Concrete High Strength",
+        "Oakwood"
+      ],
+      "default": "steel"
+    },
+    "E": {
+      "type": "number",
+      "description": "Young's Modulus (E). Symbol: E. Units: MPa. Young's Modulus of your material.",
+      "default": 200000,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "p": {
+      "type": "number",
+      "description": "Density (ρ). Symbol: ρ. Units: kg/m³. Density of your material.",
+      "default": 7850,
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "v": {
+      "type": "number",
+      "description": "Poisson's Ratio (v). Symbol: v. Poisson's Ratio of your material.",
+      "default": 0.3,
+      "minimum": 0,
+      "maximum": 0.5
+    },
+    "calculate_deflection": {
+      "type": "boolean",
+      "description": "Calculate Deflection?. Symbol: D_{y}",
+      "default": false
+    },
+    "self_weight": {
+      "type": "boolean",
+      "description": "Include Self-Weight?. Symbol: D_{y}",
+      "default": false
+    },
+    "uid": {
+      "type": "string",
+      "const": "1016-multi-span-beam-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

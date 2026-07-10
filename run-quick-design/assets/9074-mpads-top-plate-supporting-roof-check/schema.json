@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timber top plate check as per NZS 3603",
+  "description": "Timber top plate check as per NZS 3603",
+  "type": "object",
+  "properties": {
+    "b": {
+      "type": "number",
+      "description": "Beam Width (b). Symbol: b. Units: mm",
+      "default": 90,
+      "minimum": 35,
+      "maximum": 400
+    },
+    "d": {
+      "type": "number",
+      "description": "Beam Depth (d). Symbol: d. Units: mm",
+      "default": 45,
+      "minimum": 35,
+      "maximum": 1000
+    },
+    "Lb": {
+      "type": "number",
+      "description": "Unbraced Length (Lb). Symbol: Lb. Units: mm",
+      "default": 1000,
+      "minimum": 300,
+      "maximum": 10000
+    },
+    "Lb message": {
+      "type": "string",
+      "description": "Distance between restraints of portion with compression"
+    },
+    "fb": {
+      "type": "number",
+      "description": "Flexure Capacity. Symbol: f'b. Units: MPa",
+      "default": 14,
+      "minimum": 10,
+      "maximum": 100
+    },
+    "k4": {
+      "type": "number",
+      "description": "Parallel factor (k4). Symbol: k4",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 1.33
+    },
+    "k4 link": {
+      "type": "string",
+      "description": "See NZS3603.1993 2.9.1 Table 2.7"
+    },
+    "spa": {
+      "type": "number",
+      "description": "Rafter Spacing (mm). Symbol: spa. Units: mm",
+      "default": 900,
+      "minimum": 200,
+      "maximum": 10000
+    },
+    "Green": {
+      "type": "boolean",
+      "description": "Green?",
+      "default": false
+    },
+    "U_roofceil": {
+      "type": "number",
+      "description": "Area load from roof and ceiling. Symbol: U_roofceil. Units: kPa",
+      "default": 0.2,
+      "minimum": 0,
+      "maximum": 20
+    },
+    "Us_wind": {
+      "type": "number",
+      "description": "ULS Pressure from Wind (negative for uplift). Symbol: Us_wind. Units: kPa",
+      "default": 0,
+      "minimum": -100,
+      "maximum": 100
+    },
+    "Loaded_Length": {
+      "type": "number",
+      "description": "Loaded Length in mm. Symbol: LL. Units: mm",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "E": {
+      "type": "number",
+      "description": "Mod. of Elasticity. Symbol: E. Units: MPa",
+      "default": 5400,
+      "minimum": 100,
+      "maximum": 20000
+    },
+    "Span": {
+      "type": "number",
+      "description": "Stud Spacing (mm). Symbol: Span. Units: mm",
+      "default": 400,
+      "minimum": 100,
+      "maximum": 1200
+    },
+    "DefLimit_Brief": {
+      "type": "number",
+      "description": "Deflection Limit in mm",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "U_wind": {
+      "type": "number",
+      "description": "SLS Wind on roof. Symbol: U_w. Units: kPa",
+      "default": 0,
+      "minimum": -100,
+      "maximum": 100
+    },
+    "uid": {
+      "type": "string",
+      "const": "9074-mpads-top-plate-supporting-roof-check",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

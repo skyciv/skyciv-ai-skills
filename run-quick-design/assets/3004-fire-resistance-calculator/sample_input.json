@@ -1,0 +1,30 @@
+{
+  "R": "R60",
+  "shape": "Rectangular",
+  "H": 500,
+  "B": 400,
+  "D": 400,
+  "Cb1": 35,
+  "num_x": 1,
+  "num_y": 2,
+  "d_c": 16,
+  "d_s": 16,
+  "Cb2": 30,
+  "num": 10,
+  "d": 16,
+  "fc": 30,
+  "fs": 500,
+  "N": 600,
+  "Mx": 100,
+  "My": 5,
+  "uid": "3004-fire-resistance-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

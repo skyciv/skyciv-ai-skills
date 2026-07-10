@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 360R-10 Slab on Ground",
+  "description": "Design a slab on grade in accordance with ACI 360 R-10.",
+  "type": "object",
+  "properties": {
+    "t": {
+      "type": "number",
+      "description": "Slab Thickness (h). Units: in",
+      "default": 12,
+      "minimum": 6,
+      "maximum": 48
+    },
+    "fc": {
+      "type": "number",
+      "description": "Concrete Strength (fc). Units: psi. Specified concrete compressive strength, the range allowed (3000-6000 psi) only includes typical values suggested by the PCA Guide.",
+      "default": 3000,
+      "minimum": 3000,
+      "maximum": 6000
+    },
+    "wc": {
+      "type": "number",
+      "description": "Concrete Unit Weight (wc). Units: lb/ft³",
+      "default": 150,
+      "minimum": 90,
+      "maximum": 200
+    },
+    "fy": {
+      "type": "number",
+      "description": "Reinforcement Yield Strength (fy). Units: psi",
+      "default": 60000,
+      "minimum": 40000,
+      "maximum": 1000000
+    },
+    "po": {
+      "type": "number",
+      "description": "Concrete Poisson's Ratio (po)",
+      "default": 0.15,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "P": {
+      "type": "number",
+      "description": "Applied Load (P). Units: lbf",
+      "default": 12500,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Ac": {
+      "type": "number",
+      "description": "Contact Area (Ac). Units: in²",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "Iw": {
+      "type": "number",
+      "description": "2nd Load Factor (Iw). Units: %. Increase Factor for 2nd Load. Suggested values: ",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "FS": {
+      "type": "number",
+      "description": "Factor of Safety (FS). Recommended values for FS: ",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "z": {
+      "type": "number",
+      "description": "Joint Width (z). Units: in",
+      "default": 0.25,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "L": {
+      "type": "number",
+      "description": "Joint Spacing (L). Units: ft",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "db": {
+      "type": "number",
+      "description": "Dowel Bar Diameter (db). Units: #. Size of bars where the number represents 1/8 inch.",
+      "default": 8,
+      "minimum": 2,
+      "maximum": 18
+    },
+    "s": {
+      "type": "number",
+      "description": "Dowel Bar Spacing (s). Units: in",
+      "default": 12,
+      "minimum": 0,
+      "maximum": 50
+    },
+    "kc": {
+      "type": "number",
+      "description": "Dowel Support Modulus (kc). Units: lbf/in3",
+      "default": 1500000,
+      "minimum": 0,
+      "maximum": 10000000
+    },
+    "Eb": {
+      "type": "number",
+      "description": "Dowel Bars Modulus (Eb). Units: psi",
+      "default": 29000000,
+      "minimum": 0,
+      "maximum": 100000000
+    },
+    "k": {
+      "type": "number",
+      "description": "Subgrade Modulus (k). Units: lbf/in3. For Subgrade modulus the following values are suggested depending on the soil type: ",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "FF": {
+      "type": "number",
+      "description": "Friction Factor (FF). Friction factors (FF) for different slab-base conditions: ",
+      "default": 1.5,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "SFAC": {
+      "type": "string",
+      "description": "Slab Base Condition (C). Slab-base Friction Adjustment Factor (C).",
+      "enum": [
+        "SS",
+        "GS",
+        "NS"
+      ],
+      "x-enumLabels": [
+        "Stabilized Sub-base",
+        "Granular Sub-base",
+        "No Sub-base"
+      ],
+      "default": "SS"
+    },
+    "DT": {
+      "type": "number",
+      "description": "Temperature Range (ΔT). Units: °F",
+      "default": 40,
+      "minimum": 0,
+      "maximum": 200
+    },
+    "consider_Ioannides_equation": {
+      "type": "boolean",
+      "description": "Use Ioannides Equation?. Activates the Ioannides equation as an alternative method for determining allowable flexural stress. This approach may provide different results compared to Westergaard and should be used based on the engineer's experience and analysis requirements.",
+      "default": false
+    },
+    "uid": {
+      "type": "string",
+      "const": "3032-aci-slab-on-grade",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "beam_length": 2,
+  "load": 5,
+  "self_weight": false,
+  "uid": "1001-solver",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

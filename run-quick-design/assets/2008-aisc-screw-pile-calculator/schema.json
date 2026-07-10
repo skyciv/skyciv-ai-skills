@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-16 & IBC 2021 Screw Pile Design",
+  "description": "Design steel screw piles as per AISC-360 and IBC 2021.",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string",
+      "description": "image. Screw Pile Representational Image"
+    },
+    "method": {
+      "type": "string",
+      "description": "Design Method. Symbol: Method",
+      "enum": [
+        "ASD",
+        "LRFD"
+      ],
+      "x-enumLabels": [
+        "ASD",
+        "LRFD"
+      ],
+      "default": "ASD"
+    },
+    "Ht": {
+      "type": "string",
+      "description": "Helix Type (Ht). Symbol: H_{t}. Type of helix to choose from Single and Double Helix.",
+      "enum": [
+        "Single Helix",
+        "Double Helix"
+      ],
+      "x-enumLabels": [
+        "Single Helix",
+        "Double Helix"
+      ],
+      "default": "Double Helix"
+    },
+    "Sps": {
+      "type": "string",
+      "description": "Screw Pile Single Helix (Sps). Symbol: S_{ps}"
+    },
+    "Spd": {
+      "type": "string",
+      "description": "Screw Pile Double Helix (Spd). Symbol: S_{pd}",
+      "enum": [
+        "10-3/4-dia-48-double helix"
+      ],
+      "x-enumLabels": [
+        "10-3/4&quot;dia-48&quot;double helix"
+      ],
+      "default": "10-3/4-dia-48-double helix"
+    },
+    "L_embd": {
+      "type": "number",
+      "description": "Embedment Length (Lembd). Symbol: L_{embd}. Units: ft",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "L_cant": {
+      "type": "number",
+      "description": "Cantilever Length (Lcant). Symbol: L_{cant}. Units: ft",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "H1": {
+      "type": "number",
+      "description": "Depth to Top Helix (H1). Symbol: H_{1}. Units: ft",
+      "default": 20,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "H3": {
+      "type": "number",
+      "description": "Depth to Bottom Helix (H3). Symbol: H_{3}. Units: ft",
+      "default": 40,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "t": {
+      "type": "number",
+      "description": "Pile Web Thickness (t). Symbol: t. Units: in. Pile web thickness.",
+      "default": 0.375,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "fy": {
+      "type": "number",
+      "description": "Yield Stress of Structural Steel (fy). Symbol: f_{y}. Units: ksi",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "soil_properties": {
+      "type": "array",
+      "description": "Soil Properties",
+      "items": {
+        "type": "object",
+        "properties": {
+          "layer_no": {
+            "type": "string",
+            "description": "Layer #",
+            "default": "",
+            "minimum": 1
+          },
+          "layer_thick": {
+            "type": "number",
+            "description": "Layer Thickness (ft)",
+            "default": "",
+            "minimum": 0
+          },
+          "St": {
+            "type": "string",
+            "description": "Soil Type ",
+            "default": "",
+            "enum": [
+              "Cohesive",
+              "Cohensionless"
+            ]
+          },
+          "phi": {
+            "type": "number",
+            "description": "φ (deg)",
+            "default": 0,
+            "minimum": 0,
+            "enum": [
+              "0",
+              "25",
+              "27",
+              "30",
+              "33",
+              "35",
+              "37",
+              "40",
+              "42",
+              "45"
+            ]
+          },
+          "gamma": {
+            "type": "number",
+            "description": "γ (ksf)",
+            "default": 1.12,
+            "minimum": 0
+          },
+          "Cu": {
+            "type": "number",
+            "description": "Cu(ksf)",
+            "default": 2.088,
+            "minimum": 0
+          },
+          "alpha": {
+            "type": "number",
+            "description": "α",
+            "default": 0,
+            "minimum": 0
+          },
+          "Ks": {
+            "type": "number",
+            "description": "Ks",
+            "default": 0,
+            "minimum": 0
+          },
+          "Fqd": {
+            "type": "number",
+            "description": "Fqd",
+            "default": 0,
+            "minimum": 0
+          },
+          "Fqs": {
+            "type": "number",
+            "description": "Fqd",
+            "default": 0,
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "Fx": {
+      "type": "number",
+      "description": "Axial Load in Compression (Fx). Symbol: F_{x}. Units: kip",
+      "default": 9,
+      "minimum": 0,
+      "maximum": 810
+    },
+    "Vy": {
+      "type": "number",
+      "description": "Minor Shear Force (Vy). Symbol: V_{y}. Units: kip. Absolute maximum shear force in y-axis.",
+      "default": 6,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Vz": {
+      "type": "number",
+      "description": "Major Shear Force (Vz). Symbol: V_{z}. Units: kip. Absolute maximum shear force in z-axis.",
+      "default": 7,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "My": {
+      "type": "number",
+      "description": "Minor Bending (My). Symbol: M_{y}. Units: kip-ft. Moment in minor axis (Y).",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Mz": {
+      "type": "number",
+      "description": "Major Bending (Mz). Symbol: M_{z}. Units: kip-ft. Moment in major axis (Z).",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "Mx": {
+      "type": "number",
+      "description": "Top Installation Torsion (Mx). Symbol: M_{x}. Units: kip-ft",
+      "default": 289,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Pt": {
+      "type": "number",
+      "description": "Axial Force in Tension (Pt). Symbol: P_{t}. Units: kip",
+      "default": 10,
+      "minimum": 0,
+      "maximum": 500000
+    },
+    "Qa": {
+      "type": "number",
+      "description": "Soil Pressure at Bottom (Qa). Symbol: Q_{a}. Units: ksf. Allowable soil bearing pressure at the bottom end stratum.",
+      "default": 18
+    },
+    "Pp": {
+      "type": "number",
+      "description": "Lateral Soil Bearing Pressure (Pp). Symbol: P_{p}. Units: ksf/ft. Allowable lateral soil bearing pressure in embedment.",
+      "default": 0.25
+    },
+    "uid": {
+      "type": "string",
+      "const": "2008-aisc-screw-pile-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

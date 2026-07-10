@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AS 3600:2018 Punching Shear Design",
+  "description": "Check slab punching shear in accordance with AS 3600:2018.",
+  "type": "object",
+  "properties": {
+    "arrangement": {
+      "type": "string",
+      "description": "Arrangement. Support Under or Point Load.",
+      "enum": [
+        "Support Under",
+        "Point Load"
+      ],
+      "x-enumLabels": [
+        "Support Under",
+        "Point Load"
+      ],
+      "default": "Point Load"
+    },
+    "shape": {
+      "type": "string",
+      "description": "Shape. Symbol: Shape",
+      "enum": [
+        "Rectangular",
+        "Circular"
+      ],
+      "x-enumLabels": [
+        "Rectangular",
+        "Circular"
+      ],
+      "default": "Rectangular"
+    },
+    "L": {
+      "type": "number",
+      "description": "Length. Units: mm",
+      "default": "800",
+      "minimum": 1
+    },
+    "W": {
+      "type": "number",
+      "description": "Width. Units: mm",
+      "default": "400",
+      "minimum": 1
+    },
+    "D": {
+      "type": "number",
+      "description": "Diameter. Units: mm",
+      "default": "400",
+      "minimum": 1
+    },
+    "M_v": {
+      "type": "number",
+      "description": "M*v. Units: kN.m. Design Bending Moment (Slab to Support).",
+      "default": "10",
+      "minimum": 0
+    },
+    "M_vx": {
+      "type": "number",
+      "description": "M*vx. Symbol: M_{vx}. Units: kN.m. Design Bending Moment X (Slab to Support).",
+      "default": "10",
+      "minimum": 0
+    },
+    "M_vy": {
+      "type": "number",
+      "description": "M*vy. Symbol: M_{vy}. Units: kN.m. Design Bending Moment Y (Slab to Support).",
+      "default": "10",
+      "minimum": 0
+    },
+    "V": {
+      "type": "number",
+      "description": "V*. Symbol: V*. Units: kN. Force in Vertical Direction.",
+      "default": "100",
+      "minimum": 0
+    },
+    "D_s": {
+      "type": "number",
+      "description": "Ds. Units: mm. Thickness of Slab.",
+      "default": "220",
+      "minimum": 1
+    },
+    "c": {
+      "type": "number",
+      "description": "c. Units: mm. Cover to Reinforcement.",
+      "default": "40",
+      "minimum": 1
+    },
+    "d_b": {
+      "type": "string",
+      "description": "db. Units: mm. Diameter of outermost tensile reinforcement bar.",
+      "enum": [
+        "12",
+        "16",
+        "20",
+        "24",
+        "28",
+        "32",
+        "36"
+      ],
+      "x-enumLabels": [
+        "N12",
+        "N16",
+        "N20",
+        "N24",
+        "N28",
+        "N32",
+        "N36"
+      ],
+      "default": "16"
+    },
+    "shear_head": {
+      "type": "string",
+      "description": "Shear Head. Symbol: V_{head}. Designer to confirm if Shear Head requirements are satisfied."
+    },
+    "σ_c": {
+      "type": "number",
+      "description": "σcp. Symbol: σ_{cp}. Units: MPa. Average Intensity of Effective Prestress.",
+      "default": "0.5",
+      "minimum": 0
+    },
+    "f_c": {
+      "type": "string",
+      "description": "f'c. Symbol: f'_c. Units: MPa. Characteristic Concrete Compressive Strength.",
+      "enum": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100"
+      ],
+      "x-enumLabels": [
+        "20",
+        "25",
+        "32",
+        "40",
+        "50",
+        "65",
+        "80",
+        "100"
+      ],
+      "default": "32"
+    },
+    "uid": {
+      "type": "string",
+      "const": "3011-punching-shear-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

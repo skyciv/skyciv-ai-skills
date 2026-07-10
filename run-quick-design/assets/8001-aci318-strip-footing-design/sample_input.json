@@ -1,0 +1,109 @@
+{
+  "footing_name": "SF1",
+  "footing_width": 4,
+  "footing_depth": 5,
+  "footing_height": 16,
+  "footing_material": "rcfooting",
+  "f_c": 3,
+  "unit_weight": 150,
+  "max_aggregate_size": 1,
+  "cover": 3,
+  "f_y": 60,
+  "reinforcement_type": "normal",
+  "main_bar_size": "5",
+  "s_main_bar": 7.5,
+  "main_bars_with_hooks": false,
+  "secondary_bar_size": "5",
+  "transverse_bar_no": 7,
+  "wall_material": "rcwall",
+  "wall_width": 9,
+  "wall_eccentricity": 0,
+  "wall_bar_size": "4",
+  "s_wall_bar": 10,
+  "double_layer": false,
+  "use_dowels": false,
+  "dowel_bar_size": "4",
+  "s_dowel": 10,
+  "dowels_with_hooks": true,
+  "q_a": 7,
+  "phi_footing_soil": 20,
+  "consider_soil_above_foundation": false,
+  "consider_foundation_weight": false,
+  "soil_unit_weight": 100,
+  "min_overturning_SF": 1.5,
+  "min_sliding_SF": 1.5,
+  "loading_table": [
+    {
+      "name": "Dead",
+      "case": "G",
+      "direction": "vertical",
+      "P": 350,
+      "M": 0,
+      "H": 0
+    }
+  ],
+  "lc_table": [
+    {
+      "dlfactor": "1.0",
+      "lcname": "S1",
+      "llfactor": "1.0",
+      "wsfactor": "0.0"
+    },
+    {
+      "dlfactor": "1.0",
+      "lcname": "S2",
+      "llfactor": "0.75",
+      "wsfactor": "0.0"
+    },
+    {
+      "dlfactor": "1.0",
+      "lcname": "S3",
+      "llfactor": "0.0",
+      "wsfactor": "0.6"
+    },
+    {
+      "dlfactor": "1.0",
+      "lcname": "S4",
+      "llfactor": "0.75",
+      "wsfactor": "0.45"
+    },
+    {
+      "dlfactor": "1.4",
+      "lcname": "U1",
+      "llfactor": "0.0",
+      "wsfactor": "0.0"
+    },
+    {
+      "dlfactor": "1.2",
+      "lcname": "U2",
+      "llfactor": "1.6",
+      "wsfactor": "0.5"
+    },
+    {
+      "dlfactor": "1.2",
+      "lcname": "U3",
+      "llfactor": "1.0",
+      "wsfactor": "1.0"
+    },
+    {
+      "dlfactor": "0.9",
+      "lcname": "U4",
+      "llfactor": "0.0",
+      "wsfactor": "1.0"
+    }
+  ],
+  "show_material": true,
+  "footing_dims": true,
+  "show_loading": 1,
+  "show_reinforcement": true,
+  "uid": "8001-aci318-strip-footing-design",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

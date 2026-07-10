@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Structural Unit Converter",
+  "description": "Convert length, force, temperature and section property units.",
+  "type": "object",
+  "properties": {
+    "measurement": {
+      "type": "string",
+      "description": "Measurement",
+      "enum": [
+        "Length",
+        "Area",
+        "Volume",
+        "Moment_of_Inertia",
+        "Force",
+        "Distributed_Load",
+        "Moment",
+        "Pressure",
+        "Density",
+        "Mass",
+        "Mass_Rot",
+        "Temperature",
+        "Weight",
+        "Time",
+        "Speed",
+        "Power",
+        "Energy"
+      ],
+      "x-enumLabels": [
+        "Length",
+        "Area",
+        "Volume",
+        "Moment of Inertia",
+        "Force",
+        "Distributed Load (Force / Length)",
+        "Moment",
+        "Pressure or Stress (Force / Area)",
+        "Density",
+        "Mass",
+        "Mass Rot (Mass * Area)",
+        "Temperature",
+        "Weight",
+        "Time",
+        "Speed",
+        "Power",
+        "Energy"
+      ],
+      "default": "Length"
+    },
+    "value": {
+      "type": "number",
+      "description": "Value",
+      "default": "1"
+    },
+    "convert_from": {
+      "type": "string",
+      "description": "Convert From",
+      "enum": [
+        null
+      ],
+      "x-enumLabels": [
+        "undefined"
+      ]
+    },
+    "convert_to": {
+      "type": "string",
+      "description": "Convert To",
+      "enum": [
+        null
+      ],
+      "x-enumLabels": [
+        "undefined"
+      ]
+    },
+    "uid": {
+      "type": "string",
+      "const": "1015-structural-unit-converter",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

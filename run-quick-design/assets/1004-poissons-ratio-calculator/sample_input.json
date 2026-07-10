@@ -1,0 +1,17 @@
+{
+  "mode": "Transverse Strain & Axial Strain",
+  "ϵ_t": 1,
+  "ϵ_a": 2,
+  "E": 9000,
+  "G": 3000,
+  "uid": "1004-poissons-ratio-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

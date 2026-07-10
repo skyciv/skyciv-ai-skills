@@ -1,0 +1,19 @@
+{
+  "F_downward": 1200,
+  "F_upward": 435,
+  "V_y": 1000,
+  "bolt_shear": 799,
+  "max_utility": 0.95,
+  "gauge": 10,
+  "connector_override": "auto",
+  "uid": "9001-quickframes-connector-check",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

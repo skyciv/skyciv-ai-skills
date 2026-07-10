@@ -1,0 +1,22 @@
+{
+  "cable_length": 10,
+  "cable_diameter": 5,
+  "cable_final_sag": 30,
+  "density": 7850,
+  "elasticity_modulus": 200000,
+  "poissons_ratio": 0.27,
+  "cable_dead_load": 0,
+  "accuracy": 1,
+  "decimal_points": 3,
+  "include_diagram": false,
+  "uid": "1013-cable-sag-calculator",
+  "current_unit_system": "metric",
+  "project_details": {
+    "project_company": "",
+    "project_name": "",
+    "project_designer": "",
+    "project_id": "",
+    "project_client": "",
+    "project_notes": ""
+  }
+}

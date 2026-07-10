@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quick Frame Connector Check",
+  "description": "Used to check the connectors for Quick Frame Designs",
+  "type": "object",
+  "properties": {
+    "F_downward": {
+      "type": "number",
+      "description": "Main Rail to Joist/Beam, downward reaction force. Symbol: R_{downward}. Units: lb. Result from Structural Analysis, the worst case downward force on  the Main Rail - Joist connector.",
+      "default": 1200,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "F_upward": {
+      "type": "number",
+      "description": "Main Rail to Joist/Beam, upwards reaction force. Symbol: R_{upward}. Units: lb. Result from Structural Analysis, the worst case uplift force on the Main Rail - Joist connector. Zero means there is no load combination producing an uplift on the end connector",
+      "default": 435,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "V_y": {
+      "type": "number",
+      "description": "Cross Rail to Main Rail Load. Units: lb. Worst case load on the Cross Rail to Main Rail, in either direction",
+      "default": 1000,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "bolt_shear": {
+      "type": "number",
+      "description": "Shearing Force on Bolt. Symbol: V_{bolt}. Units: lb. Worst case shearing force on all bolts",
+      "default": 799,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "max_utility": {
+      "type": "number",
+      "description": "Max Allowable Utility. Symbol: UR_{max}. Max allowable utility ratio. If the utility is greater than this number, the next (heavier) connector is selected and tested",
+      "default": 0.95,
+      "minimum": 0,
+      "maximum": 2
+    },
+    "gauge": {
+      "type": "number",
+      "description": "Gauge",
+      "enum": [
+        10,
+        12,
+        16
+      ],
+      "x-enumLabels": [
+        "10 Gauge",
+        "12 Gauge",
+        "16 Gauge"
+      ],
+      "default": 10
+    },
+    "connector_override": {
+      "type": "string",
+      "description": "Connector Type",
+      "enum": [
+        "auto",
+        "angle",
+        "tee"
+      ],
+      "x-enumLabels": [
+        "Auto",
+        "Angle Connector",
+        "Tee Connector"
+      ],
+      "default": "auto"
+    },
+    "uid": {
+      "type": "string",
+      "const": "9001-quickframes-connector-check",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

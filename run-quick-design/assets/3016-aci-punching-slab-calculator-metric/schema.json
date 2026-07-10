@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACI 318-19 Punching Shear Strength Calculator (metric)",
+  "description": "Calculate the Punching Shear Utilization with accordance to ACI 318-19 (metric).",
+  "type": "object",
+  "properties": {
+    "b": {
+      "type": "number",
+      "description": "Column Width (b). Units: mm. The width of the column.",
+      "default": 300,
+      "minimum": 0,
+      "maximum": 8000
+    },
+    "d": {
+      "type": "number",
+      "description": "Column Depth (d). Units: mm. The depth of the column.",
+      "default": 500,
+      "minimum": 0,
+      "maximum": 4000
+    },
+    "Ct": {
+      "type": "string",
+      "description": "Column Type (Ct). Symbol: C_{t}. Position of the Punching Load as either of interior, edge or corner.",
+      "enum": [
+        "Interior",
+        "Edge",
+        "Corner"
+      ],
+      "x-enumLabels": [
+        "Interior",
+        "Edge",
+        "Corner"
+      ],
+      "default": "Interior"
+    },
+    "t": {
+      "type": "number",
+      "description": "Slab Thickness (t). Symbol: t. Units: mm. The thickness of the slab.",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 2000
+    },
+    "c": {
+      "type": "number",
+      "description": "Clear Cover to Reinforcement (c). Symbol: c. Units: mm",
+      "default": 25,
+      "minimum": 0,
+      "maximum": 200
+    },
+    "Crt": {
+      "type": "string",
+      "description": "Concrete Type (Crt). Symbol: C_{rt}",
+      "enum": [
+        "Normal Weight",
+        "Light Weight"
+      ],
+      "x-enumLabels": [
+        "Normal Weight",
+        "Light Weight"
+      ],
+      "default": "Normal Weight"
+    },
+    "Fc": {
+      "type": "number",
+      "description": "Compressive Strength (Fc). Symbol: F_{c}. Units: MPa",
+      "default": 36,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "Fy": {
+      "type": "number",
+      "description": "Yield Strength - Main Reinforcement (Fy). Symbol: F_{y}. Units: MPa",
+      "default": 260,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "Fyt": {
+      "type": "number",
+      "description": "Yield Strength - Shear Reinforcement (Fyt). Symbol: F_{yt}. Units: MPa",
+      "default": 260,
+      "minimum": 10,
+      "maximum": 10000
+    },
+    "db": {
+      "type": "number",
+      "description": "Diameter of Main Reinforcement (db). Symbol: d_{b}",
+      "enum": [
+        6.4,
+        9.525,
+        12.7,
+        15.875,
+        19.05,
+        22.225,
+        25.4,
+        28.65,
+        32.26,
+        43,
+        57.33
+      ],
+      "x-enumLabels": [
+        "#2",
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10",
+        "#14",
+        "#18"
+      ],
+      "default": 9.525
+    },
+    "Rc": {
+      "type": "string",
+      "description": "Shear Reinforcement Criteria (Rc). Symbol: R_{c}. Shear reinforcement criteria indicating either with or without shear reinforcement.",
+      "enum": [
+        "Without Shear Reinforcement",
+        "With Shear Reinforcement"
+      ],
+      "x-enumLabels": [
+        "Without Shear Reinforcement",
+        "With Shear Reinforcement"
+      ],
+      "default": "Without Shear Reinforcement"
+    },
+    "St": {
+      "type": "string",
+      "description": "Shear Reinforcement Type (St). Symbol: S_{t}",
+      "enum": [
+        "Stirrups",
+        "Headed Studs"
+      ],
+      "x-enumLabels": [
+        "Stirrups",
+        "Headed Studs"
+      ],
+      "default": "Stirrups"
+    },
+    "ds": {
+      "type": "number",
+      "description": "Diameter of Stirrups (ds). Symbol: d_{s}",
+      "enum": [
+        6.4,
+        9.525,
+        12.7,
+        15.875,
+        19.05,
+        22.225,
+        25.4,
+        28.65,
+        32.26,
+        43,
+        57.33
+      ],
+      "x-enumLabels": [
+        "#2",
+        "#3",
+        "#4",
+        "#5",
+        "#6",
+        "#7",
+        "#8",
+        "#9",
+        "#10",
+        "#14",
+        "#18"
+      ],
+      "default": 6.4
+    },
+    "dst": {
+      "type": "number",
+      "description": "Diameter of Studs (ds). Symbol: d_s. Units: mm",
+      "default": 10,
+      "minimum": 0.25,
+      "maximum": 1000
+    },
+    "s": {
+      "type": "number",
+      "description": "Spacing of Stirrups/Studs (s). Symbol: s. Units: mm. The spacing of stirrups / headed studs.",
+      "default": 160,
+      "minimum": 0.5,
+      "maximum": 1000
+    },
+    "nl": {
+      "type": "number",
+      "description": "Legs of Stirrups (nl). Symbol: n_{l}",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 6
+    },
+    "Vu": {
+      "type": "number",
+      "description": "Shear Force (Vu). Symbol: V_{u}. Units: kN",
+      "default": 15,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "phi": {
+      "type": "number",
+      "description": "Safety Loads (φ). Symbol: φ. Partial factor of safety for loads.",
+      "default": 0.75,
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "uid": {
+      "type": "string",
+      "const": "3016-aci-punching-slab-calculator-metric",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  }
+}

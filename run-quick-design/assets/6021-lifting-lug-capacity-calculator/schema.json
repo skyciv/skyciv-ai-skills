@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AISC 360-22 Lifting Lug Design",
+  "description": "Design steel lifting lugs in accordance with AISC 360-22.",
+  "type": "object",
+  "properties": {
+    "W": {
+      "type": "number",
+      "description": "Plate Width (W). Symbol: W. Units: mm. Plate width perpendicular to load.",
+      "default": 120,
+      "minimum": 64,
+      "maximum": 2000
+    },
+    "H": {
+      "type": "number",
+      "description": "Plate Height (H). Symbol: H. Units: mm. Plate height perpendicular to load.",
+      "default": 100,
+      "minimum": 64,
+      "maximum": 2000
+    },
+    "dpin": {
+      "type": "number",
+      "description": "Pin Diameter (dpin). Symbol: d_{pin}. Units: mm. Diameter of the pin inserted in the hole.",
+      "default": 29,
+      "minimum": 12,
+      "maximum": 500
+    },
+    "d_h": {
+      "type": "number",
+      "description": "Hole Diameter (dh). Symbol: d_h. Units: mm. Hole diameter for the lug pin connection.",
+      "default": 30,
+      "minimum": 16,
+      "maximum": 500
+    },
+    "t_p": {
+      "type": "number",
+      "description": "Plate Thickness (tp). Symbol: t_{p}. Units: mm. Thickness of the lug plate.",
+      "default": 8,
+      "minimum": 6,
+      "maximum": 200
+    },
+    "w_s": {
+      "type": "number",
+      "description": "Weld Size (ws). Symbol: w_{s}. Units: mm. Minimum size per AISC 360-22 Table J2.4 depends on the thicker element.",
+      "default": 6,
+      "minimum": 3,
+      "maximum": 50
+    },
+    "theta": {
+      "type": "number",
+      "description": "Load Angle (θ). Symbol: θ. Units: °. Maximum angle of load (in plane).",
+      "default": 60,
+      "minimum": 1,
+      "maximum": 89
+    },
+    "f_y": {
+      "type": "number",
+      "description": "Yield Strength (Fy,plate). Symbol: F_{y}. Units: MPa. Yield strength of the lug plate.",
+      "default": 250,
+      "minimum": 200,
+      "maximum": 700
+    },
+    "f_u": {
+      "type": "number",
+      "description": "Ultimate Strength (Fu,plate). Symbol: F_{u}. Units: MPa. Ultimate tensile strength of the lug plate.",
+      "default": 410,
+      "minimum": 300,
+      "maximum": 900
+    },
+    "f_u_pin": {
+      "type": "number",
+      "description": "Ultimate Strength (Fu,pin). Symbol: F_{u,p}. Units: MPa. Ultimate tensile strength of the pin.",
+      "default": 410,
+      "minimum": 300,
+      "maximum": 900
+    },
+    "threads_intercepted": {
+      "type": "string",
+      "description": "Threads in Shear Plane. Symbol: Threads. Check when the shear plane passes through the threaded portion of the pin per Table J3.2.",
+      "enum": [
+        "included",
+        "excluded"
+      ],
+      "x-enumLabels": [
+        "Included",
+        "Excluded"
+      ],
+      "default": "included"
+    },
+    "Fexx": {
+      "type": "number",
+      "description": "Filler Metal Strength Classification (Fexx). Symbol: F_{exx}. Units: MPa. Strength classification of the weld filler metal.",
+      "default": 482,
+      "minimum": 414,
+      "maximum": 758
+    },
+    "P": {
+      "type": "number",
+      "description": "Factored Axial Load (P). Symbol: P. Units: kN. Axial load applied to the lug, factored for design.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "uid": {
+      "type": "string",
+      "const": "6021-lifting-lug-capacity-calculator",
+      "description": "Calculator unique identifier — must match the endpoint uid."
+    },
+    "current_unit_system": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "imperial",
+        ""
+      ],
+      "default": "metric",
+      "description": "Unit system for input values and output display."
+    },
+    "project_details": {
+      "type": "object",
+      "description": "Optional project metadata for the PDF report header.",
+      "properties": {
+        "project_company": {
+          "type": "string",
+          "default": ""
+        },
+        "project_name": {
+          "type": "string",
+          "default": ""
+        },
+        "project_designer": {
+          "type": "string",
+          "default": ""
+        },
+        "project_id": {
+          "type": "string",
+          "default": ""
+        },
+        "project_client": {
+          "type": "string",
+          "default": ""
+        },
+        "project_notes": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    }
+  },
+  "required": [
+    "W",
+    "H",
+    "dpin",
+    "d_h",
+    "t_p",
+    "f_y",
+    "f_u",
+    "f_u_pin"
+  ]
+}
