@@ -71,6 +71,14 @@ Not every solution needs every skill — a simple calculator app might only need
 
 ---
 
+## Example applications
+
+| App | Folder | What it demonstrates |
+|---|---|---|
+| **Scaffold Designer** | [`scaffold-designer/`](./scaffold-designer/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `run-quick-design` (AISC 360-16) → `renderer` → `cloudcad-api` to model, analyze, design-check, visualize and draft a tube-and-coupler scaffold from just a height, width and loading class. |
+
+---
+
 ## Contributing
 
 Found a gap, an outdated example, or a mismatch with the live API? Open an issue or PR — these skills are actively maintained against `api/v3` and we want them to stay accurate as the API evolves.

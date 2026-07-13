@@ -425,7 +425,7 @@ Runs structural analysis. Requires `S3D.model.set`.
 }
 ```
 
-> **Tip:** Always use `result_filter` and `lc_filter` to minimise response size.
+> **Tip:** Use `result_filter` and `lc_filter` to minimise response size if there is a lot of data. Otherwise, if you need all load combos to properly analyse and design, leave this option out. For prototyping, it's probably a good idea to leave it out. 
 
 Results are returned as a dictionary keyed by load combination index.
 
@@ -787,3 +787,7 @@ General Section Designer — FEA-based RC section capacity check.
   ]
 }
 ```
+
+## Engineering Judgement
+It's important to consider proper engineering judgement when utilising this skill:
+- Member fixities should be based on proper engineering decisions. For example, if the connections are shear connections, the member end fixities should be pinned

@@ -232,7 +232,18 @@ if (response.status === 0) {
 ```
 
 **Minimise response size with filters:**  
-Use `result_filter` and `lc_filter` in solve/results calls to return only what you need.
+Use `result_filter` and `lc_filter` in solve/results calls to return only what you need. Only if you're confident that load combination exists.
 
 **Reuse sessions for speed:**  
 Set `keep_open: true` in `S3D.session.start`, then pass the returned `last_session_id` as `auth.session_id` in subsequent calls. This skips re-authentication and is 4–8× faster.
+
+## Recommendations
+
+**Allow user to download API Object**
+If prototyping, it's helpful to allow users to see and download the API input object being sent to the SkyCiv API. It makes troubleshooting a bit easier. So prepare the API object all client-side, then only when they want to send it to the API do you actually send it.
+
+**Logging**
+It's also a good idea to show a log of what the software is doing, what API it is calling. Makes it easier to find where things have gone wrong. 
+
+**Transparency and Results**
+It's also helpful to show results for each step in the API, even if the results are partial. For example, if you intend to run S3D.model.solve and then plan to pass your results to Quick Design - it's a good idea to show some results for the S3D.model.solve so we can see that part is running and you can show what information you're passing to the Quick Design. This transparency is very valuable to the engineer.
