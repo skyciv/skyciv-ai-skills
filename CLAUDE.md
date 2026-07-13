@@ -84,4 +84,6 @@ When prototyping a solution (or if vibe coding a solution) it's a good idea to s
  - Stick to a shorter `timeout` in the options key for the API (or leave as default), when prototyping if things go wrong it's easier to identify and test if things don't take >30s to fail.
 
 ## User Context
+
  - Engineers like transparency, so if you're going to transfer data, or can show some partial results, I would build that into the UI. It's handy to have both levels: a key results (for example critical utility ratio) AND results along the way + an easy way to see what key values went into subsequent API calls.
+ - Accordions of tabulated data is a nice clean way you can show this level of detail without cluttering up the user interface

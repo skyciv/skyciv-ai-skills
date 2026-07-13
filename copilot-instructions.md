@@ -60,9 +60,13 @@ The `README.md` must always reflect the current set of skills. When an agent add
 2. Keep descriptions to a single line — clear and non-technical enough for a first-time reader.
 3. Do not remove skills from the table without also removing their folder.
 
-## Prototyping
+## Prototyping tips
 
 When prototyping a solution (or if vibe coding a solution) it's a good idea to stick to the following rules:
  - Don't use `result_filter` key in the `S3D.model.solve` space unless you're 100% sure it will work
  - Stick to a shorter `timeout` in the options key for the API (or leave as default), when prototyping if things go wrong it's easier to identify and test if things don't take >30s to fail.
+
+## User Context
+
  - Engineers like transparency, so if you're going to transfer data, or can show some partial results, I would build that into the UI. It's handy to have both levels: a key results (for example critical utility ratio) AND results along the way + an easy way to see what key values went into subsequent API calls.
+ - Accordions of tabulated data is a nice clean way you can show this level of detail without cluttering up the user interface
