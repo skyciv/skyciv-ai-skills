@@ -1,0 +1,27 @@
+[
+    {
+        "function": "standalone.loads.start",
+        "arguments": {
+            "keep_open": false
+        }
+    },
+    {
+        "function": "standalone.loads.getSiteData",
+        "arguments": {
+            "site_data": {
+                "design_code": "en1991",
+                "project_address": "Paris",
+                "topography": {
+                    "wind_direction": 0,
+                    "season_month": "January",
+                    "terrain_category": "II",
+                    "topo_image": false,
+                    "country": "France"
+                }
+            },
+            "api_version": 2.1
+        }
+
+        
+    }
+]

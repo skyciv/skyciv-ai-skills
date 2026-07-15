@@ -1,0 +1,55 @@
+{
+    "auth": {
+        "username": "YOUR_USER_NAME",
+        "key": "YOUR_API_KEY"
+    },
+    "functions": [
+        {
+            "function": "standalone.loads.start",
+            "arguments": {
+                "keep_open": false
+            }
+        },
+        {
+            "function": "standalone.loads.getLoads",
+            "arguments": {
+                "project_details": {
+                    "name": "Freestanding Wall",
+                    "id": "SKYPH-001",
+                    "company": "SkyCiv",
+                    "designer": "Patrick",
+                    "client": "",
+                    "notes": "",
+                    "units": "imperial"
+                },
+                "site_data": {
+                    "design_code": "asce7-16",
+                    "project_address": "Wacker Avenue, Chicago",
+                    "risk_category": "III",
+                    "site_image": true,
+                    "topography": {
+                        "wind_direction": "N",
+                        "exposure": "B",
+                        "topo_image": true,
+                        "country": "United States"
+                    }
+                },
+                "building_data": {
+                    "design_code": "asce7-16",
+                    "structure": "freestandingwall",
+                    "freestandingwall_dimensions": {
+                        "ground_to_top": 20,
+                        "wall_width": 50,
+                        "wall_height": 10,
+                        "ratio_of_solid_area_to_gross": 0.9,
+                        "length_of_return_corner": 0
+                    },
+                    "wind_parameters": {
+                        "structure_type": "freestandingwall-asce7-16"
+                    },
+                    "snow_parameters": false
+                }
+            }
+        }
+    ]
+}

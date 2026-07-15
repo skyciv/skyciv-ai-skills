@@ -1,0 +1,20 @@
+[
+    {
+        "function": "standalone.loads.start",
+        "arguments": {
+            "keep_open": false
+        }
+    },
+    {
+        "function": "standalone.loads.getSiteData",
+        "arguments": {
+            "site_data": {
+                "design_code": "asce7-16",
+                "project_address": "90210",
+                "risk_category": "II",
+                "site_class": "C"
+            },
+            "api_version": 2.1
+        }
+    }
+]

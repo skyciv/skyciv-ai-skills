@@ -1,0 +1,138 @@
+{
+    "auth": {
+        "username": "YOUR_USER_NAME",
+        "key": "YOUR_API_KEY"
+    },
+    "functions": [
+        {
+            "function": "standalone.loads.start",
+            "arguments": {
+                "keep_open": false
+            }
+        },
+        {
+            "function": "standalone.loads.getLoads",
+            "arguments": {
+                "project_details": {
+                    "name": "",
+                    "id": "",
+                    "company": "",
+                    "designer": "",
+                    "client": "",
+                    "notes": "",
+                    "units": "metric"
+                },
+                "site_data": {
+                    "design_code": "nbcc2015",
+                    "project_address": "Toronto, ON, Canada",
+                    "topography": {
+                        "wind_direction": "N",
+                        "topo_image": true,
+                        "country": "Canada",
+                        "snow_area_classification": "exposed-north-treeline",
+                        "terrain_category": "A"
+                    },
+                    "ari": "50_years",
+                    "recurrence_interval": "50_years",
+                    "importance_level": "Normal",
+                    "limit_state": "ULS"
+                },
+                "building_data": {
+                    "design_code": "nbcc2015",
+                    "structure": "building",
+                    "wind_parameters": {
+                        "structure_level": [
+                            {
+                                "floor_level": "2",
+                                "floor_elevation": "15"
+                            }
+                        ],
+                        "wall_cladding_area": "",
+                        "roof_cladding_area": "",
+                        "enclosure": "partially-enclosed",
+                        "cladding_pressure_type": "",
+                        "structure_type": "mwfrs"
+                    },
+                    "snow_parameters": {
+                        "sloped_roof_surface_condition": "unobstructed-slippery",
+                        "balance_unbalance": true,
+                        "snow_load_cases": [
+                            {
+                                "snow_case_id": "1",
+                                "snow_case_type": "multilevel_roof_case1",
+                                "snow_case_remarks": "",
+                                "upper_roof_length_ls": 12,
+                                "upper_roof_width_ws": 10,
+                                "height_difference_h": 4,
+                                "height_of_parapet_hp": 2.5,
+                                "roof_angle_lower_alpha": 12,
+                                "sliding": "no-sliding",
+                                "roof_gap_a": 0
+                            },
+                            {
+                                "snow_case_id": "2",
+                                "snow_case_type": "areas_adjacent_to_roof_projections",
+                                "snow_case_remarks": "",
+                                "upper_roof_length_ls": 12.4,
+                                "upper_roof_width_ws": 10,
+                                "height_of_projection": 5,
+                                "longest_horizontal_dim_l0": 12,
+                                "roof_pitch_angle": 12
+                            },
+                            {
+                                "snow_case_id": "3",
+                                "snow_case_type": "gable_roof",
+                                "snow_case_remarks": "",
+                                "upper_roof_length_ls": 12.4,
+                                "upper_roof_width_ws": 10,
+                                "roof_pitch_angle": 12
+                            }
+                        ]
+                    },
+                    "roof_profile": "gable",
+                    "building_dimensions": {
+                        "length": 12.4,
+                        "width": "10",
+                        "roof_angle": "12",
+                        "reference_height": "21"
+                    }
+                },
+                "site_analysis": {
+                    "terrain_category_all_direction": {
+                        "NE": null,
+                        "E": null,
+                        "SE": null,
+                        "S": null,
+                        "SW": null,
+                        "W": null,
+                        "NW": null
+                    },
+                    "topo_factor_all_direction": {
+                        "N": 1
+                    },
+                    "topography_all_directions": {
+                        "N": {
+                            "code": "nbcc2015",
+                            "topo_factor": 1,
+                            "comments": "If slope is less than 5%, terrain is considered to be flat.",
+                            "location_of_peak": "-1860.00",
+                            "elevation_of_peak": "116.60",
+                            "location_of_foot": "-2000.00",
+                            "elevation_of_foot": "117.18",
+                            "elevation_of_midheight": "",
+                            "slope": "-0.004",
+                            "z": 0,
+                            "location_of_midheight": "",
+                            "terrain_type": "Flat",
+                            "H": "",
+                            "x": "",
+                            "Lh": "",
+                            "Ct": 1
+                        }
+                    }
+                },
+                "api_version": 2
+            }
+        }
+    ]
+}

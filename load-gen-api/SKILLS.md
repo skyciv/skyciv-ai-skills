@@ -581,6 +581,43 @@ Used in generated reports.
 
 ---
 
+## Sample API Templates
+
+`load-gen-api/sample-api/<folder>/` holds real `input.json` / `output.json` pairs for `getLoads` and `getSiteData` calls, one per design-code + structure-type combo. **Prefer copying the matching template over hand-building a request from scratch** — check `output.json` too, it shows the exact response shape (units, field names, nesting) that code/structure combo returns.
+
+| Folder | Function | Design Code | Structure / Scenario |
+|---|---|---|---|
+| `loads.getLoads_asce` | `getLoads` | `asce7-16` | `building` — baseline wind + snow |
+| `loads.getLoads_asce_wind_only` | `getLoads` | `asce7-10` | `snow_parameters: false` — wind only |
+| `loads.getLoads_asce716_seismic` | `getLoads` | `asce7-16` | `building` — with seismic parameters |
+| `loads.getLoads_asce716_seismic_userdefined_params` | `getLoads` | `asce7-16` | `building` — user-defined seismic overrides (`site_seismic_data`) |
+| `loads.getLoads_asce716_rooftop_equipment` | `getLoads` | `asce7-16` | `rooftop-equipment` |
+| `loads.getLoads_asce722_rooftop_equipment` | `getLoads` | `asce7-22` | `rooftop-equipment` |
+| `loads.getLoads_asce722_solar_panel_ground` | `getLoads` | `asce7-22` | `solar_panel` — ground-mounted |
+| `loads.getLoads_asce_open_solar_panel` | `getLoads` | `asce7-16` | `building` — open solar panel roof mount |
+| `loads.getLoads_asce_freestandingwall` | `getLoads` | `asce7-16` | `freestandingwall` |
+| `loads.getLoads_as1170` | `getLoads` | `as1170` | `building` — AS/NZS 1170 wind + snow |
+| `loads.getLoads_nzs1170_seismic_bothdir` | `getLoads` | `as1170` | `building` — NZS 1170.5 seismic, both directions |
+| `loads.getLoads_en1991_uk` | `getLoads` | `en1991` | `building` — UK terrain/topography params |
+| `loads.getLoads_en1991_germany` | `getLoads` | `en1991` | `building` — Germany terrain/topography params |
+| `loads.getLoads_en1991_signboard` | `getLoads` | `en1991` | `signboard` |
+| `loads.getLoads_cfe_viento_gable` | `getLoads` | `cfe-viento` | `building` — gable roof |
+| `loads.getLoads_cfe_viento_pitched` | `getLoads` | `cfe-viento` | `building` — pitched/open roof |
+| `loads.getLoads_is875` | `getLoads` | `is875` | `building` |
+| `loads.getLoads_nbcc` | `getLoads` | `nbcc2015` | `building` |
+| `loads.getLoads_nbcc2020_seismic` | `getLoads` | `nbcc2020` | `building` — with seismic parameters |
+| `loads.getLoads_nscp2015` | `getLoads` | `nscp2015` | `building` — wind + snow + seismic |
+| `loads.getSiteData_as1170` | `getSiteData` | `as1170` | Site data only, no building geometry |
+| `loads.getSiteData_asce716` | `getSiteData` | `asce7-16` | Site data only |
+| `loads.getSiteData_en1991_uk` | `getSiteData` | `en1991` | Site data only — UK |
+| `loads.getSiteData_en1991_germany` | `getSiteData` | `en1991` | Site data only — Germany |
+| `loads.getSiteData_en1991_france` | `getSiteData` | `en1991` | Site data only — France |
+| `loads.getSiteData_en1991_belgium` | `getSiteData` | `en1991` | Site data only — Belgium |
+
+**Workflow:** match the user's design code + structure type to a row above, read that folder's `input.json` as the request skeleton, swap in the user's actual site/building values, and cross-check `output.json` to know what result fields to expect back.
+
+---
+
 ## Key Tips
 
 - **Address vs coordinates:** Use `project_address` for simplicity. Use `lat`/`lng` for precision or when the address is ambiguous.
@@ -589,3 +626,4 @@ Used in generated reports.
 - **Discover available sections:** Run `standalone.loads.getCountryDesignCodes` first if you're unsure which `design_code` to use for a given country.
 - **Topographic factor:** Set `topo_image: true` in `site_data.topography` to receive a base64 PNG of the site elevation profile.
 - **All-direction analysis:** Use `site_analysis` to run all 8 wind directions in one call and get the governing direction automatically.
+- **Start from a template:** Check the Sample API Templates table above for a matching design code + structure type before writing a request by hand.

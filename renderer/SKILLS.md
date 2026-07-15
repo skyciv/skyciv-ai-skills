@@ -214,3 +214,4 @@ Individual/personal use of the renderer is free provided the SkyCiv logo is reta
  - It looks better when the background of the renderer is transparent. Don't put a css background on the renderer container
  - It's very handy to be able to download the JSON of what you're displaying, so you can simply import the model direct into S3D if needed. So good idea to have a Download Model button over the renderer. Since you can generate this model client side, you don't need to run the API to provide this JSON. i.e. allow the user to download this JSON anytime, regardless of whether the API has been run or not
  - When building a UI that dynamically builds a model, remember to update the renderer in real-time. It creates a better user experience
+ - When using the Renderer, if the space is available on the UI make this a big part of the screen (i.e. go full height if possible)

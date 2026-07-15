@@ -1,0 +1,71 @@
+{
+    "auth": {
+        "username": "YOUR_USER_NAME",
+        "key": "YOUR_API_KEY"
+    },
+    "functions": [
+        {
+            "function": "standalone.loads.start",
+            "arguments": {
+                "keep_open": false
+            }
+        },
+        {
+            "function": "standalone.loads.getLoads",
+            "arguments": {
+                "project_details": {
+                    "name": "Solar Panel",
+                    "id": "SKYPH-001",
+                    "company": "SkyCiv",
+                    "designer": "Patrick",
+                    "client": "",
+                    "notes": "",
+                    "units": "imperial"
+                },
+                "site_data": {
+                    "design_code": "asce7-16",
+                    "project_address": "Wacker Avenue, Chicago",
+                    "risk_category": "I",
+                    "site_image": true,
+                    "topography": {
+                        "wind_direction": "N",
+                        "exposure": "C",
+                        "topo_image": true,
+                        "country": "United States"
+                    }
+                },
+                "building_data": {
+                    "design_code": "asce7-16",
+                    "structure": "building",
+                    "roof_profile": "open-monoslope",
+                    "building_dimensions": {
+                        "length": 12.4,
+                        "width": 10,
+                        "mean_roof_height": 21,
+                        "roof_angle": 12
+                    },
+                    "wind_parameters": {
+                        "structure_type": "cladding",
+                        "enclosure": "open",
+                        "structure_level": [
+                            {
+                                "floor_level": "h",
+                                "floor_elevation": 21
+                            }
+                        ],
+                        "wind_blockage": "clear",
+                        "roof_cladding_area": 10
+                    },
+                    "snow_parameters": {
+                        "terrain_category": "C",
+                        "exposure_condition_roof": "fully-exposed",
+                        "thermal_condition": "unheated-open",
+                        "sloped_roof_surface_condition": "slippery",
+                        "unbalanced_snow_load": false,
+                        "snow_load_case": []
+                    }
+                }
+            }
+        }
+    ]
+}

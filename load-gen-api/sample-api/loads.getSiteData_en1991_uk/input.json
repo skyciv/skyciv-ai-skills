@@ -1,0 +1,28 @@
+[
+    {
+        "function": "standalone.loads.start",
+        "arguments": {
+            "keep_open": false
+        }
+    },
+    {
+        "function": "standalone.loads.getSiteData",
+        "arguments": {
+            "site_data": {
+                "design_code": "en1991",
+                "project_address": "Buckingham Palace",
+                "topography": {
+                    "season_month": "January",
+                    "wind_direction": 0,
+                    "terrain_category": "II",
+                    "topo_image": false,
+                    "country": "United Kingdom",
+                    "distance_inside_town": 20,
+                    "distance_from_shore": 100,
+                    "displacement_height": 0
+                }
+            },
+            "api_version": 2.1
+        }
+    }
+]

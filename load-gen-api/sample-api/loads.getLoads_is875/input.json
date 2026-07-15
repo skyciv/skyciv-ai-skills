@@ -1,0 +1,59 @@
+{
+    "auth": {
+        "username": "YOUR_USER_NAME",
+        "key": "YOUR_API_KEY"
+    },
+    "functions": [
+        {
+            "function": "standalone.loads.start",
+            "arguments": {
+                "keep_open": false
+            }
+        },
+        {
+            "function": "standalone.loads.getLoads",
+            "arguments": {
+                "project_details": {
+                    "name": "",
+                    "id": "SKYPH-001",
+                    "company": "SkyCiv",
+                    "designer": "Patrick",
+                    "client": "",
+                    "notes": "",
+                    "units": "metric"
+                },
+                "site_data": {
+                    "design_code": "is875",
+                    "project_address": "Delhi",
+                    "importance_category": "I",
+                    "structure_class_is875": "I",
+                    "map_image": false,
+                    "topography": {
+                        "wind_direction": "N",
+                        "terrain_category": "1",
+                        "topo_image": false,
+                        "country": "India"
+                    }
+                },
+                "building_data": {
+                    "design_code": "is875",
+                    "structure": "building",
+                    "roof_profile": "gable",
+                    "building_dimensions": {
+                        "length": 12.4,
+                        "width": 10,
+                        "reference_height": 21,
+                        "roof_angle": 12
+                    },
+                    "wind_parameters": {
+                        "structure_type": "building",
+                        "enclosure": "enclosed",
+                        "action_combination_case": "combined",
+                        "wall_condition": "no-opening"
+                    },
+                    "snow_parameters": false
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+[
+    {
+        "function": "standalone.loads.start",
+        "arguments": {
+            "keep_open": false
+        }
+    },
+    {
+        "function": "standalone.loads.getSiteData",
+        "arguments": {
+            "site_data": {
+                "design_code": "as1170",
+                "project_address": "Sydney",
+                "sls_and_uls": {
+                    "country": "australia",
+                    "design_working_life": "25_years",
+                    "importance_level": "2"
+                }
+            },
+            "api_version": 2
+        }
+    }
+]
