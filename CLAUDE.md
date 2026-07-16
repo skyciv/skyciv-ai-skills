@@ -16,7 +16,7 @@ Each top-level folder is one self-contained skill:
   assets/         # optional — example inputs, catalogues, templates
 ```
 
-Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `run-quick-design`, `renderer`, `schema-agent`, `qa-engineer`. Note: the README also documents a `reporting-engineer` skill, but that folder does not yet exist in this repo — don't assume it does.
+Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `renderer`, `schema-agent`, `qa-engineer`. There is also a `scaffold-designer` folder, which is a runnable example *app* built on these skills (Node/Express), not a `SKILLS.md`. Note: the README also documents a `reporting-engineer` skill, but that folder does not yet exist in this repo — don't assume it does.
 
 Some `SKILLS.md` files have YAML frontmatter (`name`, `description`, `argument-hint`) so agent harnesses can discover them; others (e.g. `skyciv-api-v3`, `s3d-api`, `cloudcad-api`, `load-gen-api`, `run-quick-design`) are documentation-only and omit it. Match the style of the skill you're editing.
 
@@ -30,6 +30,8 @@ schema-agent          → interpret a floor plan into a structural schema
 s3d-api / cloudcad-api → build the 3D model / 2D drawing
   ↓
 load-gen-api           → pull wind / snow / seismic loads for the site
+  ↓
+load-combinations      → factor those loads into code-correct combinations on the model
   ↓
 s3d-api                → solve, then run-quick-design for member/connection checks
   ↓
@@ -46,6 +48,7 @@ reporting-engineer     → generate the final client-ready report
 - `s3d-apps` — sits alongside this pipeline, not inside it: builds custom client-side mini-apps that run *embedded inside* the S3D application itself (`S3D.structure.*`, `S3D.graphics.*`, `S3D.API.S3D2API`), reusing the same `s3d_model` schema as `s3d-api` but with no auth/session calls (the app runs inside an already-open session).
 - `cloudcad-api` — 2D CAD drawing schema; `cloudcad.model` and `cloudcad.file` namespaces; can map into an S3D model.
 - `load-gen-api` — wind/snow/seismic lookups via `standalone.loads` (or `S3D.session.start` for combined sessions).
+- `load-combinations` — documentation-only skill for the `s3d_model` load-combination data model (`load_combinations`, `load_cases`, `load_combination_settings`) and code-correct combination sets; no API namespace of its own — combos are written directly into the model consumed by `s3d-api`, with the `7000-load-combination-generator` Quick Design calculator as an optional generator.
 - `run-quick-design` — a separate REST endpoint (`POST https://qd.skyciv.com/run`, its own API-token auth, not the `skyciv-api-v3` envelope) that runs any of 154 standalone calculators by UID.
 - `renderer` — client-side JS library (`SKYCIV.renderer`), not a server API; visualizes an `s3d_model` fetched via the API.
 - `schema-agent` — vision/DXF interpretation persona feeding `s3d-api`.

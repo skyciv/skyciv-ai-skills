@@ -284,6 +284,9 @@ Applied to plates.
 
 ### `self_weight`
 
+Simple form — a single flat object, self-weight is always included at full (1.0) magnitude
+regardless of which load combination is being solved:
+
 ```json
 {
   "self_weight": {
@@ -294,6 +297,22 @@ Applied to plates.
   }
 }
 ```
+
+**If you're using `load_combinations`**, use the integer-keyed form instead, with a `load_group`
+on each entry (conventionally `"SW1"`) — otherwise self-weight has no group to match against
+any combination's factor and is effectively invisible to it:
+
+```json
+{
+  "self_weight": {
+    "1": { "enabled": true, "x": 0, "y": -1, "z": 0, "load_group": "SW1" }
+  }
+}
+```
+
+> See the [`load-combinations`](../load-combinations/SKILLS.md) skill for how this ties into
+> `load_combinations` factors — a combo with an `"SW1"` factor and no matching `load_group` on
+> `self_weight` will silently apply no self-weight at all.
 
 ---
 
@@ -314,6 +333,11 @@ Applied to plates.
 ```
 
 `criteria` is optional: `"strength"`, `"serviceability"`, or `"other"`. Load group names used as keys (e.g. `"Dead"`, `"SW1"`) — values are load factors.
+
+> **Building code-correct combinations?** See the [`load-combinations`](../load-combinations/SKILLS.md)
+> skill for how `load_combinations`, `load_cases`, and `load_combination_settings` fit together,
+> representative combination sets for the US / Europe / Canada / Australia / India, a full worked
+> AS/NZS 1170 example, and how to generate the complete enumerated set for any design code.
 
 ---
 

@@ -1,0 +1,691 @@
+{
+    "self_weight": {
+        "1": {
+            "x": 0,
+            "y": -1,
+            "z": 0,
+            "load_group": "SW1"
+        }
+    },
+    "load_combinations": {
+        "1": {
+            "name": "1: 0.90SDL + 0.90SW1",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "2": {
+            "name": "2: 0.90SDL + 0.90SW1 + 1.50Q",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 1.5,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "3": {
+            "name": "4: 0.90SDL + 0.90SW1 + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "4": {
+            "name": "5: 0.90SDL + 0.90SW1 + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "5": {
+            "name": "6: 0.90SDL + 0.90SW1 + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "6": {
+            "name": "7: 0.90SDL + 0.90SW1 + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "7": {
+            "name": "8: 0.90SDL + 0.90SW1 + 0.40Q + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0.4,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "8": {
+            "name": "9: 0.90SDL + 0.90SW1 + 0.40Q + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "9": {
+            "name": "10: 0.90SDL + 0.90SW1 + 0.40Q + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "10": {
+            "name": "11: 0.90SDL + 0.90SW1 + 0.40Q + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "11": {
+            "name": "22: 1.35SDL + 1.35SW1",
+            "criteria": "strength",
+            "SDL": 1.35,
+            "SW1": 1.35,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "12": {
+            "name": "23: 1.20SDL + 1.20SW1 + 1.50Q",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 1.5,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "13": {
+            "name": "25: 1.20SDL + 1.20SW1 + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "14": {
+            "name": "26: 1.20SDL + 1.20SW1 + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "15": {
+            "name": "27: 1.20SDL + 1.20SW1 + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "16": {
+            "name": "28: 1.20SDL + 1.20SW1 + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "17": {
+            "name": "29: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "18": {
+            "name": "30: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "19": {
+            "name": "31: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "20": {
+            "name": "32: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "21": {
+            "name": "43: 1.35SDL + 1.35SW1",
+            "criteria": "strength",
+            "SDL": 1.35,
+            "SW1": 1.35,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "22": {
+            "name": "44: 1.20SDL + 1.20SW1 + 1.50Q",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 1.5,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "23": {
+            "name": "48: 1.20SDL + 1.20SW1 + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "24": {
+            "name": "49: 1.20SDL + 1.20SW1 + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "25": {
+            "name": "50: 1.20SDL + 1.20SW1 + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "26": {
+            "name": "51: 1.20SDL + 1.20SW1 + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "27": {
+            "name": "52: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "28": {
+            "name": "53: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "29": {
+            "name": "54: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "30": {
+            "name": "55: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "31": {
+            "name": "60: 0.90SDL + 0.90SW1 + 1.00W_East",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "32": {
+            "name": "61: 0.90SDL + 0.90SW1 + 1.00W_North",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 1,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "33": {
+            "name": "62: 0.90SDL + 0.90SW1 + 1.00W_South",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 1,
+            "W_West": 0
+        },
+        "34": {
+            "name": "63: 0.90SDL + 0.90SW1 + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 1
+        },
+        "35": {
+            "name": "70: 1.00SDL + 1.00SW1",
+            "criteria": "serviceability",
+            "SDL": 1,
+            "SW1": 1,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "36": {
+            "name": "71: 0.70Q",
+            "criteria": "serviceability",
+            "SDL": 0,
+            "SW1": 0,
+            "Q": 0.7,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "37": {
+            "name": "1: 0.90SDL + 0.90SW1",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "38": {
+            "name": "2: 0.90SDL + 0.90SW1 + 1.50Q",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 1.5,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "39": {
+            "name": "4: 0.90SDL + 0.90SW1 + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "40": {
+            "name": "5: 0.90SDL + 0.90SW1 + 0.40Q + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0.4,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "41": {
+            "name": "13: 1.35SDL + 1.35SW1",
+            "criteria": "strength",
+            "SDL": 1.35,
+            "SW1": 1.35,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "42": {
+            "name": "14: 1.20SDL + 1.20SW1 + 1.50Q",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 1.5,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "43": {
+            "name": "16: 1.20SDL + 1.20SW1 + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "44": {
+            "name": "17: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "45": {
+            "name": "25: 1.35SDL + 1.35SW1",
+            "criteria": "strength",
+            "SDL": 1.35,
+            "SW1": 1.35,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "46": {
+            "name": "26: 1.20SDL + 1.20SW1 + 1.50Q",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 1.5,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "47": {
+            "name": "30: 1.20SDL + 1.20SW1 + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "48": {
+            "name": "31: 1.20SDL + 1.20SW1 + 0.40Q + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 1.2,
+            "SW1": 1.2,
+            "Q": 0.4,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "49": {
+            "name": "33: 0.90SDL + 0.90SW1 + 1.00W_East + 1.00W_North + 1.00W_South + 1.00W_West",
+            "criteria": "strength",
+            "SDL": 0.9,
+            "SW1": 0.9,
+            "Q": 0,
+            "W_East": 1,
+            "W_North": 1,
+            "W_South": 1,
+            "W_West": 1
+        },
+        "50": {
+            "name": "40: 1.00SDL + 1.00SW1",
+            "criteria": "serviceability",
+            "SDL": 1,
+            "SW1": 1,
+            "Q": 0,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        },
+        "51": {
+            "name": "41: 0.70Q",
+            "criteria": "serviceability",
+            "SDL": 0,
+            "SW1": 0,
+            "Q": 0.7,
+            "W_East": 0,
+            "W_North": 0,
+            "W_South": 0,
+            "W_West": 0
+        }
+    },
+    "load_cases": {
+        "AS-1170.0-2002": {
+            "SDL": "G",
+            "SW1": "G",
+            "Q": "Qdd",
+            "W_East": "Wu",
+            "W_North": "Wu",
+            "W_South": "Wu",
+            "W_West": "Wu"
+        }
+    },
+    "load_combination_settings": {
+        "country": "Australia",
+        "code": "AS-1170.0-2002",
+        "criteria": "All",
+        "filters": {
+            "multi_dropdown_1": ",f,u",
+            "multi_dropdown_2": ",sta,str"
+        },
+        "load_case_order": [
+            "SDL",
+            "SW1",
+            "Q",
+            "W_East",
+            "W_North",
+            "W_South",
+            "W_West"
+        ],
+        "patterns": {
+            "patterns": [
+                "simultaneous",
+                "simultaneous",
+                "simultaneous"
+            ],
+            "main_ratios": [
+                "1",
+                "1",
+                "1"
+            ],
+            "alternate_ratios": [
+                "1",
+                "1",
+                "1"
+            ]
+        },
+        "load_case_mappings": {
+            "G": "Dead",
+            "Qdd": "Live - Distributed, Floors, Domestic",
+            "Qdo": "Live - Distributed, Floors, Offices",
+            "Qdp": "Live - Distributed, Floors, Parking",
+            "Qde": "Live - Distributed, Floors, Retail",
+            "Qds": "Live - Distributed, Floors, Storage",
+            "Qdx": "Live - Distributed, Floors, Other",
+            "Qdr": "Live - Distributed, Roofs, Floor",
+            "Qdy": "Live - Distributed, Roofs, Other",
+            "Qcf": "Live - Concentrated, Floors",
+            "Qcd": "Live - Concentrated, Floors, Domestic",
+            "Qcr": "Live - Concentrated, Roofs, Floor",
+            "Qcy": "Live - Concentrated, Roofs, Other",
+            "Qcb": "Live - Concentrated, Balustrades",
+            "Qcm": "Live - Concentrated, Machinery",
+            "Wu": "Wind - Ultimate",
+            "Ws": "Wind - Serviceability",
+            "Su": "Snow - Snow, Liquid, Rain",
+            "Eu": "Seismic - Ultimate",
+            "Es": "Seismic - Serviceability",
+            "Ldd": "Long-term Live - Distributed, Floors, Domestic",
+            "Ldo": "Long-term Live - Distributed, Floors, Offices",
+            "Ldp": "Long-term Live - Distributed, Floors, Parking",
+            "Lde": "Long-term Live - Distributed, Floors, Retail",
+            "Lds": "Long-term Live - Distributed, Floors, Storage",
+            "Ldx": "Long-term Live - Distributed, Floors, Other",
+            "Ldr": "Long-term Live - Distributed, Roofs, Floor",
+            "Lcf": "Long-term Live - Concentrated, Floors",
+            "Lcd": "Long-term Live - Concentrated, Floors, Domestic",
+            "Lcr": "Long-term Live - Concentrated, Roofs, Floor",
+            "Lcm": "Long-term Live - Concentrated, Machinery",
+            "N": "Notional"
+        },
+        "load_case_sub_groups": [
+            {
+                "name": "SDL",
+                "sub_group": "1"
+            },
+            {
+                "name": "SW1",
+                "sub_group": "1"
+            },
+            {
+                "name": "Q",
+                "sub_group": "1"
+            },
+            {
+                "name": "W_East",
+                "sub_group": "1"
+            },
+            {
+                "name": "W_North",
+                "sub_group": "1"
+            },
+            {
+                "name": "W_South",
+                "sub_group": "1"
+            },
+            {
+                "name": "W_West",
+                "sub_group": "1"
+            }
+        ]
+    },
+    "permanent_load_groups": [
+        "SDL",
+        "Q",
+        "W_North",
+        "W_East",
+        "W_South",
+        "W_West"
+    ]
+}

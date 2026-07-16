@@ -1,0 +1,263 @@
+
+{
+    "self_weight": {
+        "1": {
+            "x": 0,
+            "y": -1,
+            "z": 0,
+            "load_group": "SW1"
+        }
+    },
+    "load_combinations": {
+        "1": {
+            "name": "1: 1.40D1 + 1.40SW1",
+            "criteria": "strength",
+            "D1": 1.4,
+            "SW1": 1.4,
+            "L1": 0,
+            "S1": 0,
+            "W1": 0
+        },
+        "2": {
+            "name": "2: 1.20D1 + 1.20SW1 + 1.60L1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 1.6,
+            "S1": 0,
+            "W1": 0
+        },
+        "3": {
+            "name": "4: 1.20D1 + 1.20SW1 + 1.60L1 + 0.30S1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 1.6,
+            "S1": 0.3,
+            "W1": 0
+        },
+        "4": {
+            "name": "9: 1.20D1 + 1.20SW1 + 1.00S1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 0,
+            "S1": 1,
+            "W1": 0
+        },
+        "5": {
+            "name": "10: 1.20D1 + 1.20SW1 + 1.00S1 + 1.00L1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 1,
+            "S1": 1,
+            "W1": 0
+        },
+        "6": {
+            "name": "11: 1.20D1 + 1.20SW1 + 1.00S1 + 0.50W1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 0,
+            "S1": 1,
+            "W1": 0.5
+        },
+        "7": {
+            "name": "15: 1.20D1 + 1.20SW1 + 1.00L1 + 1.00W1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 1,
+            "S1": 0,
+            "W1": 1
+        },
+        "8": {
+            "name": "17: 1.20D1 + 1.20SW1 + 1.00L1 + 1.00W1 + 0.30S1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 1,
+            "S1": 0.3,
+            "W1": 1
+        },
+        "9": {
+            "name": "23: 1.20D1 + 1.20SW1 + 1.00W1",
+            "criteria": "strength",
+            "D1": 1.2,
+            "SW1": 1.2,
+            "L1": 0,
+            "S1": 0,
+            "W1": 1
+        },
+        "10": {
+            "name": "28: 0.90D1 + 0.90SW1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 0,
+            "S1": 0,
+            "W1": 0
+        },
+        "11": {
+            "name": "29: 0.90D1 + 0.90SW1 + 1.60L1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 1.6,
+            "S1": 0,
+            "W1": 0
+        },
+        "12": {
+            "name": "31: 0.90D1 + 0.90SW1 + 1.60L1 + 0.30S1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 1.6,
+            "S1": 0.3,
+            "W1": 0
+        },
+        "13": {
+            "name": "36: 0.90D1 + 0.90SW1 + 1.00S1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 0,
+            "S1": 1,
+            "W1": 0
+        },
+        "14": {
+            "name": "37: 0.90D1 + 0.90SW1 + 1.00S1 + 1.00L1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 1,
+            "S1": 1,
+            "W1": 0
+        },
+        "15": {
+            "name": "38: 0.90D1 + 0.90SW1 + 1.00S1 + 0.50W1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 0,
+            "S1": 1,
+            "W1": 0.5
+        },
+        "16": {
+            "name": "42: 0.90D1 + 0.90SW1 + 1.00L1 + 1.00W1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 1,
+            "S1": 0,
+            "W1": 1
+        },
+        "17": {
+            "name": "44: 0.90D1 + 0.90SW1 + 1.00L1 + 1.00W1 + 0.30S1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 1,
+            "S1": 0.3,
+            "W1": 1
+        },
+        "18": {
+            "name": "50: 0.90D1 + 0.90SW1 + 1.00W1",
+            "criteria": "strength",
+            "D1": 0.9,
+            "SW1": 0.9,
+            "L1": 0,
+            "S1": 0,
+            "W1": 1
+        }
+    },
+    "load_cases": {
+        "ASCE-7-2022-LRFD": {
+            "D1": "D",
+            "SW1": "D",
+            "L1": "L",
+            "S1": "S",
+            "W1": "W"
+        }
+    },
+    "load_combination_settings": {
+        "country": "United States",
+        "code": "ASCE-7-2022-LRFD",
+        "criteria": "All",
+        "filters": {
+            "multi_dropdown_1": ",f,u"
+        },
+        "load_case_order": [
+            "D1",
+            "SW1",
+            "L1",
+            "S1",
+            "W1"
+        ],
+        "patterns": {
+            "patterns": [
+                "simultaneous",
+                "simultaneous",
+                "simultaneous",
+                "simultaneous"
+            ],
+            "main_ratios": [
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            "alternate_ratios": [
+                "1",
+                "1",
+                "1",
+                "1"
+            ]
+        },
+        "load_case_mappings": {
+            "D": "Dead",
+            "H": "Lateral earth - Unfavorable",
+            "Hf": "Lateral earth - Favorable",
+            "L": "Live",
+            "Lr": "Live - Roof",
+            "S": "Snow",
+            "R": "Rain",
+            "W": "Wind",
+            "Wt": "Wind - Tornado",
+            "Eh": "Seismic - Horizontal",
+            "Ev": "Seismic - Vertical",
+            "T": "Temperature",
+            "Ak": "Accidental",
+            "N": "Notional"
+        },
+        "load_case_sub_groups": [
+            {
+                "name": "D1",
+                "sub_group": "1"
+            },
+            {
+                "name": "SW1",
+                "sub_group": "1"
+            },
+            {
+                "name": "L1",
+                "sub_group": "1"
+            },
+            {
+                "name": "S1",
+                "sub_group": "1"
+            },
+            {
+                "name": "W1",
+                "sub_group": "1"
+            }
+        ]
+    },
+    "permanent_load_groups": [
+        "D1",
+        "L1",
+        "S1",
+        "W1"
+    ]
+}
