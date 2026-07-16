@@ -83,3 +83,30 @@ Not every solution needs every skill — a simple calculator app might only need
 ## Contributing
 
 Found a gap, an outdated example, or a mismatch with the live API? Open an issue or PR — these skills are actively maintained against `api/v3` and we want them to stay accurate as the API evolves.
+
+
+## Sample Prompts for Vibe Coding
+
+Goal:
+I'd like to build a structural engineering software for truss design. It should be an easy to use truss designer with nice graphics. The goal is to make an engaging, powerful and accurate design tool using reliable calculations. Give it a new age and high tech feel, with a coulour scheme of black and blue.
+
+Task:
+It should use ASCE7-22 load combinations, they are for small roofs in the US. Build an analysis model, run an NDS check of each member, and generate a CAD drawing ready for build. 
+
+The inputs should be:
+- truss span
+- truss type (warren, fink, howe, pratt)
+- truss height
+- timber section sizes should be all a single size (I usually design using 2x4, sx6, 2x8 and 4x4)
+- put inputs for loads and sheeting weight
+
+Results:
+Result panel on the right should include:
+- critical utility ratio
+- critical member design reports of the NDS check
+- open link for CAD
+- table of members and their utilities (so I know it's all been checked)
+- reaction summary at my supports
+
+
+
