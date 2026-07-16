@@ -42,7 +42,6 @@ This format is compatible with any assistant that can read markdown context — 
 | **3D Renderer** | [`renderer/`](./renderer/SKILLS.md) | Embed the client-side SkyCiv 3D Renderer to visualize a structural model and its analysis results interactively in the browser. |
 | **Schema Agent** | [`schema-agent/`](./schema-agent/SKILLS.md) | Interpret an uploaded floor plan (DXF/DWG/PDF/image) into a precise structural schema that the S3D skill can build a model from. |
 | **QA Engineer** (WIP)| [`qa-engineer/`](./qa-engineer/SKILLS.md) | Independent peer-review persona — checks a finished calculation or report for units, sanity, and completeness before it ships. |
-| **Reporting Engineer** | [`reporting-engineer/`](./reporting-engineer/SKILLS.md) | Turn calculation output into a clean, client-ready report (HTML/DOCX) summarizing key inputs and outputs. |
 
 ---
 
@@ -64,8 +63,6 @@ s3d-api                → solve, then run-quick-design for member/connection ch
 renderer               → visualize the model and results
   ↓
 qa-engineer            → independent review of the results
-  ↓
-reporting-engineer     → generate the final client-ready report
 ```
 
 Not every solution needs every skill — a simple calculator app might only need `run-quick-design`; a full design platform might use all of them.

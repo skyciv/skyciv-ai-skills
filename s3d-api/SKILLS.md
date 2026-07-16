@@ -28,6 +28,7 @@ The `s3d_model` is the JSON representation of a structural model. It is passed t
   "area_loads": { ... },
   "self_weight": { ... },
   "load_combinations": { ... },
+  "load_cases": { ... },
   "groups": { ... }
 }
 ```
@@ -338,6 +339,76 @@ any combination's factor and is effectively invisible to it:
 > skill for how `load_combinations`, `load_cases`, and `load_combination_settings` fit together,
 > representative combination sets for the US / Europe / Canada / Australia / India, a full worked
 > AS/NZS 1170 example, and how to generate the complete enumerated set for any design code.
+
+---
+
+### `load_cases`
+
+Maps load groups to standard load type categories for a named design code. This tells the solver how to classify each load group when auto-generating code-based load combinations.
+
+```json
+{
+  "load_cases": {
+    "DESIGN-CODE-NAME": {
+      "LOAD_GROUP_NAME": "LOAD_TYPE"
+    }
+  }
+}
+```
+
+The key is the design code identifier. Each nested key is a load group name from your model; the value is the code-defined load type for that group.
+
+**ASCE 7-22 (LRFD):**
+```json
+{
+  "load_cases": {
+    "ASCE-7-2022-LRFD": {
+      "D1": "D",
+      "SW1": "D",
+      "L1": "L",
+      "S1": "S",
+      "W1": "W"
+    }
+  }
+}
+```
+
+**AS 1170.0-2002:**
+```json
+{
+  "load_cases": {
+    "AS-1170.0-2002": {
+      "SDL": "G",
+      "SW1": "G",
+      "Q": "Qdd",
+      "W_East": "Wu",
+      "W_North": "Wu",
+      "W_South": "Wu",
+      "W_West": "Wu"
+    }
+  }
+}
+```
+
+**EN 1990-2002:**
+```json
+{
+  "load_cases": {
+    "EN-1990-2002": {
+      "G1": "G",
+      "SW1": "G",
+      "Qa1": "Qa",
+      "S1": "Sl",
+      "Wx-": "W",
+      "Wx+": "W",
+      "Wy-": "W",
+      "Wy+": "W"
+    }
+  }
+}
+```
+
+> Multiple load groups can map to the same load type (e.g. several wind direction groups all mapped to `"W"`). Multiple design codes can coexist in the same `load_cases` object.
 
 ---
 

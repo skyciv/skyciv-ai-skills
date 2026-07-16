@@ -92,19 +92,45 @@ Every load object references a group by name. Self-weight is enabled per group:
 
 ## `load_cases` (recommended, not just cosmetic)
 
-Maps each load group to the design code's load-case symbol.
+Maps each load group to a load-case type so that the SkyCiv S3D platform UI correctly
+classifies it (Dead, Live, Wind, etc.) in its Load Cases manager.
 
-```json
-{
-  "load_cases": {
-    "AS-1170.0-2002": { "SW1": "G", "Live": "Qdd", "Wind": "Wu" }
-  }
-}
-```
-
-The full symbol→description dictionary (e.g. `"G" → "Dead"`, `"Qdd" → "Live - Distributed,
-Floors, Domestic"`, `"Wu" → "Wind - Ultimate"`) lives under
-`load_combination_settings.load_case_mappings` — see the assets below for complete ones per code.
+> **Two formats exist — use the right one for UI display:**
+>
+> **Platform-native format** (required for the S3D UI to show correct types — verified by
+> exporting a model directly from the platform): values are full `"TypeLabel: typecode"` strings.
+> This is what `S3D.model.set` / `S3D.model.get` passes through unchanged, and what the UI reads:
+>
+> ```json
+> {
+>   "load_cases": {
+>     "AISC": {
+>       "SW1": "Dead: dead",
+>       "Live": "Live: live",
+>       "Wind": "Wind: wind",
+>       "Snow": "Snow: snow"
+>     }
+>   }
+> }
+> ```
+>
+> | Type string | Meaning |
+> |---|---|
+> | `"Dead: dead"` | Dead / permanent gravity load |
+> | `"Live: live"` | Live load (occupancy, equipment) |
+> | `"Wind: wind"` | Wind load |
+> | `"Snow: snow"` | Snow load |
+> | `"Rain: rain"` | Rain load |
+> | `"Seismic: seismic"` | Seismic / earthquake |
+> | `"Live - Roof: live_roof"` | Roof live load |
+>
+> **Generator output format** (short code symbols like `"D"`, `"L"`, `"W"` — what the
+> load-combination generator emits in its `load_cases` field): these are the design-code's own
+> notation for load case symbols, stored in `load_combination_settings.load_case_mappings`. They
+> are useful for round-tripping generator output and for code-labelled reports, **but the S3D
+> platform UI does not map them back to type categories** — a group with `load_cases` value `"L"`
+> or `"Qdd"` still shows as type Dead in the Load Cases manager, the same as if `load_cases` were
+> absent entirely. Always use the platform-native format above when building models for UI import.
 
 > **Don't skip this one.** Unlike `load_combination_settings` and `permanent_load_groups`, which
 > are genuinely inert metadata, `load_cases` is what lets every downstream consumer *other* than
@@ -115,8 +141,8 @@ Floors, Domestic"`, `"Wu" → "Wind - Ultimate"`) lives under
 > inferred mapping. The gap shows up one layer up: when that model is opened in the SkyCiv S3D
 > platform UI, its Load Cases manager has nothing to classify the groups by and defaults every
 > unmapped one to **"Dead"** — so a `"Live"` or `"Wind"` group displays as case type Dead there,
-> even though the numbers behind it are correct. Populate `load_cases` for every group whenever
-> the model might be opened/edited in that UI, not only when you want a code-labelled report.
+> even though the numbers behind it are correct. Populate `load_cases` for every group using the
+> platform-native format whenever the model might be opened/edited in that UI.
 
 ---
 
