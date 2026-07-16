@@ -48,6 +48,7 @@ cloudcad-api    → Generate CAD drawings from models
 renderer        → Visualise models in the browser
 load-gen-api    → Retrieve wind/snow/seismic loads by location
 schema-agent    → Interpret floor plans (DXF/image) into a structural schema
+section-selector → Select and inject the right section from the library into an S3D model
 run-quick-design → Run pre-built SkyCiv calculators
 qa-engineer     → Review and validate engineering outputs
 ```

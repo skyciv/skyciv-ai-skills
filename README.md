@@ -41,6 +41,7 @@ This format is compatible with any assistant that can read markdown context — 
 | **Run Quick Design** | [`run-quick-design/`](./run-quick-design/SKILLS.md) | Call any of 150+ Quick Design calculators (steel, concrete, timber, aluminium, connections, foundations, loads) via one REST endpoint — includes a full catalogue plus schema and sample input/output for each calculator. |
 | **3D Renderer** | [`renderer/`](./renderer/SKILLS.md) | Embed the client-side SkyCiv 3D Renderer to visualize a structural model and its analysis results interactively in the browser. |
 | **Schema Agent** | [`schema-agent/`](./schema-agent/SKILLS.md) | Interpret an uploaded floor plan (DXF/DWG/PDF/image) into a precise structural schema that the S3D skill can build a model from. |
+| **Section Selector** | [`section-selector/`](./section-selector/SKILLS.md) | Choose the right structural section from the SkyCiv library for any region and material, and inject it correctly into an S3D model. |
 | **QA Engineer** (WIP)| [`qa-engineer/`](./qa-engineer/SKILLS.md) | Independent peer-review persona — checks a finished calculation or report for units, sanity, and completeness before it ships. |
 
 ---

@@ -16,7 +16,7 @@ Each top-level folder is one self-contained skill:
   assets/         # optional — example inputs, catalogues, templates
 ```
 
-Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `renderer`, `schema-agent`, `qa-engineer`. There is also a `scaffold-designer` folder, which is a runnable example *app* built on these skills (Node/Express), not a `SKILLS.md`. Note: the README also documents a `reporting-engineer` skill, but that folder does not yet exist in this repo — don't assume it does.
+Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`. There is also a `scaffold-designer` folder, which is a runnable example *app* built on these skills (Node/Express), not a `SKILLS.md`. Note: the README also documents a `reporting-engineer` skill, but that folder does not yet exist in this repo — don't assume it does.
 
 Some `SKILLS.md` files have YAML frontmatter (`name`, `description`, `argument-hint`) so agent harnesses can discover them; others (e.g. `skyciv-api-v3`, `s3d-api`, `cloudcad-api`, `load-gen-api`, `run-quick-design`) are documentation-only and omit it. Match the style of the skill you're editing.
 
@@ -52,6 +52,7 @@ reporting-engineer     → generate the final client-ready report
 - `run-quick-design` — a separate REST endpoint (`POST https://qd.skyciv.com/run`, its own API-token auth, not the `skyciv-api-v3` envelope) that runs any of 154 standalone calculators by UID.
 - `renderer` — client-side JS library (`SKYCIV.renderer`), not a server API; visualizes an `s3d_model` fetched via the API.
 - `schema-agent` — vision/DXF interpretation persona feeding `s3d-api`.
+- `section-selector` — section library lookup and injection helper for `s3d-api`; maps country/material/role to the correct `load_section` path from `section_tree.json`, or builds concrete sections as template-shape objects. Used whenever a model needs real section geometry.
 - `qa-engineer` — independent-reviewer persona/checklist, not an API skill.
 
 ## `run-quick-design` asset layout

@@ -886,3 +886,5 @@ General Section Designer — FEA-based RC section capacity check.
 ## Engineering Judgement
 It's important to consider proper engineering judgement when utilising this skill:
 - Member fixities should be based on proper engineering decisions. For example, if the connections are shear connections, the member end fixities should be pinned
+- Wind loads are only ever applied to the face of a structure (never internal columns etc..). You may want to include wind loads from different directions (of course only one should be on per time in the load_combinations)
+- Wind loads are normally applied as distributed loads on columns
