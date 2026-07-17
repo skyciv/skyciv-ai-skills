@@ -657,6 +657,14 @@ Generate a PDF or TXT analysis report. Requires `S3D.model.set` and `S3D.model.s
 
 Returns `view_link` and `download_link` URLs.
 
+> **Don't call this by default in an analyze/results pipeline.** Generating a full
+> report re-solves the model and renders every requested section (member forces,
+> displacements, reactions, ...) across every load combination - slow (can take 60-90s+
+> on even a modest model, and commonly times out), and it produces a downloadable PDF
+> most apps never actually surface anywhere in their UI. Only call it when the user
+> explicitly asks for a downloadable/viewable report, ideally behind its own button
+> (like a CAD-drawing generation step), not bundled into the main solve+results call.
+
 ### `S3D.results.getDynamicFreq`
 
 Returns dynamic/frequency analysis results.

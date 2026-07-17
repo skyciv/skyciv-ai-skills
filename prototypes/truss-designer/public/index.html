@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truss Designer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>TRUSS<span class="accent">//</span>DESIGNER</h1>
+      <p class="subtitle">Parametric timber roof truss modeling, ASCE 7-22 analysis, NDS 2018 design check &amp; CAD - built on the SkyCiv API</p>
+    </div>
+    <span id="credsBadge" class="badge">checking credentials&hellip;</span>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <h2>Inputs</h2>
+
+      <label>
+        Truss span (ft)
+        <input type="number" id="spanFt" min="4" max="80" step="0.5" value="24" />
+      </label>
+      <label>
+        Truss type
+        <select id="trussType">
+          <option value="warren">Warren</option>
+          <option value="fink" selected>Fink</option>
+          <option value="howe">Howe</option>
+          <option value="pratt">Pratt</option>
+        </select>
+      </label>
+      <label>
+        Truss height (ft)
+        <input type="number" id="heightFt" min="0.5" max="20" step="0.25" value="4" />
+      </label>
+      <label>
+        Section size (all members)
+        <select id="sectionKey">
+          <option value="2x4">2x4</option>
+          <option value="2x6" selected>2x6</option>
+          <option value="2x8">2x8</option>
+          <option value="4x4">4x4</option>
+        </select>
+      </label>
+
+      <div class="loads-grid">
+        <label>
+          Dead load (psf)
+          <input type="number" id="deadPsf" min="0" step="0.5" value="10" />
+        </label>
+        <label>
+          Sheeting weight (psf)
+          <input type="number" id="sheetingPsf" min="0" step="0.5" value="3" />
+        </label>
+        <label>
+          Snow load (psf)
+          <input type="number" id="snowPsf" min="0" step="1" value="20" />
+        </label>
+        <label>
+          Wind load (psf, uplift)
+          <input type="number" id="windPsf" min="0" step="1" value="15" />
+        </label>
+      </div>
+
+      <div class="static-fields">
+        <div><span>Design code</span><strong>ASCE 7-22 LRFD</strong></div>
+        <div><span>Member check</span><strong>NDS 2018</strong></div>
+        <div><span>Species / grade</span><strong id="speciesGradeField">-</strong></div>
+        <div><span>Truss spacing</span><strong id="spacingField">-</strong></div>
+        <div><span>Units</span><strong>Imperial</strong></div>
+      </div>
+
+      <button id="generateBtn" class="primary">Generate &amp; Analyze</button>
+      <div id="genError" class="error hidden"></div>
+      <div id="analyzeError" class="error hidden"></div>
+
+      <details class="assumptions">
+        <summary>Modeling assumptions</summary>
+        <ul>
+          <li>Panel count auto-chosen for ~4 ft bottom-chord panels (4-10 panels), apex centered at mid-span</li>
+          <li>Chords are continuous through panel points (moment-carrying); webs are pinned (axial only)</li>
+          <li>Every node is out-of-plane braced (purlin/sheathing bracing assumption); left support = pin, right = roller</li>
+          <li>Loads are psf of horizontal plan area, converted to a sloped-member line load via truss spacing x cos(roof slope)</li>
+          <li>5 ASCE 7-22 &sect;2.3.1 LRFD combinations checked (no floor live load in a roof-only truss): 1.4D+1.4SW; 1.2D+1.2SW+1.6S; 1.2D+1.2SW+1.6S+0.5W; 1.2D+1.2SW+1.0W+0.5S; 0.9D+0.9SW+1.0W (uplift)</li>
+          <li>Every member is checked against the NDS 2018 Wood Member Design calculator using the worst-case (enveloped) force per component across all 5 combinations</li>
+          <li>Checks strength only (bending, shear, tension, compression, combined) - deflection serviceability is not checked, since it needs each member's actual computed deflection under load, not a placeholder</li>
+          <li>"Optimize Section" re-runs the strength check for every section size in the dropdown and recommends the smallest (by area) that passes every member</li>
+          <li>Unbraced length L = member length; effective length for bending Le = 2.06 x L (the calculator's own conservative default)</li>
+        </ul>
+      </details>
+
+      <button id="viewModelBtn" class="secondary" disabled>View analysis model (JSON)</button>
+      <button id="downloadJsonBtn" class="secondary" disabled>Download model (JSON)</button>
+      <button id="downloadApiBtn" class="secondary" disabled>Download API request (JSON)</button>
+    </section>
+
+    <section class="panel viewer-panel">
+      <h2>Structure</h2>
+      <div id="renderer-container"></div>
+      <div id="rendererError" class="error hidden"></div>
+    </section>
+
+    <section class="panel results-panel">
+      <h2>Design Result</h2>
+      <div id="resultsEmpty" class="empty-state">Generate a model to see results here.</div>
+
+      <div id="resultsBody" class="hidden">
+        <div id="designWarning" class="warning hidden"></div>
+
+        <div class="ratio-card">
+          <div class="ratio-value">
+            <span id="ratioNumber">-</span>
+            <span id="ratioBadge" class="badge">-</span>
+          </div>
+          <div class="ratio-bar"><div id="ratioFill" class="ratio-fill"></div></div>
+          <div class="ratio-meta">
+            Critical member: <strong id="criticalMemberLabel">-</strong>
+          </div>
+        </div>
+
+        <div class="optimize-cta">
+          <button id="optimizeBtn" class="optimize">Optimize Section &rarr;</button>
+          <p class="optimize-hint">Check every section size and switch to the smallest one that still passes every member.</p>
+          <div id="optimizeError" class="error hidden"></div>
+          <div id="optimizeResult" class="hidden"></div>
+        </div>
+
+        <div class="reports">
+          <h3>Links</h3>
+          <ul id="reportLinks"></ul>
+        </div>
+
+        <details class="ranked-list" open>
+          <summary>All members &amp; utilization</summary>
+          <table id="memberTable">
+            <thead><tr><th>Member</th><th>Role</th><th>L (ft)</th><th>Combo</th><th>Utilization</th><th>Check</th><th>Quick Design</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </details>
+
+        <details class="ranked-list" open>
+          <summary>Reaction summary (supports)</summary>
+          <table id="reactionTable">
+            <thead><tr><th>Support</th><th>Node</th><th>Governing combo</th><th>Reactions</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </details>
+
+        <div class="cad-section">
+          <button id="cadBtn" class="primary">Generate CAD Drawing</button>
+          <div id="cadResult" class="hidden"></div>
+          <div id="cadError" class="error hidden"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modelModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Analysis Model (s3d_model JSON)</h2>
+        <div class="modal-header-actions">
+          <button id="copyJsonBtn" class="secondary">Copy JSON</button>
+          <button id="closeModalBtn" class="secondary">Close</button>
+        </div>
+      </div>
+      <pre id="modelJson"></pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

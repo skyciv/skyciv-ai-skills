@@ -16,7 +16,7 @@ Each top-level folder is one self-contained skill:
   assets/         # optional — example inputs, catalogues, templates
 ```
 
-Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`. There is also a `scaffold-designer` folder, which is a runnable example *app* built on these skills (Node/Express), not a `SKILLS.md`. Note: the README also documents a `reporting-engineer` skill, but that folder does not yet exist in this repo — don't assume it does.
+Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`. There is also a `prototypes/` folder holding runnable example *apps* built on these skills (Node/Express), not `SKILLS.md` files — currently `prototypes/scaffold-designer` and `prototypes/truss-designer`. Note: the README also documents a `reporting-engineer` skill, but that folder does not yet exist in this repo — don't assume it does.
 
 Some `SKILLS.md` files have YAML frontmatter (`name`, `description`, `argument-hint`) so agent harnesses can discover them; others (e.g. `skyciv-api-v3`, `s3d-api`, `cloudcad-api`, `load-gen-api`, `run-quick-design`) are documentation-only and omit it. Match the style of the skill you're editing.
 
@@ -86,6 +86,7 @@ These skills are kept in sync with the live SkyCiv API (`api/v3`). If you notice
 When prototyping a solution (or if vibe coding a solution) it's a good idea to stick to the following rules:
  - Don't use `result_filter` key in the `S3D.model.solve` space unless you're 100% sure it will work
  - Stick to a shorter `timeout` in the options key for the API (or leave as default), when prototyping if things go wrong it's easier to identify and test if things don't take >30s to fail.
+ - Don't call `S3D.results.getAnalysisReport` by default as part of a solve/results pipeline. It re-solves the model and renders every section across every load combination - slow (60-90s+, often timing out) - for a PDF report that's rarely used and usually isn't even surfaced in the app's UI. Only wire it up behind its own explicit button/endpoint if the user actually asks for a downloadable report, the same way a CAD-drawing generation step is kept separate from the main analyze call.
 
 ## User Context
 

@@ -76,7 +76,8 @@ Not every solution needs every skill — a simple calculator app might only need
 
 | App | Folder | What it demonstrates |
 |---|---|---|
-| **Scaffold Designer** | [`scaffold-designer/`](./scaffold-designer/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `run-quick-design` (AISC 360-16) → `renderer` → `cloudcad-api` to model, analyze, design-check, visualize and draft a tube-and-coupler scaffold from just a height, width and loading class. |
+| **Scaffold Designer** | [`prototypes/scaffold-designer/`](./prototypes/scaffold-designer/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `run-quick-design` (AISC 360-16) → `renderer` → `cloudcad-api` to model, analyze, design-check, visualize and draft a tube-and-coupler scaffold from just a height, width and loading class. |
+| **Truss Designer** | [`prototypes/truss-designer/`](./prototypes/truss-designer/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `run-quick-design` (NDS 2018) → `renderer` → `cloudcad-api` to model, ASCE 7-22-check, visualize and draft a Warren/Fink/Howe/Pratt timber roof truss from span, height, type, and a single section size. |
 
 ---
 
