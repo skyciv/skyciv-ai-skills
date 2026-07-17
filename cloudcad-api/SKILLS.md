@@ -15,11 +15,18 @@ A CAD model is a JSON object with this top-level structure:
   "settings": { ... },        // global display/snap/unit settings
   "s3d": { ... },             // optional: structural 3D export mapping
   "attributeStyles": [ ... ], // dimension/text/leader/axis sizing styles
+  "blockReferences": [ ... ], // block DEFINITIONS (reusable groups, e.g. title blocks) - see "Blocks" below
+  "pdfExport": { ... },       // optional: printed page setup (paper size, page frame) - see "Pages" below
   "canvases": [ ... ]         // array of drawing sheets
 }
 ```
 
 This object is passed to `cloudcad.model.create` as `cad_data`.
+
+> **`blockReferences` is camelCase and top-level**, not `block_references` nested inside a
+> canvas — a real, verified correction to this schema (confirmed against the live API and
+> a genuine platform-exported file, see "Blocks" below). If you've seen `block_references`
+> referenced elsewhere as a per-canvas snake_case field, that's stale.
 
 ---
 
@@ -168,14 +175,17 @@ An array of canvas (drawing sheet) objects. Each canvas is a self-contained draw
   "revisionClouds": [],
   "hatches": [],
   "images": [],
-  "block_references": [],
   "block_instances": [],
   "layers": [],
   "s3d": {}
 }
 ```
 
-Note: `attributeStyles` is a **top-level** field on the root object (alongside `settings` and `canvases`), not inside each canvas.
+Note: `attributeStyles` and `blockReferences` are **top-level** fields on the root object
+(alongside `settings` and `canvases`), not inside each canvas — a canvas only places
+blocks via `block_instances`, it doesn't define them. (A stray empty `"block_references":
+[]` on a canvas is harmless if present, but does nothing — it's not where block
+definitions actually live.)
 
 `drawing_type`: `"Plan"`, `"Elevation"`, etc.  
 All array fields must be present (use `[]` if empty).
@@ -448,9 +458,15 @@ Segment types: `"line"` or `"arc"`. Loops must be closed (last segment endpoint 
 
 ## Blocks
 
-Reusable drawing element groups.
+Reusable drawing element groups — used for anything you place more than once (a repeated
+detail, a north-point symbol, or a **title block**, see "Pages & Title Blocks" below).
 
 ### Block References (Definitions)
+
+**Top-level, camelCase, sibling of `canvases`** — `cad_data.blockReferences`, an array.
+This is a real correction to this schema: block *definitions* do not live inside a
+canvas. Canvases only *place* an already-defined block via `block_instances` (below).
+Verified against the live API and a genuine platform-exported project file.
 
 ```json
 {
@@ -463,16 +479,26 @@ Reusable drawing element groups.
     { "type": "dimension",       "data": { "p1": { ... }, "p2": { ... }, "offsetPoint": { ... } } },
     { "type": "multiLeaderText", "data": { "anchorPoint": { ... }, "arrowPoints": [ ... ], "text": "Note" } },
     { "type": "hatch",           "data": { "color": "#5a5995", "opacity": 0.5, "loops": [ ... ] } },
-    { "type": "point",           "data": { "x": 10, "y": 20 } }
+    { "type": "point",           "data": { "x": 10, "y": 20 } },
+    { "type": "text",            "data": { "position": { "x": 0, "y": 0 }, "text": "Label", "size": 14, "color": "#ffffff", "textPosition": "middle-center", "backgroundColorOpacity": 0 } },
+    { "type": "leaderText",      "data": { "startPoint": { ... }, "endPoint": { ... }, "text": "Note" } }
   ]
 }
 ```
 
-Supported item types inside blocks: `point`, `line`, `arc`, `dimension`, `multiLeaderText`, `hatch`.
+Supported item types inside blocks: `point`, `line`, `arc`, `dimension`, `multiLeaderText`,
+`hatch`, `text`, `leaderText` (the last two confirmed from a real title-block asset, not
+previously documented here).
+
+`basePoint` is the anchor: it's the point *in the block's own local geometry* that gets
+mapped onto `position` when the block is instanced (see the transform below) — it is
+**not** necessarily the block's bounding-box corner. In practice, set it to whatever
+point in your block's geometry makes the most sense as an insertion handle (e.g. its
+centroid, or a specific corner).
 
 ### Block Instances
 
-Place a block on the canvas.
+Place a block on a canvas.
 
 ```json
 {
@@ -483,6 +509,17 @@ Place a block on the canvas.
   "scale": { "x": 1, "y": 1 }
 }
 ```
+
+**Placement transform** (rotation = 0): every point `local` in the block definition's
+`items` maps to world/canvas space as:
+
+```
+world.x = instance.position.x + instance.scale.x * (local.x - blockRef.basePoint.x)
+world.y = instance.position.y + instance.scale.y * (local.y - blockRef.basePoint.y)
+```
+
+(With `rotation != 0`, apply a standard 2D rotation about `basePoint` before scaling and
+translating — not covered by the simple formula above.)
 
 ---
 
@@ -508,6 +545,112 @@ Assign elements to layers for color, visibility, and line-type control.
 ```
 
 `lineType`: `"solid"`, `"dashed"`, etc.
+
+---
+
+## `pdfExport` (Pages)
+
+**Top-level, sibling of `canvases`** — `cad_data.pdfExport`. Defines the physical
+printed page(s) for the drawing: a rectangle in canvas units overlaid on the canvas,
+plus paper metadata. Previously undocumented; confirmed against a real platform-exported
+project.
+
+```json
+{
+  "pdfPages": [
+    {
+      "frame": {
+        "start": { "x": 67000, "y": -105000 },
+        "end":   { "x": 126400, "y": -63000 }
+      },
+      "orientation": "landscape",
+      "format": "A2",
+      "printPage": true,
+      "offset": { "top": 0, "right": 0, "bottom": 0, "left": 0 },
+      "scale": 100,
+      "canvasIndex": 0
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+|---|---|---|
+| `frame.start` / `frame.end` | `{x,y}` | The page's rectangle in canvas units (respects `settings.canvasLengthUnits`) — this **is** the page; `format`/`orientation` are descriptive labels and must be kept consistent with it, not the other way round. |
+| `orientation` | `string` | `"landscape"`, `"portrait"` |
+| `format` | `string` | Paper size label, e.g. `"A0"`–`"A4"` |
+| `printPage` | `boolean` | Whether this page is included in a PDF export |
+| `offset` | `{top,right,bottom,left}` | Print margins |
+| `scale` | `number` | Print scale, percent |
+| `canvasIndex` | `integer` | Which `canvases[]` entry this page belongs to (for multi-canvas documents) |
+
+Compute the frame size from the paper format in mm, e.g. A2 landscape = 594mm × 420mm →
+`594 * 100 = 59400` units wide, `420 * 100 = 42000` units tall (the example above uses
+that exact size). A `savedSettings` sibling key may also appear alongside `pdfPages` —
+that's UI dialog state (last-used format/margins in the CAD editor), safe to omit when
+creating a drawing programmatically.
+
+---
+
+## Pages & Title Blocks — Default Template
+
+> **Do this by default.** Unless the user asks for bare geometry only (or explicitly
+> says they don't want a title block/page), every CAD drawing you generate should be
+> wrapped in this page + title block template. It's easy for a user to strip back out
+> afterward — delete the `blockReferences`, `pdfExport`, and the title-block
+> `block_instances` entry — so default to including it rather than asking first.
+
+To produce a drawing that looks like a finished, ready-to-print sheet (a page border +
+title block, not just bare geometry), reuse the ready-made template at
+[`assets/Title-Block-Example.json`](./assets/Title-Block-Example.json) rather than
+building one from scratch — it's a real, working A2-landscape page + title block
+exported from the platform. Copy these three pieces verbatim into your new `cad_data`:
+
+1. **`pdfExport`** — the A2-landscape page frame (see above).
+2. **`blockReferences[0]`** — the title block's own definition (border lines, the info
+   table, labels like "Project Title:", "Project Address:", "STATUS:"). Keep its `id`.
+3. **The canvas's `block_instances[0]`** — places that block at
+   `position: {x: 96700, y: -86048}`, `scale: {x: 2, y: 2}`, `rotation: 0`, referencing
+   the `blockId` from step 2.
+
+Then add your own drawing content (lines, dimensions, texts) to the canvas, scaled and
+translated to sit inside the page frame without overlapping the title block. To fit
+arbitrary drawing content into the page automatically:
+
+```
+1. Compute the new content's bounding box: [contentMinX, contentMaxX] x [contentMinY, contentMaxY]
+2. Define a safe drawing rectangle inside the page frame, clear of the title block
+   (see "Known limitations" below for this template specifically)
+3. scale = min(safeWidth / contentWidth, safeHeight / contentHeight)   // uniform, never distort
+4. Translate + scale every coordinate in your content so its bounding-box center
+   lands on the safe rectangle's center
+```
+
+**For this exact template (A2 landscape)**, analysis of the title block's own geometry
+shows its info table (the actual text fields) occupies roughly the **right half** of the
+page, spanning most of its height — not just a bottom strip. As a conservative starting
+default, treat the **left ~45,000 units of page width** (roughly `x: 69000` to `x:
+114000`, `y: -103000` to `-65000`, leaving margins) as the safe zone for new drawing
+content, and keep the title block itself untouched on the right.
+
+### Known limitations — read before assuming this "just works"
+
+- **This safe-zone rectangle is an approximation**, derived by analyzing the block's
+  coordinate data, not by visually rendering the drawing (no tool available here can
+  render/screenshot the CAD viewer). It's a reasonable starting default, not a
+  pixel-verified boundary. **The first time you use this pattern on a new project, open
+  the returned `view_link` and visually confirm nothing overlaps the title block** before
+  trusting it for unattended/repeated use.
+- **Only cleanly reusable at A2 landscape, or other ISO 'A' landscape sizes via uniform
+  rescaling** (A0/A1/A3/A4 landscape all share the same √2:1 aspect ratio as A2, so
+  scaling `pdfExport.frame`, the block's `position`, and its `scale` by the same factor
+  keeps everything proportional). **Portrait orientation, or non-ISO sizes (e.g. ANSI
+  D/E), are not trivially derived from this template** — the title block's artwork
+  (line lengths, text positions) is fixed, hand-drafted geometry, not a parametric
+  layout, so a different aspect ratio needs its own template rather than a stretch of
+  this one (stretching non-uniformly will visibly distort the border and text).
+- **Rotated placement isn't covered** by the simple placement formula above — this
+  template uses `rotation: 0`.
 
 ---
 
@@ -547,7 +690,6 @@ Creates a new CAD model from a `cad_data` object. **Must be called before `cloud
           "revisionClouds": [],
           "hatches": [],
           "images": [],
-          "block_references": [],
           "block_instances": [],
           "layers": []
         }
@@ -712,7 +854,7 @@ Load a CAD model from cloud storage.
               ],
               "tables": [], "axes": [], "constructionLines": [],
               "revisionClouds": [], "hatches": [], "images": [],
-              "block_references": [], "block_instances": [], "layers": []
+              "block_instances": [], "layers": []
             }
           ]
         }
@@ -744,7 +886,7 @@ Load a CAD model from cloud storage.
 
 **Closed polygon from lines:** Share the same `groupId` across connected line segments.
 
-**Reusable details:** Define in `block_references` once, place many times via `block_instances` with different `position`, `rotation`, and `scale`.
+**Reusable details:** Define once in the top-level `blockReferences`, place many times via `block_instances` with different `position`, `rotation`, and `scale`.
 
 **Organised drawings:** Assign elements to `layers` by referencing their `type` and `id`. Enable `displayColorByLayers` in settings to inherit layer colors.
 

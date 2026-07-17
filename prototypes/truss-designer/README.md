@@ -26,7 +26,10 @@ and dead / sheeting / snow / wind (uplift) loads:
 5. Visualizes the model client-side with `SKYCIV.renderer`.
 6. On request, drafts a truss elevation CAD drawing via `cloudcad.model.create` +
    `cloudcad.file.save` (generated directly from the same node/member geometry, since
-   CloudCAD has no automatic S3D→CAD converter - see `server/cadDrawing.js`).
+   CloudCAD has no automatic S3D→CAD converter - see `server/cadDrawing.js`). The
+   drawing is placed on an A2-landscape page with a title block by default, per
+   `cloudcad-api/SKILLS.md`'s "Pages & Title Blocks" template - the truss is uniformly
+   scaled and centered into a conservative "keep clear" zone alongside the title block.
 7. "Optimize Section" re-checks every section size in the dropdown (in parallel) against
    the current span/type/height/loads and recommends the smallest (by area) that passes
    every member, then re-runs the full analysis with that section selected -
@@ -84,6 +87,14 @@ Then open http://localhost:4100.
   "error in calculating adjustment factors". The real flow is `adjust_factor_only: true`
   first to get the full 7-row factor table, then a second call with that table attached
   - see `server/quickDesignClient.js`.
+- The CAD drawing's title block is `cloudcad-api/assets/Title-Block-Example.json`,
+  loaded directly from that skill at runtime (not duplicated here) - a real,
+  platform-exported A2-landscape page + title block. The truss is fit into a
+  conservative "keep clear" zone next to it (`SAFE_ZONE` in `server/cadDrawing.js`) -
+  this zone is an estimate derived from analyzing the title block's coordinates, not a
+  visually-verified boundary (no tool available here can render/screenshot the CAD
+  viewer) - see `cloudcad-api/SKILLS.md`'s "Known limitations" for the same caveat.
+  Visually check a generated drawing to confirm nothing overlaps the title block.
 
 ## Updates
 
@@ -92,3 +103,4 @@ Then open http://localhost:4100.
 - API was running slow, removed the getAnalysisReport function as it's not widely used and updated the skill to prevent this in future prototypes
 - Requested it return the analysis model link, updated in the skill too
 - Deflection was missing from the critical utility ratio - now computed for real (top chord only) instead of excluded
+- CAD drawing now defaults to a full A2-landscape page with a title block (per the updated cloudcad-api skill), instead of bare geometry
