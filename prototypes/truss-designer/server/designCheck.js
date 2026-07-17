@@ -61,29 +61,58 @@ function envelopeMemberForces(solveFunctionResult, comboIds, memberId) {
 // The NDS calculator response has no single fixed "Utilization Ratio" key guaranteed -
 // take the governing (largest) entry tagged `units: "utility"` instead of guessing a key.
 //
-// Deflection Utilization entries are excluded: this app doesn't compute each member's
-// actual deflection under load (that needs a further S3D.results.fetchMemberResult call
-// per member), so `ad_LL`/`ad_LT` are sent as fixed placeholder values - identical for
-// every member and every section size. Including them let a meaningless constant (it
-// happened to be the largest number for every candidate) silently dominate the
-// governing ratio and made every section size look equally (in)efficient. This means
-// this app checks NDS *strength* (bending/shear/tension/compression/combined), not
-// deflection serviceability - a real limitation, documented in the assumptions panel.
-function extractGoverningUtilization(qdResultsObj) {
+// Deflection Utilization entries are only included when `includeDeflection` is true -
+// that's only the case for members this app fed *real* computed ad_LL/ad_LT (actual
+// deflection under load, see computeTopChordDeflections below). For members still on
+// the fixed placeholder values (0.1in/0.12in - identical regardless of that member's
+// real length/load/section), including their Deflection Utilization would let a
+// meaningless constant silently dominate the governing ratio.
+function extractGoverningUtilization(qdResultsObj, includeDeflection) {
   if (!qdResultsObj || typeof qdResultsObj !== 'object') return { ratio: null, label: null };
   let governing = null;
   for (const entry of Object.values(qdResultsObj)) {
     if (!entry || entry.units !== 'utility' || typeof entry.value !== 'number') continue;
-    if (/deflection/i.test(entry.label || '')) continue;
+    if (!includeDeflection && /deflection/i.test(entry.label || '')) continue;
     if (!governing || entry.value > governing.value) governing = entry;
   }
   return governing ? { ratio: governing.value, label: governing.label || null } : { ratio: null, label: null };
 }
 
+// `S3D.results.fetchMemberResult` with res_key:"displacement", type:"array" returns, per
+// requested LC, an array of resultant deflection values at 5 stations (0/25/50/75/100%)
+// along the member - already relative to the member's own chord (not global rigid-body
+// displacement), confirmed against the live API. Takes the peak absolute value as the
+// member's deflection under that load case.
+function parseDeflection(fetchResult) {
+  const stations = fetchResult?.data?.[0];
+  if (!Array.isArray(stations)) return null;
+  let peak = 0;
+  for (const v of stations) {
+    if (typeof v === 'number' && Math.abs(v) > peak) peak = Math.abs(v);
+  }
+  return peak;
+}
+
+// Builds { [memberId]: { adLL, adLT } } from the raw fetchMemberResult function results
+// for the top-chord members - see index.js for why only the top chord (the only members
+// actually carrying transverse load in this model) is fetched, and why 2 fetch calls per
+// member (live-only combo, total-service combo) are appended to the main solve session
+// rather than requested as their own session (each fetchMemberResult calls costs real
+// server-side compute; batching avoids paying for an extra solve per call).
+function buildDeflectionMap(topChordMemberIds, liveFetchResults, totalFetchResults) {
+  const map = {};
+  topChordMemberIds.forEach((memberId, i) => {
+    const adLL = parseDeflection(liveFetchResults[i]);
+    const adLT = parseDeflection(totalFetchResults[i]);
+    if (adLL != null && adLT != null) map[memberId] = { adLL, adLT };
+  });
+  return map;
+}
+
 // Checks EVERY member (no pre-screening) - the user wants proof every member was
 // actually checked, and a small truss (typically 15-30 members) makes this cheap enough
 // to do directly in one Quick Design batch call.
-async function findAllMemberDesigns({ solveFunctionResult, comboIds, s3dModel, layout }) {
+async function findAllMemberDesigns({ solveFunctionResult, comboIds, s3dModel, layout, deflectionByMember }) {
   const memberIds = Object.keys(s3dModel.members);
   const { b, d } = layout.section;
 
@@ -93,20 +122,26 @@ async function findAllMemberDesigns({ solveFunctionResult, comboIds, s3dModel, l
     meta: layout.memberMeta[memberId],
   }));
 
-  const demands = envelopes.map((e) => ({
-    b, d,
-    L: Math.max(e.meta.lengthFt, 0.5),
-    Nc: e.peak.N < 0 ? Math.abs(e.peak.N) : 0,
-    Nt: e.peak.N > 0 ? e.peak.N : 0,
-    Mz: Math.abs(e.peak.Mz),
-    Vz: Math.abs(e.peak.Vz),
-  }));
+  const demands = envelopes.map((e) => {
+    const deflection = deflectionByMember?.[e.memberId];
+    return {
+      b, d,
+      L: Math.max(e.meta.lengthFt, 0.5),
+      Nc: e.peak.N < 0 ? Math.abs(e.peak.N) : 0,
+      Nt: e.peak.N > 0 ? e.peak.N : 0,
+      Mz: Math.abs(e.peak.Mz),
+      Vz: Math.abs(e.peak.Vz),
+      adLL: deflection?.adLL,
+      adLT: deflection?.adLT,
+      hasRealDeflection: Boolean(deflection),
+    };
+  });
 
   const qdResults = await runBatch(demands);
 
   const ranked = envelopes.map((e, i) => {
     const qd = qdResults[i]?.data ?? qdResults[i];
-    const { ratio, label } = extractGoverningUtilization(qd?.results);
+    const { ratio, label } = extractGoverningUtilization(qd?.results, demands[i].hasRealDeflection);
     const check = ratio == null ? null : (ratio <= 1.0 ? 'PASS' : 'FAIL');
     const comboId = e.governingCombo.Mz ?? e.governingCombo.N ?? comboIds[0];
     return {
@@ -116,6 +151,7 @@ async function findAllMemberDesigns({ solveFunctionResult, comboIds, s3dModel, l
       comboId,
       comboName: layout.comboNames[comboId] || `Combo ${comboId}`,
       demand: demands[i],
+      hasRealDeflection: demands[i].hasRealDeflection,
       utilizationRatio: ratio,
       governingCheck: label,
       designCheck: check,
@@ -181,6 +217,7 @@ function getReactionSummary({ solveFunctionResult, comboIds, s3dModel, layout })
 module.exports = {
   findAllMemberDesigns,
   getReactionSummary,
+  buildDeflectionMap,
   extractPeakForces,
   envelopeMemberForces,
   extractGoverningUtilization,

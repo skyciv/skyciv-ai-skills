@@ -247,3 +247,5 @@ It's also a good idea to show a log of what the software is doing, what API it i
 
 **Transparency and Results**
 It's also helpful to show results for each step in the API, even if the results are partial. For example, if you intend to run S3D.model.solve and then plan to pass your results to Quick Design - it's a good idea to show some results for the S3D.model.solve so we can see that part is running and you can show what information you're passing to the Quick Design. This transparency is very valuable to the engineer.
+
+Return the link to the S3D model. Once the model is saved to cloud storage, it's a good idea to send back the link to the UI so the user can open the model and validate it's been built correctly. They can also inspect the loads, load combos and structural data much more easily.

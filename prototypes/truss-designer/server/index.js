@@ -6,7 +6,7 @@ const express = require('express');
 
 const { buildTrussModel, TRUSS_TYPES, SECTION_SIZES, SPACING_FT } = require('./trussModel');
 const { runSession, SkyCivError } = require('./skycivClient');
-const { findAllMemberDesigns, getReactionSummary } = require('./designCheck');
+const { findAllMemberDesigns, getReactionSummary, buildDeflectionMap } = require('./designCheck');
 const { buildCadData } = require('./cadDrawing');
 const { SPECIES, GRADE } = require('./quickDesignClient');
 
@@ -52,9 +52,27 @@ app.post('/api/analyze', async (req, res) => {
     const { s3d_model, layout } = req.body;
     if (!s3d_model || !layout) throw new Error('s3d_model and layout are required - generate a model first.');
 
-    const comboIds = Object.keys(s3d_model.load_combinations || {});
+    // Strength envelope must only use the factored ASCE 7-22 LRFD combos - the two
+    // unfactored "Service: ..." combos in the model exist purely to drive the real
+    // deflection check below and must never be mixed into the strength check.
+    const strengthComboIds = layout.strengthComboIds;
+    const { live: liveComboId, total: totalComboId } = layout.serviceComboIds;
 
-    // Session 1: set + solve + save-for-a-link (must succeed)
+    // Real per-member deflection (see designCheck.js's extractGoverningUtilization
+    // comment) needs each top-chord member's actual deflected shape under the two
+    // service-level combos - one S3D.results.fetchMemberResult call per member per
+    // combo. This only covers the top chord (the only members carrying transverse load
+    // in this model - the bottom chord and webs have no meaningful transverse
+    // deflection), and is appended to this same session rather than a separate one, so
+    // it doesn't pay for a second solve. This is real API cost (confirmed against the
+    // live API: concurrent sessions do NOT parallelize this well - it's cheaper to
+    // batch it all into one session than to split it into concurrent ones).
+    const deflectionFetchCalls = layout.topChordMemberIds.flatMap((memberId) => [
+      { function: 'S3D.results.fetchMemberResult', arguments: { member_id: Number(memberId), LC: [Number(liveComboId)], res_key: 'displacement', type: 'array' } },
+      { function: 'S3D.results.fetchMemberResult', arguments: { member_id: Number(memberId), LC: [Number(totalComboId)], res_key: 'displacement', type: 'array' } },
+    ]);
+
+    // Session 1: set + solve + save-for-a-link + top-chord deflection fetches (must succeed)
     const modelFileName = `truss-${Date.now()}`;
     const solveFunctions = [
       { function: 'S3D.model.set', arguments: { s3d_model } },
@@ -68,10 +86,12 @@ app.post('/api/analyze', async (req, res) => {
         },
       },
       { function: 'S3D.file.save', arguments: { name: modelFileName, path: 'truss-designer/', public_share: true } },
+      ...deflectionFetchCalls,
     ];
     const solveEnvelope = await runSession(solveFunctions);
 
-    // functions[0] = session.start, [1] = model.set, [2] = model.solve, [3] = file.save
+    // functions[0] = session.start, [1] = model.set, [2] = model.solve, [3] = file.save,
+    // [4..] = deflection fetches (live, total, live, total, ... per top-chord member)
     const solveResult = solveEnvelope.functions[2];
     const saveResult = solveEnvelope.functions[3];
     const isUrl = (v) => typeof v === 'string' && /^https?:\/\//.test(v);
@@ -80,8 +100,13 @@ app.post('/api/analyze', async (req, res) => {
       public_link: isUrl(saveResult?.public_link) ? saveResult.public_link : null,
     };
 
-    const design = await findAllMemberDesigns({ solveFunctionResult: solveResult, comboIds, s3dModel: s3d_model, layout });
-    const reactions = getReactionSummary({ solveFunctionResult: solveResult, comboIds, s3dModel: s3d_model, layout });
+    const deflectionResults = solveEnvelope.functions.slice(4);
+    const liveFetchResults = layout.topChordMemberIds.map((_, i) => deflectionResults[i * 2]);
+    const totalFetchResults = layout.topChordMemberIds.map((_, i) => deflectionResults[i * 2 + 1]);
+    const deflectionByMember = buildDeflectionMap(layout.topChordMemberIds, liveFetchResults, totalFetchResults);
+
+    const design = await findAllMemberDesigns({ solveFunctionResult: solveResult, comboIds: strengthComboIds, s3dModel: s3d_model, layout, deflectionByMember });
+    const reactions = getReactionSummary({ solveFunctionResult: solveResult, comboIds: strengthComboIds, s3dModel: s3d_model, layout });
 
     res.json({
       solve: solveResult,
@@ -108,6 +133,13 @@ app.post('/api/analyze', async (req, res) => {
 // recommends the smallest (by cross-sectional area) that passes every member - runs
 // each candidate's solve + NDS batch concurrently (independent SkyCiv sessions) so the
 // wall-clock cost stays close to that of a single /api/analyze call, not N of them.
+//
+// Strength only - deliberately does NOT fetch real per-member deflection (unlike
+// /api/analyze), since that costs ~1 extra API round-trip per top-chord member and
+// would multiply across every candidate section here. The full /api/analyze call that
+// automatically follows a recommendation is the authoritative check, including
+// deflection - if the recommended section turns out to fail deflection there, that
+// will show up immediately in the results panel.
 app.post('/api/optimize', async (req, res) => {
   try {
     const { spanFt, heightFt, trussType, deadPsf, sheetingPsf, snowPsf, windPsf } = req.body;
@@ -128,7 +160,7 @@ app.post('/api/optimize', async (req, res) => {
     const results = await Promise.all(sectionKeys.map(async (sectionKey) => {
       try {
         const { s3d_model, layout } = buildTrussModel({ ...inputs, sectionKey });
-        const comboIds = Object.keys(s3d_model.load_combinations || {});
+        const comboIds = layout.strengthComboIds;
         const solveEnvelope = await runSession([
           { function: 'S3D.model.set', arguments: { s3d_model } },
           {

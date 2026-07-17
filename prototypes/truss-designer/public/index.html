@@ -87,7 +87,7 @@
           <li>Loads are psf of horizontal plan area, converted to a sloped-member line load via truss spacing x cos(roof slope)</li>
           <li>5 ASCE 7-22 &sect;2.3.1 LRFD combinations checked (no floor live load in a roof-only truss): 1.4D+1.4SW; 1.2D+1.2SW+1.6S; 1.2D+1.2SW+1.6S+0.5W; 1.2D+1.2SW+1.0W+0.5S; 0.9D+0.9SW+1.0W (uplift)</li>
           <li>Every member is checked against the NDS 2018 Wood Member Design calculator using the worst-case (enveloped) force per component across all 5 combinations</li>
-          <li>Checks strength only (bending, shear, tension, compression, combined) - deflection serviceability is not checked, since it needs each member's actual computed deflection under load, not a placeholder</li>
+          <li>Strength (bending, shear, tension, compression, combined) is checked for every member. Deflection serviceability is also checked, but only for the top chord - the only members carrying transverse load in this model - using each member's real computed deflection under two unfactored service-level combos (total load, live/snow-only)</li>
           <li>"Optimize Section" re-runs the strength check for every section size in the dropdown and recommends the smallest (by area) that passes every member</li>
           <li>Unbraced length L = member length; effective length for bending Le = 2.06 x L (the calculator's own conservative default)</li>
         </ul>

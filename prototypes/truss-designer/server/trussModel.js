@@ -211,10 +211,17 @@ function buildTrussModel({ spanFt, heightFt, trussType, sectionKey, deadPsf, she
     3: { name: '1.2D + 1.2SW + 1.6S + 0.5W', criteria: 'strength', D1: 1.2, SW1: 1.2, S1: 1.6, W1: 0.5 },
     4: { name: '1.2D + 1.2SW + 1.0W + 0.5S', criteria: 'strength', D1: 1.2, SW1: 1.2, S1: 0.5, W1: 1.0 },
     5: { name: '0.9D + 0.9SW + 1.0W (uplift)', criteria: 'strength', D1: 0.9, SW1: 0.9, S1: 0, W1: 1.0 },
+    // Unfactored (service-level) combos, for deflection checks only - NDS deflection
+    // limits (L/360 live, L/240 total, etc.) apply to actual service loads, not factored
+    // LRFD strength demand, so these must never be included in the strength envelope.
+    6: { name: 'Service: D + SW + S (total)', criteria: 'service', D1: 1.0, SW1: 1.0, S1: 1.0, W1: 0 },
+    7: { name: 'Service: S only (live)', criteria: 'service', D1: 0, SW1: 0, S1: 1.0, W1: 0 },
   };
   const load_cases = {
     'ASCE-7-22-LRFD': { D1: 'Dead: dead', SW1: 'Dead: dead', S1: 'Snow: snow', W1: 'Wind: wind' },
   };
+  const strengthComboIds = ['1', '2', '3', '4', '5'];
+  const serviceComboIds = { total: '6', live: '7' };
 
   const s3d_model = {
     settings: { units: 'imperial' },
@@ -248,6 +255,8 @@ function buildTrussModel({ spanFt, heightFt, trussType, sectionKey, deadPsf, she
       supportRole,
       loads: { deadPsf, sheetingPsf, snowPsf, windPsf },
       comboNames: Object.fromEntries(Object.entries(load_combinations).map(([id, c]) => [id, c.name])),
+      strengthComboIds,
+      serviceComboIds,
     },
   };
 }

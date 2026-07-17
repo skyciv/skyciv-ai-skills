@@ -23,7 +23,14 @@ function getCreds() {
 
 // Fields shared by every call for a given member (geometry + species/grade - the demand
 // forces and the adjustment-factor mode/table are the only things that vary call-to-call).
-function baseFields({ b, d, L }) {
+//
+// ad_LL/ad_LT (actual live-load/long-term deflection, inches) default to a fixed
+// placeholder - this is only correct when the caller supplies real computed values
+// (see designCheck.js's `hasRealDeflection`); for members without real deflection data
+// these stay as a placeholder and the resulting Deflection Utilization entries must be
+// excluded from any governing-ratio search, since they're identical for every such
+// member regardless of its actual length/load/section.
+function baseFields({ b, d, L, adLL, adLT }) {
   return {
     method: METHOD,
     table_no: TABLE_NO,
@@ -40,7 +47,7 @@ function baseFields({ b, d, L }) {
     L, Le: 2.06 * L,
     kz: 1, ky: 1,
     mc: 19, temp: 70, msc: 'Dry',
-    df_LL: 360, df_LT: 180, ad_LL: 0.1, ad_LT: 0.12,
+    df_LL: 360, df_LT: 180, ad_LL: adLL ?? 0.1, ad_LT: adLT ?? 0.12,
     lambda_c: 50, lambda_b: 50,
     bp: 'Sagging',
     uid: UID,
