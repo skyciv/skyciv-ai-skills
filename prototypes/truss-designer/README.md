@@ -28,8 +28,11 @@ and dead / sheeting / snow / wind (uplift) loads:
    `cloudcad.file.save` (generated directly from the same node/member geometry, since
    CloudCAD has no automatic S3D→CAD converter - see `server/cadDrawing.js`). The
    drawing is placed on an A2-landscape page with a title block by default, per
-   `cloudcad-api/SKILLS.md`'s "Pages & Title Blocks" template - the truss is uniformly
-   scaled and centered into a conservative "keep clear" zone alongside the title block.
+   `cloudcad-api/SKILLS.md`'s "Pages & Title Blocks" template - drawn at true size in
+   real mm (dimensions are real measurements) and only translated, never scaled, into a
+   conservative "keep clear" zone alongside the title block. `settings.canvasLengthUnits`
+   is set to `"ft"` purely so dimension labels display in feet - the underlying
+   coordinates stay true mm throughout (see notes below on why that distinction matters).
 7. "Optimize Section" re-checks every section size in the dropdown (in parallel) against
    the current span/type/height/loads and recommends the smallest (by area) that passes
    every member, then re-runs the full analysis with that section selected -
@@ -88,13 +91,30 @@ Then open http://localhost:4100.
   first to get the full 7-row factor table, then a second call with that table attached
   - see `server/quickDesignClient.js`.
 - The CAD drawing's title block is `cloudcad-api/assets/Title-Block-Example.json`,
-  loaded directly from that skill at runtime (not duplicated here) - a real,
-  platform-exported A2-landscape page + title block. The truss is fit into a
-  conservative "keep clear" zone next to it (`SAFE_ZONE` in `server/cadDrawing.js`) -
-  this zone is an estimate derived from analyzing the title block's coordinates, not a
-  visually-verified boundary (no tool available here can render/screenshot the CAD
-  viewer) - see `cloudcad-api/SKILLS.md`'s "Known limitations" for the same caveat.
-  Visually check a generated drawing to confirm nothing overlaps the title block.
+  loaded directly from that skill at runtime (not duplicated here, and not rescaled) - a
+  real, platform-exported A2-landscape page + title block. The truss is drawn at **true
+  size** in real mm and only translated (never scaled) into a conservative "keep clear"
+  zone next to it (`SAFE_ZONE`/`centerInSafeZone` in `server/cadDrawing.js`) - an earlier
+  version scaled geometry to visually fill the page, which silently corrupted every
+  dimension label (a 24 ft span showed as "40000mm"); CloudCAD dimensions report the
+  true distance between their points, so resizing the model resizes the "truth" too.
+  This page template's plot scale (~1:100, tuned for building/site drawings) means a
+  single truss will look small on the sheet with a lot of surrounding white space - that
+  is correct at this scale, not a bug.
+- `settings.canvasLengthUnits` is `"ft"` but every coordinate (truss geometry AND the
+  reused title block) stays in **true real mm** - that setting only controls how
+  dimension *labels* are converted for display, it does not reinterpret what the stored
+  x/y numbers mean. An earlier version pre-divided every coordinate by 304.8 to "convert
+  to feet" while also setting this to `"ft"`, which double-converted: a real 24 ft span
+  became 24mm internally (304.8x too small - also why the title block's un-rescaled text
+  then dwarfed its own shrunken border), then that already-wrong tiny value was converted
+  again for the label, displaying "0.08 ft" (exactly 24/304.8). Never rescale coordinates
+  to change the displayed unit - only flip the settings key.
+- The `SAFE_ZONE` rectangle is still an estimate derived from analyzing the title
+  block's coordinates, not a visually-verified boundary (no tool available here can
+  render/screenshot the CAD viewer) - see `cloudcad-api/SKILLS.md`'s "Known limitations"
+  for the same caveat. Visually check a generated drawing to confirm nothing overlaps
+  the title block.
 
 ## Updates
 
@@ -104,3 +124,5 @@ Then open http://localhost:4100.
 - Requested it return the analysis model link, updated in the skill too
 - Deflection was missing from the critical utility ratio - now computed for real (top chord only) instead of excluded
 - CAD drawing now defaults to a full A2-landscape page with a title block (per the updated cloudcad-api skill), instead of bare geometry
+- CAD drawing was scaling the truss to fill the page, which corrupted dimension labels (24 ft showed as "40000mm") - now drawn at true size and only repositioned, never resized; updated the skill to warn against this specifically
+- CAD units still showed mm - tried pre-converting every coordinate to feet, which double-converted with the display setting and showed "0.08 ft" for a 24 ft span, with the title block's un-rescaled text dwarfing its own shrunken border - `canvasLengthUnits` only controls the displayed label, it doesn't reinterpret stored coordinates, so everything now stays in true mm and only that setting flips to "ft"; updated the skill to document this and to fix the incorrect guidance it previously gave

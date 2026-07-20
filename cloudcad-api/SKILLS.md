@@ -613,18 +613,44 @@ exported from the platform. Copy these three pieces verbatim into your new `cad_
    `position: {x: 96700, y: -86048}`, `scale: {x: 2, y: 2}`, `rotation: 0`, referencing
    the `blockId` from step 2.
 
-Then add your own drawing content (lines, dimensions, texts) to the canvas, scaled and
-translated to sit inside the page frame without overlapping the title block. To fit
-arbitrary drawing content into the page automatically:
+Then add your own drawing content (lines, dimensions, texts) to the canvas, **translated
+only** to sit inside the page frame without overlapping the title block:
 
 ```
 1. Compute the new content's bounding box: [contentMinX, contentMaxX] x [contentMinY, contentMaxY]
 2. Define a safe drawing rectangle inside the page frame, clear of the title block
-   (see "Known limitations" below for this template specifically)
-3. scale = min(safeWidth / contentWidth, safeHeight / contentHeight)   // uniform, never distort
-4. Translate + scale every coordinate in your content so its bounding-box center
-   lands on the safe rectangle's center
+   (see below for this template specifically)
+3. Translate every coordinate in your content by (safeCenter - contentCenter) so its
+   bounding-box center lands on the safe rectangle's center - do NOT scale/resize it
 ```
+
+> **Never scale model geometry to force-fit a page — this is a real mistake this skill
+> made once, do not repeat it.** CAD model coordinates are the true, real-world
+> measurement of what's drawn; CloudCAD's `dimensions` report the actual distance
+> between their two points, so scaling geometry to fit a page silently corrupts every
+> dimension label along with it (a 24 ft span rendered as "40000mm" instead of the true
+> 7315.2mm, because the whole drawing had been scaled up ~5.5x to visually fill the
+> page). **Draw everything at true size and only translate (reposition) it.** If true-size
+> content is smaller than the page at this template's plot scale, that's correct — the
+> object is just small relative to the sheet, the same as it would be on a real drafter's
+> A2 sheet at this scale. If you need the object to visually fill more of the page, that
+> is a **plot-scale problem** (use a title-block/page template built for a finer scale,
+> e.g. 1:20 instead of this one's ~1:100 — see "Known limitations"), never a
+> "stretch the model" problem.
+
+> **`settings.canvasLengthUnits` is display-only — it does NOT reinterpret what stored
+> x/y numbers mean, so never rescale coordinates when changing it.** Raw coordinates are
+> real mm internally regardless of this setting; changing it only changes how dimension
+> *labels* are converted for display when read back. If you pre-divide every coordinate
+> by 304.8 to "convert to feet" and *also* set `canvasLengthUnits: "ft"`, you double
+> convert: the geometry becomes 304.8x too small, and then that already-wrong tiny value
+> gets converted again for the label (a real 24 ft span became 24mm internally, then
+> displayed as "0.08 ft" — exactly 24/304.8). This also breaks a reused title block the
+> same way (its text `size` fields are untouched scalars while its position coordinates
+> get incorrectly shrunk, so its text ends up dwarfing its own shrunken border). **To
+> change the displayed unit, only ever change the `canvasLengthUnits` setting itself —
+> build all geometry in true real mm exactly as described above, regardless of what unit
+> you want dimension labels to read in.**
 
 **For this exact template (A2 landscape)**, analysis of the title block's own geometry
 shows its info table (the actual text fields) occupies roughly the **right half** of the

@@ -13,8 +13,27 @@ const path = require('path');
 // told otherwise): every drawing is wrapped in that skill's ready-made A2-landscape
 // page + title block template, reused directly from the skill's own asset rather than
 // duplicated here, so there's one source of truth for it.
+//
+// IMPORTANT - two mistakes already made and fixed here, do not repeat either:
+//
+// 1. Model geometry is drawn at TRUE SIZE (real mm), never rescaled to fit the page.
+//    CAD model coordinates are the actual measurement; CloudCAD reports a dimension's
+//    value as the true distance between its two points, so scaling geometry to
+//    force-fit a page also silently corrupts every dimension label (a 24 ft span once
+//    rendered its dimension as "40000mm" instead of the true 7315.2mm). Only *position*
+//    (translate) is adjusted - see `centerInSafeZone` below.
+//
+// 2. `settings.canvasLengthUnits` does NOT reinterpret what the stored x/y numbers mean
+//    - raw coordinates are always real mm internally regardless of this setting; it only
+//    controls how dimension *labels* are displayed/converted for reading. Pre-dividing
+//    every coordinate by 304.8 (to "convert to feet") while ALSO setting
+//    canvasLengthUnits to "ft" double-converts: the geometry becomes 304.8x too small,
+//    then its already-wrong tiny value gets converted again for display (a 24 ft span
+//    became 24mm internally, then displayed as "0.08 ft" - exactly 24/304.8). Never
+//    rescale coordinates for a unit change - only flip this settings key.
 
 const FT_TO_MM = 304.8;
+const CAD_UNITS = 'ft'; // display-only - see note 2 above; never rescale coordinates for this.
 
 const TITLE_BLOCK_ASSET_PATH = path.join(__dirname, '..', '..', '..', 'cloudcad-api', 'assets', 'Title-Block-Example.json');
 const titleBlockAsset = JSON.parse(fs.readFileSync(TITLE_BLOCK_ASSET_PATH, 'utf8'));
@@ -22,11 +41,38 @@ const TITLE_BLOCK_REF = titleBlockAsset.blockReferences[0];
 const TITLE_BLOCK_INSTANCE = titleBlockAsset.canvases[0].block_instances[0];
 const PAGE_PDF_EXPORT = titleBlockAsset.pdfExport;
 
-// Conservative "keep clear" zone for this A2-landscape template, derived by analyzing
-// the title block's own coordinate data (not visually verified against the rendered
-// page - see cloudcad-api/SKILLS.md's "Known limitations"). The title block's info
-// table occupies roughly the right half of the page, so new content is confined to the
-// left portion.
+// Reused verbatim from the title-block asset's own `attributeStyles[0]` - tuned for
+// true-size (real mm) geometry at this page's plot scale (dimensionTextSize:378 matches
+// the skill's own "Building (rooms), 3000-10000mm" bracket, which covers most truss
+// spans). Do not rescale this for a display-unit change - see note 2 above.
+const ATTRIBUTE_STYLE = {
+  id: 'as-default',
+  name: 'Default Style',
+  settings: {
+    linearArrowShape: 'arrow', linearArrowLength: 216, linearArrowWidth: 216,
+    linearExtLineStartOffset: 0, linearExtLineEndOffset: 0,
+    linearTextOffset: 0, linearTextHorizontalOffset: 0, linearTextHorizontalPosition: 'center',
+    dimensionTextSize: 378,
+    angleArrowShape: 'arrow', angleArrowLength: 216, angleArrowWidth: 216,
+    angleDimensionTextSize: 378, angleTextOffset: 600, angleTextOrientation: 'horizontal',
+    radiusArrowShape: 'arrow', radiusArrowLength: 216, radiusArrowWidth: 216,
+    radiusDimensionTextSize: 378, radiusTextOffset: 0,
+    leaderArrowShape: 'arrow', leaderArrowLength: 216, leaderArrowWidth: 216,
+    leaderTextSize: 378, leaderTextOffsetHorizontal: 0, leaderTextOffsetVertical: 0,
+    axisExtension: 5000, axisCircleDiameter: 1080, axisTextSize: 324,
+    axisDashLength: 216, axisDashGap: 108,
+    textSizeInput: 14, textSizeOverride: false, fontFamily: 'monospace', tableFontSize: 400,
+  },
+};
+
+// This template's page frame represents 59400 x 42000 real-world mm at its declared
+// plot scale (594mm x 420mm A2 paper x scale:100) - i.e. drawn at true size, only
+// objects up to ~59 m x 42 m actually fill the sheet. A single truss (max supported
+// span 80 ft = 24384mm) is much smaller than that and will appear small within the
+// safe zone below, with generous surrounding white space - correct at this scale, not a
+// sizing bug. For a truss-appropriate "zoomed in" scale, use a title-block/page template
+// built for a finer scale (e.g. 1:20 instead of this one's ~1:100) - see
+// cloudcad-api/SKILLS.md's "Known limitations".
 const SAFE_ZONE = { minX: 69000, maxX: 114000, minY: -103000, maxY: -65000 };
 
 // CloudCAD's canvas y-axis is up = negative (cloudcad-api/SKILLS.md "Coordinate
@@ -52,55 +98,24 @@ function boundingBox(points) {
     if (p.y < minY) minY = p.y;
     if (p.y > maxY) maxY = p.y;
   }
-  return { minX, maxX, minY, maxY, width: maxX - minX, height: maxY - minY };
+  return { minX, maxX, minY, maxY };
 }
 
-// Uniformly scales + translates every coordinate (never distorting the truss's real
-// proportions) so the whole drawing's bounding box is centered inside SAFE_ZONE.
-// Returns the scale factor actually used, so callers can size text/dimensions to match.
-function fitToSafeZone(lines, dimensions, texts) {
+// Translates (never scales) every coordinate so the drawing's true-size bounding box is
+// centered inside SAFE_ZONE - preserves every real dimension exactly.
+function centerInSafeZone(lines, dimensions, texts) {
   const bbox = boundingBox(collectPoints(lines, dimensions, texts));
-  const safeWidth = SAFE_ZONE.maxX - SAFE_ZONE.minX;
-  const safeHeight = SAFE_ZONE.maxY - SAFE_ZONE.minY;
-  const scale = Math.min(safeWidth / bbox.width, safeHeight / bbox.height);
   const rawCx = (bbox.minX + bbox.maxX) / 2;
   const rawCy = (bbox.minY + bbox.maxY) / 2;
   const safeCx = (SAFE_ZONE.minX + SAFE_ZONE.maxX) / 2;
   const safeCy = (SAFE_ZONE.minY + SAFE_ZONE.maxY) / 2;
-  const tf = (p) => ({ x: safeCx + (p.x - rawCx) * scale, y: safeCy + (p.y - rawCy) * scale });
+  const dx = safeCx - rawCx;
+  const dy = safeCy - rawCy;
+  const tf = (p) => ({ x: p.x + dx, y: p.y + dy });
 
   lines.forEach((l) => { l.p1 = tf(l.p1); l.p2 = tf(l.p2); });
   dimensions.forEach((d) => { d.p1 = tf(d.p1); d.p2 = tf(d.p2); d.offsetPoint = tf(d.offsetPoint); });
   texts.forEach((t) => { t.position = tf(t.position); });
-
-  return { scale, finalWidth: bbox.width * scale, finalHeight: bbox.height * scale };
-}
-
-// Per cloudcad-api/SKILLS.md's sizing guidance: mm-based annotation sizes
-// (dimensionTextSize, arrow lengths) must scale with the drawing's final size on the
-// page, unlike pixel-based text `size` fields (texts[].size), which stay fixed.
-function buildAttributeStyle(referenceSize) {
-  const dimensionTextSize = Math.max(50, Math.round(referenceSize / 60));
-  const linearArrowLength = Math.round(dimensionTextSize * 0.6);
-  return {
-    id: 'as-default',
-    name: 'Default Style',
-    settings: {
-      linearArrowShape: 'arrow', linearArrowLength, linearArrowWidth: linearArrowLength,
-      linearExtLineStartOffset: 0, linearExtLineEndOffset: 0,
-      linearTextOffset: 0, linearTextHorizontalOffset: 0, linearTextHorizontalPosition: 'center',
-      dimensionTextSize,
-      angleArrowShape: 'arrow', angleArrowLength: linearArrowLength, angleArrowWidth: linearArrowLength,
-      angleDimensionTextSize: dimensionTextSize, angleTextOffset: 600, angleTextOrientation: 'horizontal',
-      radiusArrowShape: 'arrow', radiusArrowLength: linearArrowLength, radiusArrowWidth: linearArrowLength,
-      radiusDimensionTextSize: dimensionTextSize, radiusTextOffset: 0,
-      leaderArrowShape: 'arrow', leaderArrowLength: linearArrowLength, leaderArrowWidth: linearArrowLength,
-      leaderTextSize: dimensionTextSize, leaderTextOffsetHorizontal: 0, leaderTextOffsetVertical: 0,
-      axisExtension: 5000, axisCircleDiameter: 1080, axisTextSize: dimensionTextSize,
-      axisDashLength: 216, axisDashGap: 108,
-      textSizeInput: 14, textSizeOverride: false, fontFamily: 'monospace', tableFontSize: 400,
-    },
-  };
 }
 
 function buildCadData({ s3d_model, layout, title }) {
@@ -144,11 +159,11 @@ function buildCadData({ s3d_model, layout, title }) {
     },
   ];
 
-  const { finalWidth, finalHeight } = fitToSafeZone(lines, dimensions, texts);
+  centerInSafeZone(lines, dimensions, texts);
 
   return {
-    settings: { canvasLengthUnits: 'mm' },
-    attributeStyles: [buildAttributeStyle(Math.max(finalWidth, finalHeight))],
+    settings: { canvasLengthUnits: CAD_UNITS },
+    attributeStyles: [ATTRIBUTE_STYLE],
     blockReferences: [TITLE_BLOCK_REF],
     pdfExport: PAGE_PDF_EXPORT,
     canvases: [
