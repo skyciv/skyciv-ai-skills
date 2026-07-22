@@ -147,8 +147,8 @@ fetch('https://qd.skyciv.com/runBatch', {
     body: JSON.stringify({
         payload: JSON.stringify({
             uid: "2015-as4100-i-beam-capacity-calculator",
-            auth: "sam@skyciv.com",
-            key: "sZFl0x6w7iq53bub7sFzhpZuDVMiPJEyVNNaXN6Kb5DfuJl5RIuUTnzK6HwKx4k6",
+            auth: "SKYCIV_USERNAME_HERE",
+            key: "SKYCIV_KEY_HERE",
             input_arr: input_batch,
             pdf_report: true,
         })
