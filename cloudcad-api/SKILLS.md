@@ -692,6 +692,7 @@ Creates a new CAD model from a `cad_data` object. **Must be called before `cloud
   "arguments": {
     "cad_data": {
       "settings": { "canvasLengthUnits": "mm" },
+      "blockReferences": [],
       "canvases": [
         {
           "version": "2.0.0",
@@ -945,4 +946,8 @@ Apply the same formula to `angleDimensionTextSize`, `radiusDimensionTextSize`, `
 `textSizeInput` is in pixels and does **not** scale with geometry — keep it at `14` for body text, `20–28` for headings regardless of drawing scale.
 
 **`textPosition` is required on every text element.** Omitting it causes a crash when the user tries to select items. Default to `"middle-center"`.
+
+---
+
+## Integration with other tools
 
