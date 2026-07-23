@@ -22,9 +22,19 @@ This format is compatible with any assistant that can read markdown context — 
 ## Getting started
 
 1. **Get a SkyCiv API key** — sign up and grab one at [platform.skyciv.com/api](https://platform.skyciv.com/api). Most skills need it; a few (`run-quick-design`) need an API token from the same page.
-2. **Give your assistant the skill(s) it needs** — clone this repo and point your assistant at the relevant `SKILLS.md`, or copy the folder into your assistant's skills directory (e.g. Claude Code's `.claude/skills/`).
+2. **Clone this repo** and point your assistant at the relevant `SKILLS.md` file(s). See [Using with your AI tool](#using-with-your-ai-tool) below for per-tool setup.
 3. **Always start with `skyciv-api-v3`** if you're using any `*-api` skill — it covers auth, sessions, and the shared request/response envelope every other API skill builds on.
 4. **Read the API docs alongside the skill** when you need more depth: [skyciv.com/api/v3/docs](https://skyciv.com/api/v3/docs).
+
+### Using with your AI tool
+
+**Claude Code** — `CLAUDE.md` is auto-loaded when you open this repo. For another project, copy the relevant skill folder(s) into `.claude/skills/` in that project's root.
+
+**GitHub Copilot (VS Code)** — `.github/copilot-instructions.md` is auto-loaded as workspace context when you open this repo. Reference individual skills in Copilot Chat with `#file:path/to/SKILLS.md`.
+
+**Cursor** — Open this repo and reference skills with `@file` in Cursor Chat. For persistent context across sessions, copy relevant `SKILLS.md` content into `.cursor/rules/`.
+
+**Windsurf / other agents** — Copy the relevant `SKILLS.md` files into your agent's system prompt or rules directory, or include them as file context in your session.
 
 ---
 
@@ -76,7 +86,7 @@ Not every solution needs every skill — a simple calculator app might only need
 
 | App | Folder | What it demonstrates |
 |---|---|---|
-| **Scaffold Designer** | [`prototypes/scaffold-designer/`](./prototypes/scaffold-designer/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `run-quick-design` (AISC 360-16) → `renderer` → `cloudcad-api` to model, analyze, design-check, visualize and draft a tube-and-coupler scaffold from just a height, width and loading class. |
+| **Glass Balustrade Configurator** | [`prototypes/glass-balustrade-configurator/`](./prototypes/glass-balustrade-configurator/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `load-gen-api` (AS 1170.2 wind) → `load-combinations` (AS/NZS 1170.0) → `run-quick-design` (AS/NZS 1664) → `renderer` → `cloudcad-api` to model, wind/imposed-load-check, visualize and draft a glass balustrade (aluminium posts, glass infill, CHS handrail) from post spacing, run length, occupancy classification, and site/building data. |
 | **Truss Designer** | [`prototypes/truss-designer/`](./prototypes/truss-designer/README.md) | A local test app chaining `skyciv-api-v3` → `s3d-api` → `run-quick-design` (NDS 2018) → `renderer` → `cloudcad-api` to model, ASCE 7-22-check, visualize and draft a Warren/Fink/Howe/Pratt timber roof truss from span, height, type, and a single section size. |
 
 ---
@@ -87,7 +97,6 @@ When prototyping a solution (or if vibe coding a solution) it's a good idea to s
  - Don't use `result_filter` key in the `S3D.model.solve` space unless you're 100% sure it will work
  - Stick to a shorter `timeout` in the options key for the API (or leave as default), when prototyping if things go wrong it's easier to identify and test if things don't take >30s to fail.
 - Don't call `S3D.results.getAnalysisReport` by default as part of a solve/results pipeline. It re-solves the model and renders every section across every load combination - slow (60-90s+, often timing out) - for a PDF report that's rarely used and usually isn't even surfaced in the app's UI. Only wire it up behind its own explicit button/endpoint if the user actually asks for a downloadable report, the same way a CAD-drawing generation step is kept separate from the main analyze call.
- - If we're missing any key inputs that you would recommend, please let us know before you start coding. It's best to clarify any missing inputs.
 - If we're missing any key inputs that you would recommend, please let us know before you start coding. It's best to clarify any missing inputs. For example, in the wind load generator you will need certain key information - if the user misses this, please let them know before building the prototype.
 
 ---
@@ -99,6 +108,7 @@ Found a gap, an outdated example, or a mismatch with the live API? Open an issue
 
 ## Sample Prompts for Vibe Coding
 
+### Example 1: Truss Designer
 Goal:
 I'd like to build a structural engineering software for truss design. It should be an easy to use truss designer with nice graphics. The goal is to make an engaging, powerful and accurate design tool using reliable calculations. Give it a new age and high tech feel, with a coulour scheme of black and blue.
 
@@ -121,4 +131,29 @@ Result panel on the right should include:
 - reaction summary at my supports
 
 
+### Example 2: Balustrade design
+Goal:
+Let's build a glass balustrade configurator. The arrangement will consist of a glass panel between aluminium posts, fixed to concrete as well as a CHS handrail at the top. It will need to take into considerations wind loads (as per AS1170) and typical balustrade loads. It will also generate the CAD drawing with spacing, height dimensions.
+
+Task:
+It should use AS1170 load combinations and allow the user to select what type of imposed balustrade loads it should use (for example occupancy type A, B, C1, C2, C5 etc..). Please do a AS1664 check on the posts. And in the outputs should show governing post reactions.
+
+The inputs should be:
+- handrail height
+- spacing between posts
+- site location
+- building height, and dimensions (for the wind load generator)
+- elevation of the balustrade
+- importance factor 
+- glass height
+- post type (RHS, SHS and CHS) - dropdown
+- post sizes (ranging from 50-100 and various thicknesses) - dropdown
+
+Results:
+Result panel on the right should include:
+- critical utility ratio for posts and governing load case
+- critical member design reports of the AS1664 check
+- open link for CAD
+- table of members and their utilities (so I know it's all been checked)
+- governing post reaction (table)
 

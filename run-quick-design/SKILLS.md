@@ -97,6 +97,15 @@ axios.post('https://qd.skyciv.com/run', {
 
 ---
 
+## Troubleshooting
+
+**A call fails with `status: 1`, a generic `msg` like `"Failed to run."`, and an `err` like `"Cannot read properties of undefined (reading 'length')"` (or similar low-level JS error), even though every field matches the calculator's `schema.json`:**
+This is not a always request-shape bug — it could mean one of your *values* falls outside what that calculator's underlying material/section/species database actually has data for, and the backend crashes on the missing lookup instead of returning a clear validation error. Material/alloy/species/grade `enum`s in `schema.json` are frequently stubs (e.g. `2601-aluminium-design`'s `alloy` enum shows only `[1100]` as if that were the only option) — the live calculator accepts a much broader real set, but only specific (material, temper/grade) *pairs* have actual data rows, and there is no way to know which pairs are valid from the schema alone. Confirmed directly against the live API for `2601-aluminium-design`: `alloy: 6063, temper: "T5"` (a common architectural aluminium alloy/temper) crashes every call this way, while `alloy: 6061, temper: "T6"` and `alloy: 5052, temper: "H32"` both work. If you hit this, bisect by reverting to the calculator's own `sample_input.json` (known-good) and changing one field at a time against the live API until you find which value is unsupported — don't assume it's a bug in your request construction.
+
+**`sample_output.json` often doesn't reflect the calculator's real result keys:** some of these files are generic placeholder boilerplate (e.g. a "Design Summary" heading + one generic "Utilization Ratio" + one "Example Dimension" — the exact same three entries appear verbatim across multiple unrelated calculators' `sample_output.json`), not an actual captured response for that specific calculator. Treat `schema.json`/`sample_input.json` as authoritative for input field names/units; only trust `sample_output.json`'s result *key names* if they look calculator-specific (not this generic pattern) — otherwise expect the real `results` object to have different, calculator-specific keys, and code defensively (e.g. scan for `units: "utility"` entries rather than a fixed key name — see `extractGoverningUtilization`-style logic in the prototype apps under `prototypes/`).
+
+**Some result entries carry `"paid_only": true`:** this has been observed on `2601-aluminium-design`'s combined-action checks (e.g. "Combined Tension + Bending", "Combined Bending and Shear"). A value is still present, but on a free/trial account it may not reflect a genuinely computed result. If you're scanning for the governing (largest) `units: "utility"` value across all entries, be aware a `paid_only` entry could be silently governing the result on an account that hasn't verified it actually computes real values for that entry.
+
 ## Per-calculator assets
 
 Each calculator folder under `assets/<uid>/` contains:

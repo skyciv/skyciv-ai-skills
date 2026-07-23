@@ -237,6 +237,14 @@ Use `result_filter` and `lc_filter` in solve/results calls to return only what y
 **Reuse sessions for speed:**  
 Set `keep_open: true` in `S3D.session.start`, then pass the returned `last_session_id` as `auth.session_id` in subsequent calls. This skips re-authentication and is 4–8× faster.
 
+## Troubleshooting
+
+**"Your API credentials could not be authenticated. Please try again." / any auth-rejection `response.msg`:**
+This message comes straight from the live API when `auth.username`/`auth.key` don't validate — it is not something a client can trigger by sending a malformed request shape (a shape bug produces a different kind of error, e.g. about the missing/invalid field itself). If you see this and the `{username, key}` shape already matches this skill's docs exactly, don't keep editing the request code looking for a bug — the credentials themselves are almost certainly the problem:
+- Confirm this same failure reproduces across **every** function call in the account (e.g. a plain `S3D.model.solve` *and* a `standalone.loads.*`/`cloudcad.*` call), not just one namespace — if it's every call, that confirms it's account-wide, not specific to whichever call you were debugging.
+- Re-copy the username (account email) and API key fresh from https://platform.skyciv.com/api — a stale, truncated, or wrong-field value pasted into `.env` (or wherever credentials are stored) is the most common cause. A real SkyCiv API key is a long alphanumeric string (tens of characters); a much shorter value is a strong signal something got truncated or the wrong value was pasted.
+- If credentials are loaded from a `.env` file via `dotenv`, double check the value actually landed in `.env` (the file actually read at runtime) and not just `.env.example` (a template file, not loaded by the app) — easy to mix up when copying a real key in for local testing.
+
 ## Recommendations
 
 **Allow user to download API Object**

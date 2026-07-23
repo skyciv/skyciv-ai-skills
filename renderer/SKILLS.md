@@ -50,6 +50,8 @@ viewer.render();
 
 Nothing is drawn until `viewer.render()` is called — always call it after `model.set` + `buildStructure`, and again after any subsequent update.
 
+> **Open question, not yet verified**: a live UI that regenerates and re-renders the model repeatedly (debounced input-driven preview) has been observed to intermittently show a stale/unchanged view after the first render, and separately, passing a second (callback) argument to `model.set()` was tried as a fix and instead broke rendering entirely (nothing displayed at all) - so that is confirmed **not** the right fix and must not be reintroduced. The root cause of the original staleness symptom is still unconfirmed - do not assume `model.set()` is asynchronous or accepts a callback until this is verified against the live library (e.g. by inspecting `skyciv-renderer-dist.js` directly or testing in an actual browser). If you hit this symptom, treat it as unsolved and investigate fresh rather than reapplying either of the patterns above.
+
 ---
 
 ## Core Viewer Methods

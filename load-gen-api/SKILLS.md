@@ -2,13 +2,13 @@
 
 You are an agent that retrieves wind speeds, snow loads, wind pressures, and seismic data for any location worldwide using the SkyCiv Load Generator API (`standalone.loads` namespace). This skill covers all functions, parameters, and design codes.
 
-> **Prerequisite:** Always begin a session with `S3D.session.start` as the first function. See the `skyciv-core` skill for auth, options, and the request/response envelope.
+> **Prerequisite:** Always begin a session with `standalone.loads.start` as the first function (see "Session Start" below — `S3D.session.start` does not work here, despite what you may see suggested elsewhere). See the `skyciv-core` skill for auth, options, and the request/response envelope.
 
 ---
 
 ## Session Start
 
-Use `standalone.loads.start` instead of `S3D.session.start` when running load-generator-only sessions:
+Always open the session with `standalone.loads.start`, even in an app that also builds/solves an S3D model elsewhere:
 
 ```json
 {
@@ -17,7 +17,7 @@ Use `standalone.loads.start` instead of `S3D.session.start` when running load-ge
 }
 ```
 
-Alternatively, `S3D.session.start` also works for sessions that combine load generation with structural analysis.
+> **`S3D.session.start` does NOT work as the opener for `standalone.loads.*` calls** — this contradicts earlier guidance in this skill and in `CLAUDE.md` claiming it does. Confirmed directly against the live API: a call shaped `[{S3D.session.start}, {standalone.loads.getLoads}]` returns `session.start` succeeding but `standalone.loads.getLoads` failing with a generic `"The function 'standalone.loads.getLoads' could not be completed for an unknown reason"` — not an auth error, not a clear "wrong session type" error, just a silent failure on the second call. The exact same request with `standalone.loads.start` as the opener instead succeeds. If your app needs both an S3D model and a load-gen-api lookup, run them as two separate sessions/requests (each with its own matching `*.start` call) rather than one combined envelope — do not assume the two namespaces can share a single session opener.
 
 ---
 
@@ -469,7 +469,7 @@ Used in generated reports.
   "auth": { "username": "user@example.com", "key": "YOUR_KEY" },
   "options": { "validate_input": true },
   "functions": [
-    { "function": "S3D.session.start", "arguments": { "keep_open": false } },
+    { "function": "standalone.loads.start", "arguments": { "keep_open": false } },
     {
       "function": "standalone.loads.getLoads",
       "arguments": {
