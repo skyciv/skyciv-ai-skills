@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glass Balustrade Configurator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>BALUSTRADE<span class="accent">//</span>CONFIGURATOR</h1>
+      <p class="subtitle">Glass balustrade modeling - AS 1170 wind &amp; imposed loads, AS/NZS 1664 aluminium post design &amp; CAD - built on the SkyCiv API</p>
+    </div>
+    <span id="credsBadge" class="badge">checking credentials&hellip;</span>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <h2>Geometry</h2>
+
+      <label>
+        Handrail height (mm)
+        <input type="number" id="handrailHeightMm" min="900" max="1200" step="10" value="1000" />
+      </label>
+      <label>
+        Glass height (mm)
+        <input type="number" id="glassHeightMm" min="600" max="1200" step="10" value="950" />
+      </label>
+      <label>
+        Target post spacing (mm)
+        <input type="number" id="spacingMmTarget" min="500" max="2000" step="10" value="1100" />
+      </label>
+      <label>
+        Balustrade total run length (m)
+        <input type="number" id="runLengthM" min="0.5" max="60" step="0.1" value="6" />
+      </label>
+
+      <label>
+        Post type
+        <select id="postType"></select>
+      </label>
+      <label>
+        Post size
+        <select id="postSectionName"></select>
+      </label>
+
+      <div class="static-fields">
+        <div><span>Handrail section</span><strong id="handrailSectionField">-</strong></div>
+        <div><span>Post/handrail alloy</span><strong id="alloyField">-</strong></div>
+        <div><span>Post base fixity</span><strong>Fixed (cantilever into concrete)</strong></div>
+      </div>
+
+      <h2>Site &amp; Wind (AS 1170.2)</h2>
+      <label>
+        Site location
+        <input type="text" id="address" placeholder="e.g. Sydney NSW" value="Sydney NSW" />
+      </label>
+      <label>
+        Building height (m)
+        <input type="number" id="buildingHeightM" min="1" max="300" step="0.5" value="12" />
+      </label>
+      <div class="loads-grid">
+        <label>
+          Building length (m)
+          <input type="number" id="buildingLengthM" min="1" max="300" step="0.5" value="20" />
+        </label>
+        <label>
+          Building width (m)
+          <input type="number" id="buildingWidthM" min="1" max="300" step="0.5" value="15" />
+        </label>
+      </div>
+      <label>
+        Balustrade elevation (m)
+        <input type="number" id="elevationM" min="0" max="300" step="0.5" value="12" />
+      </label>
+      <div class="loads-grid">
+        <label>
+          Importance level
+          <select id="importanceLevel"></select>
+        </label>
+        <label>
+          Terrain category
+          <select id="terrainCategory"></select>
+        </label>
+      </div>
+      <button id="resolveWindBtn" class="secondary">Resolve Wind Load</button>
+      <div id="windError" class="error hidden"></div>
+      <div id="windSummary" class="wind-summary hidden"></div>
+
+      <h2>Imposed Loads (AS 1170.1)</h2>
+      <label>
+        Occupancy classification
+        <select id="classification"></select>
+      </label>
+      <div class="loads-grid">
+        <label>
+          Horizontal line load (kN/m)
+          <input type="number" id="lineLoadKn" min="0" step="0.05" value="0.5" />
+        </label>
+        <label>
+          Point load (kN)
+          <input type="number" id="pointLoadKn" min="0" step="0.05" value="0.5" />
+        </label>
+      </div>
+      <p class="hint">Indicative AS 1170.1 Table 3.3-style defaults - editable. Verify against the current AS 1170.1 edition before final design.</p>
+
+      <button id="generateBtn" class="primary">Generate &amp; Analyze</button>
+      <div id="genError" class="error hidden"></div>
+      <div id="analyzeError" class="error hidden"></div>
+
+      <details class="assumptions">
+        <summary>Modeling assumptions</summary>
+        <ul>
+          <li>Posts are modeled as fixed-base cantilevers into the concrete slab (rigid base) - no footing/anchor/concrete design check is performed, only the AS/NZS 1664 post member check</li>
+          <li>Glass is a non-structural load path only: wind pressure on its tributary area (post spacing x glass height) is transferred to the two adjacent posts as a distributed load - the glass itself is not modeled or checked</li>
+          <li>Wind design pressure = worst of the 4 principal-direction windward wall pressures (AS 1170.2, via the load generator) at the balustrade's elevation, applied both outward and inward on the posts (pressure + suction)</li>
+          <li>AS 1170.1 balustrade line/point loads are indicative defaults, editable per classification - verify against the current edition before final design. Applied as separate (non-concurrent) load cases</li>
+          <li>Post effective-length factor kz = ky = 2.0 (fixed-base/free-top cantilever), unbraced length = post height</li>
+          <li>Only AS/NZS 1170.0 strength load combinations are checked (no serviceability/deflection combos)</li>
+          <li>Number of posts evenly divides the run length so actual spacing never exceeds the target spacing</li>
+          <li>Handrail section and post/handrail alloy-temper are fixed defaults (not user inputs) - shown read-only above</li>
+        </ul>
+      </details>
+
+      <button id="viewModelBtn" class="secondary" disabled>View analysis model (JSON)</button>
+      <button id="downloadJsonBtn" class="secondary" disabled>Download model (JSON)</button>
+      <button id="downloadApiBtn" class="secondary" disabled>Download API request (JSON)</button>
+    </section>
+
+    <section class="panel viewer-panel">
+      <h2>Structure</h2>
+      <div id="renderer-container"></div>
+      <div id="rendererError" class="error hidden"></div>
+    </section>
+
+    <section class="panel results-panel">
+      <h2>Design Result</h2>
+      <div id="resultsEmpty" class="empty-state">Generate a model to see results here.</div>
+
+      <div id="resultsBody" class="hidden">
+        <div id="designWarning" class="warning hidden"></div>
+
+        <div class="ratio-card">
+          <div class="ratio-value">
+            <span id="ratioNumber">-</span>
+            <span id="ratioBadge" class="badge">-</span>
+          </div>
+          <div class="ratio-bar"><div id="ratioFill" class="ratio-fill"></div></div>
+          <div class="ratio-meta">
+            Critical post: <strong id="criticalPostLabel">-</strong>
+          </div>
+        </div>
+
+        <div class="reports">
+          <h3>Links</h3>
+          <ul id="reportLinks"></ul>
+        </div>
+
+        <details class="ranked-list" open>
+          <summary>All posts &amp; utilization</summary>
+          <table id="postTable">
+            <thead><tr><th>Post</th><th>Section</th><th>Combo</th><th>Utilization</th><th>Check</th><th>Quick Design</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </details>
+
+        <details class="ranked-list" open>
+          <summary>Governing post reactions (base)</summary>
+          <table id="reactionTable">
+            <thead><tr><th>Post</th><th>Node</th><th>Governing combo</th><th>Reactions (kN, kN.m)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </details>
+
+        <div class="cad-section">
+          <button id="cadBtn" class="primary">Generate CAD Drawing</button>
+          <div id="cadResult" class="hidden"></div>
+          <div id="cadError" class="error hidden"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modelModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Analysis Model (s3d_model JSON)</h2>
+        <div class="modal-header-actions">
+          <button id="copyJsonBtn" class="secondary">Copy JSON</button>
+          <button id="closeModalBtn" class="secondary">Close</button>
+        </div>
+      </div>
+      <pre id="modelJson"></pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
