@@ -171,6 +171,8 @@ viewer.render();
 ```
 
 > **Tip:** Mutate the object returned by `settings.get()` in place, then call `render()` — there is no need to re-pass the whole object to `settings.set()` unless replacing it wholesale.
+>
+> **Confirmed exception — element visibility (e.g. loads):** these settings live under a nested `visibility` sub-object (`settings.visibility.loads`, `settings.visibility.load_labels`, presumably other element-visibility toggles too — verify each one, don't assume), not flat top-level keys. Applying a change to them needs an explicit `viewer.settings.set(settings)` call **and** `viewer.refresh()` afterward (a full rebuild+re-render) — plain `render()` after mutating in place was tried first and did not apply the change. See "Default display behaviour" below for the corrected, confirmed-working pattern.
 
 ---
 
@@ -211,6 +213,61 @@ The typical pattern for a solution that both solves and displays a model:
 ## Terms of Use
 
 Individual/personal use of the renderer is free provided the SkyCiv logo is retained in the viewer. **Commercial deployment (embedding in a product or client-facing app) requires a licensed agreement with SkyCiv** — flag this to the user before building a commercial integration.
+
+## Default display behaviour
+
+Apply these two patterns by default whenever a prototype builds/solves a model.
+
+### Turn on loads automatically
+
+After `buildStructure()`, check whether the model has any load objects and — if so — enable load display and load labels before `render()`:
+
+> **Load keys are ID-keyed objects, not arrays.** `point_loads`, `distributed_loads`, `area_loads`, `moments`, `pressures`, `settlements` etc. are all shaped `{"1": {...}, "2": {...}}` in a real `s3d_model` (see `s3d-api/SKILLS.md`'s own worked examples) — never a JS array. An `Array.isArray(s3d_model[k])` check is therefore always `false` against a real model, so a `hasLoads()` built that way silently never detects any loads and this whole block becomes a no-op — confirmed as a real bug in two of this repo's own prototype apps, which had exactly this code and still required manually clicking the renderer's own "Loads" toggle. Check for a non-empty object, not `Array.isArray`.
+
+```javascript
+function hasLoads(s3d_model) {
+  if (!s3d_model) return false;
+  const loadKeys = ['point_loads', 'distributed_loads', 'area_loads', 'moments', 'pressures', 'settlements'];
+  return loadKeys.some((k) => {
+    const v = s3d_model[k];
+    if (!v || typeof v !== 'object') return false;
+    return Array.isArray(v) ? v.some((x) => x != null) : Object.keys(v).length > 0;
+  });
+}
+
+viewer.model.set(s3d_model);
+viewer.model.buildStructure();
+if (hasLoads(s3d_model)) {
+  // Loads visibility lives under a nested `visibility` sub-object, not top-level
+  // settings keys. refresh() (not render()) is required to actually apply it - see the
+  // "Confirmed exception" note under "viewer.settings" above.
+  const settings = viewer.settings.get();
+  settings.visibility.loads = true;
+  settings.visibility.load_labels = true;
+  viewer.settings.set(settings);
+  viewer.refresh();
+} else {
+  viewer.render();
+}
+```
+
+### Pre-load analysis results
+
+After a solve completes, seed the renderer with the first available load combination's results so the user can switch into results view without a re-solve. Do **not** call `viewer.setMode('results')` here — just load the data:
+
+```javascript
+// payload.solve.data is the object returned by S3D.model.solve
+if (payload.solve && payload.solve.data) {
+  const lcKeys = Object.keys(payload.solve.data);
+  if (lcKeys.length > 0) {
+    try { viewer.results.set(payload.solve.data[lcKeys[0]][0]); } catch (e) {}
+  }
+}
+```
+
+Both patterns are implemented in the prototype apps (`prototypes/*/public/app.js`) as reference.
+
+---
 
 ## Recommendations
  - It looks better when the background of the renderer is transparent. Don't put a css background on the renderer container

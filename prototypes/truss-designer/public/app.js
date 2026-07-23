@@ -39,10 +39,36 @@
     box.classList.remove('hidden');
   }
 
+  // s3d_model load keys (point_loads, distributed_loads, area_loads, moments,
+  // settlements, pressures) are ID-keyed OBJECTS ({"1": {...}}), not arrays - confirmed
+  // against s3d-api/SKILLS.md's own worked examples. An Array.isArray() check here is
+  // always false for a real model, so it silently never turns loads display on -
+  // check for a non-empty object (or array, just in case) instead.
+  function hasLoads(s3d_model) {
+    if (!s3d_model) return false;
+    const loadKeys = ['point_loads', 'distributed_loads', 'area_loads', 'moments', 'pressures', 'settlements'];
+    return loadKeys.some((k) => {
+      const v = s3d_model[k];
+      if (!v || typeof v !== 'object') return false;
+      return Array.isArray(v) ? v.some((x) => x != null) : Object.keys(v).length > 0;
+    });
+  }
+
   function renderModel(s3d_model) {
     viewer.model.set(s3d_model);
     viewer.model.buildStructure();
-    viewer.render();
+    if (hasLoads(s3d_model)) {
+      // Loads visibility lives under a nested `visibility` sub-object, not top-level
+      // settings keys - confirmed working. refresh() (not render()) is required to
+      // actually apply it (a full rebuild+re-render), per renderer/SKILLS.md.
+      const settings = viewer.settings.get();
+      settings.visibility.loads = true;
+      settings.visibility.load_labels = true;
+      viewer.settings.set(settings);
+      viewer.refresh();
+    } else {
+      viewer.render();
+    }
   }
 
   function renderMemberTable(ranked) {
@@ -253,6 +279,12 @@
       lastApiRequest = payload._apiRequest ?? lastApiRequest;
       el('downloadApiBtn').disabled = false;
       renderResults(payload);
+      if (payload.solve && payload.solve.data) {
+        const lcKeys = Object.keys(payload.solve.data);
+        if (lcKeys.length > 0) {
+          try { viewer.results.set(payload.solve.data[lcKeys[0]][0]); } catch (e) {}
+        }
+      }
     } catch (e) {
       setError('analyzeError', e.message);
     } finally {

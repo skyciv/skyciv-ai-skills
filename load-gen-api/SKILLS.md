@@ -458,6 +458,8 @@ Used in generated reports.
 | `api_version` | Default `2.1`. Pass `2` for the previous version. |
 | `report` | Set `false` to skip report generation and reduce response time. |
 
+**Getting the viewable report link:** with `report` left at its default (or explicitly `true`), `getLoads`'s response includes a viewable report URL at `data.wind_pressure.report_link` (confirmed directly against the live API — not shown in this skill's own response-structure examples above). Always surface this link in any UI built on this skill, the same way an S3D model link or a Quick Design PDF report link is surfaced — the engineer needs to be able to open and review the underlying wind load calculation, not just consume the numeric outputs. Don't gate it behind an extra click/step; show it as soon as it's available.
+
 ---
 
 ## Full Examples
