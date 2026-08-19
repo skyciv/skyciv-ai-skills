@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What this repository is
+## What this repository includes
 
 This is a **documentation/prompt-engineering repository**, not a codebase with source files to build, lint, or test. It's a library of "skills" — structured Markdown files that teach an AI agent how to correctly call the [SkyCiv API](https://skyciv.com/api/) (structural engineering modeling, analysis, drawing, and reporting) instead of guessing at request shapes and units. There is no build system, package manifest, linter, or test suite — the only artifacts are `SKILLS.md` files and their supporting assets.
 
