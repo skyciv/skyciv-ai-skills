@@ -716,6 +716,11 @@ Returns local axis vectors `{x, y, z}` for each member.
 
 ## S3D.results Functions
 
+> **Full results object schema lives in [`analysis-results`](../analysis-results/SKILL.md).** This
+> section only covers the function signatures; see that skill for the complete per-load-combination
+> shape (reactions, per-station member/plate results, min/max summaries) and its gotchas, plus how
+> to read results from inside an S3D App instead of the API.
+
 ### `S3D.results.get`
 
 Fetches analysis results after solving. Same filter options as `S3D.model.solve`.

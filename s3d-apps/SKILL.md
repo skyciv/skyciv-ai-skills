@@ -211,6 +211,38 @@ Typical pattern: read `getSelectedItems().members`; if empty and the app has a "
 
 ---
 
+## Reading solve results
+
+Same read-modify-write discipline applies to results as to the model, plus one extra step:
+`S3D.results.*` return S3D's internal/legacy results format, not the API-shaped object — always
+convert with `S3D.API.output.S3D2API` before reading it (or handing it to any code written against
+the documented API results schema).
+
+```javascript
+if (!S3D.solver.isSolved()) {
+    SKYCIV.utils.alert.sideNotify({
+        title: 'Not Solved ⛔️', body: 'Solve the model before reading results.',
+        time: 5000, auto_hide: true, theme: 'dark',
+    });
+    return;
+}
+
+// S3D.results.get() is instant (current load combo only).
+const currentResults = S3D.API.output.S3D2API(S3D.results.get());
+
+// S3D.results.getAll(true, cb) covers every load combination but may take a moment to download.
+S3D.results.getAll(true, function () {
+    const allResults = S3D.API.output.S3D2API(S3D.results.getAll(true));
+    // ... read allResults["1"].member_peak_results, .reactions, etc.
+});
+```
+
+See the [`analysis-results`](../analysis-results/SKILL.md) skill for the full results object
+schema (reactions, per-station member/plate results, min/max summaries, gotchas), and
+`S3D.solver.getLastSolveInfo()` for the solver's info/warning messages from the last solve.
+
+---
+
 ## Notifications
 
 ```javascript

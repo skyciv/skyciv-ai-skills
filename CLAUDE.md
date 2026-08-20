@@ -16,7 +16,7 @@ Each top-level folder is one self-contained skill:
   assets/         # optional — example inputs, catalogues, templates
 ```
 
-Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `baseplate`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`. There is also a `prototypes/` folder holding runnable example *apps* built on these skills (Node/Express), not `SKILL.md` files — currently `prototypes/glass-balustrade-configurator` and `prototypes/truss-designer`. Note: a `reporting-engineer` skill is planned but the folder does not yet exist in this repo — don't assume it does.
+Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `analysis-results`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `baseplate`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`. There is also a `prototypes/` folder holding runnable example *apps* built on these skills (Node/Express), not `SKILL.md` files — currently `prototypes/glass-balustrade-configurator` and `prototypes/truss-designer`. Note: a `reporting-engineer` skill is planned but the folder does not yet exist in this repo — don't assume it does.
 
 Some `SKILL.md` files have YAML frontmatter (`name`, `description`, `argument-hint`) so agent harnesses can discover them; others (e.g. `skyciv-api-v3`, `s3d-api`, `cloudcad-api`, `load-gen-api`, `run-quick-design`) are documentation-only and omit it. Match the style of the skill you're editing.
 
@@ -33,7 +33,9 @@ load-gen-api           → pull wind / snow / seismic loads for the site
   ↓
 load-combinations      → factor those loads into code-correct combinations on the model
   ↓
-s3d-api                → solve, then run-quick-design for member/connection checks
+s3d-api                → solve
+  ↓
+analysis-results       → fetch and interpret the results, then run-quick-design for member/connection checks
   ↓
 renderer               → visualize the model and results
   ↓
@@ -44,6 +46,7 @@ qa-engineer            → independent review of the results
 
 - `s3d-api` — full `s3d_model` JSON schema; `S3D.model`, `S3D.results`, `S3D.file`, `S3D.SB` namespaces.
 - `s3d-apps` — sits alongside this pipeline, not inside it: builds custom client-side mini-apps that run *embedded inside* the S3D application itself (`S3D.structure.*`, `S3D.graphics.*`, `S3D.API.S3D2API`), reusing the same `s3d_model` schema as `s3d-api` but with no auth/session calls (the app runs inside an already-open session).
+- `analysis-results` — documentation-only skill for the analysis results object returned after a solve (reactions, per-station member/plate forces/stresses/displacements, min/max summaries); covers both the `S3D.results.get` API path and the `S3D.solver.isSolved` / `S3D.results.getAll` / `S3D.API.output.S3D2API` client-side S3D App path. No API namespace of its own — cross-linked from `s3d-api` and `s3d-apps` rather than duplicated there.
 - `cloudcad-api` — 2D CAD drawing schema; `cloudcad.model` and `cloudcad.file` namespaces; can map into an S3D model.
 - `load-gen-api` — wind/snow/seismic lookups via `standalone.loads`. Always open the session with `standalone.loads.start`, not `S3D.session.start` — confirmed against the live API that the latter breaks `standalone.loads.getLoads` (a generic, non-obvious failure on the *second* call, not on session start itself). If an app needs both an S3D model and a load-gen-api lookup, run them as separate sessions, each with its own matching `*.start` call.
 - `load-combinations` — documentation-only skill for the `s3d_model` load-combination data model (`load_combinations`, `load_cases`, `load_combination_settings`) and code-correct combination sets; no API namespace of its own — combos are written directly into the model consumed by `s3d-api`, with the `7000-load-combination-generator` Quick Design calculator as an optional generator.
