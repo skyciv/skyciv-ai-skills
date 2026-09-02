@@ -395,7 +395,7 @@ object with `demand`/`capacity`/`ratio`/`units_on_UI`/`lc_number`. To find the g
 check, scan every key in `data` whose value is an object with a numeric `ratio` — skip
 `version`, `file_name`, `reports`, and (Europe only) `rotational_stiffness` — and take the
 max, the same "don't guess a fixed key name" pattern used for Quick Design calculator
-results in `run-quick-design/SKILLS.md`.
+results in `run-quick-design/SKILL.md`.
 
 **The exact set of check keys returned is dynamic** — it depends on `design_code`,
 `support_type`, and the actual load values, not a fixed list:
@@ -498,7 +498,7 @@ hand-assembled.
 ## Feeding S3D reactions into a base plate check
 
 A natural pipeline: build/solve a column in `s3d-api`, pull its base reactions via
-`S3D.model.solve`'s `reactions` result filter (see `s3d-api/SKILLS.md`), then map them
+`S3D.model.solve`'s `reactions` result filter (see `s3d-api/SKILL.md`), then map them
 directly into a `loads` entry — `Nx` from the vertical reaction, `Mz`/`My` from the
 moment reactions, `Vz`/`Vy` from the horizontal shears. Run this as its own session
 (`standalone.baseplate.start`), not appended to the S3D session — see "Session Start"

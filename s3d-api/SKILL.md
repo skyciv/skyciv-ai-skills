@@ -95,16 +95,23 @@ Imperial defaults: `ft`, `in`, `ksi`, `lb/ft3`, `kip`, `kip-ft`, `ksf`, `kip`, `
 
 | Key | Type | Description |
 |---|---|---|
-| `type` | `string` | `"normal"` (default), `"normal_continuous"`, `"cable"` |
+| `type` | `string` | `"normal"` (default), `"normal_continuous"`, `"cable"`, `"tension"`, `"compression"`, `"rigid"` — see below |
 | `node_A` | `integer` | Start node ID |
 | `node_B` | `integer` | End node ID |
-| `section_id` | `integer` | Section ID |
-| `rotation_angle` | `float` | Rotation about member axis in degrees (−180 to 180) |
-| `fixity_A` / `fixity_B` | `string` | 6-character [restraint code](#restraint-codes) |
-| `offset_Ax/Ay/Az` | `float` | Local offsets at node A |
-| `offset_Bx/By/Bz` | `float` | Local offsets at node B |
+| `section_id` | `integer` | Section ID. `null` when `type` = `"rigid"`. |
+| `rotation_angle` | `float` | Rotation about member axis in degrees (−180 to 180). Ignored for `"cable"`/`"rigid"`. |
+| `fixity_A` / `fixity_B` | `string` | 6-character [restraint code](#restraint-codes). Ignored (forced `"FFFRRR"`) for `"cable"`; still applies for `"rigid"` and controls which forces/moments transfer through the link. |
+| `offset_Ax/Ay/Az` | `float` | Local offsets at node A. Ignored for `"cable"`/`"rigid"`. |
+| `offset_Bx/By/Bz` | `float` | Local offsets at node B. Ignored for `"cable"`/`"rigid"`. |
 | `local_axis_y` | `[float]` | Global vector `[X,Y,Z]` for local y-axis |
 | `local_axis_z` | `[float]` | Global vector `[X,Y,Z]` for local z-axis |
+| `mirror` | `string` (optional) | `"no"` (default), `"y"`, `"z"`, `"y_and_z"` — mirrors the member's section about its local axes without needing a separate mirrored section |
+| `disable_non_linear_effects` | `string` (optional) | `"yes"`, `"no"` (default) — excludes this member from non-linear/P-delta effects |
+
+**`type` values:**
+- `cable` — tension-only, no bending stiffness, true catenary sag. Triggers a non-linear analysis. Forces `rotation_angle`→`0`, `fixity_A`/`fixity_B`→`FFFRRR`, offsets→`0`.
+- `tension` / `compression` — linear, single-direction-only axial member (no sag). `fixity`/`offset`/`rotation_angle` behave as `normal`. Prefer this over `cable` unless true sag matters — it's simpler and doesn't force a non-linear solve.
+- `rigid` — infinitely stiff link, `section_id: null`, offsets/`rotation_angle` ignored, `fixity_A`/`fixity_B` still control force/moment transfer.
 
 ```json
 {
@@ -118,6 +125,22 @@ Imperial defaults: `ft`, `in`, `ksi`, `lb/ft3`, `kip`, `kip-ft`, `ksf`, `kip`, `
       "fixity_B": "FFFFFF",
       "offset_Ax": "0", "offset_Ay": "0", "offset_Az": "0",
       "offset_Bx": "0", "offset_By": "0", "offset_Bz": "0"
+    },
+    "2": {
+      "type": "tension",
+      "node_A": 3,
+      "node_B": 4,
+      "section_id": 2,
+      "fixity_A": "FFFRRR",
+      "fixity_B": "FFFRRR"
+    },
+    "3": {
+      "type": "rigid",
+      "node_A": 5,
+      "node_B": 6,
+      "section_id": null,
+      "fixity_A": "FFFFFF",
+      "fixity_B": "FFFRRR"
     }
   }
 }
@@ -312,11 +335,20 @@ Applied to plates.
 
 | Key | Description |
 |---|---|
-| `type` | `"one_way"`, `"two_way"`, `"column_wind_load"`, `"open_structure"`, `"non_rectangular"` |
-| `nodes` | Node IDs defining the area (3 or 4) |
-| `mag` | Load magnitude |
+| `type` | `"one_way"`, `"two_way"`, `"general_one_way"`, `"column_wind_load"`, `"open_structure"`, `"non_rectangular"` |
+| `nodes` | Node IDs defining the area (3 or 4). Array of integers, except for `general_one_way` which uses a comma-separated string. |
+| `mag` | Load magnitude. Not used for `general_one_way` — use `mags` instead. |
+| `mags` | Comma-separated magnitude(s). Required for `column_wind_load` (paired with `elevations`) and `general_one_way` (a single value for uniform, or `n` values paired with `n + 1` values in `intervals` for a stepped/tapered load) |
+| `column_direction` | Span direction as `"nodeA,nodeB"`. Relevant for `one_way`, `column_wind_load`, `general_one_way` |
+| `loaded_members_axis` | `"all"` or `"major"`. Relevant for `open_structure` and `general_one_way` |
+| `intervals` | `general_one_way` only — comma-separated step-interval distances, `n + 1` values matching `n` values in `mags`. Blank = uniform load |
+| `excluded_member_ids` | `general_one_way` only — comma-separated member IDs to exclude from carrying the load |
+| `exclude_internal_members` | `general_one_way` only — `"off"`, `"angled"`, or `"all"`: auto-excludes internal members not aligned to the span |
+| `cantilever_extensions` | `general_one_way` only — `"left,right"` offsets extending the load polygon along the span to pick up cantilevered members |
 | `direction` | `"X"`, `"Y"`, `"Z"`, or projected variants |
 | `LG` | Load group |
+
+> **Prefer `general_one_way`** over plain `one_way` — it's the most robust one-way option: non-rectangular spans, stepped/tapered magnitudes, and finer control over which members carry the load.
 
 ---
 
@@ -348,7 +380,7 @@ any combination's factor and is effectively invisible to it:
 }
 ```
 
-> See the [`load-combinations`](../load-combinations/SKILLS.md) skill for how this ties into
+> See the [`load-combinations`](../load-combinations/SKILL.md) skill for how this ties into
 > `load_combinations` factors — a combo with an `"SW1"` factor and no matching `load_group` on
 > `self_weight` will silently apply no self-weight at all.
 
@@ -372,7 +404,7 @@ any combination's factor and is effectively invisible to it:
 
 `criteria` is optional: `"strength"`, `"serviceability"`, or `"other"`. Load group names used as keys (e.g. `"Dead"`, `"SW1"`) — values are load factors.
 
-> **Building code-correct combinations?** See the [`load-combinations`](../load-combinations/SKILLS.md)
+> **Building code-correct combinations?** See the [`load-combinations`](../load-combinations/SKILL.md)
 > skill for how `load_combinations`, `load_cases`, and `load_combination_settings` fit together,
 > representative combination sets for the US / Europe / Canada / Australia / India, a full worked
 > AS/NZS 1170 example, and how to generate the complete enumerated set for any design code.
@@ -684,6 +716,11 @@ Returns local axis vectors `{x, y, z}` for each member.
 
 ## S3D.results Functions
 
+> **Full results object schema lives in [`analysis-results`](../analysis-results/SKILL.md).** This
+> section only covers the function signatures; see that skill for the complete per-load-combination
+> shape (reactions, per-station member/plate results, min/max summaries) and its gotchas, plus how
+> to read results from inside an S3D App instead of the API.
+
 ### `S3D.results.get`
 
 Fetches analysis results after solving. Same filter options as `S3D.model.solve`.
@@ -989,8 +1026,12 @@ General Section Designer — FEA-based RC section capacity check.
 }
 ```
 
-## Engineering Judgement
-It's important to consider proper engineering judgement when utilising this skill:
+## Structural Engineering Rules
+Since you are a Structural Engineer, it's very important to consider proper engineering judgement when utilising this skill:
+
 - Member fixities should be based on proper engineering decisions. For example, if the connections are shear connections, the member end fixities should be pinned
 - Wind loads are only ever applied to the face of a structure (never internal columns etc..). You may want to include wind loads from different directions (of course only one should be on per time in the load_combinations)
 - Wind loads are normally applied as distributed loads on columns
+- Orientation of members should be aligned to each other in a way that makes sense. For examples, columns that continue through a floor should have the same orientation above and below. Example 2: beams that connect through another beam, should have the same orientation on both sides. Example 3: beams meeting at an apex of a portal frame should be aligned
+- Single members should not be split at intersections. Rather, they should use type == "continuous" and have nodes at the intersection where other members connect to it. Our design software is capable of handling long span continuos members and will appropriately assign the restraints and connectivity of all members connecting to it via a shared node.
+- Where possible, you should use area loads where you can (square, closed shapes works best). It simplifies the the loading and is very robust. Use the type general_one_way.

@@ -8,7 +8,7 @@ These skills are maintained by SkyCiv and kept in sync with the live API, so age
 
 ## What is a "skill"?
 
-Each folder below is a self-contained `SKILLS.md` file (plus, where relevant, supporting assets like JSON schemas and sample inputs/outputs). A skill teaches an LLM:
+Each folder below is a self-contained `SKILL.md` file (plus, where relevant, supporting assets like JSON schemas and sample inputs/outputs). A skill teaches an LLM:
 
 - **What the tool/API does** and when to reach for it
 - **The exact request/response shape** — required fields, units, defaults, gotchas
@@ -22,7 +22,7 @@ This format is compatible with any assistant that can read markdown context — 
 ## Getting started
 
 1. **Get a SkyCiv API key** — sign up and grab one at [platform.skyciv.com/api](https://platform.skyciv.com/api). Most skills need it; a few (`run-quick-design`) need an API token from the same page.
-2. **Clone this repo** and point your assistant at the relevant `SKILLS.md` file(s). See [Using with your AI tool](#using-with-your-ai-tool) below for per-tool setup.
+2. **Clone this repo** and point your assistant at the relevant `SKILL.md` file(s). See [Using with your AI tool](#using-with-your-ai-tool) below for per-tool setup.
 3. **Always start with `skyciv-api-v3`** if you're using any `*-api` skill — it covers auth, sessions, and the shared request/response envelope every other API skill builds on.
 4. **Read the API docs alongside the skill** when you need more depth: [skyciv.com/api/v3/docs](https://skyciv.com/api/v3/docs).
 
@@ -30,11 +30,11 @@ This format is compatible with any assistant that can read markdown context — 
 
 **Claude Code** — `CLAUDE.md` is auto-loaded when you open this repo. For another project, copy the relevant skill folder(s) into `.claude/skills/` in that project's root.
 
-**GitHub Copilot (VS Code)** — `.github/copilot-instructions.md` is auto-loaded as workspace context when you open this repo. Reference individual skills in Copilot Chat with `#file:path/to/SKILLS.md`.
+**GitHub Copilot (VS Code)** — `.github/copilot-instructions.md` is auto-loaded as workspace context when you open this repo. Reference individual skills in Copilot Chat with `#file:path/to/SKILL.md`.
 
-**Cursor** — Open this repo and reference skills with `@file` in Cursor Chat. For persistent context across sessions, copy relevant `SKILLS.md` content into `.cursor/rules/`.
+**Cursor** — Open this repo and reference skills with `@file` in Cursor Chat. For persistent context across sessions, copy relevant `SKILL.md` content into `.cursor/rules/`.
 
-**Windsurf / other agents** — Copy the relevant `SKILLS.md` files into your agent's system prompt or rules directory, or include them as file context in your session.
+**Windsurf / other agents** — Copy the relevant `SKILL.md` files into your agent's system prompt or rules directory, or include them as file context in your session.
 
 ---
 
@@ -42,18 +42,19 @@ This format is compatible with any assistant that can read markdown context — 
 
 | Skill | Folder | What it lets your agent do |
 |---|---|---|
-| **SkyCiv Core API** | [`skyciv-api-v3/`](./skyciv-api-v3/SKILLS.md) | Foundation for every API skill below — auth, session management, the request/response envelope, and shared call patterns. Start here. |
-| **S3D (Structural 3D)** | [`s3d-api/`](./s3d-api/SKILLS.md) | Build, solve, repair, and query full 3D structural models — nodes, members, plates, sections, materials, supports, loads, load combinations, and results. |
-| **S3D Apps** | [`s3d-apps/`](./s3d-apps/SKILLS.md) | Build custom, embeddable mini-apps that run client-side inside the S3D application itself — read/write the live model, react to the user's selection, and automate or generate model content. |
-| **CloudCAD** | [`cloudcad-api/`](./cloudcad-api/SKILLS.md) | Generate 2D engineering drawings — floor plans, dimensions, gridlines, annotations, tables — with optional mapping into a structural 3D model. |
-| **Load Combinations** | [`load-combinations/`](./load-combinations/SKILLS.md) | Define code-correct load cases and combinations on a structural model, with ready-made combination sets for the US, Europe, Canada, Australia, and India. |
-| **Load Generator** | [`load-gen-api/`](./load-gen-api/SKILLS.md) | Look up wind, snow, and seismic loads/pressures for any location worldwide, across major design codes. |
-| **Run Quick Design** | [`run-quick-design/`](./run-quick-design/SKILLS.md) | Call any of 150+ Quick Design calculators (steel, concrete, timber, aluminium, connections, foundations, loads) via one REST endpoint — includes a full catalogue plus schema and sample input/output for each calculator. |
-| **Base Plate Design** | [`baseplate/`](./baseplate/SKILLS.md) | Design and check a steel column base plate connection — base plate, anchor bolts, and welds against the supporting concrete foundation — for American, Australian, Canadian, or European design codes. |
-| **3D Renderer** | [`renderer/`](./renderer/SKILLS.md) | Embed the client-side SkyCiv 3D Renderer to visualize a structural model and its analysis results interactively in the browser. |
-| **Schema Agent** | [`schema-agent/`](./schema-agent/SKILLS.md) | Interpret an uploaded floor plan (DXF/DWG/PDF/image) into a precise structural schema that the S3D skill can build a model from. |
-| **Section Selector** | [`section-selector/`](./section-selector/SKILLS.md) | Choose the right structural section from the SkyCiv library for any region and material, and inject it correctly into an S3D model. |
-| **QA Engineer** (WIP)| [`qa-engineer/`](./qa-engineer/SKILLS.md) | Independent peer-review persona — checks a finished calculation or report for units, sanity, and completeness before it ships. |
+| **SkyCiv Core API** | [`skyciv-api-v3/`](./skyciv-api-v3/SKILL.md) | Foundation for every API skill below — auth, session management, the request/response envelope, and shared call patterns. Start here. |
+| **S3D (Structural 3D)** | [`s3d-api/`](./s3d-api/SKILL.md) | Build, solve, repair, and query full 3D structural models — nodes, members, plates, sections, materials, supports, loads, load combinations, and results. |
+| **S3D Apps** | [`s3d-apps/`](./s3d-apps/SKILL.md) | Build custom, embeddable mini-apps that run client-side inside the S3D application itself — read/write the live model, react to the user's selection, and automate or generate model content. |
+| **Analysis Results** | [`analysis-results/`](./analysis-results/SKILL.md) | Fetch and interpret the analysis results object returned after a solve — reactions, member/plate forces, stresses, displacements, and min/max summaries — from either the API or an S3D App. |
+| **CloudCAD** | [`cloudcad-api/`](./cloudcad-api/SKILL.md) | Generate 2D engineering drawings — floor plans, dimensions, gridlines, annotations, tables — with optional mapping into a structural 3D model. |
+| **Load Combinations** | [`load-combinations/`](./load-combinations/SKILL.md) | Define code-correct load cases and combinations on a structural model, with ready-made combination sets for the US, Europe, Canada, Australia, and India. |
+| **Load Generator** | [`load-gen-api/`](./load-gen-api/SKILL.md) | Look up wind, snow, and seismic loads/pressures for any location worldwide, across major design codes. |
+| **Run Quick Design** | [`run-quick-design/`](./run-quick-design/SKILL.md) | Call any of 150+ Quick Design calculators (steel, concrete, timber, aluminium, connections, foundations, loads) via one REST endpoint — includes a full catalogue plus schema and sample input/output for each calculator. |
+| **Base Plate Design** | [`baseplate/`](./baseplate/SKILL.md) | Design and check a steel column base plate connection — base plate, anchor bolts, and welds against the supporting concrete foundation — for American, Australian, Canadian, or European design codes. |
+| **3D Renderer** | [`renderer/`](./renderer/SKILL.md) | Embed the client-side SkyCiv 3D Renderer to visualize a structural model and its analysis results interactively in the browser. |
+| **Schema Agent** | [`schema-agent/`](./schema-agent/SKILL.md) | Interpret an uploaded floor plan (DXF/DWG/PDF/image) into a precise structural schema that the S3D skill can build a model from. |
+| **Section Selector** | [`section-selector/`](./section-selector/SKILL.md) | Choose the right structural section from the SkyCiv library for any region and material, and inject it correctly into an S3D model. |
+| **QA Engineer** (WIP)| [`qa-engineer/`](./qa-engineer/SKILL.md) | Independent peer-review persona — checks a finished calculation or report for units, sanity, and completeness before it ships. |
 
 ---
 
@@ -70,7 +71,9 @@ load-gen-api           → pull wind / snow / seismic loads for the site
   ↓
 load-combinations      → factor those loads into code-correct combinations on the model
   ↓
-s3d-api                → solve, then run-quick-design for member/connection checks
+s3d-api                → solve
+  ↓
+analysis-results       → fetch and interpret the results, then run-quick-design for member/connection checks
   ↓
 renderer               → visualize the model and results
   ↓

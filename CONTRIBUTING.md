@@ -13,14 +13,14 @@ Thank you for helping keep these skills accurate and useful.
 ## Reporting issues
 
 Open a GitHub issue describing:
-- Which `SKILLS.md` file or asset is affected
+- Which `SKILL.md` file or asset is affected
 - What the current text says
 - What it should say (link to the live API docs if relevant: [skyciv.com/api/v3/docs](https://skyciv.com/api/v3/docs))
 
 ## Adding or editing a skill
 
-1. Follow the folder structure — one folder, one `SKILLS.md`, optional `assets/`.
-2. State any prerequisite skill near the top of `SKILLS.md` (e.g. _"Requires `skyciv-api-v3`"_).
+1. Follow the folder structure — one folder, one `SKILL.md`, optional `assets/`.
+2. State any prerequisite skill near the top of `SKILL.md` (e.g. _"Requires `skyciv-api-v3`"_).
 3. Use Markdown tables for API parameters, not prose lists.
 4. Include at least one minimal working JSON example.
 5. State units explicitly — metric vs. imperial, and which field controls them.

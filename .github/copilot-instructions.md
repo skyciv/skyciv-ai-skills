@@ -6,11 +6,11 @@ This repository is a collection of skills built on top of the [SkyCiv](https://s
 
 ## Skill Structure
 
-Each skill lives in its own folder with a `SKILLS.md` file at the root of that folder:
+Each skill lives in its own folder with a `SKILL.md` file at the root of that folder:
 
 ```
 <skill-name>/
-  SKILLS.md       # required — skill instructions and API reference
+  SKILL.md       # required — skill instructions and API reference
   assets/         # optional — example inputs, catalogues, templates
 ```
 
@@ -18,7 +18,7 @@ Skill files use YAML frontmatter when the skill needs a `name`, `description`, o
 
 ## Adding a New Skill
 
-When a new skill folder and `SKILLS.md` are added to this repository, **always update `README.md`** to include an entry for it. The README is the primary index for humans and agents discovering what skills are available.
+When a new skill folder and `SKILL.md` are added to this repository, **always update `README.md`** to include an entry for it. The README is the primary index for humans and agents discovering what skills are available.
 
 Add the skill to the skills table in `README.md` using this format:
 

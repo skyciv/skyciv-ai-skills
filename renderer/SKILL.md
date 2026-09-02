@@ -222,7 +222,7 @@ Apply these two patterns by default whenever a prototype builds/solves a model.
 
 After `buildStructure()`, check whether the model has any load objects and — if so — enable load display and load labels before `render()`:
 
-> **Load keys are ID-keyed objects, not arrays.** `point_loads`, `distributed_loads`, `area_loads`, `moments`, `pressures`, `settlements` etc. are all shaped `{"1": {...}, "2": {...}}` in a real `s3d_model` (see `s3d-api/SKILLS.md`'s own worked examples) — never a JS array. An `Array.isArray(s3d_model[k])` check is therefore always `false` against a real model, so a `hasLoads()` built that way silently never detects any loads and this whole block becomes a no-op — confirmed as a real bug in two of this repo's own prototype apps, which had exactly this code and still required manually clicking the renderer's own "Loads" toggle. Check for a non-empty object, not `Array.isArray`.
+> **Load keys are ID-keyed objects, not arrays.** `point_loads`, `distributed_loads`, `area_loads`, `moments`, `pressures`, `settlements` etc. are all shaped `{"1": {...}, "2": {...}}` in a real `s3d_model` (see `s3d-api/SKILL.md`'s own worked examples) — never a JS array. An `Array.isArray(s3d_model[k])` check is therefore always `false` against a real model, so a `hasLoads()` built that way silently never detects any loads and this whole block becomes a no-op — confirmed as a real bug in two of this repo's own prototype apps, which had exactly this code and still required manually clicking the renderer's own "Loads" toggle. Check for a non-empty object, not `Array.isArray`.
 
 ```javascript
 function hasLoads(s3d_model) {

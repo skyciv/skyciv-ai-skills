@@ -5,10 +5,10 @@ produces code-correct results, and how to generate the full enumerated set for a
 region/design code.
 
 > **Prerequisite:** This skill describes objects that live inside the `s3d_model` consumed by
-> `S3D.model.set` / `S3D.model.solve`. See [`s3d-api`](../s3d-api/SKILLS.md) for the full model
-> schema and the solve/session flow, and [`skyciv-api-v3`](../skyciv-api-v3/SKILLS.md) for auth
+> `S3D.model.set` / `S3D.model.solve`. See [`s3d-api`](../s3d-api/SKILL.md) for the full model
+> schema and the solve/session flow, and [`skyciv-api-v3`](../skyciv-api-v3/SKILL.md) for auth
 > and the request envelope. For *deriving the loads themselves* (wind/snow/seismic pressures),
-> see [`load-gen-api`](../load-gen-api/SKILLS.md).
+> see [`load-gen-api`](../load-gen-api/SKILL.md).
 
 ---
 
@@ -217,7 +217,7 @@ names as needed):
 
 For the exhaustive, code-authoritative set (all criteria, notional/pattern cases, filters), call
 the **`7000-load-combination-generator`** Quick Design calculator via
-[`run-quick-design`](../run-quick-design/SKILLS.md). Use this when the representative sets above
+[`run-quick-design`](../run-quick-design/SKILL.md). Use this when the representative sets above
 aren't sufficient (e.g. serviceability + pattern loading for a specific standard edition).
 
 ```js
