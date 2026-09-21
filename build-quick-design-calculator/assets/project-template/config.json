@@ -1,0 +1,23 @@
+{
+	"meta": {
+		"name": "Building Web-Based Engineering Tools",
+		"short_description": "Simple Supported Beam Analysis Software to calculate reactions, bending, shear and deflection results.",
+		"tags": "beam, calculator",
+		"category": "analysis",
+		"access": "private",
+		"default_unit_system": "metric",
+		"contact": {
+			"name": "",
+			"role": "",
+			"email": "",
+			"company": "SkyCiv Engineering",
+			"logo": "https://skyciv.com/media/logos/logo-pack/SkyCiv_Logo_Dark_Poweredby.png"
+		}
+	},
+	"input_variables": {
+		"Template_Heading": {
+			"type": "heading",
+			"label": "Heading"
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+    "L": 6000,
+    "w": "2",
+    "calculate_deflection": true,
+    "E": 200000,
+    "I_z": 5000000,
+    "project_details": {
+        "project_company": "",
+        "project_name": "",
+        "project_designer": "",
+        "project_id": "",
+        "project_client": "",
+        "project_notes": ""
+    }
+}

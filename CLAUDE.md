@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **documentation/prompt-engineering repository**, not a codebase with source files to build, lint, or test. It's a library of "skills" — structured Markdown files that teach an AI agent how to correctly call the [SkyCiv API](https://skyciv.com/api/) (structural engineering modeling, analysis, drawing, and reporting) instead of guessing at request shapes and units. There is no build system, package manifest, linter, or test suite — the only artifacts are `SKILL.md` files and their supporting assets.
 
+**Read `CHANGELOG.md` before making changes.** It lists the significant changes to this repo, newest first, so you can tell a settled convention from one that moved recently. Add a row to it for any significant change you make.
+
 ## Repository structure
 
 Each top-level folder is one self-contained skill:
@@ -16,7 +18,7 @@ Each top-level folder is one self-contained skill:
   assets/         # optional — example inputs, catalogues, templates
 ```
 
-Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `analysis-results`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `baseplate`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`. There is also a `prototypes/` folder holding runnable example *apps* built on these skills (Node/Express), not `SKILL.md` files — currently `prototypes/glass-balustrade-configurator` and `prototypes/truss-designer`. Note: a `reporting-engineer` skill is planned but the folder does not yet exist in this repo — don't assume it does.
+Current skills: `skyciv-api-v3`, `s3d-api`, `s3d-apps`, `analysis-results`, `cloudcad-api`, `load-gen-api`, `load-combinations`, `run-quick-design`, `build-quick-design-calculator`, `baseplate`, `renderer`, `schema-agent`, `section-selector`, `qa-engineer`, `skill-writer`. There is also a `prototypes/` folder holding runnable example *apps* built on these skills (Node/Express), not `SKILL.md` files — currently `prototypes/glass-balustrade-configurator` and `prototypes/truss-designer`. Note: a `reporting-engineer` skill is planned but the folder does not yet exist in this repo — don't assume it does.
 
 Some `SKILL.md` files have YAML frontmatter (`name`, `description`, `argument-hint`) so agent harnesses can discover them; others (e.g. `skyciv-api-v3`, `s3d-api`, `cloudcad-api`, `load-gen-api`, `run-quick-design`) are documentation-only and omit it. Match the style of the skill you're editing.
 
@@ -51,6 +53,7 @@ qa-engineer            → independent review of the results
 - `load-gen-api` — wind/snow/seismic lookups via `standalone.loads`. Always open the session with `standalone.loads.start`, not `S3D.session.start` — confirmed against the live API that the latter breaks `standalone.loads.getLoads` (a generic, non-obvious failure on the *second* call, not on session start itself). If an app needs both an S3D model and a load-gen-api lookup, run them as separate sessions, each with its own matching `*.start` call.
 - `load-combinations` — documentation-only skill for the `s3d_model` load-combination data model (`load_combinations`, `load_cases`, `load_combination_settings`) and code-correct combination sets; no API namespace of its own — combos are written directly into the model consumed by `s3d-api`, with the `7000-load-combination-generator` Quick Design calculator as an optional generator.
 - `run-quick-design` — a separate REST endpoint (`POST https://qd.skyciv.com/run`, its own API-token auth, not the `skyciv-api-v3` envelope) that runs any of 154 standalone calculators by UID.
+- `build-quick-design-calculator` — the authoring counterpart to `run-quick-design`: how to write a Quick Design **calc pack** (`config.json` input form, `calculate.js` logic/report, `ui.js` graphics, optional `s3d_integration.js`) and upload it to the Build Your Own Calculator builder. No API auth or envelope — the code runs on SkyCiv's servers. Full SkyCiv Quick Design docs are bundled under its `assets/documentation/`.
 - `renderer` — client-side JS library (`SKYCIV.renderer`), not a server API; visualizes an `s3d_model` fetched via the API.
 - `schema-agent` — vision/DXF interpretation persona feeding `s3d-api`.
 - `section-selector` — section library lookup and injection helper for `s3d-api`; maps country/material/role to the correct `load_section` path from `section_tree.json`, or builds concrete sections as template-shape objects. Used whenever a model needs real section geometry.

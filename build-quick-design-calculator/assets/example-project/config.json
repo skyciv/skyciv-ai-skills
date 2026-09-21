@@ -1,0 +1,107 @@
+{
+	"meta": {
+		"name": "Building Web-Based Engineering Tools",
+		"short_description": "Simple Supported Beam Analysis Software to calculate reactions, bending, shear and deflection results.",
+		"tags": "beam, calculator",
+		"category": "analysis",
+		"access": "private",
+		"default_unit_system": "metric",
+		"contact": {
+			"name": "",
+			"role": "",
+			"email": "",
+			"company": "SkyCiv Engineering",
+			"logo": "https://skyciv.com/media/logos/logo-pack/SkyCiv_Logo_Dark_Poweredby.png"
+		}
+	},
+	"input_variables": {
+		"ui_div": {
+			"type": "div",
+			"id": "ui-div",
+			"qd_center": true
+		},
+		"Arrangement_Heading": {
+			"type": "heading",
+			"label": "Arrangement"
+		},
+		"L": {
+			"type": "number",
+			"integer": true,
+			"label": "Beam Span (L)",
+			"symbol": "L",
+			"units": "mm",
+			"default": 6000,
+			"min": 10,
+			"max": 10000 
+		},
+		"Loading_Heading": {
+			"type": "heading",
+			"label": "Loading"
+		},
+		"w": {
+			"type": "dropdown",
+			"label": "Distributed Load",
+			"symbol": "w",
+			"units": "kN/m",
+			"info": "Distributed load in kN/m.",
+			"options": [
+				{
+					"name": "No Force",
+					"value": 0
+				},
+				{
+					"name": 1,
+					"value": 1
+				},
+				{
+					"name": 2,
+					"value": 2,
+					"selected": true
+				},
+				{
+					"name": 4,
+					"value": 4
+				}
+			]
+		},
+		"Deflection_Heading": {
+			"type": "heading",
+			"label": "Deflection"
+		},
+		"calculate_deflection": {
+			"type": "checkbox",
+			"symbol": "Deflection",
+			"label": "Calculate Deflection",
+			"default": false,
+			"visible_variables": {
+				"unchecked": [
+					["hide", "E"],
+					["hide", "I_z"]
+				],
+				"checked": [
+					["show", "E"],
+					["show", "I_z"]
+				]
+			}
+		},
+		"E": {
+			"type": "number",
+			"label": "Elastic Modulus (E)",
+			"symbol": "E",
+			"units": "MPa",
+			"info": "Material Youngs Modulus",
+			"default": 200000,
+			"min": 0,
+			"step": 50
+		},
+		"I_z": {
+			"type": "number",
+			"label": "Moment of Inertia (Iz)",
+			"symbol": "I_z",
+			"units": "mm^4",
+			"info": "Moment of Inertia about Z axis",
+			"default": "5e6",
+			"min": 0
+		}
+	}
+}
