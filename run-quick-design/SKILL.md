@@ -63,6 +63,22 @@ axios.post('https://qd.skyciv.com/run', {
 | `pdf_report` | boolean | no | Generate a PDF report (default: `false`) |
 | `input` | object | yes | Input parameters — see each calculator's `schema.json` |
 
+### Table inputs
+
+Some inputs are tables: `"type": "array"` in `schema.json`, with each row's fields under `items.properties`. Footing load tables (`loading_table`), load combination tables (`lc_table`) and reinforcement tables are the common ones. Pass them as an array of row objects, exactly as `sample_input.json` shows:
+
+```json
+"loading_table": [
+  { "name": "Dead", "case": "G", "N": 120, "Mx": 0, "Mz": 4.5, "Vx": 0, "Vz": 1.2 },
+  { "name": "Live", "case": "Q", "N": 45,  "Mx": 0, "Mz": 1.8, "Vx": 0, "Vz": 0 }
+]
+```
+
+- **Row fields:** use the names in `items.properties`. A field left out of a row takes that field's `default`, so give every field that matters.
+- **Types:** keep each field's schema type. Some numeric-looking fields are strings (every factor in `lc_table`, e.g. `"g_factor": "1.35"`); send those as strings.
+- **Enums:** values such as `case` must be one of the listed symbols (`G`, `Q`, `W`, `S`, `E`).
+- **Whole table:** a table you send replaces the sample's table completely. Send every row you need, not only the changed ones.
+
 ---
 
 ## Response format
@@ -200,4 +216,48 @@ You can also allow the user to open the file by appending the parameters after t
 https://platform.skyciv.com/quick-design?uid=3027-au-concrete-column&member_label=C1&shape=rectangular&D=400&W=300&cover=30&size_bars=20&n_bars_z=4&n_bars_y=4&reinforcement_class_long=N&size_shear_bars=8&n_shear_bars_y=2&n_shear_bars_z=2&s=150&reinforcement_class_shear=N&L=3000&k_y=1&k_z=1&f_c=40&f_y=500&V_y=100&V_z=50&N=1350&G=500&Q=500&second_order=first&braced_or_unbraced=ZY&M_z_top=100&M_z_bot=50&M_y_top=50&M_y_bot=-50&member_label=C1&shape=rectangular&D=401&W=301&cover=30&size_bars=20&n_bars_z=4&n_bars_y=4&reinforcement_class_long=N&size_shear_bars=8&n_shear_bars_y=2&n_shear_bars_z=2&s=150&reinforcement_class_shear=N&L=3000&k_y=1&k_z=1&f_c=40&f_y=500&V_y=100&V_z=50&N=1350&G=500&Q=500&second_order=first&braced_or_unbraced=ZY&M_z_top=100&M_z_bot=50&M_y_top=50&M_y_bot=-50
 
 So it would be helpful if you provide these links after you run the calculation, so the user can open these designs up.
+
+## Table inputs in a link
+
+Table inputs (see [Table inputs](#table-inputs)) go in the link too: the table's JSON array, URL-encoded, as the value of its key. For example, this `loading_table`:
+
+```json
+[{"name":"Dead","case":"G","N":120,"Mz":4.5},{"name":"Live","case":"Q","N":45,"Mz":1.8}]
+```
+
+goes in the link as:
+
+```
+&loading_table=%5B%7B%22name%22%3A%22Dead%22%2C%22case%22%3A%22G%22%2C%22N%22%3A120%2C%22Mz%22%3A4.5%7D%2C%7B%22name%22%3A%22Live%22%2C%22case%22%3A%22Q%22%2C%22N%22%3A45%2C%22Mz%22%3A1.8%7D%5D
+```
+
+- Encode with `encodeURIComponent(JSON.stringify(table))`, or let `URLSearchParams` do it.
+- Every table input works this way, e.g. `lc_table` and `btm_reinforcement_table`. Rows follow the same rules as in an API run.
+- Give each table key once. A table left out of the link opens with the calculator's own default table.
+- Keep links a reasonable length: a footing's load and combination tables fit easily, but don't put large arrays in a link.
+
+Minimal example, an AS 3600 pad footing with its loads:
+
+```js
+const url = new URL('https://platform.skyciv.com/quick-design');
+url.searchParams.set('uid', '8000-as3600-pad-footing-design');
+url.searchParams.set('footing_width', 1000);
+url.searchParams.set('footing_length', 1000);
+url.searchParams.set('footing_height', 300);
+url.searchParams.set('loading_table', JSON.stringify([
+  { name: 'Dead', case: 'G', N: 120, Mx: 0, Mz: 4.5, Vx: 0, Vz: 1.2 },
+  { name: 'Live', case: 'Q', N: 45,  Mx: 0, Mz: 1.8, Vx: 0, Vz: 0 },
+]));
+// url.toString() is the link to give the user
+```
+
+# Footing loads from an analysis model
+
+When the loads for a footing calculator come from a solved S3D model (see [`analysis-results`](../analysis-results/SKILL.md)), build `loading_table` from the support's **unfactored reactions per load case**, not from load combinations. The calculator applies its own factors through `lc_table`.
+
+1. **One row per load type.** Map each load group to a calculator `case` using the model's load type mapping (`load_cases[<code>]`, see [`load-combinations`](../load-combinations/SKILL.md)): dead and self-weight → `G`, live and roof live → `Q`, wind → `W`, snow → `S`, earthquake → `E`. Add up the reactions of groups that map to the same case, so self-weight (`SW1`) and a dead load group together make one `G` row. If a group's type isn't clear from the mapping or its name, ask.
+2. **Axes.** `N` is the vertical force, positive in compression (pushing down on the footing); `x` and `z` are the two plan axes. With S3D's default Y-up axis: `N` = reaction `Fy`, `Vx` = `Fx`, `Vz` = `Fz`, `Mx` = `Mx`, `Mz` = `Mz`. If the model is Z-up (`settings.vertical_axis: "Z"`), `N` = `Fz` and the plan axes are X and Y. Check the sign of `N` against gravity in the model: a support pushing up on the structure is compression in the footing. There is no input for a moment about the vertical axis; say so if it is significant.
+3. **Units.** The calculator does not convert. The metric footing calculators take `N`, `Vx`, `Vz` in kN and `Mx`, `Mz` in kNm (check each field's `description`); convert from the model's units.
+4. **Combinations.** Keep the calculator's own `lc_table` when its factors match the code and the load types in use, and say so. Otherwise send a full `lc_table`: one row per combination, every factor as a string, and `"0.0"` for each load type a combination leaves out.
+5. **Column size.** `col_width` and `col_length` come from the section of the member on the support node. If a beam or brace sits on the support rather than a column, say what you assumed.
 

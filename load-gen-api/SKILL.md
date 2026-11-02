@@ -230,6 +230,11 @@ Defines the structure geometry and load calculation parameters.
 | `"troughed"` | `open` |
 | `"open-monoslope"` | `open` |
 
+> **There is no `"flat"` roof profile.** For a flat roof, send `roof_profile: "gable"` with
+> `building_dimensions.roof_angle: 0` and `mean_roof_height` equal to the wall height. Confirmed
+> against the live API for an `as1170` building: it returns the full set of wall and roof
+> pressures. Any value not in the table above is not a roof profile.
+
 ### Wind parameters (`building_data.wind_parameters`)
 
 > ⚠️ **`structure_type` is code-specific — getting it wrong returns a response with no
@@ -270,7 +275,7 @@ Set `wind_parameters: false` to skip wind load calculation.
 | `width` | Building width |
 | `mean_roof_height` | Mean roof height |
 | `height` | Wall height (used when `mean_roof_height` not the primary height input) |
-| `roof_angle` | Roof pitch angle in degrees |
+| `roof_angle` | Roof pitch angle in degrees. `0` for a flat roof, with `roof_profile: "gable"` |
 
 ### Snow parameters (`building_data.snow_parameters`)
 
