@@ -27,14 +27,14 @@
                     "project_address": "Toronto, ON, Canada",
                     "topography": {
                         "wind_direction": "N",
-                        "topo_image": true,
+                        "topo_image": false,
                         "country": "Canada",
-                        "snow_area_classification": "exposed-north-treeline",
+                        "snow_area_classification": "rural",
                         "terrain_category": "A"
                     },
                     "ari": "50_years",
                     "recurrence_interval": "50_years",
-                    "importance_level": "Normal",
+                    "importance_level": "normal",
                     "limit_state": "ULS"
                 },
                 "building_data": {
@@ -44,12 +44,16 @@
                         "structure_level": [
                             {
                                 "floor_level": "2",
-                                "floor_elevation": "15"
+                                "floor_elevation": "3"
+                            },
+                            {
+                                "floor_level": "roof",
+                                "floor_elevation": "6"
                             }
                         ],
                         "wall_cladding_area": "",
                         "roof_cladding_area": "",
-                        "enclosure": "partially-enclosed",
+                        "enclosure": "enclosed",
                         "cladding_pressure_type": "",
                         "structure_type": "mwfrs"
                     },
@@ -92,46 +96,13 @@
                     "roof_profile": "gable",
                     "building_dimensions": {
                         "length": 12.4,
-                        "width": "10",
-                        "roof_angle": "12",
-                        "reference_height": "21"
+                        "width": 10,
+                        "roof_angle": 12,
+                        "reference_height": 6,
+                        "eave_height": 6,
+                        "ground_to_top": 7.1
                     }
-                },
-                "site_analysis": {
-                    "terrain_category_all_direction": {
-                        "NE": null,
-                        "E": null,
-                        "SE": null,
-                        "S": null,
-                        "SW": null,
-                        "W": null,
-                        "NW": null
-                    },
-                    "topo_factor_all_direction": {
-                        "N": 1
-                    },
-                    "topography_all_directions": {
-                        "N": {
-                            "code": "nbcc2015",
-                            "topo_factor": 1,
-                            "comments": "If slope is less than 5%, terrain is considered to be flat.",
-                            "location_of_peak": "-1860.00",
-                            "elevation_of_peak": "116.60",
-                            "location_of_foot": "-2000.00",
-                            "elevation_of_foot": "117.18",
-                            "elevation_of_midheight": "",
-                            "slope": "-0.004",
-                            "z": 0,
-                            "location_of_midheight": "",
-                            "terrain_type": "Flat",
-                            "H": "",
-                            "x": "",
-                            "Lh": "",
-                            "Ct": 1
-                        }
-                    }
-                },
-                "api_version": 2
+                }
             }
         }
     ]

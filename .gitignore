@@ -51,6 +51,8 @@ Thumbs.db
 *.wmv
 
 /prototypes
+/skyciv-utils
+
 # Generated shape manifest — a maintainer tool output, not part of the skill
 analysis-results/assets/example1-shape.md
 
