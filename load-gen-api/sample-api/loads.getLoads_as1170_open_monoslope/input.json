@@ -1,0 +1,62 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "as1170",
+          "project_address": "Queenstown, New Zealand",
+          "topography": {
+            "wind_direction": "N",
+            "topo_image": true,
+            "country": "New Zealand",
+            "terrain_category": "CAT2",
+            "snow_area_classification": "sub-alpine"
+          },
+          "ari": "100",
+          "sls_and_uls": false
+        },
+        "building_data": {
+          "design_code": "as1170",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": null,
+            "elevated_building": false,
+            "wall_condition": "",
+            "action_combination_case": "",
+            "wall_type": "",
+            "ratio_of_opening_to_total_area": "",
+            "structure_type": "free_roof"
+          },
+          "snow_parameters": false,
+          "roof_profile": "open-monoslope",
+          "building_dimensions": {
+            "length": 18,
+            "width": "16",
+            "roof_angle": "19",
+            "mean_roof_height": "18"
+          }
+        }
+      }
+    }
+  ]
+}

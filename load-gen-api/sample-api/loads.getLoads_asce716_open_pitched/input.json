@@ -1,0 +1,70 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "imperial"
+        },
+        "site_data": {
+          "design_code": "asce7-16",
+          "project_address": "Minneapolis, MN, USA",
+          "topography": {
+            "wind_direction": "N",
+            "topo_image": true,
+            "country": "United States",
+            "exposure": "B"
+          },
+          "risk_category": "II"
+        },
+        "building_data": {
+          "design_code": "asce7-16",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": [
+              {
+                "floor_level": "Mean Roof Height",
+                "floor_elevation": "14"
+              }
+            ],
+            "wall_cladding_area": 0,
+            "roof_cladding_area": 0,
+            "enclosure": "open",
+            "wind_blockage": "clear-empty",
+            "structure_type": "mwfrs"
+          },
+          "snow_parameters": {
+            "exposure_condition_roof": "fully-exposed",
+            "terrain_category": "B",
+            "thermal_condition": "unheated-open",
+            "sloped_roof_surface_condition": "slippery",
+            "balance_unbalance": false
+          },
+          "roof_profile": "pitched",
+          "building_dimensions": {
+            "length": 13,
+            "width": "12",
+            "roof_angle": "12",
+            "mean_roof_height": "14"
+          }
+        }
+      }
+    }
+  ]
+}

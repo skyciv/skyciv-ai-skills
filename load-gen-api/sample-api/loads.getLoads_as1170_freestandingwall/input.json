@@ -1,0 +1,55 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "SKYPH-001",
+          "company": "SkyCiv",
+          "designer": "Patrick",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "as1170",
+          "project_address": "University of New South Wales",
+          "site_image": true,
+          "ari": 25,
+          "sls_and_uls": false,
+          "topography": {
+            "wind_direction": "E",
+            "terrain_category": "CAT2",
+            "topo_image": true
+          }
+        },
+        "building_data": {
+          "design_code": "as1170",
+          "structure": "freestandingwall",
+          "freestandingwall_dimensions": {
+            "ground_to_top": 7,
+            "wall_width": 10,
+            "wall_height": 7,
+            "ratio_of_solid_area_to_gross": 0.95,
+            "wall_surface_type": "smooth"
+          },
+          "wind_parameters": {
+            "structure_type": "freestandingwall"
+          },
+          "snow_parameters": false
+        }
+      }
+    }
+  ]
+}

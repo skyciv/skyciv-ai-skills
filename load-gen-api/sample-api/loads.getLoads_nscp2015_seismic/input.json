@@ -1,0 +1,123 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "nscp2015",
+          "project_address": "San Marcelino, Zambales, Philippines",
+          "topography": {
+            "wind_direction": "N",
+            "topo_image": true,
+            "country": "Philippines",
+            "exposure": "C"
+          },
+          "occupancy_category": "IV",
+          "seismic_source_type": "A",
+          "soil_profile_type": "Se",
+          "site_seismic_data": {
+            "Z": "0.40",
+            "Na": "1",
+            "Nv": "1",
+            "D": "18.923"
+          }
+        },
+        "building_data": {
+          "design_code": "nscp2015",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": [
+              {
+                "floor_level": "2",
+                "floor_elevation": "4.5"
+              },
+              {
+                "floor_level": "3",
+                "floor_elevation": "6"
+              },
+              {
+                "floor_level": "4",
+                "floor_elevation": "7.5"
+              },
+              {
+                "floor_level": "5",
+                "floor_elevation": "9"
+              },
+              {
+                "floor_level": "6",
+                "floor_elevation": "12"
+              },
+              {
+                "floor_level": "Mean Roof Height",
+                "floor_elevation": "12"
+              }
+            ],
+            "wall_cladding_area": 12,
+            "roof_cladding_area": 12,
+            "enclosure": "enclosed",
+            "structure_type": "cladding"
+          },
+          "snow_parameters": false,
+          "roof_profile": "gable",
+          "building_dimensions": {
+            "length": 12,
+            "width": "12",
+            "roof_angle": "12",
+            "mean_roof_height": "12"
+          },
+          "seismic_parameters": {
+            "structure_height": "12",
+            "R": "8.5",
+            "Ca": "0.440",
+            "Cv": "0.960",
+            "structure_system": "concrete-mrf",
+            "T": "0.4713",
+            "weights": [
+              {
+                "level": "2",
+                "elevation": "12",
+                "weight": "1222"
+              }
+            ]
+          }
+        },
+        "site_analysis": {
+          "terrain_category_all_direction": {
+            "N": "C",
+            "NE": null,
+            "E": null,
+            "SE": null,
+            "S": null,
+            "SW": null,
+            "W": null,
+            "NW": null
+          },
+          "topo_factor_all_direction": {},
+          "lee_multiplier_all_direction": null,
+          "hillshape_multiplier_all_direction": {},
+          "topography_all_directions": {}
+        },
+        "api_version": 2
+      }
+    }
+  ]
+}

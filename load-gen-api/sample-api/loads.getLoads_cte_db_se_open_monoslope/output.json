@@ -1,0 +1,139 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "site_data": {
+      "country": "Spain",
+      "lat": 39.57265659999999,
+      "lng": 2.6568459,
+      "elevation": 31.88,
+      "formatted_address": "Nord de Palma District, Balearic Islands, Spain",
+      "address_components": [
+        {
+          "long_name": "Nord de Palma District",
+          "short_name": "Nord de Palma District",
+          "types": [
+            "political",
+            "administrative_area_level_3"
+          ]
+        },
+        {
+          "long_name": "Balearic Islands",
+          "short_name": "PM",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Balearic Islands",
+          "short_name": "IB",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Spain",
+          "short_name": "ES",
+          "types": [
+            "political",
+            "country"
+          ]
+        }
+      ],
+      "address": "Palma de Mallorca, Spain",
+      "province": "Balearic Islands",
+      "municipality": null
+    },
+    "wind_data": {
+      "wind_region": "C",
+      "wind_speed_unit": "m/s",
+      "wind_speed": 29,
+      "wind_region_data": {
+        "next_nearest_region": "A",
+        "unit": "kilometers",
+        "distance_to_borderline": 170.46
+      }
+    },
+    "snow_data": {
+      "sAd": 0,
+      "snow_load": 0.22,
+      "snow_region_data": {
+        "snow_region": 5,
+        "province": "Balearic Islands",
+        "municipality": null,
+        "reference": "CTE DB SE Tabla E.2"
+      }
+    },
+    "topography": {},
+    "snow_pressure": {
+      "pressure_type": "snow",
+      "pressure_unit": "kPa",
+      "parameters": {
+        "sk": 0.22,
+        "topography": "sheltered",
+        "type_of_snow": "pressed",
+        "Ce": 1.2,
+        "mu": 1,
+        "snow_gamma": 2
+      },
+      "balance_case": {
+        "mu": 1,
+        "qn": 0.264
+      },
+      "unbalance_case": null,
+      "report_link": "https://solver.skyciv.com/temp/view_report_upYCvqUFpMcH8ulD_snow.php"
+    },
+    "wind_pressure": {
+      "pressure_type": "",
+      "pressure_unit": "pa",
+      "elevation_or_location_unit": "m",
+      "pressures": {
+        "succion": [
+          0
+        ],
+        "pression": [
+          1.7082813
+        ],
+        "qb": 0.525625,
+        "vb": 29,
+        "pressures": [
+          {
+            "description": "Presi\u00f3n",
+            "elevation": 12,
+            "cpe": 0.8,
+            "ce": 2.5,
+            "qb": 0.525625,
+            "qe": 1.7082813,
+            "cpi": -0.5,
+            "qb_ce": 1.3140625
+          },
+          {
+            "description": "Succion",
+            "elevation": 12,
+            "cpe": -0.5,
+            "ce": 2.5,
+            "qb": 0.525625,
+            "qe": 0,
+            "cpi": -0.5,
+            "qb_ce": 1.3140625
+          }
+        ]
+      },
+      "forces": null,
+      "wind_parameters": {
+        "pressure_unit": "kPa",
+        "elevation_or_location_unit": "m",
+        "vb": 29,
+        "qb": 0.525625,
+        "cpe_presion": 0.8,
+        "cpe_succion": -0.5,
+        "cpi": -0.5,
+        "ce_h": 2.5
+      },
+      "report_link": "https://solver.skyciv.com/temp/view_report_upYCvqUFpMcH8ulD_wind.php"
+    }
+  },
+  "api_version": 2.1
+}

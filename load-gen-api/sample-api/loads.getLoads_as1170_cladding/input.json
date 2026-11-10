@@ -1,0 +1,72 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "as1170",
+          "project_address": "Sydney NSW, Australia",
+          "topography": {
+            "wind_direction": "N",
+            "topo_image": true,
+            "country": "Australia",
+            "terrain_category": "CAT3",
+            "snow_area_classification": "not-applicable",
+            "snow_terrain_class": ""
+          },
+          "ari": "",
+          "sls_and_uls": {
+            "country": "Australia",
+            "design_working_life": "100_years",
+            "importance_level": "2"
+          }
+        },
+        "building_data": {
+          "design_code": "as1170",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": [
+              {
+                "floor_level": "Mean Roof Height",
+                "floor_elevation": "11"
+              }
+            ],
+            "elevated_building": false,
+            "wall_condition": "5",
+            "action_combination_case": "1",
+            "wall_type": "impermeable",
+            "ratio_of_opening_to_total_area": "0",
+            "structure_type": "cladding"
+          },
+          "snow_parameters": false,
+          "roof_profile": "gable",
+          "building_dimensions": {
+            "length": 15,
+            "width": "11",
+            "roof_angle": "11",
+            "mean_roof_height": "11"
+          }
+        }
+      }
+    }
+  ]
+}

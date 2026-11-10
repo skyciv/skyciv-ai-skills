@@ -1,0 +1,668 @@
+{
+  "status": 0,
+  "msg": "wind_parameters.wall_surface_type is not defined. Default value (with-ribs) will be used. \n",
+  "data": {
+    "site_data": {
+      "country": "Australia",
+      "lat": -33.917347,
+      "lng": 151.2312675,
+      "elevation": 37.9,
+      "formatted_address": "Sydney NSW 2052, Australia",
+      "address_components": [
+        {
+          "long_name": "Sydney",
+          "short_name": "Sydney",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Randwick City Council",
+          "short_name": "Randwick City Council",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "New South Wales",
+          "short_name": "NSW",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Australia",
+          "short_name": "AU",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "2052",
+          "short_name": "2052",
+          "types": [
+            "postal_code"
+          ]
+        }
+      ],
+      "address": "University of New South Wales"
+    },
+    "wind_data": {
+      "wind_region": "A2",
+      "lee_multiplier": 1,
+      "wind_speed_unit": "m/s",
+      "wind_speed": 37,
+      "min_dist_from_aus_shoreline": 2.5700796168066944,
+      "wind_region_data": {
+        "next_nearest_region": "A3",
+        "unit": "kilometers",
+        "distance_to_borderline": 59
+      }
+    },
+    "snow_data": {
+      "recurrence_int": 25,
+      "snow_area_classification": "not-applicable",
+      "snow_load": 0,
+      "snow_region_data": {
+        "next_nearest_region": "AC",
+        "unit": "kilometers",
+        "distance_to_borderline": 7.63
+      }
+    },
+    "topography": {
+      "map_image_base64": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcG...(truncated)",
+      "code": "as1170",
+      "topo_factor": 1,
+      "comments": "",
+      "location_of_peak": -920,
+      "elevation_of_peak": 67.332763671875,
+      "location_of_foot": -1680,
+      "elevation_of_foot": 19.86408042907715,
+      "elevation_of_midheight": 43.598422050476074,
+      "slope": 0.064444512353504,
+      "H": 47.46868324279785,
+      "x": 920,
+      "z": 0,
+      "location_of_midheight": -1288.29,
+      "Lu": 368.28999999999996,
+      "L1": 132.5844,
+      "L2_upwind": 530.3376,
+      "L2_downwind": 530.3376,
+      "Mt": 1,
+      "Mlee": 1,
+      "Mh": 1,
+      "wind_region": "A2",
+      "site_elevation": 37.9,
+      "terrain_type": "Hill",
+      "wind_source_direction": "E",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "seismic_data": {
+      "Z": 0.09,
+      "kp": 0.75,
+      "P": "1/250",
+      "kp_Z_min": 0.08,
+      "kp_Z": 0.0675,
+      "reference": "From Figures 3.2(A) to 3.2(G) of Section 3.2 AS 1170.4"
+    },
+    "snow_pressure": null,
+    "wind_pressure": {
+      "pressure_type": "freestandingwall",
+      "pressure_unit": "pa",
+      "elevation_or_location_unit": "m",
+      "pressures": null,
+      "forces": {
+        "0": [
+          {
+            "Cpn": 1.2545098040014258,
+            "Kp": 0.9975,
+            "location": "-",
+            "e": 0,
+            "Cshp": 1.2513735294914223,
+            "direction": "0",
+            "F": 64390.52637891784,
+            "force_unit": "N"
+          }
+        ],
+        "45": [
+          {
+            "Cpn": 1.2545098040014258,
+            "location": "-",
+            "e": 2,
+            "Kp": 0.9975,
+            "Cshp": 1.2513735294914223,
+            "direction": "45",
+            "F": 64390.52637891784,
+            "force_unit": "N"
+          }
+        ],
+        "90": [
+          {
+            "Cpn": 1,
+            "location": "0 m to 14 m",
+            "e": null,
+            "Kp": 0.9975,
+            "Cshp": 0.9975,
+            "direction": "90",
+            "F": 51327.24046758001,
+            "force_unit": "N",
+            "Cf": 0.01,
+            "fz": 7.35084,
+            "F_drag": 514.5588
+          },
+          {
+            "Cpn": 0.25,
+            "location": "14 m to 28 m",
+            "e": null,
+            "Kp": 0.9975,
+            "Cshp": 0.249375,
+            "direction": "90",
+            "F": 12831.810116895003,
+            "force_unit": "N",
+            "Cf": 0.01,
+            "fz": 7.35084,
+            "F_drag": 514.5588
+          },
+          {
+            "Cpn": 0.25,
+            "location": "> 28 m",
+            "e": null,
+            "Kp": 0.9975,
+            "Cshp": 0.249375,
+            "direction": "90",
+            "F": 12831.810116895003,
+            "force_unit": "N",
+            "Cf": 0.01,
+            "fz": 7.35084,
+            "F_drag": 514.5588
+          }
+        ]
+      },
+      "parameters": {
+        "M_lee": 1,
+        "Mc": 1,
+        "Md": 1,
+        "Ms": 1,
+        "Mh": 1,
+        "Mt": 1,
+        "V_des_min": 30,
+        "Mz_cat": 0.9460000000000001,
+        "V_sit_beta_alldirn": {
+          "N": 35.002,
+          "NE": 35.002,
+          "E": 35.002,
+          "SE": 35.002,
+          "S": 35.002,
+          "SW": 35.002,
+          "W": 35.002,
+          "NW": 35.002
+        },
+        "V_des_theta": 35.002,
+        "V_sit_beta": 35.002,
+        "building_orthogonal_axis_orientation": "E",
+        "V_des_theta_cladding": 35.002,
+        "Ka": 1,
+        "Kl": 1,
+        "Lu": 368.28999999999996,
+        "x": 920,
+        "z": 0,
+        "ground_to_top": 7,
+        "wall_area": 70,
+        "wall_width": 10,
+        "wall_height": 7,
+        "solidity_ratio": 0.95,
+        "lee_multiplier_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "terrain_category_all_directions": {
+          "N": "CAT2",
+          "NE": "CAT2",
+          "E": "CAT2",
+          "SE": "CAT2",
+          "S": "CAT2",
+          "SW": "CAT2",
+          "W": "CAT2",
+          "NW": "CAT2"
+        },
+        "topo_factor_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "hillshape_multiplier_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "V_sit_beta_all_direction_data": [
+          {
+            "direction": "N",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "NE",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "E",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "SE",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "S",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "SW",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "W",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          },
+          {
+            "direction": "NW",
+            "Md": 1,
+            "VR": 37,
+            "terrain_category": "CAT2",
+            "Mz_cat": 0.9460000000000001,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.002
+          }
+        ],
+        "Cf": 0.01,
+        "fz": 7.35084,
+        "cshp": [
+          {
+            "Cpn": 1.2545098040014258,
+            "Kp": 0.9975,
+            "location": "-",
+            "e": 0,
+            "Cshp": 1.2513735294914223,
+            "direction": "0",
+            "F": 64390.52637891784,
+            "force_unit": "N"
+          },
+          {
+            "Cpn": 1.2545098040014258,
+            "location": "-",
+            "e": 2,
+            "Kp": 0.9975,
+            "Cshp": 1.2513735294914223,
+            "direction": "45",
+            "F": 64390.52637891784,
+            "force_unit": "N"
+          },
+          {
+            "Cpn": 1,
+            "location": "0 m to 14 m",
+            "e": null,
+            "Kp": 0.9975,
+            "Cshp": 0.9975,
+            "direction": "90",
+            "F": 51327.24046758001,
+            "force_unit": "N",
+            "Cf": 0.01,
+            "fz": 7.35084,
+            "F_drag": 514.5588
+          },
+          {
+            "Cpn": 0.25,
+            "location": "14 m to 28 m",
+            "e": null,
+            "Kp": 0.9975,
+            "Cshp": 0.249375,
+            "direction": "90",
+            "F": 12831.810116895003,
+            "force_unit": "N",
+            "Cf": 0.01,
+            "fz": 7.35084,
+            "F_drag": 514.5588
+          },
+          {
+            "Cpn": 0.25,
+            "location": "> 28 m",
+            "e": null,
+            "Kp": 0.9975,
+            "Cshp": 0.249375,
+            "direction": "90",
+            "F": 12831.810116895003,
+            "force_unit": "N",
+            "Cf": 0.01,
+            "fz": 7.35084,
+            "F_drag": 514.5588
+          }
+        ],
+        "api_wind_parameters": {
+          "Mh": 1,
+          "Mlee": 1,
+          "Mt": 1,
+          "Mc": 1,
+          "Ms": 1,
+          "Md": 1,
+          "VR": 37,
+          "V_sit_beta_all_direction": {
+            "N": 35.002,
+            "NE": 35.002,
+            "E": 35.002,
+            "SE": 35.002,
+            "S": 35.002,
+            "SW": 35.002,
+            "W": 35.002,
+            "NW": 35.002
+          },
+          "V_des_theta": {
+            "0": 35.002,
+            "90": 35.002,
+            "180": 35.002,
+            "270": 35.002
+          },
+          "Mz_cat": [
+            {
+              "elevation": "h = 7 (top)",
+              "Mz_cat": 0.946
+            }
+          ],
+          "Md_all_direction": {
+            "N": 1,
+            "NE": 1,
+            "E": 1,
+            "SE": 1,
+            "S": 1,
+            "SW": 1,
+            "W": 1,
+            "NW": 1
+          },
+          "Mlee_all_direction": {
+            "N": 1,
+            "NE": 1,
+            "E": 1,
+            "SE": 1,
+            "S": 1,
+            "SW": 1,
+            "W": 1,
+            "NW": 1
+          },
+          "Mh_all_direction": {
+            "N": 1,
+            "NE": 1,
+            "E": 1,
+            "SE": 1,
+            "S": 1,
+            "SW": 1,
+            "W": 1,
+            "NW": 1
+          },
+          "Mt_all_direction": {
+            "N": 1,
+            "NE": 1,
+            "E": 1,
+            "SE": 1,
+            "S": 1,
+            "SW": 1,
+            "W": 1,
+            "NW": 1
+          },
+          "V_sit_beta_all_direction_data": [
+            {
+              "direction": "N",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "NE",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "E",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "SE",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "S",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "SW",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "W",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            },
+            {
+              "direction": "NW",
+              "Md": 1,
+              "VR": 37,
+              "terrain_category": "CAT2",
+              "Mz_cat": 0.9460000000000001,
+              "Ms": 1,
+              "Mlee": 1,
+              "Mh": 1,
+              "Mt": 1,
+              "Vsitbeta": 35.002
+            }
+          ],
+          "cshp": [
+            {
+              "Cpn": 1.2545098040014258,
+              "Kp": 0.9975,
+              "location": "-",
+              "e": 0,
+              "Cshp": 1.2513735294914223,
+              "direction": "0",
+              "F": 64390.52637891784,
+              "force_unit": "N"
+            },
+            {
+              "Cpn": 1.2545098040014258,
+              "location": "-",
+              "e": 2,
+              "Kp": 0.9975,
+              "Cshp": 1.2513735294914223,
+              "direction": "45",
+              "F": 64390.52637891784,
+              "force_unit": "N"
+            },
+            {
+              "Cpn": 1,
+              "location": "0 m to 14 m",
+              "e": null,
+              "Kp": 0.9975,
+              "Cshp": 0.9975,
+              "direction": "90",
+              "F": 51327.24046758001,
+              "force_unit": "N",
+              "Cf": 0.01,
+              "fz": 7.35084,
+              "F_drag": 514.5588
+            },
+            {
+              "Cpn": 0.25,
+              "location": "14 m to 28 m",
+              "e": null,
+              "Kp": 0.9975,
+              "Cshp": 0.249375,
+              "direction": "90",
+              "F": 12831.810116895003,
+              "force_unit": "N",
+              "Cf": 0.01,
+              "fz": 7.35084,
+              "F_drag": 514.5588
+            },
+            {
+              "Cpn": 0.25,
+              "location": "> 28 m",
+              "e": null,
+              "Kp": 0.9975,
+              "Cshp": 0.249375,
+              "direction": "90",
+              "F": 12831.810116895003,
+              "force_unit": "N",
+              "Cf": 0.01,
+              "fz": 7.35084,
+              "F_drag": 514.5588
+            }
+          ],
+          "Cf": 0.01,
+          "fz": 7.35084,
+          "elevation_or_location_unit": "m"
+        },
+        "pressure_unit": "pa",
+        "elevation_or_location_unit": "m"
+      },
+      "report_link": "https://solver.skyciv.com/temp/view_report_L7xCLOvusiNaLdtY_wind.php"
+    }
+  },
+  "api_version": 2.1,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "DEFAULT_APPLIED",
+      "field": "wind_parameters.wall_surface_type",
+      "default": "with-ribs",
+      "message": "wind_parameters.wall_surface_type is not defined. Default value (with-ribs) will be used."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "report": true,
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "cte-db-se",
+          "topography": {
+            "wind_direction": "Any",
+            "topo_image": true,
+            "country": "Spain",
+            "terrain_category": "III"
+          },
+          "project_address": "Palma de Mallorca, Spain"
+        },
+        "building_data": {
+          "design_code": "cte-db-se",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": null,
+            "roof_cladding_area": "10",
+            "wall_cladding_area": "10",
+            "wind_blockage": "blocked",
+            "flat_roof_type": "",
+            "ratio_of_opening_to_total_area": 1,
+            "structure_type": "free_roof"
+          },
+          "snow_parameters": {
+            "topography_snow": "sheltered",
+            "type_of_snow": "pressed",
+            "balance_unbalance": false
+          },
+          "roof_profile": "open-monoslope",
+          "building_dimensions": {
+            "length": 12,
+            "width": "12",
+            "roof_angle": "12",
+            "ground_to_top": "12"
+          }
+        },
+        "api_version": 2.1
+      }
+    }
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "imperial"
+        },
+        "site_data": {
+          "design_code": "asce7-22",
+          "topography": {
+            "wind_direction": "NW",
+            "topo_image": true,
+            "country": "United States",
+            "lat": 32.66055825387035,
+            "lng": -82.98153547929688,
+            "exposure": "D"
+          },
+          "lat": 32.66055825387035,
+          "lng": -82.98153547929688,
+          "risk_category": "II"
+        },
+        "building_data": {
+          "design_code": "asce7-22",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": [
+              {
+                "floor_level": "Mean Roof Height",
+                "floor_elevation": "7.5"
+              }
+            ],
+            "enclosure": "enclosed",
+            "wall_cladding_area": "1.0",
+            "roof_cladding_area": "1.0",
+            "height_to_top_parapet": "",
+            "gust_effect_factor": "rigid",
+            "G": 0.85,
+            "structure_type": "mwfrs_cladding"
+          },
+          "snow_parameters": false,
+          "roof_profile": "gable",
+          "building_dimensions": {
+            "length": 12,
+            "width": "12",
+            "roof_angle": "22.5",
+            "mean_roof_height": "7.5",
+            "eave_height": "6.8"
+          }
+        },
+        "site_analysis": {
+          "terrain_category_all_direction": {
+            "N": "D",
+            "NE": "D",
+            "E": "D",
+            "SE": "D",
+            "S": "D",
+            "SW": "D",
+            "W": "D",
+            "NW": "D"
+          },
+          "topo_factor_all_direction": {
+            "N": 1,
+            "NE": 1,
+            "E": 1,
+            "SE": 1,
+            "S": 1,
+            "SW": 1,
+            "W": 1,
+            "NW": 1
+          },
+          "topography_all_directions": {
+            "N": {
+              "code": "asce7-22",
+              "terrain_type": "Flat",
+              "H": 133.79999999999998,
+              "slope": 0.019913012524596388,
+              "x": -633.5905511811019,
+              "z": 0,
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "633.59",
+              "elevation_of_peak": "356.82",
+              "location_of_foot": "-5596.72",
+              "elevation_of_foot": "223.02",
+              "elevation_of_midheight": "",
+              "location_of_midheight": "",
+              "Kzt": 1
+            },
+            "NE": {
+              "code": "asce7-22",
+              "terrain_type": "Flat",
+              "H": 181.54999999999998,
+              "slope": 0.007037983861313561,
+              "x": -8025.48031496063,
+              "z": 0,
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "8025.48",
+              "elevation_of_peak": "377.01",
+              "location_of_foot": "-10137.45",
+              "elevation_of_foot": "195.46",
+              "elevation_of_midheight": "",
+              "location_of_midheight": "",
+              "Kzt": 1
+            },
+            "E": {
+              "code": "asce7-22",
+              "terrain_type": "Flat",
+              "H": 149.95000000000002,
+              "slope": 0.010389810252215402,
+              "x": -3801.543307086616,
+              "z": 0,
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "3801.54",
+              "elevation_of_peak": "354.12",
+              "location_of_foot": "-9398.26",
+              "elevation_of_foot": "204.17",
+              "elevation_of_midheight": "",
+              "location_of_midheight": "",
+              "Kzt": 1
+            },
+            "SE": {
+              "code": "asce7-22",
+              "terrain_type": "Flat",
+              "H": 97.52000000000001,
+              "slope": 0.0068802642654697994,
+              "x": 739.1889763779525,
+              "z": 0,
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "-739.19",
+              "elevation_of_peak": "334.87",
+              "location_of_foot": "-10348.65",
+              "elevation_of_foot": "237.35",
+              "elevation_of_midheight": "",
+              "location_of_midheight": "",
+              "Kzt": 1
+            },
+            "S": {
+              "code": "asce7-22",
+              "terrain_type": "Flat",
+              "H": 147.60999999999999,
+              "slope": 0.010266173714312824,
+              "x": 633.5905511811019,
+              "z": 0,
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "-633.59",
+              "elevation_of_peak": "356.82",
+              "location_of_foot": "-9503.86",
+              "elevation_of_foot": "209.21",
+              "elevation_of_midheight": "",
+              "location_of_midheight": "",
+              "Kzt": 1
+            },
+            "SW": {
+              "code": "asce7-22",
+              "terrain_type": "Hill",
+              "H": "52.260",
+              "slope": "0.064",
+              "x": "7919.882",
+              "Kzt": 1,
+              "Lh": "410.138",
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "-7919.88",
+              "elevation_of_peak": "376.18",
+              "location_of_foot": "-10243.05",
+              "elevation_of_foot": "323.92",
+              "elevation_of_midheight": "",
+              "z": 0,
+              "location_of_midheight": ""
+            },
+            "W": {
+              "code": "asce7-22",
+              "terrain_type": "Hill",
+              "H": "108.840",
+              "slope": "0.050",
+              "x": "3801.543",
+              "Kzt": 1,
+              "Lh": "1080.537",
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "-3801.54",
+              "elevation_of_peak": "354.12",
+              "location_of_foot": "-6019.11",
+              "elevation_of_foot": "245.28",
+              "elevation_of_midheight": "",
+              "z": 0,
+              "location_of_midheight": ""
+            },
+            "NW": {
+              "code": "asce7-22",
+              "topo_factor": 1,
+              "comments": "",
+              "location_of_peak": "739.19",
+              "elevation_of_peak": "334.87",
+              "location_of_foot": "-5596.72",
+              "elevation_of_foot": "226.47",
+              "elevation_of_midheight": "280.67",
+              "slope": "0.024",
+              "z": 0,
+              "location_of_midheight": "-1478.70",
+              "terrain_type": "Flat",
+              "H": "108.40",
+              "x": "-739.19",
+              "Lh": "2217.89",
+              "Kzt": 1
+            }
+          },
+          "topo_points_all_directions": {
+            "N": {
+              "peak": {
+                "location": 633.5905511811019,
+                "elevation": 356.82
+              },
+              "lowest_left": {
+                "location": -5596.716535433071,
+                "elevation": 223.02
+              },
+              "lowest_right": {
+                "location": null,
+                "elevation": null
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "NE": {
+              "peak": {
+                "location": 8025.48031496063,
+                "elevation": 377.01
+              },
+              "lowest_left": {
+                "location": -10137.44881889764,
+                "elevation": 195.46
+              },
+              "lowest_right": {
+                "location": 10243.04724409449,
+                "elevation": 323.92
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "E": {
+              "peak": {
+                "location": 3801.543307086616,
+                "elevation": 354.12
+              },
+              "lowest_left": {
+                "location": -9398.259842519687,
+                "elevation": 204.17
+              },
+              "lowest_right": {
+                "location": 5807.913385826772,
+                "elevation": 244.51
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "SE": {
+              "peak": {
+                "location": -739.1889763779525,
+                "elevation": 334.87
+              },
+              "lowest_left": {
+                "location": -10348.64566929134,
+                "elevation": 237.35
+              },
+              "lowest_right": {
+                "location": 5596.716535433071,
+                "elevation": 226.47
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "S": {
+              "peak": {
+                "location": -633.5905511811019,
+                "elevation": 356.82
+              },
+              "lowest_left": {
+                "location": -9503.858267716536,
+                "elevation": 209.21
+              },
+              "lowest_right": {
+                "location": 5279.921259842521,
+                "elevation": 223.08
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "SW": {
+              "peak": {
+                "location": -7919.881889763781,
+                "elevation": 376.18
+              },
+              "lowest_left": {
+                "location": -10243.047244094489,
+                "elevation": 323.92
+              },
+              "lowest_right": {
+                "location": null,
+                "elevation": null
+              },
+              "terrain_name": "Hill",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "W": {
+              "peak": {
+                "location": -3801.5433070866147,
+                "elevation": 354.12
+              },
+              "lowest_left": {
+                "location": -6019.110236220473,
+                "elevation": 245.28
+              },
+              "lowest_right": {
+                "location": 9398.259842519687,
+                "elevation": 204.17
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            },
+            "NW": {
+              "peak": {
+                "location": 739.1889763779525,
+                "elevation": 334.87
+              },
+              "lowest_left": {
+                "location": -5596.716535433071,
+                "elevation": 226.47
+              },
+              "lowest_right": {
+                "location": null,
+                "elevation": null
+              },
+              "terrain_name": "Flat",
+              "structure_location": {
+                "location": 0,
+                "elevation": 332.24
+              }
+            }
+          }
+        },
+        "api_version": 3
+      }
+    }
+  ]
+}

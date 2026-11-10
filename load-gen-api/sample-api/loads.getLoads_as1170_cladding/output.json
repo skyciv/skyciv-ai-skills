@@ -1,0 +1,509 @@
+{
+  "status": 0,
+  "msg": "wind_parameters.wall_cladding_area is not defined. Default value (1) will be used. \nwind_parameters.roof_cladding_area is not defined. Default value (1) will be used. \nwind_parameters.cladding_type is not defined. Default value (undefined) will be used. \n",
+  "data": {
+    "site_data": {
+      "country": "Australia",
+      "lat": -33.8688197,
+      "lng": 151.2092955,
+      "elevation": 24.54,
+      "formatted_address": "Sydney NSW, Australia",
+      "address_components": [
+        {
+          "long_name": "Sydney",
+          "short_name": "Sydney",
+          "types": [
+            "colloquial_area",
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "New South Wales",
+          "short_name": "NSW",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Australia",
+          "short_name": "AU",
+          "types": [
+            "country",
+            "political"
+          ]
+        }
+      ],
+      "address": "Sydney NSW, Australia"
+    },
+    "wind_data": {
+      "wind_region": "A2",
+      "lee_multiplier": 1,
+      "wind_speed_unit": "m/s",
+      "wind_speed": {
+        "service": 37,
+        "ultimate": 46
+      },
+      "min_dist_from_aus_shoreline": 1.4212107428685663,
+      "wind_region_data": {
+        "next_nearest_region": "A3",
+        "unit": "kilometers",
+        "distance_to_borderline": 55.92
+      }
+    },
+    "snow_data": {
+      "recurrence_int": 250,
+      "snow_area_classification": "not-applicable",
+      "snow_load": 0,
+      "snow_region_data": {
+        "next_nearest_region": "AC",
+        "unit": "kilometers",
+        "distance_to_borderline": 6.69
+      }
+    },
+    "topography": {
+      "code": "as1170",
+      "topo_factor": 1,
+      "comments": "",
+      "Mh": 1,
+      "Mlee": 1,
+      "Mt": 1,
+      "location_of_peak": 1940,
+      "elevation_of_peak": 38.06085586547852,
+      "location_of_foot": -1420,
+      "elevation_of_foot": 3.502058267593384,
+      "elevation_of_midheight": 20.781457066535953,
+      "slope": 0.008208880743051183,
+      "H": 34.55879759788514,
+      "x": -1940,
+      "location_of_midheight": -164.96404318817528,
+      "Lu": 2104.9640431881753,
+      "L1": 757.7870555477431,
+      "L2_upwind": 3031.1482221909723,
+      "L2_downwind": 3031.1482221909723,
+      "terrain_type": "Flat",
+      "wind_source_direction": "N",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "seismic_data": {
+      "Z": 0.09,
+      "kp": 1.3,
+      "P": "1/1000",
+      "kp_Z_min": 0.1,
+      "kp_Z": 0.11699999999999999,
+      "reference": "From Figures 3.2(A) to 3.2(G) of Section 3.2 AS 1170.4"
+    },
+    "snow_pressure": null,
+    "wind_pressure": {
+      "pressure_type": "components_and_cladding",
+      "pressure_unit": "pa",
+      "elevation_or_location_unit": "m",
+      "pressures": [
+        {
+          "WA1": {
+            "Vdestheta": 36.795399999999994,
+            "pressure": 682.3663364246396,
+            "cshp": 0.8399999999999999,
+            "Kl": 1.5,
+            "location": "anywhere",
+            "Ka": 1,
+            "cpe": 0.7,
+            "combined": {
+              "min": {
+                "pe": 682.3663364246396,
+                "pi": -162.46817533919995,
+                "combined": 844.8345117638396
+              },
+              "max": {
+                "pe": 682.3663364246396,
+                "pi": 0,
+                "combined": 682.3663364246396
+              }
+            }
+          },
+          "SA1": {
+            "Vdestheta": 36.795399999999994,
+            "pressure": -633.6258838228798,
+            "cshp": -0.78,
+            "Kl": 1.5,
+            "location": "< a",
+            "Ka": 1,
+            "cpe": -0.65,
+            "combined": {
+              "min": {
+                "pe": -633.6258838228798,
+                "pi": -162.46817533919995,
+                "combined": -471.15770848367987
+              },
+              "max": {
+                "pe": -633.6258838228798,
+                "pi": 0,
+                "combined": -633.6258838228798
+              }
+            }
+          },
+          "SA2": {
+            "Vdestheta": 36.795399999999994,
+            "pressure": -844.8345117638397,
+            "cshp": -1.04,
+            "Kl": 2,
+            "location": "< 0.5a",
+            "Ka": 1,
+            "cpe": -0.65,
+            "combined": {
+              "min": {
+                "pe": -844.8345117638397,
+                "pi": -162.46817533919995,
+                "combined": -682.3663364246397
+              },
+              "max": {
+                "pe": -844.8345117638397,
+                "pi": 0,
+                "combined": -844.8345117638397
+              }
+            }
+          }
+        },
+        {
+          "RC1": [
+            {
+              "Vdestheta": 36.795399999999994,
+              "max": {
+                "pressure": -307.60641197555185,
+                "cshp": -0.37866666666666665,
+                "Kl": 1,
+                "location": "< a from 2 edges",
+                "Ka": 1,
+                "cpe": -0.4733333333333333,
+                "combined": {
+                  "min": -145.1382366363519,
+                  "max": -307.60641197555185
+                }
+              },
+              "min": {
+                "pressure": -674.1346155407869,
+                "cshp": -0.8298666666666666,
+                "Kl": 1,
+                "location": "< a from 2 edges",
+                "Ka": 1,
+                "cpe": -1.0373333333333332,
+                "combined": {
+                  "min": -511.6664402015869,
+                  "max": -674.1346155407869
+                }
+              }
+            }
+          ],
+          "RA1": [
+            {
+              "Vdestheta": 36.795399999999994,
+              "max": {
+                "pressure": -461.4096179633278,
+                "cshp": -0.568,
+                "Kl": 1.5,
+                "location": "< a",
+                "Ka": 1,
+                "cpe": -0.4733333333333333,
+                "combined": {
+                  "min": -298.94144262412783,
+                  "max": -461.4096179633278
+                }
+              },
+              "min": {
+                "pressure": -1011.2019233111803,
+                "cshp": -1.2448,
+                "Kl": 1.5,
+                "location": "< a",
+                "Ka": 1,
+                "cpe": -1.0373333333333332,
+                "combined": {
+                  "min": -848.7337479719804,
+                  "max": -1011.2019233111803
+                }
+              }
+            }
+          ],
+          "RA2": [
+            {
+              "Vdestheta": 36.795399999999994,
+              "max": {
+                "pressure": -615.2128239511037,
+                "cshp": -0.7573333333333333,
+                "Kl": 2,
+                "location": "< 0.5a",
+                "Ka": 1,
+                "cpe": -0.4733333333333333,
+                "combined": {
+                  "min": -452.74464861190376,
+                  "max": -615.2128239511037
+                }
+              },
+              "min": {
+                "pressure": -1348.2692310815737,
+                "cshp": -1.6597333333333333,
+                "Kl": 2,
+                "location": "< 0.5a",
+                "Ka": 1,
+                "cpe": -1.0373333333333332,
+                "combined": {
+                  "min": -1185.8010557423738,
+                  "max": -1348.2692310815737
+                }
+              }
+            }
+          ],
+          "RC2": [
+            {
+              "Vdestheta": 36.795399999999994,
+              "min": {
+                "pressure": -1138.576972777113,
+                "cshp": -1.4016,
+                "Kl": 3,
+                "location": "< a from both ridge and edge",
+                "Ka": 1,
+                "cpe": -0.584,
+                "combined": {
+                  "min": -976.1087974379132,
+                  "max": -1138.576972777113
+                }
+              }
+            }
+          ],
+          "RA3": [
+            {
+              "Vdestheta": 36.795399999999994,
+              "min": {
+                "pressure": -569.2884863885565,
+                "cshp": -0.7008,
+                "Kl": 1.5,
+                "location": "< a",
+                "Ka": 1,
+                "cpe": -0.584,
+                "combined": {
+                  "min": -406.8203110493566,
+                  "max": -569.2884863885565
+                }
+              }
+            }
+          ],
+          "RA4": [
+            {
+              "Vdestheta": 36.795399999999994,
+              "min": {
+                "pressure": -759.0513151847421,
+                "cshp": -0.9344,
+                "Kl": 2,
+                "location": "< 0.5a",
+                "Ka": 1,
+                "cpe": -0.584,
+                "combined": {
+                  "min": -596.5831398455421,
+                  "max": -759.0513151847421
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "forces": null,
+      "api_wind_parameters": {
+        "Mh": 1,
+        "Mlee": 1,
+        "Mt": 1,
+        "Mc": 1,
+        "Ms": 1,
+        "Md": 0.85,
+        "VR": 46,
+        "V_des_theta": {
+          "0": 36.795399999999994,
+          "90": 36.795399999999994,
+          "180": 36.795399999999994,
+          "270": 38.732
+        },
+        "V_sit_beta_all_direction": {
+          "N": 32.9222,
+          "NE": 29.049,
+          "E": 32.9222,
+          "SE": 36.795399999999994,
+          "S": 36.795399999999994,
+          "SW": 36.795399999999994,
+          "W": 38.732,
+          "NW": 36.795399999999994
+        },
+        "Mz_cat": [
+          {
+            "elevation": "11",
+            "Mz_cat": 0.842,
+            "level": "Mean Roof Height"
+          }
+        ],
+        "Kce": 0.8,
+        "Kci": 1,
+        "Md_all_direction": {
+          "N": 0.85,
+          "NE": 0.75,
+          "E": 0.85,
+          "SE": 0.95,
+          "S": 0.95,
+          "SW": 0.95,
+          "W": 1,
+          "NW": 0.95
+        },
+        "Mlee_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "Mh_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "Mt_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "V_sit_beta_all_direction_data": [
+          {
+            "direction": "N",
+            "Md": 0.85,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 32.9222
+          },
+          {
+            "direction": "NE",
+            "Md": 0.75,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 29.049
+          },
+          {
+            "direction": "E",
+            "Md": 0.85,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 32.9222
+          },
+          {
+            "direction": "SE",
+            "Md": 0.95,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 36.795399999999994
+          },
+          {
+            "direction": "S",
+            "Md": 0.95,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 36.795399999999994
+          },
+          {
+            "direction": "SW",
+            "Md": 0.95,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 36.795399999999994
+          },
+          {
+            "direction": "W",
+            "Md": 1,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 38.732
+          },
+          {
+            "direction": "NW",
+            "Md": 0.95,
+            "VR": 46,
+            "terrain_category": "CAT3",
+            "Mz_cat": 0.842,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 36.795399999999994
+          }
+        ],
+        "elevation_or_location_unit": "m"
+      },
+      "a": 2.2,
+      "report_link": "https://solver.skyciv.com/temp/view_report_3xkI1PUrQJXoxDjL_wind.php"
+    }
+  },
+  "api_version": 2.1,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "DEFAULT_APPLIED",
+      "field": "wind_parameters.wall_cladding_area",
+      "default": "1",
+      "message": "wind_parameters.wall_cladding_area is not defined. Default value (1) will be used."
+    },
+    {
+      "code": "DEFAULT_APPLIED",
+      "field": "wind_parameters.roof_cladding_area",
+      "default": "1",
+      "message": "wind_parameters.roof_cladding_area is not defined. Default value (1) will be used."
+    },
+    {
+      "code": "DEFAULT_APPLIED",
+      "field": "wind_parameters.cladding_type",
+      "default": "undefined",
+      "message": "wind_parameters.cladding_type is not defined. Default value (undefined) will be used."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "nbcc2015",
+          "project_address": "Toronto, ON, Canada",
+          "topography": {
+            "wind_direction": "N",
+            "topo_image": false,
+            "country": "Canada",
+            "snow_area_classification": "rural",
+            "terrain_category": "A"
+          },
+          "ari": "50_years",
+          "recurrence_interval": "50_years",
+          "importance_level": "normal",
+          "limit_state": "ULS"
+        },
+        "building_data": {
+          "design_code": "nbcc2015",
+          "structure": "building",
+          "wind_parameters": {
+            "structure_level": [
+              {
+                "floor_level": "2",
+                "floor_elevation": "8"
+              },
+              {
+                "floor_level": "3",
+                "floor_elevation": "16"
+              },
+              {
+                "floor_level": "roof",
+                "floor_elevation": "24"
+              }
+            ],
+            "wall_cladding_area": "",
+            "roof_cladding_area": "",
+            "enclosure": "enclosed",
+            "cladding_pressure_type": "",
+            "structure_type": "mwfrs"
+          },
+          "snow_parameters": false,
+          "roof_profile": "gable",
+          "building_dimensions": {
+            "length": 30,
+            "width": 20,
+            "roof_angle": 0,
+            "reference_height": 24,
+            "eave_height": 24,
+            "ground_to_top": 24
+          }
+        }
+      }
+    }
+  ]
+}

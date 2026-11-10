@@ -1,0 +1,58 @@
+{
+  "auth": {
+    "username": "YOUR_USER_NAME",
+    "key": "YOUR_API_KEY"
+  },
+  "functions": [
+    {
+      "function": "standalone.loads.start",
+      "arguments": {
+        "keep_open": false
+      }
+    },
+    {
+      "function": "standalone.loads.getLoads",
+      "arguments": {
+        "project_details": {
+          "name": "",
+          "id": "",
+          "company": "",
+          "designer": "",
+          "client": "",
+          "notes": "",
+          "units": "metric"
+        },
+        "site_data": {
+          "design_code": "as1170",
+          "project_address": "Sydney NSW, Australia",
+          "topography": {
+            "wind_direction": "N",
+            "topo_image": true,
+            "country": "Australia",
+            "terrain_category": "CAT1",
+            "snow_area_classification": "not-applicable",
+            "snow_terrain_class": ""
+          },
+          "ari": "100",
+          "sls_and_uls": false
+        },
+        "building_data": {
+          "design_code": "as1170",
+          "structure": "solar_panel",
+          "wind_parameters": {
+            "structure_type": "solar_panel"
+          },
+          "snow_parameters": false,
+          "panel_type": "ground",
+          "solar_panel_dimensions": {
+            "panel_length": "1.2",
+            "panel_width": "4.8",
+            "tilt_angle": "26",
+            "mounting_height": "2.5"
+          },
+          "building_parameters": false
+        }
+      }
+    }
+  ]
+}

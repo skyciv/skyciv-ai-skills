@@ -1,0 +1,365 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "site_data": {
+      "country": "Philippines",
+      "lat": 15.026051,
+      "lng": 120.2743484,
+      "elevation": 185.55,
+      "formatted_address": "San Marcelino, Zambales, Philippines",
+      "address_components": [
+        {
+          "long_name": "San Marcelino",
+          "short_name": "San Marcelino",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Zambales",
+          "short_name": "Zambales",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Central Luzon",
+          "short_name": "Central Luzon",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Philippines",
+          "short_name": "PH",
+          "types": [
+            "country",
+            "political"
+          ]
+        }
+      ],
+      "address": "San Marcelino, Zambales, Philippines"
+    },
+    "wind_data": {
+      "all_wind_speed": {
+        "I": 263,
+        "II": 263,
+        "III": 260,
+        "IV": 250,
+        "V": 250
+      },
+      "wind_speed_unit": "kph",
+      "wind_speed": 250
+    },
+    "snow_data": {
+      "snow_load": ""
+    },
+    "topography": {
+      "code": "nscp2015",
+      "topo_factor": null,
+      "comments": "",
+      "location_of_peak": -1460,
+      "elevation_of_peak": 224.3715209960938,
+      "location_of_foot": -1740,
+      "elevation_of_foot": 200.8866424560547,
+      "elevation_of_midheight": 212.62908172607425,
+      "slope": 0.06282135494645624,
+      "H": 23.48487854003912,
+      "x": 1460,
+      "location_of_midheight": -1646.92,
+      "Lh": 186.92000000000007,
+      "terrain_type": "Hill",
+      "wind_source_direction": "N",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "seismic_data": {
+      "Z": 0.4,
+      "seismic_zone": 4,
+      "reference": "Philippine Institute of Volcanology and Seismology (DOST-PHIVOLCS, 2021)",
+      "D": 18.923400072718362,
+      "nearest_fault": "Iba Fault",
+      "Na": 1,
+      "Nv": 1,
+      "distance_unit": "km",
+      "risk_category": "IV",
+      "seismic_source_type": "A",
+      "soil_profile_type": "Se",
+      "structure_height": "12",
+      "R": "8.5",
+      "structure_system": "concrete-mrf",
+      "weights": [
+        {
+          "level": "2",
+          "elevation": "12",
+          "weight": "1222"
+        }
+      ],
+      "Ca": "0.440",
+      "Cv": "0.960",
+      "T": "0.4713"
+    },
+    "snow_pressure": null,
+    "wind_pressure": {
+      "pressure_type": "components_and_cladding",
+      "pressure_unit": "pa",
+      "elevation_or_location_unit": "m",
+      "pressures": [
+        {
+          "zone": "4",
+          "elevation": 12,
+          "level": "0 to h",
+          "area": 12,
+          "p": {
+            "max": 33296.07777411784,
+            "min": -36683.225874117845
+          }
+        },
+        {
+          "zone": "5",
+          "elevation": 12,
+          "level": "0 to h",
+          "area": 12,
+          "p": {
+            "max": 33296.07777411784,
+            "min": -40172.400368235685
+          }
+        },
+        null,
+        {
+          "zone": "1",
+          "elevation": 12,
+          "level": "Roof",
+          "area": 12,
+          "p": {
+            "min": -33194.051380000004,
+            "max": 16258.310879999999
+          }
+        },
+        {
+          "zone": "2",
+          "elevation": 12,
+          "level": "Roof",
+          "area": 12,
+          "p": {
+            "min": -46742.64378,
+            "max": 16258.310879999999
+          }
+        },
+        {
+          "zone": "3",
+          "elevation": 12,
+          "level": "Roof",
+          "area": 12,
+          "p": {
+            "min": -73839.82858,
+            "max": 16258.310879999999
+          }
+        },
+        {
+          "zone": "2",
+          "elevation": 12,
+          "level": "Roof",
+          "area": 12,
+          "p": {
+            "min": -80614.12478000001
+          }
+        },
+        {
+          "zone": "3",
+          "elevation": 12,
+          "level": "Roof",
+          "area": 12,
+          "p": {
+            "min": -90775.56908
+          }
+        }
+      ],
+      "forces": null,
+      "a": 1.2,
+      "report_link": "https://solver.skyciv.com/temp/view_report_Wh7MbxCMrJkgNck3_wind.php"
+    },
+    "seismic_forces": {
+      "input_parameters": {
+        "seismic_zone": "4",
+        "seismic_source_type": "A - Faults that are capable of producing large magnitude events and that have a high rate of seismic activity (7.0 \u2264 M \u2264 8.4)",
+        "soil_profile_type": "S<sub>E</sub> - Soft Soil Profile",
+        "occupancy_category": "IV",
+        "nearest_fault": "Iba Fault",
+        "Z": 0.4,
+        "D": 18.9234,
+        "Na": 1,
+        "Nv": 1,
+        "Ca": 0.44,
+        "Cv": 0.96,
+        "I": 1,
+        "R": 8.5,
+        "hn": 12,
+        "Ct": 0.0731,
+        "W": 1222
+      },
+      "forces": {
+        "Ta": 0.47130637,
+        "T": 0.47130637,
+        "vertical_distribution_forces": [
+          {
+            "weight": 1222,
+            "elevation": 12,
+            "level": "2",
+            "Ft": 0,
+            "wh": 14664,
+            "Cvx": 1,
+            "Fx": 158.141
+          }
+        ],
+        "response_spectrum_data": [
+          {
+            "T_Ts": 0,
+            "T": 0,
+            "Sa": 0.44
+          },
+          {
+            "T_Ts": 0.2,
+            "T": 0.175,
+            "Sa": 1.1
+          },
+          {
+            "T_Ts": 0.4,
+            "T": 0.349,
+            "Sa": 1.1
+          },
+          {
+            "T_Ts": 0.6,
+            "T": 0.524,
+            "Sa": 1.1
+          },
+          {
+            "T_Ts": 0.8,
+            "T": 0.698,
+            "Sa": 1.1
+          },
+          {
+            "T_Ts": 1,
+            "T": 0.873,
+            "Sa": 1.1
+          },
+          {
+            "T_Ts": 1.2,
+            "T": 1.047,
+            "Sa": 0.91667
+          },
+          {
+            "T_Ts": 1.4,
+            "T": 1.222,
+            "Sa": 0.78571
+          },
+          {
+            "T_Ts": 1.6,
+            "T": 1.396,
+            "Sa": 0.6875
+          },
+          {
+            "T_Ts": 1.8,
+            "T": 1.571,
+            "Sa": 0.61111
+          },
+          {
+            "T_Ts": 2,
+            "T": 1.745,
+            "Sa": 0.55
+          },
+          {
+            "T_Ts": 2.2,
+            "T": 1.92,
+            "Sa": 0.5
+          },
+          {
+            "T_Ts": 2.4,
+            "T": 2.095,
+            "Sa": 0.45833
+          },
+          {
+            "T_Ts": 2.6,
+            "T": 2.269,
+            "Sa": 0.42308
+          },
+          {
+            "T_Ts": 2.8,
+            "T": 2.444,
+            "Sa": 0.39286
+          },
+          {
+            "T_Ts": 3,
+            "T": 2.618,
+            "Sa": 0.36667
+          },
+          {
+            "T_Ts": 3.2,
+            "T": 2.793,
+            "Sa": 0.34375
+          },
+          {
+            "T_Ts": 3.4,
+            "T": 2.967,
+            "Sa": 0.32353
+          },
+          {
+            "T_Ts": 3.6,
+            "T": 3.142,
+            "Sa": 0.30556
+          },
+          {
+            "T_Ts": 3.8,
+            "T": 3.316,
+            "Sa": 0.28947
+          },
+          {
+            "T_Ts": 4,
+            "T": 3.491,
+            "Sa": 0.275
+          },
+          {
+            "T_Ts": 4.2,
+            "T": 3.665,
+            "Sa": 0.2619
+          },
+          {
+            "T_Ts": 4.4,
+            "T": 3.84,
+            "Sa": 0.25
+          },
+          {
+            "T_Ts": 4.6,
+            "T": 4.015,
+            "Sa": 0.23913
+          },
+          {
+            "T_Ts": 4.8,
+            "T": 4.189,
+            "Sa": 0.22917
+          },
+          {
+            "T_Ts": 5,
+            "T": 4.364,
+            "Sa": 0.22
+          }
+        ],
+        "V": 158.14118,
+        "Ct": 0.0731,
+        "V_min": 59.1448,
+        "V_max": 158.14118,
+        "V_initial": 292.83313,
+        "Ts": 0.87272727,
+        "To": 0.17454545,
+        "Ft": 0,
+        "V_min_zone4": 46.004706
+      },
+      "force_unit": "kN",
+      "report_link": "https://solver.skyciv.com/temp/view_report_Wh7MbxCMrJkgNck3_seismic.php"
+    }
+  },
+  "api_version": 2
+}

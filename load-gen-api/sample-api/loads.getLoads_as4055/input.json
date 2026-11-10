@@ -1,0 +1,55 @@
+{
+    "auth": {
+        "username": "YOUR_USER_NAME",
+        "key": "YOUR_API_KEY"
+    },
+    "functions": [
+        {
+            "function": "standalone.loads.start",
+            "arguments": {
+                "keep_open": false
+            }
+        },
+        {
+            "function": "standalone.loads.getLoads",
+            "arguments": {
+                "project_details": {
+                    "name": "",
+                    "id": "SKYPH-001",
+                    "company": "SkyCiv",
+                    "designer": "Patrick",
+                    "client": "",
+                    "notes": "",
+                    "units": "metric"
+                },
+                "site_data": {
+                    "design_code": "as4055",
+                    "project_address": "Sydney NSW, Australia",
+                    "topography": {
+                        "wind_direction": "N",
+                        "terrain_category": "CAT2"
+                    }
+                },
+                "building_data": {
+                    "design_code": "as4055",
+                    "structure": "building",
+                    "roof_profile": "gable",
+                    "building_dimensions": {
+                        "length": 15,
+                        "width": 10,
+                        "roof_angle": 20,
+                        "ground_to_top": 6,
+                        "roof_material": "sheet-metal",
+                        "number_of_storeys": "one"
+                    },
+                    "wind_parameters": {
+                        "structure_type": "building",
+                        "shielding_class": "NS"
+                    },
+                    "snow_parameters": false,
+                    "seismic_parameters": false
+                }
+            }
+        }
+    ]
+}

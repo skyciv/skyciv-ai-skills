@@ -1,0 +1,173 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "site_data": {
+      "country": "United States",
+      "lat": 44.977753,
+      "lng": -93.2650108,
+      "elevation": 835.91,
+      "formatted_address": "Minneapolis, MN, USA",
+      "address_components": [
+        {
+          "long_name": "Minneapolis",
+          "short_name": "Minneapolis",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Hennepin County",
+          "short_name": "Hennepin County",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Minnesota",
+          "short_name": "MN",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        }
+      ],
+      "address": "Minneapolis, MN, USA",
+      "state": "Minnesota"
+    },
+    "wind_data": {
+      "wind_speed": 109,
+      "all_wind_speed": {
+        "10-year": 72,
+        "25-year": 80,
+        "50-year": 86,
+        "100-year": 92,
+        "I": 102,
+        "II": 109,
+        "III": 117,
+        "IV": 122
+      },
+      "wind_speed_unit": "mph"
+    },
+    "snow_data": {
+      "snow_load_unit": "psf",
+      "snow_load": 50
+    },
+    "topography": {
+      "code": "asce7-16",
+      "topo_factor": 1,
+      "comments": "",
+      "location_of_peak": 10243.199999999997,
+      "elevation_of_peak": 872.6062924843136,
+      "location_of_foot": -3484.8,
+      "elevation_of_foot": 802.037096399022,
+      "elevation_of_midheight": 837.3216944416678,
+      "slope": 0.0028800055385324094,
+      "H": 70.56919608529165,
+      "x": -10243.199999999997,
+      "location_of_midheight": -2008.3729815666013,
+      "Lh": 12251.572981566598,
+      "terrain_type": "Flat",
+      "wind_source_direction": "N",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "snow_pressure": {
+      "pressure_type": "snow",
+      "pressure_unit": "psf",
+      "parameters": {
+        "Ce": 0.9,
+        "Ct": 1.2,
+        "Is": 1,
+        "Cs": 1
+      },
+      "balance_case": {
+        "pf": 37.799999,
+        "ps": 37.799999,
+        "pm": 20,
+        "pr": 0
+      },
+      "unbalance_case": [],
+      "report_link": "https://solver.skyciv.com/temp/view_report_XqLuvhGr1uYm9v8i_snow.php"
+    },
+    "wind_pressure": {
+      "pressure_type": "MWFRS",
+      "pressure_unit": "psf",
+      "elevation_or_location_unit": "ft",
+      "pressures": [
+        {
+          "dirn": "along_L",
+          "surface": "roof_windward",
+          "location": [
+            0,
+            14
+          ],
+          "pos_GCpi": -16.664184,
+          "neg_GCpi": -8.8222152
+        },
+        {
+          "dirn": "along_B",
+          "surface": "roof_windward",
+          "location": [
+            0,
+            14
+          ],
+          "pos_GCpi": [
+            {
+              "Cn": -1.2,
+              "p": -14.703692
+            }
+          ],
+          "neg_GCpi": [
+            {
+              "Cn": 0.5,
+              "p": 6.1265383
+            }
+          ]
+        },
+        {
+          "dirn": "along_L",
+          "surface": "roof_leeward",
+          "location": [
+            0,
+            14
+          ],
+          "pos_GCpi": -12.253077,
+          "neg_GCpi": -20.095045
+        },
+        {
+          "dirn": "along_B",
+          "surface": "roof_leeward",
+          "location": [
+            0,
+            14
+          ],
+          "pos_GCpi": [
+            {
+              "Cn": -1.2,
+              "p": -14.703692
+            }
+          ],
+          "neg_GCpi": [
+            {
+              "Cn": 0.5,
+              "p": 6.1265383
+            }
+          ]
+        }
+      ],
+      "forces": null,
+      "report_link": "https://solver.skyciv.com/temp/view_report_XqLuvhGr1uYm9v8i_wind.php"
+    }
+  },
+  "api_version": 2.1
+}

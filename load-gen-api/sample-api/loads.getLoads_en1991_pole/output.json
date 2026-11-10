@@ -1,0 +1,120 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "site_data": {
+      "country": "Germany",
+      "lat": 50.7753455,
+      "lng": 6.083886800000001,
+      "elevation": 170.64,
+      "formatted_address": "52 Aachen, Germany",
+      "address_components": [
+        {
+          "long_name": "Aachen",
+          "short_name": "AC",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Aachen",
+          "short_name": "AC",
+          "types": [
+            "administrative_area_level_3",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Cologne",
+          "short_name": "K",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "North Rhine-Westphalia",
+          "short_name": "NRW",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Germany",
+          "short_name": "DE",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "52",
+          "short_name": "52",
+          "types": [
+            "postal_code_prefix",
+            "postal_code"
+          ]
+        }
+      ],
+      "address": "Aachen, Germany"
+    },
+    "wind_data": {
+      "wind_region": 2,
+      "wind_speed_unit": "m/s",
+      "wind_speed": 25,
+      "wind_region_data": {
+        "next_nearest_region": "2",
+        "unit": "kilometers",
+        "distance_to_borderline": 3.95
+      }
+    },
+    "snow_data": {
+      "snow_region": "zone2",
+      "snow_load_unit": "kpa",
+      "snow_load": 0.85
+    },
+    "topography": {
+      "code": "en1991",
+      "topo_factor": 1,
+      "comments": "",
+      "location_of_peak": -1120,
+      "elevation_of_peak": 228.0022583007812,
+      "location_of_foot": -1960,
+      "elevation_of_foot": 159.8063812255859,
+      "elevation_of_midheight": 193.90431976318354,
+      "slope": 0.08118556794666106,
+      "H": 68.19587707519528,
+      "x": 1120,
+      "Lu": 840,
+      "Ld": 1480,
+      "terrain_type": "Hill",
+      "wind_source_direction": "N",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "snow_pressure": null,
+    "wind_pressure": {
+      "pressure_type": "pole",
+      "pressure_unit": "",
+      "elevation_or_location_unit": "",
+      "pressures": null,
+      "forces": [
+        {
+          "dirn": "",
+          "surface": "pole",
+          "location": "height/2",
+          "magnitude": 14574.426
+        }
+      ],
+      "force_unit": "N",
+      "parameters": {
+        "cf0": 1.175919,
+        "effective_slenderness_cf0": 41.836735,
+        "end_effect_factor": 0.85297387
+      },
+      "report_link": "https://solver.skyciv.com/temp/view_report_sXI36elQe0VxUPM6_wind.php"
+    }
+  },
+  "api_version": 2.1
+}

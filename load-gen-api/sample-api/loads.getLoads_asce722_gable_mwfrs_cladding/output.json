@@ -1,0 +1,608 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "site_data": {
+      "country": "United States",
+      "lat": 32.66006,
+      "lng": -82.980813,
+      "elevation": 330.32,
+      "formatted_address": "1473 Young Ln, Dublin, GA 31021, USA",
+      "address_components": [
+        {
+          "long_name": "1473",
+          "short_name": "1473",
+          "types": [
+            "street_number"
+          ]
+        },
+        {
+          "long_name": "Young Lane",
+          "short_name": "Young Ln",
+          "types": [
+            "route"
+          ]
+        },
+        {
+          "long_name": "Dublin",
+          "short_name": "Dublin",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Laurens County",
+          "short_name": "Laurens County",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Georgia",
+          "short_name": "GA",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "31021",
+          "short_name": "31021",
+          "types": [
+            "postal_code"
+          ]
+        }
+      ],
+      "state": "Georgia"
+    },
+    "wind_data": {
+      "all_wind_speed": {
+        "I": 101,
+        "II": 109,
+        "III": 116,
+        "IV": 120,
+        "10-year": 72,
+        "25-year": 80,
+        "50-year": 86,
+        "100-year": 92
+      },
+      "wind_speed": 109,
+      "wind_speed_unit": "mph"
+    },
+    "snow_data": {
+      "snow_load": "not available",
+      "w2": 0.35
+    },
+    "topography": {
+      "code": "asce7-22",
+      "topo_factor": 1,
+      "comments": "",
+      "location_of_peak": -528,
+      "elevation_of_peak": 334.12102326320536,
+      "location_of_foot": -5913.6,
+      "elevation_of_foot": 227.81832637436432,
+      "elevation_of_midheight": 280.9696748187848,
+      "slope": 0.04332082750820589,
+      "H": 106.30269688884104,
+      "x": 528,
+      "location_of_midheight": -1754.9236647049859,
+      "terrain_type": "Flat",
+      "wind_source_direction": "NW",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "snow_pressure": null,
+    "wind_pressure": {
+      "pressure_type": "MWFRS_and_components_cladding",
+      "pressure_unit": "psf",
+      "elevation_or_location_unit": "ft",
+      "forces": null,
+      "mwfrs": {
+        "pressure_type": "MWFRS",
+        "pressures": [
+          {
+            "dirn": "along_L",
+            "surface": "windward_wall",
+            "elevation": [
+              7.5
+            ],
+            "pos_GCpi": [
+              13.220465,
+              13.220465
+            ],
+            "neg_GCpi": [
+              22.7392,
+              22.7392
+            ]
+          },
+          {
+            "dirn": "along_B",
+            "surface": "windward_wall",
+            "elevation": [
+              7.5
+            ],
+            "pos_GCpi": [
+              13.220465,
+              13.220465
+            ],
+            "neg_GCpi": [
+              22.7392,
+              22.7392
+            ]
+          },
+          {
+            "dirn": "along_L",
+            "surface": "leeward_wall",
+            "elevation": 7.5,
+            "pos_GCpi": [
+              "-15.997"
+            ],
+            "neg_GCpi": [
+              "-6.478"
+            ]
+          },
+          {
+            "dirn": "along_B",
+            "surface": "leeward_wall",
+            "elevation": 7.5,
+            "pos_GCpi": [
+              "-15.997"
+            ],
+            "neg_GCpi": [
+              "-6.478"
+            ]
+          },
+          {
+            "dirn": "along_L",
+            "surface": "sidewall",
+            "elevation": 7.5,
+            "pos_GCpi": [
+              "-20.492"
+            ],
+            "neg_GCpi": [
+              "-10.973"
+            ]
+          },
+          {
+            "dirn": "along_B",
+            "surface": "sidewall",
+            "elevation": 7.5,
+            "pos_GCpi": [
+              "-20.492"
+            ],
+            "neg_GCpi": [
+              "-10.973"
+            ]
+          },
+          {
+            "dirn": "along_L",
+            "surface": "roof_windward",
+            "location": [
+              31.5
+            ],
+            "pos_GCpi": -14.030367634000001,
+            "neg_GCpi": 5.939367634
+          },
+          {
+            "dirn": "along_B",
+            "surface": "roof_windward",
+            "location": [
+              3.75,
+              7.5,
+              12
+            ],
+            "pos_GCpi": [
+              -27.234367634,
+              -23.863367634,
+              -17.120367634
+            ],
+            "neg_GCpi": [
+              0.7143676340000003,
+              0.7143676340000003,
+              0.7143676340000003
+            ]
+          },
+          {
+            "dirn": "along_L",
+            "surface": "roof_leeward",
+            "location": [
+              31.5
+            ],
+            "pos_GCpi": -18.244242597,
+            "neg_GCpi": -8.725507329
+          },
+          {
+            "dirn": "along_B",
+            "surface": "roof_leeward",
+            "location": [
+              3.75,
+              7.5,
+              12
+            ],
+            "pos_GCpi": [
+              -27.234367634,
+              -23.863367634,
+              -17.120367634
+            ],
+            "neg_GCpi": [
+              0.7143676340000003,
+              0.7143676340000003,
+              0.7143676340000003
+            ]
+          }
+        ]
+      },
+      "components_cladding": {
+        "pressure_type": "components_and_cladding",
+        "pressures": [
+          {
+            "zone": "4",
+            "elevation": 7.5,
+            "level": "0 to h",
+            "area": 1,
+            "p": {
+              "max": 31.200298,
+              "min": -33.844392
+            }
+          },
+          {
+            "zone": "5",
+            "elevation": 7.5,
+            "level": "0 to h",
+            "area": 1,
+            "p": {
+              "max": 31.200298,
+              "min": -41.77667
+            }
+          },
+          {
+            "zone": "1",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "max": 20.623926,
+              "min": -44.420763
+            }
+          },
+          {
+            "zone": "2",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "max": 20.623926,
+              "min": -70.861694
+            }
+          },
+          {
+            "zone": "3",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "max": 20.623926,
+              "min": -84.08216
+            }
+          },
+          {
+            "zone": "1-4",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "min": -70.861695884
+            }
+          },
+          {
+            "zone": "1-5",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "min": -70.861695884
+            }
+          },
+          {
+            "zone": "2-4",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "min": -97.302627184
+            }
+          },
+          {
+            "zone": "2-5",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "min": -97.302627184
+            }
+          },
+          {
+            "zone": "3-4",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "min": -110.523092834
+            }
+          },
+          {
+            "zone": "3-5",
+            "elevation": 7.5,
+            "level": "Roof",
+            "area": 1,
+            "p": {
+              "min": -110.523092834
+            }
+          }
+        ],
+        "a": 3
+      },
+      "wind_parameters": {
+        "V": 109,
+        "h": 7.5,
+        "B": 12,
+        "L": 12,
+        "roof_pitch_angle": 22.5,
+        "Kd": 0.85,
+        "alpha": 11.5,
+        "zg": 1935,
+        "Kzt": 1,
+        "Ke": 0.98811362,
+        "Kz": [
+          {
+            "level": "Mean Roof Height",
+            "elevation": 7.5,
+            "Kz": 1.035042
+          }
+        ],
+        "qz": [
+          {
+            "elevation": 7.5,
+            "level": "Mean Roof Height",
+            "Kz": 1.035042,
+            "Kzt": "1.000",
+            "Ke": "0.988",
+            "V": "109.000",
+            "qz": "31.107"
+          }
+        ],
+        "qh": 31.106978,
+        "qh_all_dirn_data": [
+          {
+            "direction": "N",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "NE",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "E",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "SE",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "S",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "SW",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "W",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          },
+          {
+            "direction": "NW",
+            "exposure_category": "D",
+            "Kz": 1.035042,
+            "Kzt": 1,
+            "Ke": 0.98811362,
+            "V": 109,
+            "qh": 31.106978
+          }
+        ],
+        "G": 0.85,
+        "GCpi": {
+          "neg": -0.18,
+          "pos": 0.18
+        },
+        "Cp_walls": {
+          "alongL": {
+            "windward": 0.8,
+            "leeward": -0.5,
+            "sidewall": -0.7
+          },
+          "alongB": {
+            "windward": 0.8,
+            "leeward": -0.5,
+            "sidewall": -0.7
+          },
+          "hL": 0.625,
+          "hB": 0.625
+        },
+        "Cp_roof": {
+          "alongL": {
+            "windward": {
+              "min": -0.4125,
+              "max": 0.052500000000000005
+            },
+            "leeward": -0.6,
+            "overhang": 0.8
+          },
+          "alongB": {
+            "windward": [
+              {
+                "location": "0 to h/2",
+                "min": -1,
+                "max": -0.18
+              },
+              {
+                "location": "h/2 to h",
+                "min": -0.85,
+                "max": -0.18
+              },
+              {
+                "location": "h to 2h",
+                "min": -0.55,
+                "max": -0.18
+              },
+              {
+                "location": "> 2h",
+                "min": -0.39999999999999997,
+                "max": -0.18
+              }
+            ],
+            "leeward": [
+              {
+                "location": "0 to h/2",
+                "min": -1,
+                "max": -0.18
+              },
+              {
+                "location": "h/2 to h",
+                "min": -0.85,
+                "max": -0.18
+              },
+              {
+                "location": "h to 2h",
+                "min": -0.55,
+                "max": -0.18
+              },
+              {
+                "location": "> 2h",
+                "min": -0.39999999999999997,
+                "max": -0.18
+              }
+            ],
+            "overhang": 0.8
+          }
+        },
+        "a": 3,
+        "GCp_walls": [
+          {
+            "zone": "4",
+            "area": 1,
+            "GCp_pos": 1,
+            "GCp_neg": -1.1
+          },
+          {
+            "zone": "5",
+            "area": 1,
+            "GCp_pos": 1,
+            "GCp_neg": -1.4
+          }
+        ],
+        "GCp_roof": [
+          {
+            "zone": "1",
+            "area": 1,
+            "GCp_pos": "0.600",
+            "GCp_neg": "-1.500"
+          },
+          {
+            "zone": "2",
+            "area": 1,
+            "GCp_pos": "0.600",
+            "GCp_neg": "-2.500"
+          },
+          {
+            "zone": "3",
+            "area": 1,
+            "GCp_pos": "0.600",
+            "GCp_neg": "-3.000"
+          }
+        ],
+        "GCp_roof_overhang": [
+          {
+            "zone": "1-4",
+            "area": 1,
+            "GCp_neg": -2.5
+          },
+          {
+            "zone": "1-5",
+            "area": 1,
+            "GCp_neg": -2.5
+          },
+          {
+            "zone": "2-4",
+            "area": 1,
+            "GCp_neg": -3.5
+          },
+          {
+            "zone": "2-5",
+            "area": 1,
+            "GCp_neg": -3.5
+          },
+          {
+            "zone": "3-4",
+            "area": 1,
+            "GCp_neg": -4
+          },
+          {
+            "zone": "3-5",
+            "area": 1,
+            "GCp_neg": -4
+          }
+        ],
+        "pressure_unit": "psf",
+        "force_unit": "lb",
+        "elevation_or_location_unit": "ft"
+      }
+    }
+  },
+  "api_version": 3
+}

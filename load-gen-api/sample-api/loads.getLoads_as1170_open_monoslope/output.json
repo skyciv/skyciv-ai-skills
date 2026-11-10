@@ -1,0 +1,451 @@
+{
+  "status": 0,
+  "msg": "wind_parameters.wind_blockage is not defined. Default value (clear) will be used. \n",
+  "data": {
+    "site_data": {
+      "country": "New Zealand",
+      "lat": -45.0301511,
+      "lng": 168.6615141,
+      "elevation": 312,
+      "formatted_address": "Queenstown, New Zealand",
+      "address_components": [
+        {
+          "long_name": "Queenstown",
+          "short_name": "Queenstown",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Otago",
+          "short_name": "Otago",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "New Zealand",
+          "short_name": "NZ",
+          "types": [
+            "country",
+            "political"
+          ]
+        }
+      ],
+      "address": "Queenstown, New Zealand"
+    },
+    "wind_data": {
+      "wind_region": "NZ2",
+      "lee_multiplier_all_directions": {
+        "N": 1,
+        "S": 1,
+        "E": 1,
+        "W": 1,
+        "NE": 1,
+        "NW": 1,
+        "SE": 1,
+        "SW": 1
+      },
+      "lee_multiplier": 1,
+      "wind_speed_unit": "m/s",
+      "wind_speed": 42,
+      "wind_region_data": {
+        "next_nearest_region": "NZ4",
+        "unit": "kilometers",
+        "distance_to_borderline": 139.69
+      }
+    },
+    "snow_data": {
+      "recurrence_int": "100",
+      "snow_region": "N5",
+      "snow_load_unit": "kpa",
+      "snow_area_classification": "sub-alpine",
+      "snow_sg_parameters": {
+        "sg": 1.05984,
+        "snow_region": "N5",
+        "snow_area_classification": "sub-alpine",
+        "kp": 1.15,
+        "elevation": 312
+      },
+      "snow_load": 1.06,
+      "snow_region_data": {
+        "next_nearest_region": "N2",
+        "unit": "kilometers",
+        "distance_to_borderline": 61.84
+      }
+    },
+    "topography": {
+      "code": "as1170",
+      "topo_factor": 1,
+      "comments": "",
+      "Mh": 1,
+      "Mlee": 1,
+      "Mt": 1,
+      "location_of_peak": -1700,
+      "elevation_of_peak": 448.8709106445312,
+      "location_of_foot": -1740,
+      "elevation_of_foot": 446.8977355957031,
+      "elevation_of_midheight": 447.8843231201172,
+      "slope": 0.034765054027336574,
+      "H": 1.9731750488280682,
+      "x": 1700,
+      "location_of_midheight": -1728.3787139705933,
+      "Lu": 28.378713970593253,
+      "L1": 10.216337029413571,
+      "L2_upwind": 40.865348117654285,
+      "L2_downwind": 40.865348117654285,
+      "terrain_type": "Flat",
+      "wind_source_direction": "N",
+      "elevation_image_base64": "data:image/png;base64,PHN2ZyBjbGFzcz0ibW...(truncated)"
+    },
+    "seismic_data": {
+      "Z": 0.32,
+      "D": 83.32791038196751,
+      "reference": "From Table 3.3 of NZS 1170.5",
+      "D_min": 83.32791038196751,
+      "nearest_major_fault": "Alpine Fault",
+      "distance_unit": "km",
+      "Ru": 0.75
+    },
+    "snow_pressure": null,
+    "wind_pressure": {
+      "pressure_type": "building",
+      "pressure_unit": "pa",
+      "elevation_or_location_unit": "m",
+      "pressures": {
+        "roof_pressures": {
+          "0": [
+            {
+              "location": "Upwind",
+              "cpn": {
+                "min": -1.32
+              },
+              "Vdestheta": 44.856,
+              "min": {
+                "cshp": -1.32,
+                "pe": -1593.552102912
+              }
+            },
+            {
+              "location": "Downwind",
+              "cpn": {
+                "max": -0.05333333333333334,
+                "min": -0.7333333333333334
+              },
+              "Vdestheta": 44.856,
+              "max": {
+                "cshp": -0.05333333333333334,
+                "pe": -64.385943552
+              },
+              "min": {
+                "cshp": -0.7333333333333334,
+                "pe": -885.3067238400001
+              }
+            }
+          ],
+          "90": [
+            {
+              "location": "0 to h",
+              "cpn": {
+                "min": -1.32
+              },
+              "Vdestheta": 40.370400000000004,
+              "min": {
+                "cshp": -1.32,
+                "pe": -1290.7772033587203
+              }
+            },
+            {
+              "location": "h to 2h",
+              "cpn": {
+                "max": -0.05333333333333334,
+                "min": -0.7333333333333334
+              },
+              "Vdestheta": 40.370400000000004,
+              "max": {
+                "cshp": -0.05333333333333334,
+                "pe": -52.152614277120016
+              },
+              "min": {
+                "cshp": -0.7333333333333334,
+                "pe": -717.0984463104002
+              }
+            },
+            {
+              "location": "> 2h",
+              "cpn": {
+                "min": -0.2,
+                "max": 0.2
+              },
+              "Vdestheta": 40.370400000000004,
+              "min": {
+                "cshp": -0.2,
+                "pe": -195.57230353920005
+              },
+              "max": {
+                "cshp": 0.2,
+                "pe": 195.57230353920005
+              }
+            }
+          ],
+          "180": [
+            {
+              "location": "Upwind",
+              "cpn": {
+                "max": 1.0133333333333334
+              },
+              "Vdestheta": 44.856,
+              "max": {
+                "cshp": 1.0133333333333334,
+                "pe": 1223.3329274880002
+              }
+            },
+            {
+              "location": "Downwind",
+              "cpn": {
+                "max": 0.5066666666666667
+              },
+              "Vdestheta": 44.856,
+              "max": {
+                "cshp": 0.5066666666666667,
+                "pe": 611.6664637440001
+              }
+            }
+          ],
+          "270": [
+            {
+              "location": "0 to h",
+              "cpn": {
+                "min": -1.32
+              },
+              "Vdestheta": 44.856,
+              "min": {
+                "cshp": -1.32,
+                "pe": -1593.552102912
+              }
+            },
+            {
+              "location": "h to 2h",
+              "cpn": {
+                "max": -0.05333333333333334,
+                "min": -0.7333333333333334
+              },
+              "Vdestheta": 44.856,
+              "max": {
+                "cshp": -0.05333333333333334,
+                "pe": -64.385943552
+              },
+              "min": {
+                "cshp": -0.7333333333333334,
+                "pe": -885.3067238400001
+              }
+            },
+            {
+              "location": "> 2h",
+              "cpn": {
+                "min": -0.2,
+                "max": 0.2
+              },
+              "Vdestheta": 44.856,
+              "min": {
+                "cshp": -0.2,
+                "pe": -241.44728832
+              },
+              "max": {
+                "cshp": 0.2,
+                "pe": 241.44728832
+              }
+            }
+          ]
+        }
+      },
+      "forces": null,
+      "api_wind_parameters": {
+        "Mh": 1,
+        "Mlee": 1,
+        "Mt": 1,
+        "Mc": 1,
+        "Ms": 1,
+        "Md": 0.95,
+        "VR": 42,
+        "V_sit_beta_all_direction": {
+          "N": 42.6132,
+          "NE": 40.370400000000004,
+          "E": 35.884800000000006,
+          "SE": 40.370400000000004,
+          "S": 42.6132,
+          "SW": 44.856,
+          "W": 44.856,
+          "NW": 44.856
+        },
+        "V_des_theta": {
+          "0": 44.856,
+          "90": 40.370400000000004,
+          "180": 44.856,
+          "270": 44.856
+        },
+        "Mz_cat": [
+          {
+            "elevation": 18,
+            "Mz_cat": 1.068,
+            "level": "Mean Roof Height, h"
+          }
+        ],
+        "Kce": 1,
+        "Kci": 1,
+        "Md_all_direction": {
+          "N": 0.95,
+          "NE": 0.9,
+          "E": 0.8,
+          "SE": 0.9,
+          "S": 0.95,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "Mlee_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "Mh_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "Mt_all_direction": {
+          "N": 1,
+          "NE": 1,
+          "E": 1,
+          "SE": 1,
+          "S": 1,
+          "SW": 1,
+          "W": 1,
+          "NW": 1
+        },
+        "V_sit_beta_all_direction_data": [
+          {
+            "direction": "N",
+            "Md": 0.95,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 42.6132
+          },
+          {
+            "direction": "NE",
+            "Md": 0.9,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 40.370400000000004
+          },
+          {
+            "direction": "E",
+            "Md": 0.8,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 35.884800000000006
+          },
+          {
+            "direction": "SE",
+            "Md": 0.9,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 40.370400000000004
+          },
+          {
+            "direction": "S",
+            "Md": 0.95,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 42.6132
+          },
+          {
+            "direction": "SW",
+            "Md": 1,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 44.856
+          },
+          {
+            "direction": "W",
+            "Md": 1,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 44.856
+          },
+          {
+            "direction": "NW",
+            "Md": 1,
+            "VR": 42,
+            "terrain_category": "CAT2",
+            "Mz_cat": 1.068,
+            "Ms": 1,
+            "Mlee": 1,
+            "Mh": 1,
+            "Mt": 1,
+            "Vsitbeta": 44.856
+          }
+        ],
+        "elevation_or_location_unit": "m"
+      },
+      "report_link": "https://solver.skyciv.com/temp/view_report_oTohMhcphg6g11fS_wind.php"
+    }
+  },
+  "api_version": 2.1,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "DEFAULT_APPLIED",
+      "field": "wind_parameters.wind_blockage",
+      "default": "clear",
+      "message": "wind_parameters.wind_blockage is not defined. Default value (clear) will be used."
+    }
+  ]
+}
