@@ -494,6 +494,9 @@ function checkRequest(req) {
   const wd = sd.topography && sd.topography.wind_direction;
   if (wd !== undefined && !DIRS.includes(wd) && code !== 'en1991') warn('INVALID_ENUM', 'site_data.topography.wind_direction', `Expected one of ${DIRS.join(', ')}`);
   if (code === 'as1170' && sd.ari === undefined && sd.sls_and_uls === undefined) err('MISSING_FIELD', 'site_data.sls_and_uls', 'as1170 needs ari or sls_and_uls (the call fails with "sls_and_uls is not defined")');
+  for (const k of ['wind_speed_override', 'snow_load_override', 'hourly_wind_pressure_override']) {
+    if (sd[k] !== undefined && sd[k] !== null && sd[k] !== '' && sd[k] !== false) warn('USER_OVERRIDE', `site_data.${k}`, `${k} replaces the API map value — keep it only if the user supplied it`);
+  }
   if (/^nbcc/.test(code || '') && String(a.api_version) === '2') err('INVALID_VALUE', 'api_version', 'NBCC getLoads times out on api_version 2 — omit api_version');
   if (!a.building_data || typeof a.building_data !== 'object') {
     if (req && Array.isArray(req.functions) && req.functions.some(f => /getLoads/.test(f.function))) warn('SITE_ONLY', 'building_data', 'No building_data: getLoads returns site values only (wind speed, snow load), no pressures or forces');

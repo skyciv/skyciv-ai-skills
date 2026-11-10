@@ -24,7 +24,7 @@ You are an agent that retrieves wind speeds, snow loads, wind pressures, and sei
 
 Follow these steps in order. Steps 2 and 4 repeat until the call returns loads.
 
-1. **Build from a template.** Pick the [`sample-api/`](#sample-api-templates) folder matching the design code + structure, copy its `input.json`, swap in the user's address, dimensions and levels. Units follow `project_details.units` (`"metric"` = m, Pa/kPa, kN; `"imperial"` = ft, psf, kip). Ask the user for any missing key input (risk/importance category, exposure/terrain, enclosure, floor levels) before calling — don't guess them.
+1. **Build from a template.** Pick the [`sample-api/`](#sample-api-templates) folder matching the design code + structure, copy its `input.json`, swap in the user's address, dimensions and levels. Units follow `project_details.units` (`"metric"` = m, Pa/kPa, kN; `"imperial"` = ft, psf, kip). Ask the user for any missing key input (risk/importance category, exposure/terrain, enclosure, floor levels) before calling — don't guess them. Site values (wind speed, ground snow load, NBCC hourly wind pressure) always come from the API's map lookup for the address/`lat`+`lng`; never supply your own. Send `wind_speed_override`, `snow_load_override` or `hourly_wind_pressure_override` only when the user gives that value.
 2. **Lint before sending:** `node scripts/normalize_loads.js --check input.json` (or `checkRequest(req)` from the same file). It catches the mistakes in [Gotchas](#gotchas) that otherwise come back as a silent missing `wind_pressure`. Fix every `error`; read every `warning`.
 3. **Call** `standalone.loads.start` then `standalone.loads.getLoads` in one request. Set `"report": false` while iterating (faster); turn it back on for the final call so you have `report_link`.
 4. **Fix loop.** If `data.wind_pressure` (or the snow/seismic block you asked for) is missing:
@@ -44,6 +44,7 @@ Each of these has burned a real agent run. The lint in step 2 checks the ones ma
 - ✓ **Session opener:** `standalone.loads.start`, never `S3D.session.start` (the second call fails with a generic "unknown reason").
 - ✓ **`design_code` is versioned for ASCE** (`asce7-16`, not `asce7`) and must match in `site_data` and `building_data`.
 - ✓ **`structure_type` is code- and roof-specific** — see the [allowed-values table](#wind-parameters-building_datawind_parameters). Enclosed roofs: ASCE 7-16/22 `mwfrs` / `cladding` / `mwfrs_cladding`; ASCE 7-10, NSCP, NBCC `mwfrs` / `cladding`; AS/NZS 1170, IS 875 `building` / `cladding`; EN 1991, CTE, SANS, CFE `building`. Open roofs (`pitched`, `troughed`, `open-monoslope`) on AS/NZS, EN, CTE, SANS and CFE take **`free_roof`**. A value not in the list fails validation (`"structure_type is not applicable to roof_profile defined"`): site data comes back, **no `wind_pressure`**.
+- ✓ **Site data comes from the API, not from you.** Leave `wind_speed_override`, `snow_load_override` and `hourly_wind_pressure_override` out unless the user states the value; never fill them from memory, a code map or an estimate. The lint warns `USER_OVERRIDE` on each one present.
 - ✓ **No `"flat"` roof profile** — send `gable` with `roof_angle: 0`.
 - ✓ **Open roof profiles (`pitched`, `troughed`, `open-monoslope`) need `enclosure: "open"`** on ASCE, and vice versa.
 - ✓ **AS/NZS 1170 needs `ari` or `sls_and_uls`**; neither = hard fail.
@@ -230,6 +231,8 @@ Defines the location and design code parameters.
 | `snow_area_classification` | AS/NZS 1170 / NBCC | `"alpine"`, `"sub-alpine"` (AS) or `"rural"`, `"exposed-north-treeline"` (NBCC) |
 
 ### User-defined overrides (optional)
+
+By default the API looks up site wind speed, snow load and NBCC hourly wind pressure from its maps for the given location — rely on those. Set an override only when the user supplies the value; it replaces the map value in the calc.
 
 | Key | Applicable codes |
 |---|---|
@@ -921,7 +924,7 @@ Every response has `status` (`0` = OK, `1` = failed) and `msg` (human-readable t
 | `INVALID_VALUE` | Value not recognised | Check allowed values for this design code |
 | `INCOMPATIBLE_COMBO` | Two fields conflict (e.g. `enclosure` vs `roof_profile`) | Change one of them |
 | `UNSUPPORTED_FOR_CODE` | Structure type not supported by `site_data.design_code` | Change code or structure |
-| `SITE_DATA_UNAVAILABLE` | Map lookup unsupported at this location | Set the override in `field` (e.g. `site_data.wind_speed_override`) |
+| `SITE_DATA_UNAVAILABLE` | Map lookup unsupported at this location | Ask the user for the value, then set the override in `field` (e.g. `site_data.wind_speed_override`); never invent one |
 | `SOLVER_INPUT_ERROR` | Solver rejected the input (`"Invalid <wind/snow/seismic> input: ..."`) | Fix the input named in `message` |
 | `SERVER_ERROR` | Internal failure, not input-related | Retry later / contact support@skyciv.com |
 | `INPUT_ERROR` | Unclassified | Read `message` |
