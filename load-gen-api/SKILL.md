@@ -46,7 +46,7 @@ Each of these has burned a real agent run. The lint in step 2 checks the ones ma
 - ✓ **`structure_type` is code- and roof-specific** — see the [allowed-values table](#wind-parameters-building_datawind_parameters). Enclosed roofs: ASCE 7-16/22 `mwfrs` / `cladding` / `mwfrs_cladding`; ASCE 7-10, NSCP, NBCC `mwfrs` / `cladding`; AS/NZS 1170, IS 875 `building` / `cladding`; EN 1991, CTE, SANS, CFE `building`. Open roofs (`pitched`, `troughed`, `open-monoslope`) on AS/NZS, EN, CTE, SANS and CFE take **`free_roof`**. A value not in the list fails validation (`"structure_type is not applicable to roof_profile defined"`): site data comes back, **no `wind_pressure`**.
 - ✓ **Site data comes from the API, not from you.** Leave `wind_speed_override`, `snow_load_override` and `hourly_wind_pressure_override` out unless the user states the value; never fill them from memory, a code map or an estimate. The lint warns `USER_OVERRIDE` on each one present.
 - ✓ **No `"flat"` roof profile** — send `gable` with `roof_angle: 0`.
-- **Wind only — flat roof = `roof_angle` < 7° on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`.** For wind loads, treat such a `gable`, `hip` or `monoslope` roof as flat (flat-roof wind zones and coefficients when reading or applying wind results), but send it as is: keep the user's `roof_profile` and actual `roof_angle`, never rewrite them to `gable`/`0`. Snow and seismic don't use this rule. See [Roof profiles](#roof-profiles-building_dataroof_profile).
+- **Wind only — flat roof = `roof_angle` < 10° for MWFRS, < 7° for components & cladding, on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`.** For wind loads, treat such a `gable`, `hip` or `monoslope` roof as flat (flat-roof wind zones and coefficients when reading or applying wind results), but send it as is: keep the user's `roof_profile` and actual `roof_angle`, never rewrite them to `gable`/`0`. Snow and seismic don't use this rule. See [Roof profiles](#roof-profiles-building_dataroof_profile).
 - ✓ **Open roof profiles (`pitched`, `troughed`, `open-monoslope`) need `enclosure: "open"`** on ASCE, and vice versa.
 - ✓ **AS/NZS 1170 needs `ari` or `sls_and_uls`**; neither = hard fail.
 - ✓ **NBCC:** `eave_height` and `ground_to_top` required — also for seismic-only calls (`wind_parameters: false`), which fail with `"eave_height is not defined"` on the default `api_version` 2.1; `reference_height` ≥ 6 m; never `api_version: 2` (wind times out).
@@ -296,7 +296,7 @@ A supported structure on another code fails validation with e.g. `"Freestanding 
 > against the live API for an `as1170` building: it returns the full set of wall and roof
 > pressures. Any value not in the table above is not a roof profile.
 >
-> **Low-slope roofs, wind only, on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`:** a roof with `roof_angle` below 7° is a flat roof for the wind calc (not snow or seismic). Keep its
+> **Low-slope roofs, wind only, on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`:** a roof is a flat roof for the wind calc (not snow or seismic) when `roof_angle` is below **10° for MWFRS** (`structure_type: "mwfrs"`) or below **7° for components & cladding** (`"cladding"`; `mwfrs_cladding` applies each limit to its own half). So a 8° gable is flat for MWFRS but sloped for C&C. Keep its
 > `roof_profile` (`gable`, `hip`, `monoslope`) and `roof_angle` as given — don't convert it.
 
 ### Wind parameters (`building_data.wind_parameters`)
@@ -355,7 +355,7 @@ Set `wind_parameters: false` to skip wind load calculation.
 | `width` | Building width B: the dimension across the wind in that direction (the windward wall's width). NBCC's report calls it **L** |
 | `mean_roof_height` | Mean roof height |
 | `height` | Wall height (used when `mean_roof_height` not the primary height input) |
-| `roof_angle` | Roof pitch angle in degrees. `0` for a flat roof, with `roof_profile: "gable"`. For wind on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`, any angle < 7° counts as flat — send the real angle and profile |
+| `roof_angle` | Roof pitch angle in degrees. `0` for a flat roof, with `roof_profile: "gable"`. For wind on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`, an angle < 10° counts as flat for MWFRS and < 7° for C&C — send the real angle and profile |
 | `reference_height` | NBCC: reference height for the wind exposure factor. **At least 6 m**: a lower value returns site data but no pressures, with `msg` "reference_height should be greater than or equal to 6" |
 | `eave_height` | NBCC: eave height. **Required** for NBCC wind, with `ground_to_top` ("eave_height is not defined" without it) |
 | `ground_to_top` | NBCC: ground to the top of the building. **Required** for NBCC wind |
@@ -730,7 +730,7 @@ MWFRS of enclosed and partially enclosed buildings (`pressure_type: "MWFRS"`). E
 - **Roof, wind across the ridge (`along_L`, roof angle ≥ 10°)**: `roof_windward` and
   `roof_leeward` hold one value each, for the windward and leeward slopes; `location` is
   `[h + L + B]`, a "whole roof" marker, not a distance.
-- **Roof, angle < 10° (includes flat, < 7°) or wind along the ridge (`along_B`)**: `roof_windward` and `roof_leeward`
+- **Roof, flat for MWFRS (angle < 10°) or wind along the ridge (`along_B`)**: `roof_windward` and `roof_leeward`
   are the same zone table, by distance from the windward edge: 0–h/2, h/2–h, h–2h, > 2h, only as
   many as the building is deep. `location` holds the zone ends, but **the `along_B` entries repeat
   the `along_L` locations** (an API bug), so take the zone edges from h, not from `location`.
