@@ -224,7 +224,7 @@ Defines the location and design code parameters.
 | `terrain_category` | EN 1991 (UK/Ireland) | `0`, `I`, `II`, `III`, `IV` |
 | `terrain_category` | IS 875 / CFE Viento | `1`, `2`, `3`, `4` |
 | `season_month` | EN 1991 | For Belgium, France, UK, Ireland |
-| `distance_inside_town` | EN 1991 (UK/Ireland) | Default `20` m |
+| `distance_inside_town` | EN 1991 (UK/Ireland) | Distance inside town terrain, km. Left out on Town terrain (`III`/`IV`): detected from building footprints for the wind direction (see [UK/Ireland distance inside town](#ukireland-distance-inside-town)); if not detected, `20` (least conservative) with a warning |
 | `distance_from_shore` | EN 1991 (UK/Ireland) | Default `100` m |
 | `displacement_height` | EN 1991 (UK/Ireland) | Default `0` |
 | `snow_region` | AS/NZS 1170 | AU: `AN`, `AC`, `AS`, `AT` — NZ: `N1`–`N5` |
@@ -667,6 +667,22 @@ Response adds:
 ```
 
 `governing_direction` is AS 4055 only; `image` is `null` when the report is off. Template: `sample-api/loads.getLoads_as1170_automatic_terrain`.
+
+### UK/Ireland distance inside town
+
+`en1991` in the United Kingdom or Ireland with Town terrain (`site_data.topography.terrain_category` `III` or `IV`) and
+`distance_inside_town` left out: the API detects only the town distance from building footprints (no `automatic_terrain`
+needed; terrain category, `site_analysis` and report are untouched). It is measured upwind from the site to the first gap of
+more than 100 m between buildings, capped at 1 km (shorter is conservative). `wind_direction` `"Any"` takes the shortest
+detected direction. Adds up to ~90 s to the call. Not run for Country/Sea terrain (the town distance is not used there)
+or when `distance_inside_town` is given.
+
+```json
+"terrain_detection": { "distance_inside_town": 1, "warnings": [] }
+```
+
+If the wind direction is not detected as Town or detection fails, the solver default `20` km (least conservative) is used and
+`terrain_detection.warnings` says so: set `distance_inside_town` yourself.
 
 ---
 
