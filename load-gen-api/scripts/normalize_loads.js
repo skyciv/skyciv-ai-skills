@@ -408,13 +408,14 @@ function normalizeSeismic(sf) {
 }
 
 // NSCP 2015 wind: Load Generator computes qz = 0.613·Kz·Kzt·Kd·V² with V still in kph (seen 2026-11-10),
-// so every pressure is 3.6² = 12.96× too high. Flag it rather than silently rescale.
+// so every pressure is 3.6² = 12.96× too high. Fixed in the engine 2026-11-16 (V now m/s); flag only replies
+// whose qz still matches the map speed in kph (wind_data.wind_speed), rather than silently rescale.
 function checkNscpSpeed(d, wp, wind) {
   const par = wp && (wp.wind_parameters || wp.api_wind_parameters);
   const q = par && arr(par.qz)[0];
   const unit = d.wind_data && d.wind_data.wind_speed_unit;
   if (!q || !/kph|km/i.test(unit || '')) return;
-  const V = num(q.V ?? par.V), ratio = num(q.qz) / (0.613 * num(q.Kz) * num(q.Kzt) * num(q.Kd) * V * V);
+  const V = num(d.wind_data.wind_speed), ratio = num(q.qz) / (0.613 * num(q.Kz) * num(q.Kzt) * num(q.Kd) * V * V);
   if (Math.abs(ratio - 1) < 0.02) wind.notes.push(`BUG: qz was computed with V = ${V} kph used as m/s, so every pressure is ${(3.6 ** 2).toFixed(2)}× too high. Do not apply these values; report it to SkyCiv, or divide by 12.96 only with the engineer's agreement`);
 }
 
