@@ -56,6 +56,8 @@ Each of these has burned a real agent run. The lint in step 2 checks the ones ma
 - **Judge success by the data block, not `status`.** `status: 1` also means "defaults applied"; a response with `wind_pressure` is usable.
 - **Older outputs have an ASCE / NSCP `windward_wall` entry with no values** (only `dirn`/`surface`). Cause: before Load Generator commit `63f988e` (2026-10-14) the windward result was stored under the wrong key and dropped from the JSON; fixed since, and verified live on 2026-11-10 (`loads.getLoads_asce` re-run: windward returns one value per level plus h). The `loads.getLoads_asce716_seismic` sample still predates the fix. If a live reply still shows it, the normalizer reports it in `wind.notes` — never apply zero; read the windward pressures from `report_link`.
 - **ASCE `along_B` roof `location` repeats `along_L`** (API bug) — take zone edges from h.
+- **Stepped building (podium + tower, setbacks) = one call per tier**, never one call with the overall footprint and total height. Each tier: its own plan dimensions, height from the ground to its roof; its pressures go only on its own walls (from the roof below up) and the exposed part of its roof. Seismic stays a single call. See [Stepped buildings](#stepped-buildings).
+- **Windward wall pressure goes on the vertical projected area perpendicular to the wind** (`axes: "global_projected"` / projected `direction`), acting along the wind — not on the face area along its normal. Same thing for a square wall; different for skewed or chamfered faces. See [Applying loads, step 2](#applying-loads-to-an-s3d-model).
 - **`length` is the dimension parallel to the first wind direction**, not "the longer side". Decide which model axis it runs along before calling, and keep that mapping when applying loads back.
 - **Non-building structures (pole, freestanding wall, signboard, rooftop equipment, ASCE ground solar) return `wind_pressure.forces`, not surface `pressures`.** The normalizer turns them into `wind.forces`; apply them per [Applying loads, step 7](#applying-loads-to-an-s3d-model).
 - **AS 4055 returns a wind class (N1–N6/C1–C4) and one general pressure pair per element** (roof / wall, ULS and SLS, uplift, racking) — no directions or zones, so nothing to map face by face onto a frame. The normalizer puts them in `wind.summary`.
@@ -1109,12 +1111,14 @@ Same rules for the API ([`s3d-api`](../s3d-api/SKILL.md): write into `s3d_model`
 
 2. **Turn `p` into a force direction with one rule:** load vector = `p × n_in`, where `n_in` is the unit normal of the face pointing **into** the building (windward wall facing −X: `n_in = +X`; flat roof: `n_in = −Y`; sloped roof: the negated outward normal of that roof plane, i.e. pointing down into the building). This gets every sign right: windward wall `p > 0` pushes downwind, leeward `p < 0` pulls downwind, side walls `p < 0` pull outward, roof `p < 0` lifts.
 
+   **Windward walls are the exception: apply them on the vertical projected area perpendicular to the wind.** The load acts along the wind axis (`+X` for wind along `+X`), with magnitude `p` per unit of the wall's area projected onto the vertical plane normal to the wind (width measured across the wind × height). Use the projected S3D option, not the actual face area: `pressures` `axes: "global_projected"`, `area_loads` the projected variant of the wind axis, `distributed_loads` `axes: "global_projected"` with the tributary width measured perpendicular to the wind. For a wall square to the wind this is the same as the face area; it differs for a skewed, chamfered or curved windward face (the force there is `p × A_projected`, not `p × A_face`).
+
 3. **Pick the S3D load object by what the model has:**
 
    | Model has | Use | How |
    |---|---|---|
-   | Plates on the faces | `pressures` | One per plate, `axes: "global"`, `x/y/z_mag = p × n_in` components. Avoid `"local"` unless you have checked each plate's normal |
-   | Frame only, wall columns | `area_loads` `type: "column_wind_load"` | `nodes` = the wall's 4 corners, `mags` = windward `level_N` values bottom-up with matching `elevations`, `direction` = wind axis, `column_direction` = vertical edge |
+   | Plates on the faces | `pressures` | One per plate, `axes: "global"`, `x/y/z_mag = p × n_in` components. **Windward wall plates:** `axes: "global_projected"`, `p` on the wind-axis component only (step 2). Avoid `"local"` unless you have checked each plate's normal |
+   | Frame only, wall columns | `area_loads` `type: "column_wind_load"` | `nodes` = the wall's 4 corners, `mags` = windward `level_N` values bottom-up with matching `elevations`, `direction` = projected variant of the wind axis (windward load on the vertical projected area, step 2), `column_direction` = vertical edge |
    | Frame only, roof / single-value walls | `area_loads` `type: "general_one_way"` | `mags` per zone with `intervals` at the zone edges (from h, see per-code zone tables), span `column_direction` along the rafters/purlins, `direction` the axis of `p × n_in` (`Y` for flat roofs) |
    | Frame only, no area-load support in your path | `distributed_loads` | `w = p × tributary width` on each face column/rafter, `axes: "global"` |
 
@@ -1149,13 +1153,54 @@ Minimal `s3d_model` fragment (metric model, `length ∥ X`, windward wall at x =
 ```json
 {
   "pressures": {
-    "1": { "plate_id": 1, "x_mag": 0.6332, "y_mag": 0, "z_mag": 0, "axes": "global", "load_group": "W_along_L_case1" }
+    "1": { "plate_id": 1, "x_mag": 0.6332, "y_mag": 0, "z_mag": 0, "axes": "global_projected", "load_group": "W_along_L_case1" }
   },
   "load_cases": { "ASCE-7-2022-LRFD": { "W_along_L_case1": "W" } }
 }
 ```
 
 `load_cases` is keyed by the combination code id (`ASCE-7-2022-LRFD`, …) — take it from [`load-combinations`](../load-combinations/SKILL.md). In an S3D App, frame loads go through `S3D.structure.loads.area_loads.add({ type, nodes, mags, direction, LG })`, `distributed_loads.add(...)` and `point_loads.add(...)` (signatures in [`s3d-apps`](../s3d-apps/SKILL.md)); `s3d-apps` lists no `add` for plate `pressures`, so write those through the model JSON.
+
+### Stepped buildings
+
+A model whose plan shrinks with height (podium + tower, setbacks) is **not** one box. One Load Generator call with the overall footprint and total height puts tower-height pressures on the podium walls and podium-width zones on the tower. Instead, split it into **tiers** and make **one call per tier**.
+
+1. **Find the tiers from the model.** Group the nodes by elevation (`Y`) and take the plan extents (min/max `X` and `Z`) at each floor. A new tier starts wherever the extents shrink. Tier *k* has a footprint (`length`, `width` along the same model axes for every tier) and a top elevation H<sub>k</sub> (its roof). Ground is H<sub>0</sub>. List the tiers to the engineer (footprint, top elevation, roof) and get confirmation before calling — a non-rectangular footprint or a tower that is offset from the podium is easy to misread.
+
+2. **One call per tier.** Everything else is the same in every call: site, code, risk category, exposure, `wind_direction`, axis mapping (`length ∥ X` for every tier).
+
+   | Key | Tier *k* call |
+   |---|---|
+   | `length`, `width` | Tier *k*'s own plan dimensions |
+   | Height key (`mean_roof_height` / `ground_to_top` / `reference_height`) | H<sub>k</sub> measured **from the ground**, not from the roof below. Pressures depend on height above ground |
+   | `structure_level` | Every floor from the ground up to H<sub>k</sub>, also the floors below the tier, so `level_N` elevations are above ground |
+   | `roof_profile`, `roof_angle` | Tier *k*'s own roof (a podium roof is usually flat: `gable`, `0`) |
+
+3. **Apply each run only to its own tier's faces.**
+
+   | Surface | Run | Extent |
+   |---|---|---|
+   | Walls of tier *k*, setback faces **and** faces flush with the tier below | Tier *k* | From H<sub>k−1</sub> to H<sub>k</sub> only. Use the windward `level_N` values whose bands lie in that range, on the tier's vertical projected area perpendicular to the wind (tier width across the wind × band height; see step 2); leeward and side-wall values as returned for that run |
+   | Roof of tier *k* (the "landing" of the tier above) | Tier *k* | The **exposed part only**: the roof area outside the footprint of tier *k*+1. Zones are measured from tier *k*'s windward edge (its own h). Nothing goes on the area under the tier above |
+   | Top roof | Top tier | Whole roof, normal zones |
+   | Interior members, faces inside a lower tier | — | None |
+
+   A flush face (a tower wall in the same plane as a podium wall) is therefore split at the podium roof: below it takes the podium run, above it the tower run.
+
+4. **Groups, mirrors, extra cases.** All tiers' loads for the same direction × case go into the **same** load group, since they act together (e.g. `W_along_L_case1` holds podium and tower pressures). Mirror each tier's pattern through **its own** centre: an offset tower's centre differs from the podium's. For ASCE Fig. 27.3-8 torsion, use each tier's own B<sub>x</sub> and e<sub>x</sub> = ±0.15 B<sub>x</sub> for its storey bands.
+
+5. **Snow:** also one call per tier, each with its tier's footprint, roof and height. Apply the balanced load to that tier's exposed roof (as above). **Drift on a lower roof against the wall of the tier above** (ASCE 7 §7.7, and the equivalent in other codes) is not computed by the Load Generator: flag it to the engineer as a separate check, don't make it up.
+
+6. **Seismic:** a **single** call for the whole building, overall footprint and total height, with every floor in `structure_level`. Apply the story forces per [step 8](#applying-loads-to-an-s3d-model) over the nodes at each elevation, whichever tier they belong to.
+
+7. **Show the split** in the app/report: a table of tiers (footprint, H<sub>k−1</sub>–H<sub>k</sub>, roof area loaded, `report_link` of its run) so the engineer can see which run loads which face.
+
+Example (podium + tower like a 3-storey podium with a 6-storey tower on it; metric):
+
+| Tier | Footprint (`length` × `width`) | Height key | Loads |
+|---|---|---|---|
+| 1 Podium | 30 × 30 m | 10.5 m | Podium walls 0–10.5 m (incl. flush tower faces), podium roof outside the tower's 15 × 15 m footprint |
+| 2 Tower | 15 × 15 m | 24.5 m (from ground) | Tower walls 10.5–24.5 m, tower roof |
 
 ---
 
