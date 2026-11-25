@@ -1,0 +1,853 @@
+{
+  "data": {
+    "results_array": [
+      {
+        "name": "Brace Connection to Gusset Plate",
+        "value": "header",
+        "demand": "header",
+        "ratio": "header"
+      },
+      {
+        "name": "Connection Detailing Limitations",
+        "demand": 1.063,
+        "value": 1.5,
+        "ratio": 0.7086666666666667,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Gage",
+            "limit_type": "min",
+            "limit": 3.375,
+            "actual": 6,
+            "units": "in",
+            "demand": 3.375,
+            "capacity": 6,
+            "ratio": 0.5625
+          },
+          {
+            "name": "Minimum Bolt Row Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Minimum Bolt Column Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Column Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Gusset Plate Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1.0625,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1.063,
+            "capacity": 1.5,
+            "ratio": 0.7086666666666667
+          },
+          {
+            "name": "Brace Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Brace Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 2,
+            "units": "in",
+            "demand": 1,
+            "capacity": 2,
+            "ratio": 0.5
+          }
+        ]
+      },
+      {
+        "name": "Allowable Capacity of the Bolts in Shear",
+        "demand": 34,
+        "value": 43.145456,
+        "ratio": 0.7880320004034723,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Bolt Bearing Capacity of the Gusset Plate",
+        "demand": 34,
+        "value": 215.71875,
+        "ratio": 0.15761263218890337,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Bolt Bearing Capacity of the Brace",
+        "demand": 34,
+        "value": 194.6625,
+        "ratio": 0.1746612727155975,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Block Shear Capacity of the Gusset Plate",
+        "demand": 34,
+        "value": 173.87501,
+        "ratio": 0.1955427637358583,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Block Shear Capacity of the Brace",
+        "demand": 34,
+        "value": 158.7125,
+        "ratio": 0.21422383240135465,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Gusset Plate in Tension",
+        "demand": 34,
+        "value": 233.87496,
+        "ratio": 0.14537682871223154,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Brace in Tension Rupture",
+        "demand": 34,
+        "value": 168.7589,
+        "ratio": 0.20147085575931106,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Gusset Plate Connection to Girder",
+        "value": "header",
+        "demand": "header",
+        "ratio": "header"
+      },
+      {
+        "name": "Connection Detailing Limitations at Gusset Side",
+        "demand": 1.125,
+        "value": 1.5,
+        "ratio": 0.75,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Single Angle Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Single Angle Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1.125,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1.125,
+            "capacity": 1.5,
+            "ratio": 0.75
+          },
+          {
+            "name": "Gusset Plate Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 2.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 2.5,
+            "ratio": 0.4
+          },
+          {
+            "name": "Gusset Plate Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Minimum Single Angle Length",
+            "limit_type": "min",
+            "limit": 5.5,
+            "actual": 9,
+            "units": "in",
+            "demand": 5.5,
+            "capacity": 9,
+            "ratio": 0.6111111111111112
+          },
+          {
+            "name": "Minimum Bolt Gage for Single Angle",
+            "limit_type": "min",
+            "limit": 1.5,
+            "actual": 2.5,
+            "units": "in",
+            "demand": 1.5,
+            "capacity": 2.5,
+            "ratio": 0.6
+          }
+        ]
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Shear at Gusset Side",
+        "demand": 24.041631,
+        "value": 35.784704,
+        "ratio": 0.6718409910558433,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out on Single Angle at Gusset Side",
+        "demand": 24.041631,
+        "value": 53.423435,
+        "ratio": 0.4500203141187009,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out on Gusset",
+        "demand": 24.041631,
+        "value": 87.750001,
+        "ratio": 0.2739786977324365,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Effective Strength of the Bolt Group (Shear, Bearing and Tear-out per Bolt) at Gusset Side",
+        "demand": 24.041631,
+        "value": 35.784704,
+        "ratio": 0.6718409910558433,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Block Shear at Gusset Side",
+        "demand": 24.041631,
+        "value": 40.910158,
+        "ratio": 0.5876689843143602,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Gusset Plate in Block Shear",
+        "demand": 24.041631,
+        "value": 78.812503,
+        "ratio": 0.30504843882448446,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Shear at Gusset Side",
+        "demand": 24.041631,
+        "value": 41.596876,
+        "ratio": 0.5779672252310486,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Gusset Plate in Shear",
+        "demand": 24.041631,
+        "value": 81.656254,
+        "ratio": 0.29442485813762653,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Flexure Using Double Coped Procedure at Gusset Side",
+        "demand": 24.041631,
+        "value": 64.417383,
+        "ratio": 0.3732165120709731,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Shear and Moment Interaction of Single Angle at Gusset Side",
+        "demand": 0.37952236,
+        "value": 1,
+        "ratio": 0.37952236,
+        "con_id": 1
+      },
+      {
+        "name": "Connection Detailing Limitations at Support Side",
+        "demand": 1.5,
+        "value": 1.75,
+        "ratio": 0.8571428571428571,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Single Angle Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Single Angle Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Minimum Bolt Gage for Single Angle",
+            "limit_type": "min",
+            "limit": 1.5,
+            "actual": 1.75,
+            "units": "in",
+            "demand": 1.5,
+            "capacity": 1.75,
+            "ratio": 0.8571428571428571
+          }
+        ]
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Shear to Girder",
+        "demand": 24.041631,
+        "value": 28.031351,
+        "ratio": 0.857669364562557,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out on Single Angle at Girder",
+        "demand": 24.041631,
+        "value": 41.848358,
+        "ratio": 0.5744940100158769,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out at Girder",
+        "demand": 24.041631,
+        "value": 48.116251,
+        "ratio": 0.4996571948217661,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Effective Strength of the Bolt Group (Shear, Bearing and Tear-out per Bolt) to Girder",
+        "demand": 24.041631,
+        "value": 28.031351,
+        "ratio": 0.857669364562557,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Block Shear at Girder Side",
+        "demand": 24.041631,
+        "value": 41.929687,
+        "ratio": 0.5733796915774735,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Shear at Girder Side",
+        "demand": 24.041631,
+        "value": 41.596876,
+        "ratio": 0.5779672252310486,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Flexure Using Double Coped Procedure at Girder Side",
+        "demand": 24.041631,
+        "value": 92.024831,
+        "ratio": 0.2612515637219697,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Shear and Moment Interaction of Single Angle at Girder Side",
+        "demand": 0.31076909,
+        "value": 1,
+        "ratio": 0.31076909,
+        "con_id": 1
+      },
+      {
+        "name": "Allowable Capacity of the Gusset Plate in Bending",
+        "demand": 15.526887,
+        "value": 37.737026,
+        "ratio": 0.4114496727961552,
+        "con_id": 1,
+        "demand_units": "kip*ft",
+        "capacity_units": "kip*ft"
+      },
+      {
+        "name": "Allowable Capacity of the Gusset Plate in Buckling",
+        "demand": 27.297269,
+        "value": 31.115133,
+        "ratio": 0.8772988050541195,
+        "con_id": 1,
+        "demand_units": "kip*ft",
+        "capacity_units": "kip*ft"
+      },
+      {
+        "name": "Gusset Plate Connection to Beam",
+        "value": "header",
+        "demand": "header",
+        "ratio": "header"
+      },
+      {
+        "name": "Connection Detailing Limitations at Gusset Side",
+        "demand": 1.125,
+        "value": 1.5,
+        "ratio": 0.75,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Single Angle Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Single Angle Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1.125,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1.125,
+            "capacity": 1.5,
+            "ratio": 0.75
+          },
+          {
+            "name": "Gusset Plate Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 2.875,
+            "units": "in",
+            "demand": 1,
+            "capacity": 2.875,
+            "ratio": 0.34782608695652173
+          },
+          {
+            "name": "Gusset Plate Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Minimum Single Angle Length",
+            "limit_type": "min",
+            "limit": 5.875,
+            "actual": 9,
+            "units": "in",
+            "demand": 5.875,
+            "capacity": 9,
+            "ratio": 0.6527777777777778
+          },
+          {
+            "name": "Minimum Bolt Gage for Single Angle",
+            "limit_type": "min",
+            "limit": 1.5,
+            "actual": 2.5,
+            "units": "in",
+            "demand": 1.5,
+            "capacity": 2.5,
+            "ratio": 0.6
+          }
+        ]
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Shear at Gusset Side",
+        "demand": 24.041631,
+        "value": 35.784704,
+        "ratio": 0.6718409910558433,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out on Single Angle at Gusset Side",
+        "demand": 24.041631,
+        "value": 53.423435,
+        "ratio": 0.4500203141187009,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out on Gusset",
+        "demand": 24.041631,
+        "value": 87.750001,
+        "ratio": 0.2739786977324365,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Effective Strength of the Bolt Group (Shear, Bearing and Tear-out per Bolt) at Gusset Side",
+        "demand": 24.041631,
+        "value": 35.784704,
+        "ratio": 0.6718409910558433,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Block Shear at Gusset Side",
+        "demand": 24.041631,
+        "value": 40.910158,
+        "ratio": 0.5876689843143602,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Gusset Plate in Block Shear",
+        "demand": 24.041631,
+        "value": 82.468754,
+        "ratio": 0.29152412075972434,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Shear at Gusset Side",
+        "demand": 24.041631,
+        "value": 41.596876,
+        "ratio": 0.5779672252310486,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Gusset Plate in Shear",
+        "demand": 24.041631,
+        "value": 88.968753,
+        "ratio": 0.2702255588543541,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Flexure Using Double Coped Procedure at Gusset Side",
+        "demand": 24.041631,
+        "value": 64.417383,
+        "ratio": 0.3732165120709731,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Shear and Moment Interaction of Single Angle at Gusset Side",
+        "demand": 0.37952236,
+        "value": 1,
+        "ratio": 0.37952236,
+        "con_id": 1
+      },
+      {
+        "name": "Connection Detailing Limitations at Support Side",
+        "demand": 1.5,
+        "value": 1.75,
+        "ratio": 0.8571428571428571,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Single Angle Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Single Angle Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Minimum Bolt Gage for Single Angle",
+            "limit_type": "min",
+            "limit": 1.5,
+            "actual": 1.75,
+            "units": "in",
+            "demand": 1.5,
+            "capacity": 1.75,
+            "ratio": 0.8571428571428571
+          }
+        ]
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Shear to Beam",
+        "demand": 24.041631,
+        "value": 28.031351,
+        "ratio": 0.857669364562557,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out on Single Angle at Beam",
+        "demand": 24.041631,
+        "value": 41.848358,
+        "ratio": 0.5744940100158769,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of the Bolt Group in Bearing and Tear-out at Beam",
+        "demand": 24.041631,
+        "value": 48.803625,
+        "ratio": 0.49261977978070276,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Effective Strength of the Bolt Group (Shear, Bearing and Tear-out per Bolt) to Beam",
+        "demand": 24.041631,
+        "value": 28.031351,
+        "ratio": 0.857669364562557,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Block Shear at Beam Side",
+        "demand": 24.041631,
+        "value": 41.929687,
+        "ratio": 0.5733796915774735,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Shear at Beam Side",
+        "demand": 24.041631,
+        "value": 41.596876,
+        "ratio": 0.5779672252310486,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Allowable Capacity of Single Angle in Flexure Using Double Coped Procedure at Beam Side",
+        "demand": 24.041631,
+        "value": 92.024831,
+        "ratio": 0.2612515637219697,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Shear and Moment Interaction of Single Angle at Beam Side",
+        "demand": 0.31076909,
+        "value": 1,
+        "ratio": 0.31076909,
+        "con_id": 1
+      },
+      {
+        "name": "Allowable Capacity of the Gusset Plate in Bending",
+        "demand": 15.02602,
+        "value": 43.058414,
+        "ratio": 0.34896826436756356,
+        "con_id": 1,
+        "demand_units": "kip*ft",
+        "capacity_units": "kip*ft"
+      },
+      {
+        "name": "Allowable Capacity of the Gusset Plate in Buckling",
+        "demand": 26.045101,
+        "value": 35.346801,
+        "ratio": 0.7368446440174318,
+        "con_id": 1,
+        "demand_units": "kip*ft",
+        "capacity_units": "kip*ft"
+      }
+    ],
+    "report_links": {
+      "html_view_link": "https://solver.skyciv.com/temp/view_report_PeMmDmFwxvgqbXOV.php",
+      "html_download_link": "https://solver.skyciv.com/temp/download_html_report_PeMmDmFwxvgqbXOV.php",
+      "pdf_download_link": "https://solver.skyciv.com/temp/download_report_PeMmDmFwxvgqbXOV.php",
+      "no_drawing": {
+        "html_download_link": "https://solver.skyciv.com/temp/download_html_report_PeMmDmFwxvgqbXOV_nodrawing.php",
+        "pdf_download_link": "https://solver.skyciv.com/temp/download_report_PeMmDmFwxvgqbXOV_nodrawing.php"
+      }
+    },
+    "summary_report_links": {
+      "html_view_link": "https://solver.skyciv.com/temp/view_report_PeMmDmFwxvgqbXOV_summary.php",
+      "html_download_link": "https://solver.skyciv.com/temp/download_html_report_PeMmDmFwxvgqbXOV_summary.php",
+      "pdf_download_link": "https://solver.skyciv.com/temp/download_report_PeMmDmFwxvgqbXOV_summary.php",
+      "no_drawing": {
+        "html_download_link": "https://solver.skyciv.com/temp/download_html_report_PeMmDmFwxvgqbXOV_summary_nodrawing.php",
+        "pdf_download_link": "https://solver.skyciv.com/temp/download_report_PeMmDmFwxvgqbXOV_summary_nodrawing.php"
+      }
+    },
+    "svg_drawings": [
+      "<svg ...> (38919 characters, trimmed for this sample)",
+      "<svg ...> (43427 characters, trimmed for this sample)",
+      "<svg ...> (8355 characters, trimmed for this sample)",
+      "<svg ...> (8352 characters, trimmed for this sample)",
+      "<svg ...> (36780 characters, trimmed for this sample)"
+    ],
+    "aisc_edition": "360-16"
+  },
+  "msg": "Connection design complete, returning results",
+  "status": 0,
+  "function": "standalone.connection.check"
+}

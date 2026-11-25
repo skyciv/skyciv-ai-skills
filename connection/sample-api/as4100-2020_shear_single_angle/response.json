@@ -1,0 +1,298 @@
+{
+  "data": {
+    "results_array": [
+      {
+        "name": "Connection Detailing Limitations Check (at OSL)",
+        "demand": 35,
+        "value": 37.5,
+        "ratio": 0.9333333333333333,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Pitch",
+            "limit_type": "min",
+            "limit": 50,
+            "actual": 75,
+            "units": "mm",
+            "demand": 50,
+            "capacity": 75,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Pitch",
+            "limit_type": "max",
+            "limit": 124,
+            "actual": 75,
+            "units": "mm",
+            "demand": 75,
+            "capacity": 124,
+            "ratio": 0.6048387096774194
+          },
+          {
+            "name": "Minimum Vertical Edge Distance on Angle",
+            "limit_type": "min",
+            "limit": 35,
+            "actual": 37.5,
+            "units": "mm",
+            "demand": 35,
+            "capacity": 37.5,
+            "ratio": 0.9333333333333333
+          },
+          {
+            "name": "Minimum Horizontal Edge Distance on Angle",
+            "limit_type": "min",
+            "limit": 35,
+            "actual": 44.95,
+            "units": "mm",
+            "demand": 35,
+            "capacity": 44.95,
+            "ratio": 0.778642936596218
+          },
+          {
+            "name": "Minimum Horizontal Edge Distance on Column Flange",
+            "limit_type": "min",
+            "limit": 35,
+            "actual": 95.5,
+            "units": "mm",
+            "demand": 35,
+            "capacity": 95.5,
+            "ratio": 0.36649214659685864
+          },
+          {
+            "name": "Minimum Bolt Gauge on Column Flange",
+            "limit_type": "min",
+            "limit": 44.35,
+            "actual": 60,
+            "units": "mm",
+            "demand": 44.35,
+            "capacity": 60,
+            "ratio": 0.7391666666666666
+          },
+          {
+            "name": "Maximum Edge Distance",
+            "limit_type": "max",
+            "limit": 72,
+            "actual": 44.95,
+            "units": "mm",
+            "demand": 44.95,
+            "capacity": 72,
+            "ratio": 0.6243055555555556
+          }
+        ]
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Shear (at OSL)",
+        "demand": 150,
+        "value": 288.99936,
+        "ratio": 0.5190322912825828,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Bearing on Component and Support (at OSL)",
+        "demand": 150,
+        "value": 270.57888,
+        "ratio": 0.554366992723157,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Angle in Shear (at OSL)",
+        "demand": 150,
+        "value": 259.2,
+        "ratio": 0.5787037037037037,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Angle in Bending (at OSL)",
+        "demand": 150,
+        "value": 648,
+        "ratio": 0.23148148148148148,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Angle in Block Shear (at OSL)",
+        "demand": 150,
+        "value": 287.595,
+        "ratio": 0.5215667866270275,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Connection Detailing Limitations Check (at NSL)",
+        "demand": 35,
+        "value": 37.5,
+        "ratio": 0.9333333333333333,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Pitch",
+            "limit_type": "min",
+            "limit": 50,
+            "actual": 75,
+            "units": "mm",
+            "demand": 50,
+            "capacity": 75,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Pitch",
+            "limit_type": "max",
+            "limit": 124,
+            "actual": 75,
+            "units": "mm",
+            "demand": 75,
+            "capacity": 124,
+            "ratio": 0.6048387096774194
+          },
+          {
+            "name": "Minimum Vertical Edge Distance on Angle",
+            "limit_type": "min",
+            "limit": 35,
+            "actual": 37.5,
+            "units": "mm",
+            "demand": 35,
+            "capacity": 37.5,
+            "ratio": 0.9333333333333333
+          },
+          {
+            "name": "Minimum Horizontal Edge Distance on Angle",
+            "limit_type": "min",
+            "limit": 35,
+            "actual": 38,
+            "units": "mm",
+            "demand": 35,
+            "capacity": 38,
+            "ratio": 0.9210526315789473
+          },
+          {
+            "name": "Minimum Horizontal Edge Distance on Beam Web",
+            "limit_type": "min",
+            "limit": 35,
+            "actual": 50,
+            "units": "mm",
+            "demand": 35,
+            "capacity": 50,
+            "ratio": 0.7
+          },
+          {
+            "name": "Minimum Angle Depth",
+            "limit_type": "min",
+            "limit": 230,
+            "actual": 300,
+            "units": "mm",
+            "demand": 230,
+            "capacity": 300,
+            "ratio": 0.7666666666666667
+          },
+          {
+            "name": "Maximum Angle Depth",
+            "limit_type": "max",
+            "limit": 405.2,
+            "actual": 300,
+            "units": "mm",
+            "demand": 300,
+            "capacity": 405.2,
+            "ratio": 0.7403751233958539
+          },
+          {
+            "name": "Maximum Edge Distance",
+            "limit_type": "max",
+            "limit": 72,
+            "actual": 50,
+            "units": "mm",
+            "demand": 50,
+            "capacity": 72,
+            "ratio": 0.6944444444444444
+          }
+        ]
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Shear (at NSL)",
+        "demand": 150,
+        "value": 285.29424,
+        "ratio": 0.5257729703901488,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Bearing on Component and Beam Web (at NSL)",
+        "demand": 150,
+        "value": 267.10992,
+        "ratio": 0.5615665640572242,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Angle in Shear (at NSL)",
+        "demand": 150,
+        "value": 259.2,
+        "ratio": 0.5787037037037037,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Angle in Bending (at NSL)",
+        "demand": 150,
+        "value": 627.09677,
+        "ratio": 0.2391975324637695,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Angle in Block Shear (at NSL)",
+        "demand": 150,
+        "value": 273.834,
+        "ratio": 0.5477771204452332,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      },
+      {
+        "name": "Design Capacity of Supported Member in Shear",
+        "demand": 150,
+        "value": 737.748,
+        "ratio": 0.20332145936010668,
+        "con_id": 1,
+        "demand_units": "kN",
+        "capacity_units": "kN"
+      }
+    ],
+    "report_links": {
+      "html_view_link": "https://solver.skyciv.com/temp/view_report_kR5hMLQ3D1lnnbv3.php",
+      "html_download_link": "https://solver.skyciv.com/temp/download_html_report_kR5hMLQ3D1lnnbv3.php",
+      "pdf_download_link": "https://solver.skyciv.com/temp/download_report_kR5hMLQ3D1lnnbv3.php",
+      "no_drawing": {
+        "html_download_link": "https://solver.skyciv.com/temp/download_html_report_kR5hMLQ3D1lnnbv3_nodrawing.php",
+        "pdf_download_link": "https://solver.skyciv.com/temp/download_report_kR5hMLQ3D1lnnbv3_nodrawing.php"
+      }
+    },
+    "summary_report_links": {
+      "html_view_link": "https://solver.skyciv.com/temp/view_report_kR5hMLQ3D1lnnbv3_summary.php",
+      "html_download_link": "https://solver.skyciv.com/temp/download_html_report_kR5hMLQ3D1lnnbv3_summary.php",
+      "pdf_download_link": "https://solver.skyciv.com/temp/download_report_kR5hMLQ3D1lnnbv3_summary.php",
+      "no_drawing": {
+        "html_download_link": "https://solver.skyciv.com/temp/download_html_report_kR5hMLQ3D1lnnbv3_summary_nodrawing.php",
+        "pdf_download_link": "https://solver.skyciv.com/temp/download_report_kR5hMLQ3D1lnnbv3_summary_nodrawing.php"
+      }
+    },
+    "svg_drawings": [
+      "<svg ...> (18372 characters, trimmed for this sample)",
+      "<svg ...> (13416 characters, trimmed for this sample)"
+    ]
+  },
+  "msg": "Connection design complete, returning results",
+  "status": 0,
+  "function": "standalone.connection.check"
+}

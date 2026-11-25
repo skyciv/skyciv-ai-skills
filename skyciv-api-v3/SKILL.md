@@ -213,6 +213,7 @@ Session start → set model → solve:
 | `S3D.design` | Member and RC design checks |
 | `S3D.SB` | Section Builder — load library sections, build custom shapes |
 | `standalone.foundation` | Standalone foundation design (piles only at the moment). See the [`foundation-api`](../foundation-api/SKILL.md) skill. |
+| `standalone.connection` | Steel connection design (Connection Design). See the [`connection`](../connection/SKILL.md) skill. |
 | `standalone.member` | Standalone member design |
 | `standalone.loads` | Wind and snow loads |
 | `cloudcad.model` | Create CAD models |

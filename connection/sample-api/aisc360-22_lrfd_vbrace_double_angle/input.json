@@ -1,0 +1,664 @@
+{
+  "is_loading_data": false,
+  "project_details": {
+    "units": "",
+    "company": "",
+    "designer": "",
+    "client": "",
+    "name": "",
+    "id": "",
+    "notes": ""
+  },
+  "assembly": {
+    "beams": 1,
+    "beam_dims": {
+      "clearance": "0.5",
+      "section_dims": {
+        "h": 18,
+        "TFw": 7.5,
+        "TFt": 0.57,
+        "BFw": 7.5,
+        "BFt": 0.57,
+        "Wt": 0.355,
+        "r": 0.402
+      },
+      "Syp": 16.6,
+      "Szp": 101,
+      "T": 15.5,
+      "kdes": 0.972,
+      "Ag": 14.7,
+      "shape": "ibeam"
+    },
+    "beam_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "beam_section": "W18x50",
+    "left_beam_dims": {},
+    "left_beam_material": {},
+    "left_beam_section": "",
+    "right_beam_dims": {},
+    "right_beam_material": {},
+    "right_beam_section": "",
+    "brace_dims": {},
+    "brace_material": {},
+    "brace_section": "",
+    "lower_brace_dims": {},
+    "lower_brace_material": {},
+    "lower_brace_section": "",
+    "upper_brace_dims": {
+      "brace_slope": 45,
+      "unbraced_length": 5,
+      "double_angle": true,
+      "section_dims": {
+        "h": 4,
+        "LFt": 0.5,
+        "BFt": 0.5,
+        "BFw": 4,
+        "r": 0.375
+      },
+      "Syp": 0,
+      "Szp": 0,
+      "Ag": 3.75,
+      "shape": "lbeam",
+      "equal_legs": true,
+      "switch_legs": false
+    },
+    "upper_brace_material": {
+      "name": "A36",
+      "E": 29000,
+      "fy": 36,
+      "fu": 58
+    },
+    "upper_brace_section": "L4x4x1/2",
+    "left_brace_dims": {},
+    "left_brace_material": {},
+    "left_brace_section": "",
+    "right_brace_dims": {},
+    "right_brace_material": {},
+    "right_brace_section": "",
+    "column_dims": {
+      "section_dims": {
+        "h": 17,
+        "TFw": 10.4,
+        "TFt": 0.985,
+        "BFw": 10.4,
+        "BFt": 0.985,
+        "Wt": 0.585,
+        "r": 0.405
+      },
+      "Syp": 54.9,
+      "Szp": 198,
+      "T": 13.25,
+      "kdes": 1.39,
+      "Ag": 29.4,
+      "shape": "ibeam"
+    },
+    "column_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "column_section": "W16x100",
+    "lower_column_dims": {},
+    "lower_column_material": {},
+    "lower_column_section": "",
+    "upper_column_dims": {},
+    "upper_column_material": {},
+    "upper_column_section": "",
+    "girder_dims": {},
+    "girder_material": {},
+    "girder_section": "",
+    "connections": [
+      {
+        "connector": "section",
+        "name": "double-angle-beam",
+        "material": "A572 GR.50",
+        "fy": 50,
+        "fu": 65,
+        "angle_section": "L6x6x1",
+        "length": 15,
+        "equal_legs": true,
+        "switch_legs": true,
+        "dims": {
+          "h": 6,
+          "LFt": 1,
+          "BFt": 1,
+          "BFw": 6,
+          "r": 0.5
+        },
+        "points": [
+          [
+            0,
+            0,
+            "regular"
+          ],
+          [
+            6,
+            0,
+            "regular"
+          ],
+          [
+            6,
+            1,
+            "regular"
+          ],
+          [
+            1.5,
+            1,
+            "filletStartEnd"
+          ],
+          [
+            1.3086582838174547,
+            1.0380602337443567,
+            "dontShow"
+          ],
+          [
+            1.146446609406726,
+            1.1464466094067263,
+            "dontShow"
+          ],
+          [
+            1.0380602337443565,
+            1.3086582838174552,
+            "dontShow"
+          ],
+          [
+            1,
+            1.5,
+            "filletStartEnd"
+          ],
+          [
+            1,
+            6,
+            "regular"
+          ],
+          [
+            0,
+            6,
+            "regular"
+          ]
+        ]
+      },
+      {
+        "connector": "plate",
+        "name": "gusset-plate-upper-brace",
+        "material": "A572 GR.50",
+        "fy": 50,
+        "fu": 65,
+        "b1": 8,
+        "h1": 12,
+        "o1": 0.5,
+        "b2": 10,
+        "h2": 10.5,
+        "o2": 0.5,
+        "thk": 0.5,
+        "b": 15,
+        "h": 8,
+        "L1": null,
+        "L2": null
+      },
+      {
+        "connector": "section",
+        "name": "double-angle-upper-brace",
+        "material": "A36",
+        "fy": 36,
+        "fu": 58,
+        "angle_section": "L3x2x3/16",
+        "length": 6,
+        "equal_legs": false,
+        "switch_legs": true,
+        "dims": {
+          "h": 2,
+          "LFt": 0.188,
+          "BFt": 0.188,
+          "BFw": 3,
+          "r": 0.312
+        },
+        "points": [
+          [
+            0,
+            0,
+            "regular"
+          ],
+          [
+            3,
+            0,
+            "regular"
+          ],
+          [
+            3,
+            0.188,
+            "regular"
+          ],
+          [
+            0.49999999999999994,
+            0.188,
+            "filletStartEnd"
+          ],
+          [
+            0.3806027691020918,
+            0.21174958585647863,
+            "dontShow"
+          ],
+          [
+            0.2793826842697971,
+            0.2793826842697972,
+            "dontShow"
+          ],
+          [
+            0.21174958585647852,
+            0.380602769102092,
+            "dontShow"
+          ],
+          [
+            0.188,
+            0.5,
+            "filletStartEnd"
+          ],
+          [
+            0.18799999999999994,
+            2,
+            "regular"
+          ],
+          [
+            -5.551115123125783e-17,
+            2,
+            "regular"
+          ]
+        ]
+      }
+    ],
+    "active_conn": "Double Angle for Beam",
+    "conn_index": 0,
+    "tab_is_active": false,
+    "active_member": "connection",
+    "upper_brace_shape": "Equal angles",
+    "column_shape": "W",
+    "column_section_outdated": false,
+    "beam_shape": "W",
+    "beam_section_outdated": false,
+    "upper_brace_section_outdated": false
+  },
+  "fixtures": {
+    "active_index": 0,
+    "active_part": "Double-Angle-to-Beam-Web",
+    "bolts": [
+      {},
+      {
+        "name": "Beam-Double-Angle-Bolt-to-Column",
+        "typical": false,
+        "material": "A490N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "HSSL",
+        "diameter": "1 in",
+        "arrangement": "5x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 3.6775,
+        "row": 3,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 68,
+        "fnt": 113,
+        "dims": {
+          "s": 1.625,
+          "e": 1.796,
+          "k": 0.627,
+          "d": 1,
+          "wh": 0.16,
+          "wd": 1.75,
+          "nh": 1
+        },
+        "Pf": 0,
+        "Lev": 1.5,
+        "Leh": 1.5
+      },
+      {
+        "name": "Upper-Gusset-Plate-to-Upper-Brace",
+        "typical": false,
+        "material": "A490-SC(A)",
+        "hole_type_member": "STD",
+        "hole_type_connector": "OVS",
+        "diameter": "1 in",
+        "arrangement": "2x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.5,
+        "row": 3,
+        "column": 0,
+        "gage": 2.5,
+        "gusset_extension": 0.5,
+        "fnv": 68,
+        "fnt": 113,
+        "dims": {
+          "s": 1.625,
+          "e": 1.796,
+          "k": 0.627,
+          "d": 1,
+          "wh": 0.16,
+          "wd": 1.75,
+          "nh": 1
+        },
+        "Pf": 0,
+        "Lev": 1.5
+      },
+      {},
+      {},
+      {
+        "name": "Upper-Double-Angle-Bolt-to-Column",
+        "typical": false,
+        "material": "A490N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "HSSL",
+        "diameter": "1 in",
+        "arrangement": "2x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.875,
+        "row": 3,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 68,
+        "fnt": 113,
+        "dims": {
+          "s": 1.625,
+          "e": 1.796,
+          "k": 0.627,
+          "d": 1,
+          "wh": 0.16,
+          "wd": 1.75,
+          "nh": 1
+        },
+        "Pf": 0,
+        "Lev": 1.5,
+        "Leh": 1.5
+      }
+    ],
+    "welds": [
+      {
+        "fnw": 70,
+        "name": "Double-Angle-to-Beam-Web",
+        "typical": false,
+        "sides": null,
+        "material": "E70XX",
+        "size": 0.1875,
+        "field_weld": "NO"
+      },
+      {},
+      {},
+      {
+        "name": "Upper-Gusset-Plate-Weld-to-Beam",
+        "typical": false,
+        "sides": null,
+        "material": "E70XX",
+        "fnw": 70,
+        "size": 0.1875,
+        "field_weld": "NO",
+        "length": 15
+      },
+      {
+        "name": "Upper-Double-Angle-to-Upper-Gusset-Plate",
+        "typical": false,
+        "sides": null,
+        "material": "E70XX",
+        "fnw": 70,
+        "size": 0.1875,
+        "field_weld": "NO"
+      },
+      {}
+    ],
+    "weld_laps": null,
+    "tab_is_active": false,
+    "assy": [
+      "Double-Angle-to-Beam-Web",
+      "Beam-Double-Angle-Bolt-to-Column",
+      "Upper-Gusset-Plate-to-Upper-Brace",
+      "Upper-Gusset-Plate-Weld-to-Beam",
+      "Upper-Double-Angle-to-Upper-Gusset-Plate",
+      "Upper-Double-Angle-Bolt-to-Column"
+    ],
+    "bolt_geometry": {
+      "diameter": {
+        "1": 1,
+        "5/8": 0.625,
+        "3/4": 0.75,
+        "7/8": 0.875,
+        "1-1/8": 1.125,
+        "1-1/4": 1.25,
+        "1-3/8": 1.375,
+        "1-1/2": 1.5
+      },
+      "dimensions": {
+        "1": {
+          "s": 1.625,
+          "e": 1.796,
+          "k": 0.627,
+          "d": 1,
+          "wh": 0.16,
+          "wd": 1.75,
+          "nh": 1
+        },
+        "5/8": {
+          "s": 1.062,
+          "e": 1.175,
+          "k": 0.403,
+          "d": 0.625,
+          "wh": 0.16,
+          "wd": 1.2,
+          "nh": 0.66
+        },
+        "3/4": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "7/8": {
+          "s": 1.438,
+          "e": 1.589,
+          "k": 0.563,
+          "d": 0.875,
+          "wh": 0.16,
+          "wd": 1.56,
+          "nh": 0.89
+        },
+        "1-1/8": {
+          "s": 1.812,
+          "e": 2,
+          "k": 0.718,
+          "d": 1.125,
+          "wh": 0.2,
+          "wd": 2,
+          "nh": 1.12
+        },
+        "1-1/4": {
+          "s": 2,
+          "e": 2.209,
+          "k": 0.813,
+          "d": 1.25,
+          "wh": 0.2,
+          "wd": 2.25,
+          "nh": 1.24
+        },
+        "1-3/8": {
+          "s": 2.188,
+          "e": 2.416,
+          "k": 0.878,
+          "d": 1.375,
+          "wh": 0.2,
+          "wd": 2.325,
+          "nh": 1.35
+        },
+        "1-1/2": {
+          "s": 2.375,
+          "e": 2.622,
+          "k": 0.974,
+          "d": 1.5,
+          "wh": 0.2,
+          "wd": 2.4,
+          "nh": 1.47
+        }
+      },
+      "holes": {
+        "STD": {
+          "1": 1.0625,
+          "5/8": 0.6875,
+          "3/4": 0.8125,
+          "7/8": 0.9375,
+          "1-1/8": 1.1875,
+          "1-1/4": 1.3125,
+          "1-3/8": 1.4375,
+          "1-1/2": 1.5625
+        },
+        "OVS": {
+          "1": 1.25,
+          "5/8": 0.8125,
+          "3/4": 0.9375,
+          "7/8": 1.0625,
+          "1-1/8": 1.4375,
+          "1-1/4": 1.5625,
+          "1-3/8": 1.6875,
+          "1-1/2": 1.8125
+        },
+        "SS": {
+          "1": {
+            "Width": 1.06,
+            "Length": 1.31
+          },
+          "5/8": {
+            "Width": 0.69,
+            "Length": 0.88
+          },
+          "3/4": {
+            "Width": 0.81,
+            "Length": 1
+          },
+          "7/8": {
+            "Width": 0.94,
+            "Length": 1.13
+          },
+          "1-1/8": {
+            "Width": 1.19,
+            "Length": 1.5
+          },
+          "1-1/4": {
+            "Width": 1.31,
+            "Length": 1.63
+          },
+          "1-3/8": {
+            "Width": 1.44,
+            "Length": 1.75
+          },
+          "1-1/2": {
+            "Width": 1.56,
+            "Length": 1.88
+          }
+        },
+        "LS": {
+          "1": {
+            "Width": 1.06,
+            "Length": 2.5
+          },
+          "5/8": {
+            "Width": 0.69,
+            "Length": 1.56
+          },
+          "3/4": {
+            "Width": 0.81,
+            "Length": 1.88
+          },
+          "7/8": {
+            "Width": 0.94,
+            "Length": 2.19
+          },
+          "1-1/8": {
+            "Width": 1.19,
+            "Length": 2.81
+          },
+          "1-1/4": {
+            "Width": 1.31,
+            "Length": 3.13
+          },
+          "1-3/8": {
+            "Width": 1.44,
+            "Length": 3.44
+          },
+          "1-1/2": {
+            "Width": 1.56,
+            "Length": 3.75
+          }
+        }
+      },
+      "spacing": {
+        "cc": {
+          "1": 3,
+          "5/8": 1.875,
+          "3/4": 2.25,
+          "7/8": 2.625,
+          "1-1/8": 3.375,
+          "1-1/4": 3.75,
+          "1-3/8": 4.125,
+          "1-1/2": 4.5
+        },
+        "edge": {
+          "1": 1.25,
+          "5/8": 0.875,
+          "3/4": 1,
+          "7/8": 1.125,
+          "1-1/8": 1.5,
+          "1-1/4": 1.625,
+          "1-3/8": 1.71875,
+          "1-1/2": 1.875
+        }
+      }
+    }
+  },
+  "loads": {
+    "tab_is_active": true,
+    "utility_ratio_limit": 1,
+    "loads_arr": [
+      {
+        "id": "1",
+        "fx": "132,-132",
+        "fy": "38",
+        "fz": "0",
+        "mx": "0",
+        "my": "0",
+        "mz": "0",
+        "upper_brace_axial": "49,-49",
+        "lower_brace_axial": "0",
+        "brace_axial": "0",
+        "left_brace_axial": "0",
+        "right_brace_axial": "0",
+        "column_axial": "0",
+        "column_moment": "0",
+        "branch_axial": "0",
+        "branch2_axial": "0",
+        "chord_axial": "0",
+        "chord_moment": "0",
+        "type": "DL"
+      }
+    ]
+  },
+  "analysis": {},
+  "modal_data": {
+    "category": "bracing",
+    "code": "AISC 360-22 LRFD",
+    "config": "upper-vertical-brace-double-angle-assembly",
+    "config_label": "Upper Brace - Double Angle",
+    "orientation": "BCW",
+    "parent_member": "column",
+    "type": "vertical_brace",
+    "unit_system": "English / Imperial"
+  },
+  "data_version": 3
+}

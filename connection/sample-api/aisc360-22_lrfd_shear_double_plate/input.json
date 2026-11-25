@@ -1,0 +1,439 @@
+{
+  "is_loading_data": false,
+  "project_details": {
+    "units": "",
+    "company": "",
+    "designer": "",
+    "client": "",
+    "name": "",
+    "id": "",
+    "notes": ""
+  },
+  "assembly": {
+    "beams": 1,
+    "beam_dims": {
+      "top_coping_length": "2.625",
+      "top_coping_depth": "1",
+      "bottom_coping_length": "3.5",
+      "bottom_coping_depth": "0.75",
+      "clearance": "0.5",
+      "section_dims": {
+        "h": 11.9,
+        "TFw": 3.97,
+        "TFt": 0.225,
+        "BFw": 3.97,
+        "BFt": 0.225,
+        "Wt": 0.2,
+        "r": 0.3
+      },
+      "Syp": 1.9,
+      "Szp": 17.4,
+      "T": 10.375,
+      "kdes": 0.525,
+      "Ag": 4.16,
+      "shape": "ibeam"
+    },
+    "beam_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "beam_section": "W12x14",
+    "left_beam_dims": {},
+    "left_beam_material": {},
+    "left_beam_section": "",
+    "right_beam_dims": {},
+    "right_beam_material": {},
+    "right_beam_section": "",
+    "brace_dims": {},
+    "brace_material": {},
+    "brace_section": "",
+    "lower_brace_dims": {},
+    "lower_brace_material": {},
+    "lower_brace_section": "",
+    "upper_brace_dims": {},
+    "upper_brace_material": {},
+    "upper_brace_section": "",
+    "left_brace_dims": {},
+    "left_brace_material": {},
+    "left_brace_section": "",
+    "right_brace_dims": {},
+    "right_brace_material": {},
+    "right_brace_section": "",
+    "column_dims": {},
+    "column_material": {},
+    "column_section": "",
+    "lower_column_dims": {},
+    "lower_column_material": {},
+    "lower_column_section": "",
+    "upper_column_dims": {},
+    "upper_column_material": {},
+    "upper_column_section": "",
+    "girder_dims": {
+      "section_dims": {
+        "h": 17.7,
+        "TFw": 6,
+        "TFt": 0.425,
+        "BFw": 6,
+        "BFt": 0.425,
+        "Wt": 0.3,
+        "r": 0.402
+      },
+      "Syp": 8.06,
+      "Szp": 66.5,
+      "T": 15.5,
+      "kdes": 0.827,
+      "Ag": 10.3,
+      "shape": "ibeam"
+    },
+    "girder_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "girder_section": "W18x35",
+    "connections": [
+      {
+        "connector": "plate",
+        "name": "web-plate",
+        "material": "A36",
+        "fy": 36,
+        "fu": 58,
+        "b": 3.5,
+        "h": 6,
+        "thk": 0.375,
+        "L1": null,
+        "L2": null,
+        "b1": null,
+        "h1": null,
+        "b2": null,
+        "h2": null,
+        "o1": null,
+        "o2": null
+      }
+    ],
+    "active_conn": null,
+    "conn_index": 0,
+    "tab_is_active": true,
+    "active_member": "girder",
+    "beam_shape": "W",
+    "beam_section_outdated": false,
+    "girder_shape": "W",
+    "girder_section_outdated": false
+  },
+  "fixtures": {
+    "active_index": 0,
+    "active_part": "Plate-to-Beam-Web",
+    "bolts": [
+      {
+        "fnv": 54,
+        "fnt": 90,
+        "Lev": 1.5,
+        "Leh": 1.5,
+        "erection_gap": 0.125,
+        "name": "Plate-to-Beam-Web",
+        "typical": false,
+        "material": "A325N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "HSSL",
+        "diameter": "3/4 in",
+        "arrangement": "2x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.5,
+        "row": 3,
+        "column": 3,
+        "gage": 0,
+        "gusset_extension": 0,
+        "dims": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "Pf": 0
+      },
+      {}
+    ],
+    "welds": [
+      {},
+      {
+        "fnw": 70,
+        "plate1_weld_size": 0.25,
+        "plate2_weld_size": 0.5,
+        "name": "Plate-Weld-to-Girder-Web",
+        "typical": false,
+        "sides": [
+          "left",
+          "right"
+        ],
+        "material": "E70XX",
+        "size": 0.001,
+        "field_weld": "NO",
+        "plate1_weld_info": "Back-to-Back"
+      }
+    ],
+    "weld_laps": {
+      "Plate-to-Beam-Web": [
+        "top",
+        "bottom",
+        "right"
+      ],
+      "Plate-Weld-to-Column": [
+        "left",
+        "right"
+      ],
+      "Plate-Weld-to-Girder": [
+        "left",
+        "right"
+      ]
+    },
+    "tab_is_active": false,
+    "assy": [
+      "Plate-to-Beam-Web",
+      "Plate-Weld-to-Girder-Web"
+    ],
+    "bolt_geometry": {
+      "diameter": {
+        "1": 1,
+        "5/8": 0.625,
+        "3/4": 0.75,
+        "7/8": 0.875,
+        "1-1/8": 1.125,
+        "1-1/4": 1.25,
+        "1-3/8": 1.375,
+        "1-1/2": 1.5
+      },
+      "dimensions": {
+        "1": {
+          "s": 1.625,
+          "e": 1.796,
+          "k": 0.627,
+          "d": 1,
+          "wh": 0.16,
+          "wd": 1.75,
+          "nh": 1
+        },
+        "5/8": {
+          "s": 1.062,
+          "e": 1.175,
+          "k": 0.403,
+          "d": 0.625,
+          "wh": 0.16,
+          "wd": 1.2,
+          "nh": 0.66
+        },
+        "3/4": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "7/8": {
+          "s": 1.438,
+          "e": 1.589,
+          "k": 0.563,
+          "d": 0.875,
+          "wh": 0.16,
+          "wd": 1.56,
+          "nh": 0.89
+        },
+        "1-1/8": {
+          "s": 1.812,
+          "e": 2,
+          "k": 0.718,
+          "d": 1.125,
+          "wh": 0.2,
+          "wd": 2,
+          "nh": 1.12
+        },
+        "1-1/4": {
+          "s": 2,
+          "e": 2.209,
+          "k": 0.813,
+          "d": 1.25,
+          "wh": 0.2,
+          "wd": 2.25,
+          "nh": 1.24
+        },
+        "1-3/8": {
+          "s": 2.188,
+          "e": 2.416,
+          "k": 0.878,
+          "d": 1.375,
+          "wh": 0.2,
+          "wd": 2.325,
+          "nh": 1.35
+        },
+        "1-1/2": {
+          "s": 2.375,
+          "e": 2.622,
+          "k": 0.974,
+          "d": 1.5,
+          "wh": 0.2,
+          "wd": 2.4,
+          "nh": 1.47
+        }
+      },
+      "holes": {
+        "STD": {
+          "1": 1.0625,
+          "5/8": 0.6875,
+          "3/4": 0.8125,
+          "7/8": 0.9375,
+          "1-1/8": 1.1875,
+          "1-1/4": 1.3125,
+          "1-3/8": 1.4375,
+          "1-1/2": 1.5625
+        },
+        "OVS": {
+          "1": 1.25,
+          "5/8": 0.8125,
+          "3/4": 0.9375,
+          "7/8": 1.0625,
+          "1-1/8": 1.4375,
+          "1-1/4": 1.5625,
+          "1-3/8": 1.6875,
+          "1-1/2": 1.8125
+        },
+        "SS": {
+          "1": {
+            "Width": 1.06,
+            "Length": 1.31
+          },
+          "5/8": {
+            "Width": 0.69,
+            "Length": 0.88
+          },
+          "3/4": {
+            "Width": 0.81,
+            "Length": 1
+          },
+          "7/8": {
+            "Width": 0.94,
+            "Length": 1.13
+          },
+          "1-1/8": {
+            "Width": 1.19,
+            "Length": 1.5
+          },
+          "1-1/4": {
+            "Width": 1.31,
+            "Length": 1.63
+          },
+          "1-3/8": {
+            "Width": 1.44,
+            "Length": 1.75
+          },
+          "1-1/2": {
+            "Width": 1.56,
+            "Length": 1.88
+          }
+        },
+        "LS": {
+          "1": {
+            "Width": 1.06,
+            "Length": 2.5
+          },
+          "5/8": {
+            "Width": 0.69,
+            "Length": 1.56
+          },
+          "3/4": {
+            "Width": 0.81,
+            "Length": 1.88
+          },
+          "7/8": {
+            "Width": 0.94,
+            "Length": 2.19
+          },
+          "1-1/8": {
+            "Width": 1.19,
+            "Length": 2.81
+          },
+          "1-1/4": {
+            "Width": 1.31,
+            "Length": 3.13
+          },
+          "1-3/8": {
+            "Width": 1.44,
+            "Length": 3.44
+          },
+          "1-1/2": {
+            "Width": 1.56,
+            "Length": 3.75
+          }
+        }
+      },
+      "spacing": {
+        "cc": {
+          "1": 3,
+          "5/8": 1.875,
+          "3/4": 2.25,
+          "7/8": 2.625,
+          "1-1/8": 3.375,
+          "1-1/4": 3.75,
+          "1-3/8": 4.125,
+          "1-1/2": 4.5
+        },
+        "edge": {
+          "1": 1.25,
+          "5/8": 0.875,
+          "3/4": 1,
+          "7/8": 1.125,
+          "1-1/8": 1.5,
+          "1-1/4": 1.625,
+          "1-3/8": 1.71875,
+          "1-1/2": 1.875
+        }
+      }
+    }
+  },
+  "loads": {
+    "tab_is_active": false,
+    "utility_ratio_limit": 1,
+    "loads_arr": [
+      {
+        "id": "1",
+        "fx": "0",
+        "fy": "12",
+        "fz": "0",
+        "mx": "0",
+        "my": "0",
+        "mz": "0",
+        "upper_brace_axial": "0",
+        "lower_brace_axial": "0",
+        "brace_axial": "0",
+        "left_brace_axial": "0",
+        "right_brace_axial": "0",
+        "column_axial": "0",
+        "column_moment": "0",
+        "branch_axial": "0",
+        "branch2_axial": "0",
+        "chord_axial": "0",
+        "chord_moment": "0",
+        "type": "DL"
+      }
+    ]
+  },
+  "analysis": {},
+  "modal_data": {
+    "category": "i-to-i",
+    "code": "AISC 360-22 LRFD",
+    "config": "double-plate-assembly",
+    "config_label": "Double Plate",
+    "orientation": "BBW",
+    "parent_member": "girder",
+    "type": "shear",
+    "unit_system": "English / Imperial"
+  },
+  "data_version": 3
+}
