@@ -1104,6 +1104,8 @@ Same rules for the API ([`s3d-api`](../s3d-api/SKILL.md): write into `s3d_model`
 
    Wind goes on the **faces only** — never on interior members. A windward value at `level_N` acts from the level below up to that elevation (stepped; using the upper value over the band is conservative).
 
+   Area loads only for a plain rectangular frame (no face plates, the same plan on every storey, a column at each corner); otherwise `distributed_loads`. In an S3D App, call `S3D.area_loads.checkAll()` after adding them: if any you added are in its `issues`, remove all of them and apply the wind as `distributed_loads` instead of repairing them (see the "Area loads" section of [`s3d-apps`](../s3d-apps/SKILL.md)).
+
 4. **Units:** convert `units.pressure` to the model's pressure unit (`settings.units`): metric S3D default `kpa` ← `pa` / 1000; imperial `ksf` ← `psf` / 1000. Lengths: `units.length` vs model (`m`, `ft`). Never mix — S3D cannot mix imperial and metric.
 
 5. **Load groups and cases:** one group per direction × case (`groupName(rec)`, plus `_neg` mirrors) so each combination carries exactly one wind pattern. Map every group to the code's wind symbol in `load_cases` (`W` ASCE / NBCC / EN, `Wu` AS/NZS 1170) and build combos per [`load-combinations`](../load-combinations/SKILL.md) — never put two wind groups in one combination.

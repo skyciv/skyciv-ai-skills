@@ -445,6 +445,23 @@ For small, one-off edits you can also call these directly instead of going throu
 
 Note the model calls members **"members"**, but internally some docs/tools refer to them as **"elements"** — if you see `elements` in a helper signature it means members.
 
+### Area loads: check them after adding, fall back to distributed loads
+
+An area load only works when S3D can find members to carry it: a closed panel bounded by members on every edge, with nodes at the corners. On a face with no members under it (walls or slabs modelled as plates, a corner without a column, a setback or re-entrant corner, a continuous member running past the panel's nodes) S3D **silently ignores** the load and shows the user a side notification for each one. A building with dozens of broken area loads floods the screen. So:
+
+- Use area loads only on a plain rectangular frame: no plates on the faces, the same rectangular plan on every storey, a column at every corner. Anywhere else, use `distributed_loads` on the members (`w = p × tributary width`).
+- **After adding area loads, always call `S3D.area_loads.checkAll()`**. Each failed load appears in `issues` and `details`:
+
+  ```js
+  const report = S3D.area_loads.checkAll();
+  // { issues: ["Area load #181 issue. Something went wrong with this area load so it was ignored.", …],
+  //   details: [{ area_load_ID: 181, variance_obj: { force_variance, moment_variance, applied: { f_x, … }, equivalent: { … }, … },
+  //               load_obj: { applied_loads: { centroid, sub_polygons }, equivalent_loads: { DLs, PLs, node_PLs } }, comments: "<p>What to try…</p>" }] }
+  ```
+
+  A failed load has `equivalent_loads` empty and every force zero: none of it reaches the frame. `area_load_ID` is the load's index in `model.area_loads`. Areas that were already broken before your change are the user's; only judge the ones you added (IDs from the first index you added).
+- **If any area load you added failed, don't try to repair it.** Remove all the area loads you added and apply the same loads as `distributed_loads` instead. Patching only the broken ones mixes two layouts on the same faces, and the repairs (splitting members, moving nodes) change the user's model. Then refresh with `S3D.UI.update({ force_update_area_loads: true, redraw: true })` and tell the user that the loads went on as member loads, and why.
+
 ### Model settings you must always check
 
 Before generating any geometry or loads, read `model.settings` (from the object you got via the read-modify-write pattern) — **do not hardcode units or a vertical axis**:
