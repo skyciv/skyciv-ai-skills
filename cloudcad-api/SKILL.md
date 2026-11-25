@@ -97,7 +97,7 @@ Verified live: this renders a 6 m × 4 m rectangle with a dimension and a label,
         ],
         "dimensions": [ { "p1": { "x": 0, "y": 0 }, "p2": { "x": 6000, "y": 0 },
           "offsetPoint": { "x": 3000, "y": 800 }, "projectionType": "horizontal", "attributeStyleId": "as-default" } ],
-        "texts": [ { "position": { "x": 3000, "y": -2000 }, "text": "GROUND FLOOR", "size": 20,
+        "texts": [ { "position": { "x": 3000, "y": -2000 }, "text": "GROUND FLOOR", "size": 5, "sizeOverride": true,
           "color": "#ffffff", "alignment": "center", "textPosition": "middle-center", "attributeStyleId": "as-default" } ]
       } ]
     } } },
@@ -113,9 +113,10 @@ Verified live: this renders a 6 m × 4 m rectangle with a dimension and a label,
 | `cloudcad.model.create` | `cad_data` (object) | `{status: 0, msg: "CloudCAD session successfully created.", data: ""}`, plus a new `session_id`. The docs' msg text is out of date. |
 | `cloudcad.file.save` | `name`, `path` (strings); `public_share`, `return_uid_url` (booleans) | `data` is always `https://platform.skyciv.com/cad?u=<uid>`. **No `public_link` is returned, whatever `public_share` / `return_uid_url` are set to.** |
 | `cloudcad.file.open` | `name` + `path`, or `uid` | `{status: 0, msg: "", data: ""}`, **even for a file that doesn't exist**, and nothing appears in the session. Don't build on it (see Gotchas). |
+| `cloudcad.export.pdf` | none (exports the model just created, using its `pdfExport.pdfPages`) | `data.download_link`: a temporary `https://solver.skyciv.com/temp/<id>.pdf`. Verified 2026-11-25 (MT Solar uses `create` + `export.pdf` in one request). |
 
-There is no `cloudcad.model.get`/`set`/export function: the API can't read a drawing's JSON back
-or export a PDF/DXF. Calling one returns `"The function '...' could not be found"`.
+There is no `cloudcad.model.get`/`set` function: the API can't read a drawing's JSON back. Calling
+one returns `"The function '...' could not be found"`. DXF export is not available.
 
 ## Coordinates
 
@@ -147,14 +148,37 @@ Pick the plot scale `S` (100 for 1:100). Every **length-valued** style setting i
 When a generator switches plot scale, it rescales the **style** (and any page furniture) by the
 same factor and leaves the geometry at true size.
 
-Plain `texts` do **not** use the style for size. `size` is a unitless factor that renders at
-roughly **16 mm of character width per unit** (monospace), verified across zoom levels: a
-17-character string at `size: 14` was about 3.9 m wide. So `size: 14` suits a building-scale plan
-at 1:100. For a 1:10 detail, divide it by about 10.
+**Plain `texts` changed in the Nov 2026 CloudCAD release** (verified 2026-11-25 against the
+editor code and real `cloudcad.export.pdf` output):
+
+- **Always set `sizeOverride: true`.** Without it, a text with an `attributeStyleId` ignores its
+  own `size` and takes the style's `textSizeInput` (default 14), so every label comes out the same.
+- `size` is now in **paper units**: the editor draws it at `size × plot scale` mm (`size: 3.5` at
+  1:100 → 350 mm on the canvas → 3.5 mm printed). Don't scale it by the plot scale yourself.
+- **The PDF export doesn't match the editor**, which looks like a CloudCAD bug, reported:
+  - Texts inside the drawing area print at a **fixed ~7 mm (19.84 pt) whatever `size` is**
+    (0.5 → 12 all identical, at 1:50, 1:100 and 1:200).
+  - Texts placed in the **title-block strip** honour `size` but **without** the plot-scale
+    multiplier, so `size` there is canvas mm (`2.28` at 1:50 printed at 0.13 pt, invisible).
+    Multiply title-block text sizes by the plot scale.
+  - Plain texts always print in **Helvetica**. `fontFamily`, `font`, `attrOverrides.fontFamily`
+    and the style's `fontFamily` are ignored. Dimension and leader labels still print in Courier.
+- `sizeUnits: "model"` makes `size` plain canvas mm (24 → 24 mm), which is tiny on a sheet.
+- `alignment: "center"` / `"right"` anchor correctly in both the editor and the PDF. Use them
+  rather than shifting `position` by an estimated text width: the PDF font is proportional, so
+  width estimates for monospace now land off-centre.
+
+Older payloads that sent `size: 14` with no `sizeOverride` (the previous advice here) now render
+every text at the style's size.
 
 ## Verifying a drawing (you can't open the viewer)
 
-Undocumented, but useful: when any call in a request **fails**, the response's top-level
+Best: append `{"function": "cloudcad.export.pdf"}` after `create` and read the PDF at
+`data.download_link`. That is what the end user gets, and it differs from the editor for text (see
+Sizing). Extract text positions and sizes from it (e.g. PyMuPDF `page.get_text("dict")`) to check
+labels are present, inside the border and centred, rather than trusting a glance.
+
+Also undocumented, but useful when you only need the editor view: when any call in a request **fails**, the response's top-level
 `response.screenshot` holds an 800×600 base64 PNG of the headless CloudCAD editor, showing the
 model built so far. To see your drawing, append a deliberately unknown call after `create`, such as
 `{"function": "cloudcad.model.get", "arguments": {}}`, then decode `response.screenshot`. It costs
@@ -186,6 +210,13 @@ All of these were verified against the live API on 2026-09-22.
 - **`textPosition` on every text.** Rendering works without it, but the editor is reported to
   crash when the user selects such a text. `alignment` anchors the text at `position` as you'd
   expect (`center` centres it on x, `right` ends it at x), so don't also pre-shift `position`.
+  Re-verified in PDF exports on 2026-11-25.
+- **Text needs `sizeOverride: true`**, or its `size` is replaced by the style's `textSizeInput`.
+  In the PDF, drawing-area text prints at a fixed ~7 mm, and title-block text needs `size × plot
+  scale`. See Sizing.
+- **`window.alert` from the host app freezes browser automation.** When driving an app that calls
+  CloudCAD (e.g. clicking its Export button), invalid inputs can raise an `alert()`, which blocks
+  the page. Stub `window.alert` first if you're testing many input combinations.
 - **Missing or unknown `attributeStyleId` fails silently.** The element falls back to the built-in
   style (grey labels, default sizes).
 - **Images don't render inside a block definition.** Tables, axes, text, linear and radius
