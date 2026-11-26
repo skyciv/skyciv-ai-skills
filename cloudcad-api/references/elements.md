@@ -146,7 +146,7 @@ The text sits at `anchorPoint`, with one arrow to each entry of `arrowPoints`.
 ## Texts [verified]
 
 ```json
-{ "position": { "x": 100, "y": -200 }, "text": "My Label", "size": 14, "color": "#ffffff",
+{ "position": { "x": 100, "y": -200 }, "text": "My Label", "size": 3.5, "sizeOverride": true, "color": "#ffffff",
   "backgroundColor": "#000000", "backgroundColorOpacity": 0, "alignment": "left",
   "textPosition": "middle-center", "rotation": 0, "bold": false, "italic": false,
   "attributeStyleId": "as-default" }
@@ -155,9 +155,12 @@ The text sits at `anchorPoint`, with one arrow to each entry of `arrowPoints`.
 | Field | Meaning |
 |---|---|
 | `position` | Anchor point; the text is vertically centred on it |
-| `size` | Unitless; about **16 mm of character width per unit** in monospace. `14` suits a 1:100 plan; use 20–28 for headings |
+| `size` | **Paper units** since the Nov 2026 release: the editor draws it at `size × plot scale` mm (`3.5` ≈ 3.5 mm printed). Ignored unless `sizeOverride` is `true`. In the **PDF export**, drawing-area text prints at a fixed ~7 mm regardless, and title-block text needs `size × plot scale` (see SKILL.md Sizing). The old "16 mm of character width per unit" rule no longer applies |
+| `sizeOverride` | **Always `true`.** Without it, a text with an `attributeStyleId` takes the style's `textSizeInput` instead of its own `size` |
+| `sizeUnits` | Omit. `"model"` makes `size` plain canvas mm (tiny on a sheet) |
 | `color` | **Always set a light colour.** Omitted, it renders near-black (invisible on the dark canvas) |
-| `alignment` | `"left"` (text starts at x), `"center"` (centred on x), `"right"` (ends at x). Behaves like an ordinary anchor, so don't also pre-shift `position` |
+| `alignment` | `"left"` (text starts at x), `"center"` (centred on x), `"right"` (ends at x). Behaves like an ordinary anchor in the editor and the PDF, so don't also pre-shift `position` (the PDF font is proportional Helvetica, so a monospace width estimate lands off-centre) |
+| font | Plain texts always print in **Helvetica** in the PDF; `fontFamily`, `font` and `attrOverrides.fontFamily` are ignored (verified 2026-11-25) |
 | `textPosition` | **Always include it** (`top-left` … `bottom-right`, default `"middle-center"`). Omitting it didn't change the render, but it's reported to crash the editor when the text is selected |
 | `rotation` | Degrees, **clockwise** on screen |
 | `backgroundColorOpacity` | `0` transparent … `1` opaque |

@@ -1,0 +1,717 @@
+{
+  "is_loading_data": false,
+  "project_details": {
+    "units": "",
+    "company": "",
+    "designer": "",
+    "client": "",
+    "name": "",
+    "id": "",
+    "notes": ""
+  },
+  "assembly": {
+    "beams": 1,
+    "beam_dims": {
+      "clearance": 0,
+      "section_dims": {
+        "h": 18,
+        "TFw": 7.5,
+        "TFt": 0.57,
+        "BFw": 7.5,
+        "BFt": 0.57,
+        "Wt": 0.355,
+        "r": 0.402
+      },
+      "Syp": 16.6,
+      "Szp": 101,
+      "T": 15.5,
+      "kdes": 0.972,
+      "Ag": 14.7,
+      "shape": "ibeam"
+    },
+    "beam_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "beam_section": "W18x50",
+    "left_beam_dims": {},
+    "left_beam_material": {},
+    "left_beam_section": "",
+    "right_beam_dims": {},
+    "right_beam_material": {},
+    "right_beam_section": "",
+    "brace_dims": {
+      "brace_slope": 45,
+      "unbraced_length": 13,
+      "TOS": 5,
+      "double_angle": true,
+      "section_dims": {
+        "h": 5,
+        "LFt": 0.5,
+        "BFt": 0.5,
+        "BFw": 3.5,
+        "r": 0.438
+      },
+      "Syp": 0,
+      "Szp": 0,
+      "Ag": 4,
+      "shape": "lbeam",
+      "equal_legs": false,
+      "switch_legs": false
+    },
+    "brace_material": {
+      "name": "A36",
+      "E": 29000,
+      "fy": 36,
+      "fu": 58
+    },
+    "brace_section": "L5x3-1/2x1/2",
+    "lower_brace_dims": {},
+    "lower_brace_material": {},
+    "lower_brace_section": "",
+    "upper_brace_dims": {},
+    "upper_brace_material": {},
+    "upper_brace_section": "",
+    "left_brace_dims": {},
+    "left_brace_material": {},
+    "left_brace_section": "",
+    "right_brace_dims": {},
+    "right_brace_material": {},
+    "right_brace_section": "",
+    "column_dims": {
+      "section_dims": {
+        "h": 14,
+        "TFw": 14.5,
+        "TFt": 0.71,
+        "BFw": 14.5,
+        "BFt": 0.71,
+        "Wt": 0.44,
+        "r": 0.6
+      },
+      "Syp": 75.6,
+      "Szp": 157,
+      "T": 10,
+      "kdes": 1.31,
+      "Ag": 26.5,
+      "shape": "ibeam"
+    },
+    "column_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "column_section": "W14x90",
+    "lower_column_dims": {},
+    "lower_column_material": {},
+    "lower_column_section": "",
+    "upper_column_dims": {},
+    "upper_column_material": {},
+    "upper_column_section": "",
+    "girder_dims": {
+      "section_dims": {
+        "h": 20.7,
+        "TFw": 6.5,
+        "TFt": 0.45,
+        "BFw": 6.5,
+        "BFt": 0.45,
+        "Wt": 0.35,
+        "r": 0.5
+      },
+      "Syp": 10.2,
+      "Szp": 95.4,
+      "T": 18.375,
+      "kdes": 0.95,
+      "Ag": 13,
+      "shape": "ibeam"
+    },
+    "girder_material": {
+      "name": "A992",
+      "E": 29000,
+      "fy": 50,
+      "fu": 65
+    },
+    "girder_section": "W21x44",
+    "connections": [
+      {
+        "connector": "plate",
+        "name": "gusset-plate",
+        "material": "A572 GR.50",
+        "fy": 50,
+        "fu": 65,
+        "b1": 6.75,
+        "h1": 11,
+        "o1": 1,
+        "b2": 6.5,
+        "h2": 11.75,
+        "o2": 1,
+        "thk": 0.5,
+        "b": null,
+        "h": null,
+        "L1": null,
+        "L2": null
+      },
+      {
+        "connector": "section",
+        "name": "single-angle-girder",
+        "material": "A36",
+        "fy": 36,
+        "fu": 58,
+        "angle_section": "L4x3x3/8",
+        "length": 9,
+        "equal_legs": false,
+        "switch_legs": false,
+        "dims": {
+          "h": 4,
+          "LFt": 0.375,
+          "BFt": 0.375,
+          "BFw": 3,
+          "r": 0.375
+        },
+        "points": [
+          [
+            0,
+            0,
+            "regular"
+          ],
+          [
+            3,
+            0,
+            "regular"
+          ],
+          [
+            3,
+            0.375,
+            "regular"
+          ],
+          [
+            0.7499999999999999,
+            0.375,
+            "filletStartEnd"
+          ],
+          [
+            0.6064937128630912,
+            0.40354517530826756,
+            "dontShow"
+          ],
+          [
+            0.48483495705504465,
+            0.4848349570550447,
+            "dontShow"
+          ],
+          [
+            0.40354517530826745,
+            0.6064937128630914,
+            "dontShow"
+          ],
+          [
+            0.375,
+            0.75,
+            "filletStartEnd"
+          ],
+          [
+            0.375,
+            4,
+            "regular"
+          ],
+          [
+            0,
+            4,
+            "regular"
+          ]
+        ]
+      },
+      {
+        "connector": "section",
+        "name": "single-angle-beam",
+        "material": "A36",
+        "fy": 36,
+        "fu": 58,
+        "angle_section": "L4x3x3/8",
+        "length": 9,
+        "equal_legs": false,
+        "switch_legs": false,
+        "dims": {
+          "h": 4,
+          "LFt": 0.375,
+          "BFt": 0.375,
+          "BFw": 3,
+          "r": 0.375
+        },
+        "points": [
+          [
+            0,
+            0,
+            "regular"
+          ],
+          [
+            3,
+            0,
+            "regular"
+          ],
+          [
+            3,
+            0.375,
+            "regular"
+          ],
+          [
+            0.7499999999999999,
+            0.375,
+            "filletStartEnd"
+          ],
+          [
+            0.6064937128630912,
+            0.40354517530826756,
+            "dontShow"
+          ],
+          [
+            0.48483495705504465,
+            0.4848349570550447,
+            "dontShow"
+          ],
+          [
+            0.40354517530826745,
+            0.6064937128630914,
+            "dontShow"
+          ],
+          [
+            0.375,
+            0.75,
+            "filletStartEnd"
+          ],
+          [
+            0.375,
+            4,
+            "regular"
+          ],
+          [
+            0,
+            4,
+            "regular"
+          ]
+        ]
+      }
+    ],
+    "active_conn": "Gusset Plate",
+    "conn_index": 0,
+    "tab_is_active": true,
+    "active_member": "column",
+    "brace_shape": "Unequal angles",
+    "column_shape": "W",
+    "column_section_outdated": false,
+    "girder_shape": "W",
+    "girder_section_outdated": false,
+    "beam_shape": "W",
+    "beam_section_outdated": false,
+    "brace_section_outdated": false
+  },
+  "fixtures": {
+    "active_index": 0,
+    "active_part": "Gusset-Plate-to-Brace",
+    "bolts": [
+      {
+        "fnv": 54,
+        "fnt": 90,
+        "name": "Gusset-Plate-to-Brace",
+        "typical": false,
+        "material": "A325-SC(A)",
+        "hole_type_member": "STD",
+        "hole_type_connector": "OVS",
+        "diameter": "3/4 in",
+        "arrangement": "4x2",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.5,
+        "row": 3,
+        "column": 3,
+        "gage": 6,
+        "gusset_extension": 0.5,
+        "dims": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "Pf": 0
+      },
+      {
+        "name": "Gusset-Plate-to-Single-Angle-at-Girder",
+        "typical": false,
+        "material": "A325N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "HSSL",
+        "diameter": "3/4 in",
+        "arrangement": "3x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.5,
+        "row": 3,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 54,
+        "fnt": 90,
+        "dims": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "Pf": 0,
+        "Lev": 1.5,
+        "Leh": 1.5
+      },
+      {
+        "name": "Single-Angle-to-Girder",
+        "typical": false,
+        "material": "A325N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "STD",
+        "diameter": "3/4 in",
+        "arrangement": "3x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.75,
+        "row": 3,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 54,
+        "fnt": 90,
+        "dims": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "Pf": 0,
+        "Lev": 1.5,
+        "Leh": 1.5
+      },
+      {
+        "name": "Gusset-Plate-to-Single-Angle-at-Beam",
+        "typical": false,
+        "material": "A325N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "HSSL",
+        "diameter": "3/4 in",
+        "arrangement": "3x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.5,
+        "row": 3,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 54,
+        "fnt": 90,
+        "dims": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "Pf": 0,
+        "Lev": 1.5,
+        "Leh": 1.5
+      },
+      {
+        "name": "Single-Angle-to-Beam",
+        "typical": false,
+        "material": "A325N",
+        "hole_type_member": "STD",
+        "hole_type_connector": "STD",
+        "diameter": "3/4 in",
+        "arrangement": "3x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 1.75,
+        "row": 3,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 54,
+        "fnt": 90,
+        "dims": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "Pf": 0,
+        "Lev": 1.5,
+        "Leh": 1.5
+      }
+    ],
+    "welds": [
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "weld_laps": null,
+    "tab_is_active": false,
+    "assy": [
+      "Gusset-Plate-to-Brace",
+      "Gusset-Plate-to-Single-Angle-at-Girder",
+      "Single-Angle-to-Girder",
+      "Gusset-Plate-to-Single-Angle-at-Beam",
+      "Single-Angle-to-Beam"
+    ],
+    "bolt_geometry": {
+      "diameter": {
+        "1": 1,
+        "5/8": 0.625,
+        "3/4": 0.75,
+        "7/8": 0.875,
+        "1-1/8": 1.125,
+        "1-1/4": 1.25,
+        "1-3/8": 1.375,
+        "1-1/2": 1.5
+      },
+      "dimensions": {
+        "1": {
+          "s": 1.625,
+          "e": 1.796,
+          "k": 0.627,
+          "d": 1,
+          "wh": 0.16,
+          "wd": 1.75,
+          "nh": 1
+        },
+        "5/8": {
+          "s": 1.062,
+          "e": 1.175,
+          "k": 0.403,
+          "d": 0.625,
+          "wh": 0.16,
+          "wd": 1.2,
+          "nh": 0.66
+        },
+        "3/4": {
+          "s": 1.25,
+          "e": 1.383,
+          "k": 0.483,
+          "d": 0.75,
+          "wh": 0.16,
+          "wd": 1.5,
+          "nh": 0.77
+        },
+        "7/8": {
+          "s": 1.438,
+          "e": 1.589,
+          "k": 0.563,
+          "d": 0.875,
+          "wh": 0.16,
+          "wd": 1.56,
+          "nh": 0.89
+        },
+        "1-1/8": {
+          "s": 1.812,
+          "e": 2,
+          "k": 0.718,
+          "d": 1.125,
+          "wh": 0.2,
+          "wd": 2,
+          "nh": 1.12
+        },
+        "1-1/4": {
+          "s": 2,
+          "e": 2.209,
+          "k": 0.813,
+          "d": 1.25,
+          "wh": 0.2,
+          "wd": 2.25,
+          "nh": 1.24
+        },
+        "1-3/8": {
+          "s": 2.188,
+          "e": 2.416,
+          "k": 0.878,
+          "d": 1.375,
+          "wh": 0.2,
+          "wd": 2.325,
+          "nh": 1.35
+        },
+        "1-1/2": {
+          "s": 2.375,
+          "e": 2.622,
+          "k": 0.974,
+          "d": 1.5,
+          "wh": 0.2,
+          "wd": 2.4,
+          "nh": 1.47
+        }
+      },
+      "holes": {
+        "STD": {
+          "1": 1.0625,
+          "5/8": 0.6875,
+          "3/4": 0.8125,
+          "7/8": 0.9375,
+          "1-1/8": 1.1875,
+          "1-1/4": 1.3125,
+          "1-3/8": 1.4375,
+          "1-1/2": 1.5625
+        },
+        "OVS": {
+          "1": 1.25,
+          "5/8": 0.8125,
+          "3/4": 0.9375,
+          "7/8": 1.0625,
+          "1-1/8": 1.4375,
+          "1-1/4": 1.5625,
+          "1-3/8": 1.6875,
+          "1-1/2": 1.8125
+        },
+        "SS": {
+          "1": {
+            "Width": 1.06,
+            "Length": 1.31
+          },
+          "5/8": {
+            "Width": 0.69,
+            "Length": 0.88
+          },
+          "3/4": {
+            "Width": 0.81,
+            "Length": 1
+          },
+          "7/8": {
+            "Width": 0.94,
+            "Length": 1.13
+          },
+          "1-1/8": {
+            "Width": 1.19,
+            "Length": 1.5
+          },
+          "1-1/4": {
+            "Width": 1.31,
+            "Length": 1.63
+          },
+          "1-3/8": {
+            "Width": 1.44,
+            "Length": 1.75
+          },
+          "1-1/2": {
+            "Width": 1.56,
+            "Length": 1.88
+          }
+        },
+        "LS": {
+          "1": {
+            "Width": 1.06,
+            "Length": 2.5
+          },
+          "5/8": {
+            "Width": 0.69,
+            "Length": 1.56
+          },
+          "3/4": {
+            "Width": 0.81,
+            "Length": 1.88
+          },
+          "7/8": {
+            "Width": 0.94,
+            "Length": 2.19
+          },
+          "1-1/8": {
+            "Width": 1.19,
+            "Length": 2.81
+          },
+          "1-1/4": {
+            "Width": 1.31,
+            "Length": 3.13
+          },
+          "1-3/8": {
+            "Width": 1.44,
+            "Length": 3.44
+          },
+          "1-1/2": {
+            "Width": 1.56,
+            "Length": 3.75
+          }
+        }
+      },
+      "spacing": {
+        "cc": {
+          "1": 3,
+          "5/8": 1.875,
+          "3/4": 2.25,
+          "7/8": 2.625,
+          "1-1/8": 3.375,
+          "1-1/4": 3.75,
+          "1-3/8": 4.125,
+          "1-1/2": 4.5
+        },
+        "edge": {
+          "1": 1.25,
+          "5/8": 0.875,
+          "3/4": 1,
+          "7/8": 1.125,
+          "1-1/8": 1.5,
+          "1-1/4": 1.625,
+          "1-3/8": 1.71875,
+          "1-1/2": 1.875
+        }
+      }
+    }
+  },
+  "loads": {
+    "tab_is_active": false,
+    "utility_ratio_limit": 1,
+    "loads_arr": [
+      {
+        "id": "1",
+        "fx": "0",
+        "fy": "0",
+        "fz": "0",
+        "mx": "0",
+        "my": "0",
+        "mz": "0",
+        "upper_brace_axial": "0",
+        "lower_brace_axial": "0",
+        "brace_axial": "34,-34",
+        "left_brace_axial": "0",
+        "right_brace_axial": "0",
+        "column_axial": "0",
+        "column_moment": "0",
+        "branch_axial": "0",
+        "branch2_axial": "0",
+        "chord_axial": "0",
+        "chord_moment": "0",
+        "type": "DL"
+      }
+    ]
+  },
+  "analysis": {},
+  "modal_data": {
+    "category": "bracing",
+    "code": "AISC 360-16 ASD",
+    "config": "horizontal-brace-with-column-single-angle-assembly",
+    "config_label": "Single Angle to Support - Brace/Column/Girder",
+    "orientation": "NA",
+    "parent_member": "column",
+    "type": "horizontal_brace",
+    "unit_system": "English / Imperial"
+  },
+  "data_version": 3
+}

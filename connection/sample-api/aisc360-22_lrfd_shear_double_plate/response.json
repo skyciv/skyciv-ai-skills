@@ -1,0 +1,310 @@
+{
+  "data": {
+    "results_array": [
+      {
+        "name": "Connection Detailing Limitations at Beam Side",
+        "demand": 0.75,
+        "value": 0.75,
+        "ratio": 1,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Minimum Bolt Row Spacing",
+            "limit_type": "min",
+            "limit": 2,
+            "actual": 3,
+            "units": "in",
+            "demand": 2,
+            "capacity": 3,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Maximum Bolt Row Spacing",
+            "limit_type": "max",
+            "limit": 6,
+            "actual": 3,
+            "units": "in",
+            "demand": 3,
+            "capacity": 6,
+            "ratio": 0.5
+          },
+          {
+            "name": "Plate Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Plate Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1.125,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1.125,
+            "capacity": 1.5,
+            "ratio": 0.75
+          },
+          {
+            "name": "Beam Minimum Vertical Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 3.575,
+            "units": "in",
+            "demand": 1,
+            "capacity": 3.575,
+            "ratio": 0.2797202797202797
+          },
+          {
+            "name": "Beam Minimum Horizontal Edge Distance",
+            "limit_type": "min",
+            "limit": 1,
+            "actual": 1.5,
+            "units": "in",
+            "demand": 1,
+            "capacity": 1.5,
+            "ratio": 0.6666666666666666
+          },
+          {
+            "name": "Minimum Connection Depth",
+            "limit_type": "min",
+            "limit": 5.1875,
+            "actual": 6,
+            "units": "in",
+            "demand": 5.188,
+            "capacity": 6,
+            "ratio": 0.8646666666666666
+          },
+          {
+            "name": "Maximum Connection Depth",
+            "limit_type": "max",
+            "limit": 10,
+            "actual": 6,
+            "units": "in",
+            "demand": 6,
+            "capacity": 10,
+            "ratio": 0.6
+          },
+          {
+            "name": "Minimum Top Cope Depth",
+            "limit_type": "min",
+            "limit": 0.75,
+            "actual": 1,
+            "units": "in",
+            "demand": 0.75,
+            "capacity": 1,
+            "ratio": 0.75
+          },
+          {
+            "name": "Minimum Bottom Cope Depth",
+            "limit_type": "min",
+            "limit": 0.75,
+            "actual": 0.75,
+            "units": "in",
+            "demand": 0.75,
+            "capacity": 0.75,
+            "ratio": 1
+          }
+        ]
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Shear",
+        "demand": 12,
+        "value": 42.225951,
+        "ratio": 0.28418542900312654,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Bearing and Tear-out on Double Plate",
+        "demand": 12,
+        "value": 59.911733,
+        "ratio": 0.20029465680787434,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of the Bolt Group in Bearing and Tear-out on Beam Web",
+        "demand": 12,
+        "value": 20.709001,
+        "ratio": 0.5794581785958676,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Effective Strength of the Bolt Group (Shear, Bearing and Tear-out per Bolt)",
+        "demand": 12,
+        "value": 20.709,
+        "ratio": 0.5794582065768507,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of Double Plate in Block Shear",
+        "demand": 12,
+        "value": 70.477736,
+        "ratio": 0.17026653637114564,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of Double Plate in Shear",
+        "demand": 12,
+        "value": 83.193751,
+        "ratio": 0.14424160295404878,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of Double Plate in Flexure Using Double Coped Procedure",
+        "demand": 12,
+        "value": 103.99218,
+        "ratio": 0.11539329207253853,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Shear and Moment Interaction of Double Plate",
+        "demand": 0.027284307,
+        "value": 1,
+        "ratio": 0.027284307,
+        "con_id": 1
+      },
+      {
+        "name": "Shear and Flexure Interaction of the Double Plate - Rupture",
+        "demand": 0.03412125,
+        "value": 1,
+        "ratio": 0.03412125,
+        "con_id": 1
+      },
+      {
+        "name": "Design Capacity of Coped Beam in Block Shear",
+        "demand": 12,
+        "value": 34.767188,
+        "ratio": 0.34515302186647945,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of Coped Beam in Shear",
+        "demand": 12,
+        "value": 49.140002,
+        "ratio": 0.2442002342612847,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of Coped Beam in Flexure",
+        "demand": 12,
+        "value": 57.950158,
+        "ratio": 0.20707450012474513,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Connection Detailing Limitations at Support Side",
+        "demand": 0.25,
+        "value": 0.438,
+        "ratio": 0.5707762557077626,
+        "con_id": 1,
+        "detailing_items": [
+          {
+            "name": "Maximum Plate 1 Weld Size per Distance between Plates",
+            "limit_type": "max",
+            "limit": 0.4375,
+            "actual": 0.25,
+            "units": "in",
+            "demand": 0.25,
+            "capacity": 0.438,
+            "ratio": 0.5707762557077626
+          },
+          {
+            "name": "Maximum Plate 1 Weld Size per Beam Clearance",
+            "limit_type": "max",
+            "limit": 0.5,
+            "actual": 0.25,
+            "units": "in",
+            "demand": 0.25,
+            "capacity": 0.5,
+            "ratio": 0.5
+          }
+        ]
+      },
+      {
+        "name": "Design Capacity of Plate 1 Weld to Support Web",
+        "demand": 6,
+        "value": 53.89383,
+        "ratio": 0.11132999825768553,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Design Capacity of Plate 2 Weld to Support Web",
+        "demand": 6,
+        "value": 43.926007,
+        "ratio": 0.1365933397952607,
+        "con_id": 1,
+        "demand_units": "kip",
+        "capacity_units": "kip"
+      },
+      {
+        "name": "Required Weld to Develop Plate 1 at Support Web",
+        "demand": 0.234375,
+        "value": 0.25,
+        "ratio": 0.9375,
+        "con_id": 1,
+        "demand_units": "in",
+        "capacity_units": "in"
+      },
+      {
+        "name": "Required Weld to Develop Plate 2 at Support Web",
+        "demand": 0.46875,
+        "value": 0.5,
+        "ratio": 0.9375,
+        "con_id": 1,
+        "demand_units": "in",
+        "capacity_units": "in"
+      }
+    ],
+    "report_links": {
+      "html_view_link": "https://solver.skyciv.com/temp/view_report_5cuL10omwFlREhvv.php",
+      "html_download_link": "https://solver.skyciv.com/temp/download_html_report_5cuL10omwFlREhvv.php",
+      "pdf_download_link": "https://solver.skyciv.com/temp/download_report_5cuL10omwFlREhvv.php",
+      "no_drawing": {
+        "html_download_link": "https://solver.skyciv.com/temp/download_html_report_5cuL10omwFlREhvv_nodrawing.php",
+        "pdf_download_link": "https://solver.skyciv.com/temp/download_report_5cuL10omwFlREhvv_nodrawing.php"
+      }
+    },
+    "summary_report_links": {
+      "html_view_link": "https://solver.skyciv.com/temp/view_report_5cuL10omwFlREhvv_summary.php",
+      "html_download_link": "https://solver.skyciv.com/temp/download_html_report_5cuL10omwFlREhvv_summary.php",
+      "pdf_download_link": "https://solver.skyciv.com/temp/download_report_5cuL10omwFlREhvv_summary.php",
+      "no_drawing": {
+        "html_download_link": "https://solver.skyciv.com/temp/download_html_report_5cuL10omwFlREhvv_summary_nodrawing.php",
+        "pdf_download_link": "https://solver.skyciv.com/temp/download_report_5cuL10omwFlREhvv_summary_nodrawing.php"
+      }
+    },
+    "svg_drawings": [
+      "<svg ...> (21474 characters, trimmed for this sample)",
+      "<svg ...> (12575 characters, trimmed for this sample)"
+    ],
+    "aisc_edition": "360-22"
+  },
+  "msg": "Connection design complete, returning results",
+  "status": 0,
+  "function": "standalone.connection.check"
+}

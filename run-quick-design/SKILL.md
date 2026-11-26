@@ -8,6 +8,7 @@ The library covers 154 calculators across structural, foundation, steel, concret
 - **API endpoint:** `POST https://qd.skyciv.com/run`
 - **Auth:** Requires a SkyCiv API token — get yours at https://platform.skyciv.com/api
 - **[Full calculator catalogue](./assets/catalogue.md)**
+- **[Browser console commands](./assets/console-commands.md)** — drive an open Quick Design page from DevTools (readiness checks, set inputs, run, read results and the solve log)
 - **Writing or editing a calc pack** (including `s3d_integration.js` so it runs inside S3D against every member of a solved model)? That's authoring, not calling: see [`build-quick-design-calculator`](../build-quick-design-calculator/SKILL.md) and its [S3D integration guide](../build-quick-design-calculator/references/s3d-integration.md).
 
 ---
@@ -142,6 +143,12 @@ This is not a always request-shape bug — it could mean one of your *values* fa
 **`sample_output.json` often doesn't reflect the calculator's real result keys:** some of these files are generic placeholder boilerplate (e.g. a "Design Summary" heading + one generic "Utilization Ratio" + one "Example Dimension" — the exact same three entries appear verbatim across multiple unrelated calculators' `sample_output.json`), not an actual captured response for that specific calculator. Treat `schema.json`/`sample_input.json` as authoritative for input field names/units; only trust `sample_output.json`'s result *key names* if they look calculator-specific (not this generic pattern) — otherwise expect the real `results` object to have different, calculator-specific keys, and code defensively (e.g. scan for `units: "utility"` entries rather than a fixed key name — see `extractGoverningUtilization`-style logic in the prototype apps under `prototypes/`).
 
 **Some result entries carry `"paid_only": true`:** this has been observed on `2601-aluminium-design`'s combined-action checks (e.g. "Combined Tension + Bending", "Combined Bending and Shear"). A value is still present, but on a free/trial account it may not reflect a genuinely computed result. If you're scanning for the governing (largest) `units: "utility"` value across all entries, be aware a `paid_only` entry could be silently governing the result on an account that hasn't verified it actually computes real values for that entry.
+
+## Running in the browser (console)
+
+When a Quick Design page is open (`https://platform.skyciv.com/quick-design?uid=<uid>`), the `SKYCIV_DESIGN` object in the DevTools console sets inputs, runs the design and reads the results and solve log without the REST endpoint and without API credits. The commands, the order to call them in and the readiness checks that stop an agent racing the page load are in [console-commands.md](./assets/console-commands.md). Use `setConfigInput` for inputs, poll `#run-design-btn` for the end of a run, and check `results.hasResults()` before reading anything.
+
+---
 
 ## Per-calculator assets
 

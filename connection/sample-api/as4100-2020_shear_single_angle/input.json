@@ -1,0 +1,451 @@
+{
+  "is_loading_data": false,
+  "project_details": {
+    "units": "",
+    "company": "",
+    "designer": "",
+    "client": "",
+    "name": "",
+    "id": "",
+    "notes": ""
+  },
+  "assembly": {
+    "beams": 1,
+    "beam_dims": {
+      "clearance": "12",
+      "section_dims": {
+        "h": 460,
+        "TFw": 191,
+        "TFt": 16,
+        "BFw": 191,
+        "BFt": 16,
+        "Wt": 9.9,
+        "r": 11.4
+      },
+      "Syp": 303000,
+      "Szp": 1840000,
+      "Ag": 10500,
+      "shape": "ibeam"
+    },
+    "beam_material": {
+      "name": "AS/NZS 3679.1 Gr.300",
+      "E": 200000
+    },
+    "beam_section": "460 UB 82.1",
+    "left_beam_dims": {},
+    "left_beam_material": {},
+    "left_beam_section": "",
+    "right_beam_dims": {},
+    "right_beam_material": {},
+    "right_beam_section": "",
+    "brace_dims": {},
+    "brace_material": {},
+    "brace_section": "",
+    "lower_brace_dims": {},
+    "lower_brace_material": {},
+    "lower_brace_section": "",
+    "upper_brace_dims": {},
+    "upper_brace_material": {},
+    "upper_brace_section": "",
+    "left_brace_dims": {},
+    "left_brace_material": {},
+    "left_brace_section": "",
+    "right_brace_dims": {},
+    "right_brace_material": {},
+    "right_brace_section": "",
+    "column_dims": {
+      "section_dims": {
+        "h": 327,
+        "TFw": 311,
+        "TFt": 25,
+        "BFw": 311,
+        "BFt": 25,
+        "Wt": 15.7,
+        "r": 16.5
+      },
+      "Syp": 1230000,
+      "Szp": 2680000,
+      "Ag": 20100,
+      "shape": "ibeam"
+    },
+    "column_material": {
+      "name": "AS/NZS 3679.1 Gr.300",
+      "E": 200000
+    },
+    "column_section": "310 UC 158",
+    "lower_column_dims": {},
+    "lower_column_material": {},
+    "lower_column_section": "",
+    "upper_column_dims": {},
+    "upper_column_material": {},
+    "upper_column_section": "",
+    "girder_dims": {},
+    "girder_material": {},
+    "girder_section": "",
+    "connections": [
+      {
+        "connector": "section",
+        "name": "single-angle",
+        "material": "AS/NZS 3679.1 Gr.300",
+        "fy": null,
+        "fu": null,
+        "angle_section": "100x6 EA",
+        "length": 300,
+        "equal_legs": false,
+        "switch_legs": false,
+        "dims": {
+          "h": 100,
+          "LFt": 6,
+          "BFt": 6,
+          "BFw": 100,
+          "r": 8
+        },
+        "points": [
+          [
+            0,
+            0,
+            "regular"
+          ],
+          [
+            100,
+            0,
+            "regular"
+          ],
+          [
+            100,
+            6,
+            "regular"
+          ],
+          [
+            14,
+            6,
+            "filletStartEnd"
+          ],
+          [
+            10.93853254107928,
+            6.608963739909708,
+            "dontShow"
+          ],
+          [
+            8.34314575050762,
+            8.34314575050762,
+            "dontShow"
+          ],
+          [
+            6.608963739909707,
+            10.938532541079283,
+            "dontShow"
+          ],
+          [
+            6.000000000000002,
+            14.000000000000002,
+            "filletStartEnd"
+          ],
+          [
+            6,
+            100,
+            "regular"
+          ],
+          [
+            0,
+            100,
+            "regular"
+          ]
+        ]
+      }
+    ],
+    "active_conn": null,
+    "conn_index": 0,
+    "tab_is_active": true,
+    "active_member": "column",
+    "column_shape": "UC",
+    "column_section_outdated": false,
+    "beam_shape": "UB",
+    "beam_section_outdated": false
+  },
+  "fixtures": {
+    "active_index": 0,
+    "active_part": "Angle-Bolt-to-Beam-Web",
+    "bolts": [
+      {
+        "fnv": 1,
+        "fnt": 400,
+        "Lev": 37.5,
+        "name": "Angle-Bolt-to-Beam-Web",
+        "typical": false,
+        "material": "8.8/S",
+        "hole_type_member": "Nominal",
+        "hole_type_connector": "Nominal",
+        "diameter": "M20 mm",
+        "arrangement": "4x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 50,
+        "row": 75,
+        "column": 75,
+        "gage": 0,
+        "gusset_extension": 0,
+        "dims": {
+          "s": 30,
+          "e": 33,
+          "k": 13,
+          "d": 20,
+          "wh": 3,
+          "wd": 37,
+          "nh": 19
+        },
+        "Pf": 0,
+        "Leh": 0
+      },
+      {
+        "name": "Angle-Bolt-to-Column-Flange",
+        "typical": false,
+        "material": "8.8/S",
+        "hole_type_member": "Nominal",
+        "hole_type_connector": "Nominal",
+        "diameter": "M20 mm",
+        "arrangement": "4x1",
+        "arrangement_inside": "2x1",
+        "arrangement_outside": "2x1",
+        "edge": 60,
+        "row": 75,
+        "column": 0,
+        "gage": 0,
+        "gusset_extension": 0,
+        "fnv": 1,
+        "fnt": 400,
+        "dims": {
+          "s": 30,
+          "e": 33,
+          "k": 13,
+          "d": 20,
+          "wh": 3,
+          "wd": 37,
+          "nh": 19
+        },
+        "Pf": 0,
+        "Lev": 37.5,
+        "Leh": 0
+      }
+    ],
+    "welds": [
+      {},
+      {}
+    ],
+    "weld_laps": {
+      "Angle-to-Beam-Web": [
+        "top",
+        "bottom",
+        "right"
+      ],
+      "Angle-to-Column": [
+        "top",
+        "bottom",
+        "left"
+      ],
+      "Angle-to-Girder": [
+        "top",
+        "bottom",
+        "left"
+      ]
+    },
+    "tab_is_active": false,
+    "assy": [
+      "Angle-Bolt-to-Beam-Web",
+      "Angle-Bolt-to-Column-Flange"
+    ],
+    "bolt_geometry": {
+      "diameter": {
+        "M12": 12,
+        "M16": 16,
+        "M20": 20,
+        "M24": 24,
+        "M30": 30,
+        "M36": 36
+      },
+      "dimensions": {
+        "M12": {
+          "s": 18,
+          "e": 20,
+          "k": 8,
+          "d": 12,
+          "wh": 2.5,
+          "wd": 24,
+          "nh": 12
+        },
+        "M16": {
+          "s": 24,
+          "e": 26,
+          "k": 10,
+          "d": 16,
+          "wh": 3,
+          "wd": 30,
+          "nh": 16
+        },
+        "M20": {
+          "s": 30,
+          "e": 33,
+          "k": 13,
+          "d": 20,
+          "wh": 3,
+          "wd": 37,
+          "nh": 19
+        },
+        "M24": {
+          "s": 36,
+          "e": 40,
+          "k": 15,
+          "d": 24,
+          "wh": 4,
+          "wd": 44,
+          "nh": 22
+        },
+        "M30": {
+          "s": 46,
+          "e": 51,
+          "k": 19,
+          "d": 30,
+          "wh": 4,
+          "wd": 56,
+          "nh": 26
+        },
+        "M36": {
+          "s": 55,
+          "e": 61,
+          "k": 23,
+          "d": 36,
+          "wh": 5,
+          "wd": 66,
+          "nh": 32
+        }
+      },
+      "holes": {
+        "STD": {
+          "M12": 14,
+          "M16": 18,
+          "M20": 22,
+          "M24": 26,
+          "M30": 33,
+          "M36": 39
+        },
+        "OVS": {
+          "M12": 20,
+          "M16": 24,
+          "M20": 28,
+          "M24": 32,
+          "M30": 38,
+          "M36": 45
+        },
+        "SS": {
+          "M12": {
+            "Width": 14,
+            "Length": 22
+          },
+          "M16": {
+            "Width": 18,
+            "Length": 26
+          },
+          "M20": {
+            "Width": 22,
+            "Length": 30
+          },
+          "M24": {
+            "Width": 26,
+            "Length": 34
+          },
+          "M30": {
+            "Width": 32,
+            "Length": 40
+          },
+          "M36": {
+            "Width": 38,
+            "Length": 48
+          }
+        },
+        "LS": {
+          "M12": {
+            "Width": 14,
+            "Length": 30
+          },
+          "M16": {
+            "Width": 18,
+            "Length": 40
+          },
+          "M20": {
+            "Width": 22,
+            "Length": 50
+          },
+          "M24": {
+            "Width": 26,
+            "Length": 60
+          },
+          "M30": {
+            "Width": 32,
+            "Length": 75
+          },
+          "M36": {
+            "Width": 38,
+            "Length": 90
+          }
+        }
+      },
+      "spacing": {
+        "cc": {
+          "M12": 30,
+          "M16": 40,
+          "M20": 50,
+          "M24": 65,
+          "M30": 75,
+          "M36": 90
+        },
+        "edge": {
+          "M12": 18,
+          "M16": 24,
+          "M20": 30,
+          "M24": 36,
+          "M30": 45,
+          "M36": 54
+        }
+      }
+    }
+  },
+  "loads": {
+    "tab_is_active": false,
+    "utility_ratio_limit": 1,
+    "loads_arr": [
+      {
+        "id": "1",
+        "fx": "0",
+        "fy": "150",
+        "fz": "0",
+        "mx": "0",
+        "my": "0",
+        "mz": "0",
+        "upper_brace_axial": "0",
+        "lower_brace_axial": "0",
+        "brace_axial": "0",
+        "left_brace_axial": "0",
+        "right_brace_axial": "0",
+        "column_axial": "0",
+        "column_moment": "0",
+        "branch_axial": "0",
+        "branch2_axial": "0",
+        "chord_axial": "0",
+        "chord_moment": "0",
+        "type": "DL"
+      }
+    ]
+  },
+  "analysis": {},
+  "modal_data": {
+    "category": "i-to-i",
+    "code": "AS 4100:2020",
+    "config": "single-angle-assembly",
+    "config_label": "Single Angle",
+    "orientation": "BCF",
+    "parent_member": "column",
+    "type": "shear",
+    "unit_system": "SI / Metric"
+  },
+  "data_version": 3
+}

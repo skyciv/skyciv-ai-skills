@@ -59,10 +59,14 @@ function emptyCanvas(name = 'Canvas 1', extra = {}) {
   return Object.assign(c, extra);
 }
 
-/** Text element with the fields the platform needs (textPosition, light colour, left alignment). */
+/**
+ * Text element with the fields the platform needs (textPosition, light colour, left alignment).
+ * `size` is in paper units and only applies with sizeOverride: true (Nov 2026 release). For text
+ * in the title-block strip, pass size × plotScale: the PDF export skips the scale there.
+ */
 function text(x, y, str, opts = {}) {
   return Object.assign({
-    position: { x, y }, text: str, size: 14, color: '#ffffff', backgroundColor: '#000000',
+    position: { x, y }, text: str, size: 3.5, sizeOverride: true, color: '#ffffff', backgroundColor: '#000000',
     backgroundColorOpacity: 0, alignment: 'left', textPosition: 'middle-center', rotation: 0,
     bold: false, italic: false, attributeStyleId: 'as-default',
   }, opts);
