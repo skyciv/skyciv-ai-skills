@@ -14,7 +14,7 @@ Each skill lives in its own folder with a `SKILL.md` file at the root of that fo
   assets/         # optional — example inputs, catalogues, templates
 ```
 
-Skill files use YAML frontmatter when the skill needs a `name`, `description`, or `argument-hint` discoverable by agents. Not all skills need frontmatter (documentation-only skills may omit it).
+Every skill file starts with YAML frontmatter: `name` (equal to the folder name) and a quoted `description` (at most 1024 characters) saying when to use the skill, with example trigger phrases and what it's not for. Agents only discover a skill through its description. Other keys, such as `argument-hint`, go under `metadata:`.
 
 ## Adding a New Skill
 
@@ -54,6 +54,8 @@ section-selector → Select and inject the right section from the library into a
 run-quick-design → Run pre-built SkyCiv calculators (all concrete design, connections, foundations, and codes S3D Member Design doesn't cover)
 build-quick-design-calculator → Author your own Quick Design calc pack, including S3D integration (s3d_integration.js)
 baseplate        → Design and detail steel baseplates
+project-manager  → Organise saved files into SkyCiv projects, folders and sharing (project_manager)
+ai-assistant     → Hand plain-English tasks to the SkyCiv AI Assistant in an S3D session (S3D.ai_assistant)
 connection       → Check steel connections from a Connection Design JSON (standalone.connection)
 foundation-api   → Design piles (standalone.foundation)
 qa-engineer      → Review and validate engineering outputs

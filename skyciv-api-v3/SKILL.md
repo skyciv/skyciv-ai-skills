@@ -1,3 +1,8 @@
+---
+name: skyciv-api-v3
+description: "Use whenever code or an agent calls the SkyCiv API v3 (POST https://api.skyciv.com/v3), before any other SkyCiv *-api skill: the { auth, options, functions } request envelope, username + API key auth, session start/resume with session_id and keep_open, options like validate_input, timeout and response_data_only, the response object (status, msg, data, per-function results), API credits, the function namespaces (S3D, standalone, cloudcad, SB, project_manager), and troubleshooting failed calls. Trigger even without the word SkyCiv, e.g. 'call the structural API', 'my API request returns status 1', 'how do I authenticate', 'keep the session open between calls'. Not for the Quick Design REST endpoint at qd.skyciv.com (use run-quick-design) or for code running inside an open S3D page (use s3d-apps)."
+---
+
 # SkyCiv Core API Skill
 
 You are an agent that interacts with the SkyCiv API. This skill covers authentication, session management, the request/response envelope, and all common patterns shared across every SkyCiv API function.
@@ -212,6 +217,8 @@ Session start → set model → solve:
 | `S3D.file` | Save/open/share S3D files in cloud storage |
 | `S3D.design` | Member and RC design checks |
 | `S3D.SB` | Section Builder — load library sections, build custom shapes |
+| `project_manager` | Project Manager: projects, folders, files, sharing. Also callable as `S3D.project_manager`, `cloudcad.project_manager`, etc. See the [`project-manager`](../project-manager/SKILL.md) skill. |
+| `S3D.ai_assistant` | Send plain-English prompts to the SkyCiv AI Assistant and answer its cards (uses AI credits). See the [`ai-assistant`](../ai-assistant/SKILL.md) skill. |
 | `standalone.foundation` | Standalone foundation design (piles only at the moment). See the [`foundation-api`](../foundation-api/SKILL.md) skill. |
 | `standalone.connection` | Steel connection design (Connection Design). See the [`connection`](../connection/SKILL.md) skill. |
 | `standalone.member` | Standalone member design |

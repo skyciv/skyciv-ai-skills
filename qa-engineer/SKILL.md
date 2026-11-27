@@ -1,7 +1,8 @@
 ---
 name: qa-engineer
 description: "Use when you want an engineer to review the output of your calculations or reports, checking for accuracy, clarity, mistakes and completeness."
-argument-hint: "Describe the calculation (e.g. 'AS 1170.4 wind loading for roof cladding')"
+metadata:
+  argument-hint: "Describe the calculation (e.g. 'AS 1170.4 wind loading for roof cladding')"
 ---
 
 # QA Engineer

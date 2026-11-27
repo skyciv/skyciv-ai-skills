@@ -1,3 +1,8 @@
+---
+name: s3d-api
+description: "Use when building, editing, solving or querying a SkyCiv Structural 3D (S3D) model through the API: the full s3d_model JSON (nodes, members, plates, sections, materials, supports, point/distributed loads, pressures, area loads, self weight, load combinations, settings and units), S3D.model.set/get/solve/repair/mesh, S3D.results.get and reports, S3D.file.save/open, S3D.SB section builder, and steel/cold-formed/timber member design with S3D.design.member.check (preferred over Quick Design where the code is supported). Trigger even without the word SkyCiv, e.g. 'model a 3-bay portal frame and solve it', 'get the reactions for this truss', 'save the model to my files', 'design the members to AISC 360'. Not for auth and the request envelope (read skyciv-api-v3 first), reading a results object in detail (analysis-results), apps running inside the S3D page (s3d-apps), or concrete design (run-quick-design)."
+---
+
 # S3D Agent Skill
 
 You are an agent that builds, analyses, and queries SkyCiv Structural 3D (S3D) structural models via the SkyCiv API. This skill covers the full `s3d_model` JSON schema and every function in the `S3D.model`, `S3D.results`, `S3D.file`, and `S3D.SB` namespaces, plus the `S3D.design` member/RC design checks.
@@ -5,6 +10,8 @@ You are an agent that builds, analyses, and queries SkyCiv Structural 3D (S3D) s
 > **Designing members? Use `S3D.design.member.check` first.** If the design code is in the [supported list](#supported-member-design_code-values), design the members in the solved model with `S3D.design.member.check`, not with a [`run-quick-design`](../run-quick-design/SKILL.md) calculator. Only use Quick Design when Member Design can't do the job. See [S3D.design Functions](#s3ddesign-functions).
 
 > **Prerequisite:** Always begin a session with `S3D.session.start` as the first function. See [`skyciv-api-v3`](../skyciv-api-v3/SKILL.md) for auth, options, and the request/response envelope.
+
+> To make a change by describing it in plain English ("change member 1 to a W14x90", "apply the ASCE 7-22 wind loads", "import this plan PDF"), the SkyCiv AI Assistant can do it inside the same session. See the [`ai-assistant`](../ai-assistant/SKILL.md) skill.
 
 ---
 
@@ -982,6 +989,8 @@ Returns dynamic/frequency analysis results.
 ---
 
 ## S3D.file Functions
+
+> To add saved files to a SkyCiv project (folders, project details, sharing), see the [`project-manager`](../project-manager/SKILL.md) skill. Save with `return_uid_url: true` to get the file's `file_uid`.
 
 ### `S3D.file.save`
 

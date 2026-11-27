@@ -1,3 +1,8 @@
+---
+name: run-quick-design
+description: "Use when running a SkyCiv Quick Design calculator through its REST endpoint (POST https://qd.skyciv.com/run, API token auth): 154 calculators by UID for concrete beams/columns/slabs/footings, steel, timber, aluminium, connections, foundations, retaining walls and loads, with a catalogue plus schema, sample input and sample output for each, and browser console commands (SKYCIV_DESIGN.*) for driving an open Quick Design page. Always use it for concrete design. Trigger even without the word SkyCiv, e.g. 'check this RC beam to ACI 318', 'size a timber joist', 'run the pad footing calculator', 'which calculator checks a fillet weld'. Not for steel, cold-formed or timber members of a solved S3D model when S3D.design.member.check supports the code (use s3d-api), or for writing a new calculator (use build-quick-design-calculator)."
+---
+
 # Run Quick Design Calculator
 
 ## Overview

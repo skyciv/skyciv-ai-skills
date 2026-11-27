@@ -1,0 +1,138 @@
+{
+  "response": {
+    "status": 0,
+    "msg": "(trimmed sample)"
+  },
+  "functions": [
+    {
+      "msg": "S3D session successfully started.",
+      "status": 0,
+      "function": "S3D.session.start",
+      "data": ""
+    },
+    {
+      "msg": "Model was successfully set.",
+      "status": 0,
+      "function": "S3D.model.set",
+      "data": ""
+    },
+    {
+      "data": {
+        "ready": true,
+        "version": 1,
+        "product": "s3d",
+        "panelOpen": false,
+        "running": false,
+        "flowState": "idle",
+        "statusMessage": "Ready to help",
+        "spinnerText": null,
+        "pendingAction": null,
+        "jobId": "bddq6",
+        "conversationId": null,
+        "messageCount": 0,
+        "attachment": null,
+        "planInContext": null,
+        "selection": {
+          "count": 0,
+          "items": {}
+        },
+        "modelSolved": false,
+        "lastTurn": null
+      },
+      "status": 0,
+      "msg": "AI Assistant status returned.",
+      "function": "S3D.ai_assistant.getStatus"
+    },
+    {
+      "data": {
+        "outcome": "completed",
+        "response": "Your model has 1 member and 2 nodes. Member 1 uses a W14x808 (American AISC W-shape) in Structural Steel.",
+        "messages": [
+          {
+            "role": "user",
+            "kind": "text",
+            "text": "How many members and nodes are in this model, and what section does member 1 use? Answer briefly."
+          },
+          {
+            "role": "assistant",
+            "kind": "text",
+            "text": "Your model has 1 member and 2 nodes. Member 1 uses a W14x808 (American AISC W-shape) in Structural Steel."
+          }
+        ],
+        "errors": [],
+        "pendingAction": null,
+        "running": false,
+        "statusMessage": "Ready to help",
+        "lastTurn": null,
+        "jobId": "bddq6"
+      },
+      "status": 0,
+      "msg": "The AI Assistant completed the request.",
+      "function": "S3D.ai_assistant.runPrompt"
+    },
+    {
+      "data": {
+        "outcome": "completed",
+        "response": "Model Updated\n\nI've changed member 1 from W14x808 to W14x90 (AISC W shapes), keeping the existing Structural Steel material and all end fixities unchanged. The old W14x808 remains in the section list but is no longer assigned to any member.",
+        "messages": [
+          {
+            "role": "user",
+            "kind": "text",
+            "text": "Change the section of member 1 to a W14x90."
+          },
+          {
+            "role": "assistant",
+            "kind": "status",
+            "text": "Model Updated",
+            "level": "building"
+          },
+          {
+            "role": "assistant",
+            "kind": "text",
+            "text": "I've changed member 1 from W14x808 to W14x90 (AISC W shapes), keeping the existing Structural Steel material and all end fixities unchanged. The old W14x808 remains in the section list but is no longer assigned to any member."
+          }
+        ],
+        "errors": [],
+        "pendingAction": null,
+        "running": false,
+        "statusMessage": "Ready to help",
+        "lastTurn": {
+          "turn": 2,
+          "credits": 194.57,
+          "seconds": 23.717,
+          "stopped": false
+        },
+        "jobId": "bddq6",
+        "changes_kept": true
+      },
+      "status": 0,
+      "msg": "The AI Assistant completed the request. Changes were kept.",
+      "function": "S3D.ai_assistant.runPrompt"
+    },
+    {
+      "data": {
+        "members": {
+          "1": {
+            "node_A": 1,
+            "node_B": 2,
+            "section_id": 2
+          }
+        },
+        "sections": {
+          "1": {
+            "name": "W14x808",
+            "material_id": 1
+          },
+          "2": {
+            "name": "W14x90",
+            "material_id": 1
+          }
+        },
+        "_note": "Trimmed for this sample: the full s3d_model is returned."
+      },
+      "status": 0,
+      "function": "S3D.model.get",
+      "msg": ""
+    }
+  ]
+}

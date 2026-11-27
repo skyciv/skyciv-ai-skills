@@ -1,3 +1,8 @@
+---
+name: section-selector
+description: "Use when an S3D model needs real section geometry: map a country, material and member role (or a loosely written section name such as 'W14x22', '310UC96.8', 'IPE 300', '90x45 MGP10') to the exact load_section path in the SkyCiv section library (section_tree.json), pick a matching material entry, or build a concrete or custom section as a template shape with its dimension keys. Trigger whenever sections are being chosen or written into an s3d_model, e.g. 'use Australian UBs for the rafters', 'what's the SkyCiv name for a 200PFC', 'add a 300x600 concrete beam section', 'load_section isn't found'. load_section is an exact string match, so never guess a path. Not for the rest of the model schema (use s3d-api) or for picking sections inside an S3D App UI (use s3d-apps and SB.library.getTree)."
+---
+
 # Section Selection Skill
 
 You are a specialist in selecting the appropriate structural section from the SkyCiv section library to be used in the S3D model object.
