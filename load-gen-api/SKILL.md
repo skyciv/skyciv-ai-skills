@@ -46,7 +46,7 @@ Each of these has burned a real agent run. The lint in step 2 checks the ones ma
 - ✓ **`structure_type` is code- and roof-specific** — see the [allowed-values table](#wind-parameters-building_datawind_parameters). Enclosed roofs: ASCE 7-16/22 `mwfrs` / `cladding` / `mwfrs_cladding`; ASCE 7-10, NSCP, NBCC `mwfrs` / `cladding`; AS/NZS 1170, IS 875 `building` / `cladding`; EN 1991, CTE, SANS, CFE `building`. Open roofs (`pitched`, `troughed`, `open-monoslope`) on AS/NZS, EN, CTE, SANS and CFE take **`free_roof`**. A value not in the list fails validation (`"structure_type is not applicable to roof_profile defined"`): site data comes back, **no `wind_pressure`**.
 - ✓ **Site data comes from the API, not from you.** Leave `wind_speed_override`, `snow_load_override` and `hourly_wind_pressure_override` out unless the user states the value; never fill them from memory, a code map or an estimate. The lint warns `USER_OVERRIDE` on each one present.
 - ✓ **No `"flat"` roof profile** — send `gable` with `roof_angle: 0`.
-- **Wind only — flat roof = `roof_angle` < 7° on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`.** For wind loads, treat such a `gable`, `hip` or `monoslope` roof as flat (flat-roof wind zones and coefficients when reading or applying wind results), but send it as is: keep the user's `roof_profile` and actual `roof_angle`, never rewrite them to `gable`/`0`. Snow and seismic don't use this rule. See [Roof profiles](#roof-profiles-building_dataroof_profile).
+- **Wind only — flat roof = `roof_angle` < 10° for MWFRS, < 7° for components & cladding, on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`.** For wind loads, treat such a `gable`, `hip` or `monoslope` roof as flat (flat-roof wind zones and coefficients when reading or applying wind results), but send it as is: keep the user's `roof_profile` and actual `roof_angle`, never rewrite them to `gable`/`0`. Snow and seismic don't use this rule. See [Roof profiles](#roof-profiles-building_dataroof_profile).
 - ✓ **Open roof profiles (`pitched`, `troughed`, `open-monoslope`) need `enclosure: "open"`** on ASCE, and vice versa.
 - ✓ **AS/NZS 1170 needs `ari` or `sls_and_uls`**; neither = hard fail.
 - ✓ **NBCC:** `eave_height` and `ground_to_top` required — also for seismic-only calls (`wind_parameters: false`), which fail with `"eave_height is not defined"` on the default `api_version` 2.1; `reference_height` ≥ 6 m; never `api_version: 2` (wind times out).
@@ -56,10 +56,12 @@ Each of these has burned a real agent run. The lint in step 2 checks the ones ma
 - **Judge success by the data block, not `status`.** `status: 1` also means "defaults applied"; a response with `wind_pressure` is usable.
 - **Older outputs have an ASCE / NSCP `windward_wall` entry with no values** (only `dirn`/`surface`). Cause: before Load Generator commit `63f988e` (2026-10-14) the windward result was stored under the wrong key and dropped from the JSON; fixed since, and verified live on 2026-11-10 (`loads.getLoads_asce` re-run: windward returns one value per level plus h). The `loads.getLoads_asce716_seismic` sample still predates the fix. If a live reply still shows it, the normalizer reports it in `wind.notes` — never apply zero; read the windward pressures from `report_link`.
 - **ASCE `along_B` roof `location` repeats `along_L`** (API bug) — take zone edges from h.
+- **Stepped building (podium + tower, setbacks) = one call per tier**, never one call with the overall footprint and total height. Each tier: its own plan dimensions, height from the ground to its roof; its pressures go only on its own walls (from the roof below up) and the exposed part of its roof. Seismic stays a single call. See [Stepped buildings](#stepped-buildings).
+- **Windward wall pressure goes on the vertical projected area perpendicular to the wind** (`axes: "global_projected"` / projected `direction`), acting along the wind — not on the face area along its normal. Same thing for a square wall; different for skewed or chamfered faces. See [Applying loads, step 2](#applying-loads-to-an-s3d-model).
 - **`length` is the dimension parallel to the first wind direction**, not "the longer side". Decide which model axis it runs along before calling, and keep that mapping when applying loads back.
 - **Non-building structures (pole, freestanding wall, signboard, rooftop equipment, ASCE ground solar) return `wind_pressure.forces`, not surface `pressures`.** The normalizer turns them into `wind.forces`; apply them per [Applying loads, step 7](#applying-loads-to-an-s3d-model).
 - **AS 4055 returns a wind class (N1–N6/C1–C4) and one general pressure pair per element** (roof / wall, ULS and SLS, uplift, racking) — no directions or zones, so nothing to map face by face onto a frame. The normalizer puts them in `wind.summary`.
-- **NSCP 2015 wind pressures (MWFRS and C&C) are 12.96× too high** (~11.6 kPa on a 4.5 m windward wall, ~33 kPa C&C). Cause, from `wind_parameters.qz` in the reply: qz = 0.613·Kz·Kzt·Kd·V² is evaluated with V in **kph** (e.g. 275) as if it were m/s, so every pressure is 3.6² too large. Seen in local engine runs on 2026-11-10; the normalizer flags it in `wind.notes`. Don't apply NSCP wind until SkyCiv fixes it, and tell the engineer.
+- **NSCP 2015 wind pressures (MWFRS and C&C) are 12.96× too high** (~11.6 kPa on a 4.5 m windward wall, ~33 kPa C&C). Cause, from `wind_parameters.qz` in the reply: qz = 0.613·Kz·Kzt·Kd·V² is evaluated with V in **kph** (e.g. 275) as if it were m/s, so every pressure is 3.6² too large. Seen in local engine runs on 2026-11-10. **Fixed in the engine on 2026-11-16** (map kph now converted to m/s before the solver; `wind_data.wind_speed` still reports the map value in kph) — until that fix is deployed, check every NSCP reply: the normalizer flags it in `wind.notes` only when qz still matches V in kph. If flagged, don't apply NSCP wind and tell the engineer.
 - **CTE DB SE values are kN/m², labelled `"pa"`.** `results.js` overwrites the calc's own `kPa` with the code's base unit without converting. The normalizer corrects `units.pressure` to `kPa`.
 - **`sans10160` (South Africa) fails.** It is listed in `getCountryDesignCodes` and validated, but `getLoads` returned `"Error on server calcs"` for both a gable and a monoslope EN-style request (2026-11-10). The shape, from `results.js`, is EN 1991's (`{θ: [{surface, zone, cpe, we, we_wi_min, we_wi_max, w_net}]}`) and the normalizer reads it as `en1991`, but no successful run exists yet.
 - **`cfe-viento-2020` is listed for Mexico but `getLoads` isn't wired for it** (only site data in `api_functions.js`; no branch in `check_valid.js` or `results.js`). Use `cfe-viento`.
@@ -224,7 +226,7 @@ Defines the location and design code parameters.
 | `terrain_category` | EN 1991 (UK/Ireland) | `0`, `I`, `II`, `III`, `IV` |
 | `terrain_category` | IS 875 / CFE Viento | `1`, `2`, `3`, `4` |
 | `season_month` | EN 1991 | For Belgium, France, UK, Ireland |
-| `distance_inside_town` | EN 1991 (UK/Ireland) | Default `20` m |
+| `distance_inside_town` | EN 1991 (UK/Ireland) | Distance inside town terrain, km. Left out on Town terrain (`III`/`IV`): detected from building footprints for the wind direction (see [UK/Ireland distance inside town](#ukireland-distance-inside-town)); if not detected, `20` (least conservative) with a warning |
 | `distance_from_shore` | EN 1991 (UK/Ireland) | Default `100` m |
 | `displacement_height` | EN 1991 (UK/Ireland) | Default `0` |
 | `snow_region` | AS/NZS 1170 | AU: `AN`, `AC`, `AS`, `AT` — NZ: `N1`–`N5` |
@@ -296,7 +298,7 @@ A supported structure on another code fails validation with e.g. `"Freestanding 
 > against the live API for an `as1170` building: it returns the full set of wall and roof
 > pressures. Any value not in the table above is not a roof profile.
 >
-> **Low-slope roofs, wind only, on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`:** a roof with `roof_angle` below 7° is a flat roof for the wind calc (not snow or seismic). Keep its
+> **Low-slope roofs, wind only, on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`:** a roof is a flat roof for the wind calc (not snow or seismic) when `roof_angle` is below **10° for MWFRS** (`structure_type: "mwfrs"`) or below **7° for components & cladding** (`"cladding"`; `mwfrs_cladding` applies each limit to its own half). So a 8° gable is flat for MWFRS but sloped for C&C. Keep its
 > `roof_profile` (`gable`, `hip`, `monoslope`) and `roof_angle` as given — don't convert it.
 
 ### Wind parameters (`building_data.wind_parameters`)
@@ -355,7 +357,7 @@ Set `wind_parameters: false` to skip wind load calculation.
 | `width` | Building width B: the dimension across the wind in that direction (the windward wall's width). NBCC's report calls it **L** |
 | `mean_roof_height` | Mean roof height |
 | `height` | Wall height (used when `mean_roof_height` not the primary height input) |
-| `roof_angle` | Roof pitch angle in degrees. `0` for a flat roof, with `roof_profile: "gable"`. For wind on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`, any angle < 7° counts as flat — send the real angle and profile |
+| `roof_angle` | Roof pitch angle in degrees. `0` for a flat roof, with `roof_profile: "gable"`. For wind on `asce7-10`, `asce7-16`, `asce7-22`, `nscp2015`, `nbcc2015`, `nbcc2020`, an angle < 10° counts as flat for MWFRS and < 7° for C&C — send the real angle and profile |
 | `reference_height` | NBCC: reference height for the wind exposure factor. **At least 6 m**: a lower value returns site data but no pressures, with `msg` "reference_height should be greater than or equal to 6" |
 | `eave_height` | NBCC: eave height. **Required** for NBCC wind, with `ground_to_top` ("eave_height is not defined" without it) |
 | `ground_to_top` | NBCC: ground to the top of the building. **Required** for NBCC wind |
@@ -668,6 +670,22 @@ Response adds:
 
 `governing_direction` is AS 4055 only; `image` is `null` when the report is off. Template: `sample-api/loads.getLoads_as1170_automatic_terrain`.
 
+### UK/Ireland distance inside town
+
+`en1991` in the United Kingdom or Ireland with Town terrain (`site_data.topography.terrain_category` `III` or `IV`) and
+`distance_inside_town` left out: the API detects only the town distance from building footprints (no `automatic_terrain`
+needed; terrain category, `site_analysis` and report are untouched). It is measured upwind from the site to the first gap of
+more than 100 m between buildings, capped at 1 km (shorter is conservative). `wind_direction` `"Any"` takes the shortest
+detected direction. Adds up to ~90 s to the call. Not run for Country/Sea terrain (the town distance is not used there)
+or when `distance_inside_town` is given.
+
+```json
+"terrain_detection": { "distance_inside_town": 1, "warnings": [] }
+```
+
+If the wind direction is not detected as Town or detection fails, the solver default `20` km (least conservative) is used and
+`terrain_detection.warnings` says so: set `distance_inside_town` yourself.
+
 ---
 
 ## Response Structure
@@ -730,7 +748,7 @@ MWFRS of enclosed and partially enclosed buildings (`pressure_type: "MWFRS"`). E
 - **Roof, wind across the ridge (`along_L`, roof angle ≥ 10°)**: `roof_windward` and
   `roof_leeward` hold one value each, for the windward and leeward slopes; `location` is
   `[h + L + B]`, a "whole roof" marker, not a distance.
-- **Roof, angle < 10° (includes flat, < 7°) or wind along the ridge (`along_B`)**: `roof_windward` and `roof_leeward`
+- **Roof, flat for MWFRS (angle < 10°) or wind along the ridge (`along_B`)**: `roof_windward` and `roof_leeward`
   are the same zone table, by distance from the windward edge: 0–h/2, h/2–h, h–2h, > 2h, only as
   many as the building is deep. `location` holds the zone ends, but **the `along_B` entries repeat
   the `along_L` locations** (an API bug), so take the zone edges from h, not from `location`.
@@ -1093,12 +1111,14 @@ Same rules for the API ([`s3d-api`](../s3d-api/SKILL.md): write into `s3d_model`
 
 2. **Turn `p` into a force direction with one rule:** load vector = `p × n_in`, where `n_in` is the unit normal of the face pointing **into** the building (windward wall facing −X: `n_in = +X`; flat roof: `n_in = −Y`; sloped roof: the negated outward normal of that roof plane, i.e. pointing down into the building). This gets every sign right: windward wall `p > 0` pushes downwind, leeward `p < 0` pulls downwind, side walls `p < 0` pull outward, roof `p < 0` lifts.
 
+   **Windward walls are the exception: apply them on the vertical projected area perpendicular to the wind.** The load acts along the wind axis (`+X` for wind along `+X`), with magnitude `p` per unit of the wall's area projected onto the vertical plane normal to the wind (width measured across the wind × height). Use the projected S3D option, not the actual face area: `pressures` `axes: "global_projected"`, `area_loads` the projected variant of the wind axis, `distributed_loads` `axes: "global_projected"` with the tributary width measured perpendicular to the wind. For a wall square to the wind this is the same as the face area; it differs for a skewed, chamfered or curved windward face (the force there is `p × A_projected`, not `p × A_face`).
+
 3. **Pick the S3D load object by what the model has:**
 
    | Model has | Use | How |
    |---|---|---|
-   | Plates on the faces | `pressures` | One per plate, `axes: "global"`, `x/y/z_mag = p × n_in` components. Avoid `"local"` unless you have checked each plate's normal |
-   | Frame only, wall columns | `area_loads` `type: "column_wind_load"` | `nodes` = the wall's 4 corners, `mags` = windward `level_N` values bottom-up with matching `elevations`, `direction` = wind axis, `column_direction` = vertical edge |
+   | Plates on the faces | `pressures` | One per plate, `axes: "global"`, `x/y/z_mag = p × n_in` components. **Windward wall plates:** `axes: "global_projected"`, `p` on the wind-axis component only (step 2). Avoid `"local"` unless you have checked each plate's normal |
+   | Frame only, wall columns | `area_loads` `type: "column_wind_load"` | `nodes` = the wall's 4 corners, `mags` = windward `level_N` values bottom-up with matching `elevations`, `direction` = projected variant of the wind axis (windward load on the vertical projected area, step 2), `column_direction` = vertical edge |
    | Frame only, roof / single-value walls | `area_loads` `type: "general_one_way"` | `mags` per zone with `intervals` at the zone edges (from h, see per-code zone tables), span `column_direction` along the rafters/purlins, `direction` the axis of `p × n_in` (`Y` for flat roofs) |
    | Frame only, no area-load support in your path | `distributed_loads` | `w = p × tributary width` on each face column/rafter, `axes: "global"` |
 
@@ -1135,13 +1155,54 @@ Minimal `s3d_model` fragment (metric model, `length ∥ X`, windward wall at x =
 ```json
 {
   "pressures": {
-    "1": { "plate_id": 1, "x_mag": 0.6332, "y_mag": 0, "z_mag": 0, "axes": "global", "load_group": "W_along_L_case1" }
+    "1": { "plate_id": 1, "x_mag": 0.6332, "y_mag": 0, "z_mag": 0, "axes": "global_projected", "load_group": "W_along_L_case1" }
   },
   "load_cases": { "ASCE-7-2022-LRFD": { "W_along_L_case1": "W" } }
 }
 ```
 
 `load_cases` is keyed by the combination code id (`ASCE-7-2022-LRFD`, …) — take it from [`load-combinations`](../load-combinations/SKILL.md). In an S3D App, frame loads go through `S3D.structure.loads.area_loads.add({ type, nodes, mags, direction, LG })`, `distributed_loads.add(...)` and `point_loads.add(...)` (signatures in [`s3d-apps`](../s3d-apps/SKILL.md)); `s3d-apps` lists no `add` for plate `pressures`, so write those through the model JSON.
+
+### Stepped buildings
+
+A model whose plan shrinks with height (podium + tower, setbacks) is **not** one box. One Load Generator call with the overall footprint and total height puts tower-height pressures on the podium walls and podium-width zones on the tower. Instead, split it into **tiers** and make **one call per tier**.
+
+1. **Find the tiers from the model.** Group the nodes by elevation (`Y`) and take the plan extents (min/max `X` and `Z`) at each floor. A new tier starts wherever the extents shrink. Tier *k* has a footprint (`length`, `width` along the same model axes for every tier) and a top elevation H<sub>k</sub> (its roof). Ground is H<sub>0</sub>. List the tiers to the engineer (footprint, top elevation, roof) and get confirmation before calling — a non-rectangular footprint or a tower that is offset from the podium is easy to misread.
+
+2. **One call per tier.** Everything else is the same in every call: site, code, risk category, exposure, `wind_direction`, axis mapping (`length ∥ X` for every tier).
+
+   | Key | Tier *k* call |
+   |---|---|
+   | `length`, `width` | Tier *k*'s own plan dimensions |
+   | Height key (`mean_roof_height` / `ground_to_top` / `reference_height`) | H<sub>k</sub> measured **from the ground**, not from the roof below. Pressures depend on height above ground |
+   | `structure_level` | Every floor from the ground up to H<sub>k</sub>, also the floors below the tier, so `level_N` elevations are above ground |
+   | `roof_profile`, `roof_angle` | Tier *k*'s own roof (a podium roof is usually flat: `gable`, `0`) |
+
+3. **Apply each run only to its own tier's faces.**
+
+   | Surface | Run | Extent |
+   |---|---|---|
+   | Walls of tier *k*, setback faces **and** faces flush with the tier below | Tier *k* | From H<sub>k−1</sub> to H<sub>k</sub> only. Use the windward `level_N` values whose bands lie in that range, on the tier's vertical projected area perpendicular to the wind (tier width across the wind × band height; see step 2); leeward and side-wall values as returned for that run |
+   | Roof of tier *k* (the "landing" of the tier above) | Tier *k* | The **exposed part only**: the roof area outside the footprint of tier *k*+1. Zones are measured from tier *k*'s windward edge (its own h). Nothing goes on the area under the tier above |
+   | Top roof | Top tier | Whole roof, normal zones |
+   | Interior members, faces inside a lower tier | — | None |
+
+   A flush face (a tower wall in the same plane as a podium wall) is therefore split at the podium roof: below it takes the podium run, above it the tower run.
+
+4. **Groups, mirrors, extra cases.** All tiers' loads for the same direction × case go into the **same** load group, since they act together (e.g. `W_along_L_case1` holds podium and tower pressures). Mirror each tier's pattern through **its own** centre: an offset tower's centre differs from the podium's. For ASCE Fig. 27.3-8 torsion, use each tier's own B<sub>x</sub> and e<sub>x</sub> = ±0.15 B<sub>x</sub> for its storey bands.
+
+5. **Snow:** also one call per tier, each with its tier's footprint, roof and height. Apply the balanced load to that tier's exposed roof (as above). **Drift on a lower roof against the wall of the tier above** (ASCE 7 §7.7, and the equivalent in other codes) is not computed by the Load Generator: flag it to the engineer as a separate check, don't make it up.
+
+6. **Seismic:** a **single** call for the whole building, overall footprint and total height, with every floor in `structure_level`. Apply the story forces per [step 8](#applying-loads-to-an-s3d-model) over the nodes at each elevation, whichever tier they belong to.
+
+7. **Show the split** in the app/report: a table of tiers (footprint, H<sub>k−1</sub>–H<sub>k</sub>, roof area loaded, `report_link` of its run) so the engineer can see which run loads which face.
+
+Example (podium + tower like a 3-storey podium with a 6-storey tower on it; metric):
+
+| Tier | Footprint (`length` × `width`) | Height key | Loads |
+|---|---|---|---|
+| 1 Podium | 30 × 30 m | 10.5 m | Podium walls 0–10.5 m (incl. flush tower faces), podium roof outside the tower's 15 × 15 m footprint |
+| 2 Tower | 15 × 15 m | 24.5 m (from ground) | Tower walls 10.5–24.5 m, tower roof |
 
 ---
 
@@ -1310,7 +1371,7 @@ if omitted; `sls_and_uls` does not: leave out both it and `ari` and the call fai
 | `loads.getLoads_as1170` | `getLoads` | `as1170` | `building` — AS/NZS 1170 wind + snow |
 | `loads.getLoads_as1170_nz` | `getLoads` | `as1170` | `building` gable — **New Zealand** wind (Wellington, region NZ3); same output shape as Australia (local engine run 2026-11-10) |
 | `loads.getLoads_asce710_gable` | `getLoads` | `asce7-10` | `building` gable — ASCE 7-10 MWFRS; same shape as 7-16 (local engine run 2026-11-10) |
-| `loads.getLoads_nscp2015_mwfrs` | `getLoads` | `nscp2015` | `building` gable — NSCP MWFRS (`structure_type: "mwfrs"`); **pressures 12.96× too high** (kph bug, see Gotchas) (local engine run 2026-11-10) |
+| `loads.getLoads_nscp2015_mwfrs` | `getLoads` | `nscp2015` | `building` gable — NSCP MWFRS (`structure_type: "mwfrs"`); **pressures 12.96× too high** (kph bug, fixed in engine 2026-11-16 — this output predates the fix; see Gotchas) (local engine run 2026-11-10) |
 | `loads.getLoads_nbcc2015_tall` | `getLoads` | `nbcc2015` | `building` 24 m flat roof — taller-building (not low-building) output: windward per level, leeward, side wall, roof x ≤ H / x > H (local engine run 2026-11-10) |
 | `loads.getLoads_nzs1170_seismic_bothdir` | `getLoads` | `as1170` | `building` — NZS 1170.5 seismic, both directions |
 | `loads.getLoads_as1170_automatic_terrain` | `getLoads` | `as1170` | `building` — `automatic_terrain: true` (output: local engine run 2026-11-10) |
